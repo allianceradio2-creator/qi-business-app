@@ -146,13 +146,13 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .hist-top .sc.miss{color:var(--alert);}
 .aide-pill{margin-top:10px; width:100%; background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:9px; font-family:inherit; font-weight:700; font-size:.76rem; color:var(--text); display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer;}
 .aide-pill svg{width:14px; height:14px; stroke:var(--gold-dark);}
-.help-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:10px;}
+.help-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:10px; cursor:pointer;}
 .help-row .t{flex:1; min-width:0;}
 .help-row .t b{font-size:.82rem; font-weight:800; display:block;}
 .help-row .t small{font-size:.72rem; color:var(--sub);}
 .help-row .bubble{width:34px; height:34px; border-radius:50%; background:var(--gold-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
 .help-row .bubble svg{width:15px; height:15px; stroke:var(--gold-dark);}
-.folder-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px;}
+.folder-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; cursor:pointer;}
 .folder-row svg{width:18px; height:18px; stroke:var(--gold-dark); flex-shrink:0;}
 .folder-row b{flex:1; font-size:.83rem; font-weight:800;}
 .folder-row .chev{stroke:var(--sub); width:15px; height:15px;}
@@ -316,7 +316,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
         <div class="datehd">Aujourd'hui</div>
         <div class="hist-row">
           <div class="hist-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>Cours — Maths, Fractions</b><small>Jean Kouamé · 16h00 · 45 min</small></div><div class="sc">72/100</div></div>
-          <button class="aide-pill"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Besoin d'aide sur cette séance ?</button>
+          <button class="aide-pill" onclick="showPage('help')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Besoin d'aide sur cette séance ?</button>
         </div>
         <div class="datehd">Mardi 22 septembre</div>
         <div class="hist-row"><div class="hist-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="t"><b>Quiz — Conjugaison</b><small>Auto-évaluation · 8 min</small></div><div class="sc">15/20</div></div></div>
@@ -335,7 +335,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
         <div class="help-row"><div class="t"><b>Cours Maths — auj. 16h00</b><small>Jean Kouamé</small></div><div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
         <div class="help-row"><div class="t"><b>Quiz Conjugaison — 22 sept.</b><small>Résultat 15/20</small></div><div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
         <div class="help-row"><div class="t"><b>Devoir Physique-Chimie — 14 sept.</b><small>Noté 16/20</small></div><div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
-        <div class="folder-row" style="margin-bottom:10px"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg><b>Toutes mes séances</b><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="folder-row" style="margin-bottom:10px" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg><b>Toutes mes séances</b><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="sechd2">Autres</div>
         <div class="folder-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg><b>Toutes les conversations</b><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
       </div>
@@ -396,12 +396,23 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
     <div class="page" id="page-settings">
       <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Paramètres</h2></div>
       <div class="pbody">
-        <div class="stog"><div class="t"><b>Rappels de révision</b></div><button class="switch on" onclick="this.classList.toggle('on')"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Rappels de révision</b></div><button class="switch on" data-key="rappels" onclick="toggleSetting(this)"><i></i></button></div>
         <div class="prow"><div class="t"><b>Langue de l'application</b><small>Français</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="stog"><div class="t"><b>Messagerie avec le professeur intégrée à l'application</b></div><button class="switch" onclick="this.classList.toggle('on')"><i></i></button></div>
-        <div class="stog"><div class="t"><b>Partager ma progression avec mes parents</b><small>Vos parents pourront suivre vos résultats et votre assiduité</small></div><button class="switch on" onclick="this.classList.toggle('on')"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Messagerie avec le professeur intégrée à l'application</b></div><button class="switch" data-key="messagerie" onclick="toggleSetting(this)"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Partager ma progression avec mes parents</b><small>Vos parents pourront suivre vos résultats et votre assiduité</small></div><button class="switch on" data-key="partage" onclick="toggleSetting(this)"><i></i></button></div>
         <div class="sechd2">Notifications</div>
         <div class="prow"><div class="t"><b>Afficher plus</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+      </div>
+    </div>
+
+    <!-- FONCTIONNALITÉ GÉNÉRIQUE -->
+    <div class="page" id="page-feature">
+      <div class="pagehead"><button class="back" onclick="goBackFromFeature()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="featureTitle">Fonctionnalité</h2></div>
+      <div class="pbody">
+        <div class="prow" style="cursor:default">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div class="t"><b>Bientôt disponible</b><small id="featureDesc">Cette fonctionnalité sera activée dès que l'app sera connectée à un service (compte, base de données ou paiement).</small></div>
+        </div>
       </div>
     </div>
 
@@ -425,27 +436,109 @@ const roles = {
   prof:   {greet:"Bonjour Jean", sub:"12 élèves actifs cette semaine", init:"JK", score:"Moyenne de progression classe"}
 };
 const btns = document.querySelectorAll(".role-btn");
-btns.forEach(b=>b.addEventListener("click", ()=>{
-  btns.forEach(x=>x.setAttribute("aria-selected","false"));
-  b.setAttribute("aria-selected","true");
-  const r = b.dataset.role;
+function activateRole(r){
+  btns.forEach(x=>x.setAttribute("aria-selected", x.dataset.role===r ? "true" : "false"));
   document.querySelectorAll('[id^="panel-"]').forEach(p=>p.classList.add("hidden"));
   document.getElementById("panel-"+r).classList.remove("hidden");
   const d = roles[r];
   document.getElementById("greetTxt").innerHTML = d.greet + "<small>"+d.sub+"</small>";
   document.getElementById("avatarInit").textContent = d.init;
   document.getElementById("scoreTitle").textContent = d.score;
-}));
+  localStorage.setItem('qi_role', r);
+}
+btns.forEach(b=>b.addEventListener("click", ()=>activateRole(b.dataset.role)));
+activateRole(localStorage.getItem('qi_role') || 'eleve');
+
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click", ()=>{
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
   t.classList.add("active");
 }));
 
-document.querySelectorAll('.pay-row').forEach(row=>{
+/* --- Interrupteurs des paramètres, sauvegardés localement --- */
+function toggleSetting(btn){
+  btn.classList.toggle('on');
+  localStorage.setItem('qi_toggle_'+btn.dataset.key, btn.classList.contains('on'));
+}
+document.querySelectorAll('.switch[data-key]').forEach(btn=>{
+  const saved = localStorage.getItem('qi_toggle_'+btn.dataset.key);
+  if(saved!==null) btn.classList.toggle('on', saved==='true');
+});
+
+/* --- Moyens de paiement : sélection + ajout, sauvegardés localement --- */
+function wirePayRow(row){
   row.addEventListener('click', ()=>{
     document.querySelectorAll('.pay-row').forEach(r=>r.classList.remove('selected'));
     row.classList.add('selected');
     document.getElementById('payDefaultLabel').textContent = row.dataset.pay;
+    localStorage.setItem('qi_pay', row.dataset.pay);
+  });
+}
+function renderCustomPayments(){
+  document.querySelectorAll('.pay-row.custom').forEach(r=>r.remove());
+  const addBtn = document.querySelector('.add-pay');
+  const custom = JSON.parse(localStorage.getItem('qi_custom_pay') || '[]');
+  custom.forEach(name=>{
+    const row = document.createElement('div');
+    row.className = 'pay-row custom';
+    row.dataset.pay = name;
+    row.innerHTML = '<div class="picn">'+name.slice(0,2).toUpperCase()+'</div><div class="t"><b>'+name+'</b><small>Ajouté</small></div><div class="radio"></div>';
+    addBtn.parentNode.insertBefore(row, addBtn);
+    wirePayRow(row);
+  });
+}
+document.querySelectorAll('.pay-row').forEach(wirePayRow);
+renderCustomPayments();
+const savedPay = localStorage.getItem('qi_pay');
+if(savedPay){
+  document.querySelectorAll('.pay-row').forEach(r=>r.classList.toggle('selected', r.dataset.pay===savedPay));
+  document.getElementById('payDefaultLabel').textContent = savedPay;
+}
+document.querySelector('.add-pay').addEventListener('click', ()=>{
+  const name = prompt("Nom du nouveau mode de paiement (ex : PayPal, Free Money...)");
+  if(!name) return;
+  const custom = JSON.parse(localStorage.getItem('qi_custom_pay') || '[]');
+  custom.push(name);
+  localStorage.setItem('qi_custom_pay', JSON.stringify(custom));
+  renderCustomPayments();
+});
+
+/* --- Profil : nom modifiable localement --- */
+function applyDisplayName(name){
+  if(!name) return;
+  const initials = name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  document.querySelector('.prof-avatar').textContent = initials;
+  document.querySelector('.prof-hero .nm').childNodes[0].nodeValue = name + ' ';
+  localStorage.setItem('qi_display_name', name);
+}
+const profHero = document.querySelector('.prof-hero');
+profHero.style.cursor = 'pointer';
+profHero.addEventListener('click', ()=>{
+  const current = localStorage.getItem('qi_display_name') || 'Koffi Junior';
+  const name = prompt('Modifier votre nom', current);
+  if(name) applyDisplayName(name);
+});
+const savedName = localStorage.getItem('qi_display_name');
+if(savedName) applyDisplayName(savedName);
+
+/* --- Navigation générique : rend cliquable tout bouton/tuile sans action définie --- */
+let prevPage = 'home';
+function openFeature(title){
+  prevPage = document.querySelector('.page.active').id.replace('page-','');
+  document.getElementById('featureTitle').textContent = title || 'Fonctionnalité';
+  showPage('feature');
+}
+function goBackFromFeature(){ showPage(prevPage); }
+document.querySelectorAll('.tile, .qbtn, .prow, .help-row, .folder-row').forEach(el=>{
+  if(el.hasAttribute('onclick')) return;
+  const label = el.querySelector('span, b');
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', ()=>openFeature(label ? label.textContent.trim() : 'Fonctionnalité'));
+});
+document.querySelectorAll('a[href="#"]').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const h3 = a.closest('.sec-hd')?.querySelector('h3');
+    openFeature(h3 ? h3.textContent.trim() : 'Voir tout');
   });
 });
 </script>
