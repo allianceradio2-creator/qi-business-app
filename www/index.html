@@ -210,9 +210,9 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
     <div class="hdr">
       <div class="hdr-top">
         <div class="brand">QI <em>Business</em><small>ESPACE PROFESSEUR</small></div>
-        <div class="avatar" id="avatarInit" onclick="showPage('profile')">JK</div>
+        <div class="avatar" id="avatarInit" onclick="showPage('profile')">··</div>
       </div>
-      <div class="greet" id="greetTxt">Bonjour Jean<small>4 séances prévues aujourd'hui</small></div>
+      <div class="greet" id="greetTxt">Bonjour<small>Chargement de ton espace…</small></div>
       <div class="onduty">
         <div class="dot" id="dutyDot"></div>
         <b id="dutyLabel">Disponibilité désactivée</b>
@@ -272,37 +272,22 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
     <div class="page" id="page-earnings">
       <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes gains</h2></div>
       <div class="pbody">
-        <div class="stat-row">
-          <div class="stat"><b>76 800 F</b><small>REVENU · SEPT.</small></div>
-          <div class="stat"><b>19 200 F</b><small>COMMISSION QIB</small></div>
-          <div class="stat"><b>20%</b><small>TAUX COMMISSION</small></div>
+        <div class="stat-row" id="earningsStats">
+          <div class="stat"><b>—</b><small>REVENU TOTAL</small></div>
+          <div class="stat"><b>—</b><small>TA PART</small></div>
+          <div class="stat"><b>—</b><small>À TE VERSER</small></div>
         </div>
         <div class="sechd2">Détail des paiements</div>
-        <div class="txrow">
-          <div class="txrow-top"><b>Abonnement — Formule Standard</b><span>15 000 F</span></div>
-          <small>Orange Money · Koffi Junior · 12 sept.</small>
-          <div class="split"><div class="mine"><b>12 000 F</b>Ta part</div><div class="fee"><b>3 000 F</b>Commission QIB</div></div>
-        </div>
-        <div class="txrow">
-          <div class="txrow-top"><b>Cours particulier — Maths</b><span>4 000 F</span></div>
-          <small>Espèces · Koffi Junior · 3 sept.</small>
-          <div class="split"><div class="mine"><b>3 200 F</b>Ta part</div><div class="fee"><b>800 F</b>Commission QIB</div></div>
-        </div>
-        <div class="txrow">
-          <div class="txrow-top"><b>Cours particulier — Anglais</b><span>4 000 F</span></div>
-          <small>Wave · Marie Adjoua · 22 août</small>
-          <div class="split"><div class="mine"><b>3 200 F</b>Ta part</div><div class="fee"><b>800 F</b>Commission QIB</div></div>
-        </div>
-        <span class="demo-flag">Données de démonstration — la répartition automatique réelle nécessite un back-end de paiement connecté</span>
+        <div id="earningsList"><div class="txrow">Chargement…</div></div>
       </div>
     </div>
 
     <!-- PROFIL -->
     <div class="page" id="page-profile">
       <div class="prof-hero" id="profHero">
-        <div class="prof-avatar">JK</div>
-        <div class="nm">Jean Kouamé</div>
-        <small>+225 07 12 34 56 78 · Maths · Collège/Lycée</small>
+        <div class="prof-avatar">··</div>
+        <div class="nm">Chargement…</div>
+        <small>—</small>
       </div>
       <div class="plist">
         <div class="sechd2">Disponibilité &amp; position</div>
@@ -370,6 +355,7 @@ function showPage(name){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   const map={home:0,planning:1,earnings:2,profile:3};
   if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
+  if(name==='earnings' && typeof refreshEarnings==='function') refreshEarnings();
   window.scrollTo(0,0);
 }
 document.querySelectorAll('.tab').forEach((t,i)=>{
@@ -442,6 +428,13 @@ async function submitAuth(){
       if(!fullName){ throw new Error("Renseigne ton nom complet."); }
       const { data, error } = await sb.auth.signUp({ email, password });
       if(error) throw error;
+      if(!data.session){
+        errBox.style.color = 'var(--mint)';
+        errBox.textContent = "Compte créé ! Vérifie ta boîte mail, clique sur le lien de confirmation, puis reviens te connecter ici.";
+        errBox.style.display = 'block';
+        setAuthMode('login');
+        return;
+      }
       if(data.user){
         const { error: perr } = await sb.from('profiles').upsert({
           id: data.user.id, role: 'professeur', full_name: fullName,
@@ -468,12 +461,20 @@ async function doLogout(){
 async function afterAuthSuccess(){
   const { data: { user } } = await sb.auth.getUser();
   if(!user) return;
-  const { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).single();
-  myProfile = profile;
-  if(myProfile){
-    applyProfileToUI(myProfile);
-    await refreshSessionsFromDB();
+  let { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).single();
+  if(!profile){
+    const name = prompt("Complète ton profil — quel est ton nom complet ?");
+    if(!name){ await sb.auth.signOut(); showPage('auth'); return; }
+    const subject = prompt("Quelle matière enseignes-tu ?") || '';
+    const { data: created, error: cerr } = await sb.from('profiles')
+      .upsert({ id:user.id, role:'professeur', full_name:name, avatar_initials:initialsOf(name), subject })
+      .select().single();
+    if(cerr){ alert("Erreur : "+cerr.message); await sb.auth.signOut(); showPage('auth'); return; }
+    profile = created;
   }
+  myProfile = profile;
+  applyProfileToUI(myProfile);
+  await refreshSessionsFromDB();
   showPage('home');
 }
 
@@ -583,6 +584,39 @@ async function stopGeo(){
   if(myProfile){
     await sb.from('teacher_locations').update({ is_sharing:false }).eq('teacher_id', myProfile.id);
   }
+}
+
+/* ================= GAINS (données réelles Supabase) ================= */
+async function refreshEarnings(){
+  if(!myProfile) return;
+  const { data: rows } = await sb.from('payments').select('*').eq('teacher_id', myProfile.id).order('created_at', {ascending:false});
+  const list = rows || [];
+  const payerIds = [...new Set(list.map(r=>r.payer_id))];
+  let names = {};
+  if(payerIds.length){
+    const { data: payers } = await sb.from('profiles').select('id, full_name').in('id', payerIds);
+    (payers||[]).forEach(p=>{ names[p.id] = p.full_name; });
+  }
+  const paid = list.filter(p=>p.status==='paid');
+  const totalRevenue = paid.reduce((s,p)=>s+p.amount,0);
+  const totalMine = paid.reduce((s,p)=>s+p.teacher_share,0);
+  const totalOwed = paid.filter(p=>!p.teacher_paid).reduce((s,p)=>s+p.teacher_share,0);
+  const money = n => n.toLocaleString('fr-FR')+' F';
+  document.getElementById('earningsStats').innerHTML =
+    '<div class="stat"><b>'+money(totalRevenue)+'</b><small>REVENU TOTAL</small></div>'+
+    '<div class="stat"><b>'+money(totalMine)+'</b><small>TA PART</small></div>'+
+    '<div class="stat"><b>'+money(totalOwed)+'</b><small>À TE VERSER</small></div>';
+
+  const box = document.getElementById('earningsList');
+  if(!list.length){ box.innerHTML = '<div class="txrow">Aucun paiement enregistré pour l\'instant — ils apparaîtront ici une fois enregistrés depuis le back office.</div>'; return; }
+  box.innerHTML = list.map(p=>{
+    const d = new Date(p.created_at).toLocaleDateString('fr-FR', {day:'2-digit', month:'long'});
+    const payerName = names[p.payer_id] || 'Élève';
+    const statusTxt = p.status!=='paid' ? '<span class="status-pill route">En attente</span>' : p.teacher_paid ? '<span class="status-pill ok">Versé</span>' : '<span class="status-pill route">À verser</span>';
+    return '<div class="txrow"><div class="txrow-top"><b>Séance — '+payerName+statusTxt+'</b><span>'+money(p.amount)+'</span></div>'+
+      '<small>'+(p.method||'—')+' · '+payerName+' · '+d+'</small>'+
+      '<div class="split"><div class="mine"><b>'+money(p.teacher_share)+'</b>Ta part</div><div class="fee"><b>'+money(p.platform_share)+'</b>Commission QIB</div></div></div>';
+  }).join('');
 }
 
 /* ================= DÉMARRAGE ================= */
