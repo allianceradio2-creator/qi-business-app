@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>QI Business Pro</title>
+<title>QI Business</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -34,41 +34,53 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .serif{font-family:"Fraunces",serif;}
 .frame{width:100%; max-width:430px; min-height:100%; background:var(--bg); position:relative; overflow:hidden;}
 
-.splash{position:absolute; inset:0; z-index:20; background:radial-gradient(120% 90% at 15% 0%, #1C3968 0%, var(--ink) 55%, #081226 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; transition:opacity .5s ease, visibility .5s ease;}
+/* SPLASH */
+.splash{
+  position:absolute; inset:0; z-index:20; background:
+    radial-gradient(120% 90% at 15% 0%, #1C3968 0%, var(--ink) 55%, #081226 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:24px; text-align:center; transition:opacity .5s ease, visibility .5s ease;
+}
 .splash.hide{opacity:0; visibility:hidden; pointer-events:none;}
-.mono{width:76px; height:76px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-bottom:20px;}
-.mono span{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:var(--gold);}
-.splash h1{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:#fff;}
+.mono{
+  width:76px; height:76px; border-radius:50%; border:1.5px solid var(--gold);
+  display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+}
+.mono span{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:var(--gold); letter-spacing:.5px;}
+.splash h1{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:#fff; letter-spacing:.2px;}
 .splash h1 em{font-style:normal; color:var(--gold);}
 .splash p{color:#B9C2D6; font-size:.86rem; margin-top:8px; font-weight:500;}
 .splash-line{width:34px; height:1px; background:var(--gold); margin:22px 0;}
-.enter-btn{background:var(--gold); color:var(--ink); border:0; font-family:"Manrope",sans-serif; font-weight:800; font-size:.86rem; padding:13px 34px; border-radius:30px; cursor:pointer;}
+.enter-btn{
+  background:var(--gold); color:var(--ink); border:0; font-family:"Manrope",sans-serif;
+  font-weight:800; font-size:.86rem; padding:13px 34px; border-radius:30px; cursor:pointer;
+  letter-spacing:.2px;
+}
 
+/* APP SHELL */
 .app{min-height:100%; padding-bottom:calc(78px + env(safe-area-inset-bottom,0px));}
-.hdr{background:linear-gradient(155deg, var(--ink-3) 0%, var(--ink) 62%, #081226 100%); color:#fff; padding:18px 18px 50px; border-radius:0 0 24px 24px; padding-top:calc(18px + env(safe-area-inset-top,0px));}
+.hdr{
+  background:linear-gradient(155deg, var(--ink-3) 0%, var(--ink) 62%, #081226 100%);
+  color:#fff; padding:18px 18px 50px; border-radius:0 0 24px 24px;
+  padding-top:calc(18px + env(safe-area-inset-top,0px));
+}
 .hdr-top{display:flex; align-items:center; justify-content:space-between;}
-.brand{font-family:"Fraunces",serif; font-weight:600; font-size:1.05rem;}
+.brand{font-family:"Fraunces",serif; font-weight:600; font-size:1.05rem; letter-spacing:.2px;}
 .brand em{font-style:normal; color:var(--gold);}
-.brand small{display:block; font-size:.62rem; color:var(--gold); font-weight:700; letter-spacing:.5px; margin-top:1px;}
-.avatar{width:36px; height:36px; border-radius:50%; border:1px solid var(--gold); color:var(--gold); font-weight:800; font-size:.82rem; display:flex; align-items:center; justify-content:center; cursor:pointer;}
+.avatar{width:36px; height:36px; border-radius:50%; border:1px solid var(--gold); color:var(--gold); font-weight:800; font-size:.82rem; display:flex; align-items:center; justify-content:center;}
 .greet{margin-top:18px; font-family:"Fraunces",serif; font-size:1.35rem; font-weight:600; line-height:1.3;}
 .greet small{display:block; font-family:"Manrope",sans-serif; font-weight:500; font-size:.8rem; color:#AEB9D2; margin-top:4px;}
 
-.onduty{display:flex; align-items:center; gap:8px; margin-top:16px; background:rgba(255,255,255,.08); padding:10px 12px; border-radius:12px;}
-.onduty b{flex:1; font-size:.78rem; font-weight:700;}
-.dot{width:8px; height:8px; border-radius:50%; background:var(--sub); flex-shrink:0;}
-.dot.live{background:#3FBE7A; box-shadow:0 0 0 3px rgba(63,190,122,.25);}
-.mswitch{width:40px; height:24px; border-radius:20px; background:rgba(255,255,255,.18); position:relative; flex-shrink:0; cursor:pointer; border:0;}
-.mswitch i{position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; transition:transform .18s ease;}
-.mswitch.on{background:var(--gold);}
-.mswitch.on i{transform:translateX(16px);}
+.roles{display:flex; gap:4px; margin:18px 0 0; background:rgba(255,255,255,.08); padding:4px; border-radius:13px;}
+.role-btn{flex:1; border:0; background:transparent; color:#C7CFE3; font-family:inherit; font-weight:700; font-size:.76rem; padding:9px 4px; border-radius:9px; cursor:pointer;}
+.role-btn[aria-selected="true"]{background:var(--gold); color:var(--ink);}
 
 .content{padding:0 16px; margin-top:-32px;}
 .score-card{background:var(--card); border-radius:18px; padding:16px 18px; box-shadow:0 14px 30px -18px rgba(11,27,51,.45); display:flex; align-items:center; gap:14px; border:1px solid var(--line);}
 .score-ring{width:58px; height:58px; border-radius:50%; background:conic-gradient(var(--gold) calc(var(--pct,72)*1%), var(--gold-soft) 0); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
 .score-ring i{width:46px; height:46px; border-radius:50%; background:var(--card); display:flex; flex-direction:column; align-items:center; justify-content:center; font-style:normal;}
-.score-ring b{font-family:"Fraunces",serif; font-size:1rem; font-weight:600; line-height:1; color:var(--ink-3);}
-.score-ring small{font-size:.5rem; color:var(--sub); font-weight:700;}
+.score-ring b{font-family:"Fraunces",serif; font-size:1.05rem; font-weight:600; line-height:1; color:var(--ink-3);}
+.score-ring small{font-size:.53rem; color:var(--sub); font-weight:700;}
 .score-txt{flex:1;}
 .score-txt p{font-weight:800; font-size:.9rem;}
 .score-txt span{font-size:.75rem; color:var(--mint); font-weight:700;}
@@ -85,23 +97,23 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .sec-hd h3{font-family:"Fraunces",serif; font-size:1rem; font-weight:600;}
 .sec-hd a{font-size:.74rem; color:var(--gold-dark); font-weight:700; text-decoration:none;}
 
-.sess{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px;}
-.sess-top{display:flex; align-items:center; gap:12px;}
-.sess .ic{width:36px; height:36px; border-radius:10px; flex-shrink:0; background:var(--ink); display:flex; align-items:center; justify-content:center;}
-.sess .ic svg{width:16px; height:16px; stroke:var(--gold);}
-.sess .t{flex:1; min-width:0;}
-.sess .t b{font-size:.83rem; font-weight:800; display:block;}
-.sess .t small{font-size:.73rem; color:var(--sub);}
-.sess .time{font-size:.8rem; font-weight:800; color:var(--ink-3); text-align:right; flex-shrink:0;}
-.sess-actions{display:flex; gap:8px; margin-top:10px;}
-.sbtn{flex:1; border:0; border-radius:11px; padding:9px; font-family:inherit; font-weight:700; font-size:.74rem; cursor:pointer;}
-.sbtn.primary{background:var(--gold); color:var(--ink);}
-.sbtn.ghost{background:var(--bg); border:1px solid var(--line); color:var(--text);}
-.sbtn.done{background:var(--mint-soft); color:var(--mint);}
-.sbtn[disabled]{opacity:.55; pointer-events:none;}
-.status-pill{display:inline-block; font-size:.6rem; font-weight:800; padding:3px 8px; border-radius:8px; margin-left:8px; vertical-align:middle;}
-.status-pill.route{background:var(--gold-soft); color:var(--gold-dark);}
-.status-pill.ok{background:var(--mint-soft); color:var(--mint);}
+.hlist{display:flex; gap:10px; overflow-x:auto; margin:0 -16px; padding:0 16px 4px;}
+.hlist::-webkit-scrollbar{display:none;}
+.subj{min-width:126px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px; flex-shrink:0;}
+.subj b{font-size:.81rem; font-weight:800; display:block;}
+.subj .bar{height:5px; border-radius:4px; background:var(--gold-soft); margin:10px 0 6px; overflow:hidden;}
+.subj .bar i{display:block; height:100%; border-radius:4px; background:var(--gold);}
+.subj em{font-style:normal; font-size:.71rem; color:var(--sub); font-weight:700;}
+
+.row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:9px;}
+.row .ic{width:36px; height:36px; border-radius:10px; flex-shrink:0; background:var(--ink); display:flex; align-items:center; justify-content:center;}
+.row .ic svg{width:16px; height:16px; stroke:var(--gold);}
+.row .t{flex:1; min-width:0;}
+.row .t b{font-size:.83rem; font-weight:800; display:block;}
+.row .t small{font-size:.73rem; color:var(--sub);}
+.row .meta{font-size:.75rem; font-weight:800; color:var(--sub); text-align:right; flex-shrink:0;}
+.row .meta.ok{color:var(--mint);}
+.row .meta.warn{color:var(--alert);}
 
 .demo-flag{display:inline-block; font-size:.6rem; font-weight:800; letter-spacing:.3px; background:var(--alert-soft); color:var(--alert); padding:3px 8px; border-radius:8px; margin-top:8px;}
 
@@ -112,6 +124,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .tab.active{color:var(--gold-dark);}
 
 .hidden{display:none !important;}
+
 .page{display:none;}
 .page.active{display:block;}
 #page-home.active{display:block;}
@@ -120,67 +133,94 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .back{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.12); border:0; color:var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;}
 .back svg{width:16px; height:16px;}
 .pbody{padding:16px;}
-.datehd{font-size:.72rem; font-weight:800; color:var(--sub); margin:16px 0 8px;}
+.datehd{font-size:.72rem; font-weight:800; color:var(--sub); text-transform:none; margin:16px 0 8px;}
 .datehd:first-child{margin-top:2px;}
+.hist-row{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px;}
+.hist-top{display:flex; align-items:center; gap:12px;}
+.hist-top .ic{width:36px; height:36px; border-radius:10px; background:var(--ink); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.hist-top .ic svg{width:16px; height:16px; stroke:var(--gold);}
+.hist-top .t{flex:1; min-width:0;}
+.hist-top .t b{font-size:.83rem; font-weight:800; display:block;}
+.hist-top .t small{font-size:.72rem; color:var(--sub);}
+.hist-top .sc{font-size:.83rem; font-weight:800;}
+.hist-top .sc.miss{color:var(--alert);}
+.aide-pill{margin-top:10px; width:100%; background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:9px; font-family:inherit; font-weight:700; font-size:.76rem; color:var(--text); display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer;}
+.aide-pill svg{width:14px; height:14px; stroke:var(--gold-dark);}
+.help-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:10px; cursor:pointer;}
+.help-row .t{flex:1; min-width:0;}
+.help-row .t b{font-size:.82rem; font-weight:800; display:block;}
+.help-row .t small{font-size:.72rem; color:var(--sub);}
+.help-row .bubble{width:34px; height:34px; border-radius:50%; background:var(--gold-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.help-row .bubble svg{width:15px; height:15px; stroke:var(--gold-dark);}
+.folder-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; cursor:pointer;}
+.folder-row svg{width:18px; height:18px; stroke:var(--gold-dark); flex-shrink:0;}
+.folder-row b{flex:1; font-size:.83rem; font-weight:800;}
+.folder-row .chev{stroke:var(--sub); width:15px; height:15px;}
 
-.stat-row{display:flex; gap:10px; margin-bottom:16px;}
-.stat{flex:1; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px; text-align:center;}
-.stat b{font-family:"Fraunces",serif; font-size:1.15rem; display:block; color:var(--ink-3);}
-.stat small{font-size:.68rem; color:var(--sub); font-weight:700;}
-
-.txrow{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px;}
-.txrow-top{display:flex; align-items:center; justify-content:space-between;}
-.txrow-top b{font-size:.83rem; font-weight:800;}
-.txrow-top span{font-size:.85rem; font-weight:800; color:var(--mint);}
-.txrow small{font-size:.72rem; color:var(--sub); display:block; margin-top:2px;}
-.split{display:flex; justify-content:space-between; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:.72rem;}
-.split div{text-align:center; flex:1;}
-.split b{display:block; font-size:.82rem;}
-.split .mine b{color:var(--mint);}
-.split .fee b{color:var(--sub);}
-
-.elrow{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:9px; cursor:pointer;}
-.elrow .av{width:38px; height:38px; border-radius:50%; background:var(--gold-soft); color:var(--gold-dark); font-family:"Fraunces",serif; font-weight:700; font-size:.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
-.elrow .t{flex:1; min-width:0;}
-.elrow .t b{font-size:.83rem; font-weight:800; display:block;}
-.elrow .t small{font-size:.72rem; color:var(--sub);}
-.elrow .chev{stroke:var(--sub); width:15px; height:15px;}
-
-.prof-hero{background:var(--ink); color:#fff; padding:26px 18px 24px; text-align:center; border-radius:0 0 22px 22px; padding-top:calc(26px + env(safe-area-inset-top,0px)); cursor:pointer;}
+.prof-hero{background:var(--ink); color:#fff; padding:26px 18px 24px; text-align:center; border-radius:0 0 22px 22px; padding-top:calc(26px + env(safe-area-inset-top,0px));}
 .prof-avatar{width:76px; height:76px; border-radius:50%; background:var(--gold-soft); color:var(--ink); font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;}
-.prof-hero .nm{font-family:"Fraunces",serif; font-weight:600; font-size:1.15rem;}
+.prof-hero .nm{font-family:"Fraunces",serif; font-weight:600; font-size:1.15rem; display:flex; align-items:center; justify-content:center; gap:6px;}
+.prof-hero .nm svg{width:15px; height:15px; stroke:var(--gold); fill:none;}
 .prof-hero small{color:#AEB9D2; font-size:.78rem; display:block; margin-top:3px;}
-.plist{padding:16px;}
+.qgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:16px 16px 4px;}
+.qbtn{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 4px; display:flex; flex-direction:column; align-items:center; gap:7px; cursor:pointer;}
+.qbtn svg{width:17px; height:17px; stroke:var(--gold-dark);}
+.qbtn span{font-size:.66rem; font-weight:700;}
+.plist{padding:6px 16px 16px;}
 .prow{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; cursor:pointer;}
 .prow svg{width:18px; height:18px; stroke:var(--ink-3); flex-shrink:0;}
 .prow .t{flex:1;}
 .prow .t b{font-size:.83rem; font-weight:800; display:block;}
 .prow .t small{font-size:.72rem; color:var(--sub);}
-.prow .chev{stroke:var(--sub); width:15px; height:15px;}
+.prow .chev{stroke:var(--sub); width:15px; height:15px; margin-left:0;}
+.prow.badge{background:var(--mint-soft); border-color:var(--mint-soft);}
+.prow.badge svg{stroke:var(--mint);}
+
 .stog{display:flex; align-items:center; justify-content:space-between; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:14px; margin-bottom:10px;}
 .stog .t b{font-size:.85rem; font-weight:800; display:block;}
-.stog .t small{font-size:.72rem; color:var(--sub); display:block; margin-top:3px;}
+.stog .t small{font-size:.72rem; color:var(--sub); display:block; margin-top:3px; max-width:230px;}
+.stog .t em{font-style:normal; font-size:.76rem; color:var(--sub); font-weight:600;}
 .switch{width:44px; height:26px; border-radius:20px; background:var(--line); position:relative; flex-shrink:0; cursor:pointer; border:0;}
 .switch i{position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:#fff; transition:transform .18s ease; box-shadow:0 1px 3px rgba(0,0,0,.25);}
 .switch.on{background:var(--gold);}
 .switch.on i{transform:translateX(18px);}
 .sechd2{font-size:.72rem; font-weight:800; color:var(--sub); margin:18px 0 8px;}
-.geobox{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; font-size:.76rem; color:var(--sub);}
-.geobox b{display:block; color:var(--text); font-size:.83rem; margin-bottom:3px;}
 .auth-input{width:100%; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 14px; font-family:inherit; font-size:.85rem; color:var(--text); margin-bottom:10px;}
 .auth-btn{width:100%; background:var(--gold); color:var(--ink); border:0; border-radius:14px; padding:14px; font-family:inherit; font-weight:800; font-size:.88rem; cursor:pointer; margin-top:6px;}
 .auth-btn[disabled]{opacity:.6;}
 .auth-switch{text-align:center; margin-top:14px; font-size:.8rem; color:var(--sub);}
 .auth-switch a{color:var(--gold-dark); font-weight:700; cursor:pointer;}
+.role-pick{flex:1; border:1px solid var(--line); background:var(--card); color:var(--text); font-family:inherit; font-weight:700; font-size:.82rem; padding:12px; border-radius:12px; cursor:pointer;}
+.role-pick.picked{background:var(--gold); color:var(--ink); border-color:var(--gold);}
+.route-banner{background:var(--gold-soft); color:var(--gold-dark); border-radius:14px; padding:12px 14px; font-size:.78rem; font-weight:700; margin-bottom:14px; display:none;}
+.route-banner a{color:var(--ink-3); text-decoration:underline; font-weight:800;}
+
+
+.pay-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1.5px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; cursor:pointer;}
+.pay-row.selected{border-color:var(--gold);}
+.pay-row .picn{width:38px; height:38px; border-radius:10px; background:var(--ink); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:"Fraunces",serif; font-weight:700; font-size:.78rem; color:var(--gold);}
+.pay-row .t{flex:1;}
+.pay-row .t b{font-size:.84rem; font-weight:800; display:block;}
+.pay-row .t small{font-size:.72rem; color:var(--sub);}
+.radio{width:20px; height:20px; border-radius:50%; border:2px solid var(--line); flex-shrink:0; position:relative;}
+.pay-row.selected .radio{border-color:var(--gold);}
+.pay-row.selected .radio::after{content:""; position:absolute; inset:3px; border-radius:50%; background:var(--gold);}
+.add-pay{width:100%; background:transparent; border:1.5px dashed var(--line); border-radius:14px; padding:13px; font-family:inherit; font-weight:700; font-size:.8rem; color:var(--ink-3); margin-top:6px; cursor:pointer;}
+.pay-tx{display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line);}
+.pay-tx:last-child{border-bottom:0;}
+.pay-tx b{font-size:.8rem; font-weight:700; display:block;}
+.pay-tx small{font-size:.71rem; color:var(--sub);}
+.pay-tx span{font-size:.8rem; font-weight:800;}
+
 </style>
 </head>
 <body>
 <div class="frame">
 
   <div class="splash" id="splash">
-    <img src="icons/icon-512.png" alt="QI Business Pro" style="width:120px;height:120px;border-radius:26px;margin-bottom:20px;box-shadow:0 12px 30px rgba(0,0,0,.35)">
-    <h1>QI Business <em>Pro</em></h1>
-    <p>L'espace des enseignants.</p>
+    <img src="icons/icon-512.png" alt="QI Business" style="width:120px;height:120px;border-radius:26px;margin-bottom:20px;box-shadow:0 12px 30px rgba(0,0,0,.35)">
+    <h1>QI <em>Business</em></h1>
+    <p>Le savoir, au sommet.</p>
     <div class="splash-line"></div>
     <button class="enter-btn" id="enterBtn">Commencer</button>
   </div>
@@ -188,19 +228,19 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
   <div class="app">
     <!-- CONNEXION / INSCRIPTION -->
     <div class="page active" id="page-auth">
-      <div class="pagehead" style="border-radius:0"><h2>QI Business Pro</h2></div>
+      <div class="pagehead" style="border-radius:0"><h2>QI Business</h2></div>
       <div class="pbody">
         <div class="sechd2" id="authModeLabel">Connexion</div>
         <div id="authError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
+        <div id="authRoleRow" style="display:none; gap:10px; margin-bottom:10px;">
+          <button class="role-pick picked" id="authRoleEleve" onclick="pickAuthRole('eleve')">Élève</button>
+          <button class="role-pick" id="authRoleParent" onclick="pickAuthRole('parent')">Parent</button>
+        </div>
         <div id="authNameRow" style="display:none">
           <input class="auth-input" id="authName" placeholder="Nom complet">
         </div>
         <input class="auth-input" id="authEmail" type="email" placeholder="E-mail" autocomplete="email">
         <input class="auth-input" id="authPassword" type="password" placeholder="Mot de passe" autocomplete="current-password">
-        <div id="authSubjectRow" style="display:none">
-          <input class="auth-input" id="authSubject" placeholder="Matière enseignée (ex : Maths)">
-          <input class="auth-input" id="authLevel" placeholder="Niveau (ex : Collège/Lycée)">
-        </div>
         <button class="auth-btn" id="authSubmitBtn" onclick="submitAuth()">Se connecter</button>
         <div class="auth-switch" id="authSwitchTxt">Pas encore de compte ? <a onclick="setAuthMode('signup')">Créer un compte</a></div>
       </div>
@@ -209,106 +249,181 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
     <div class="page" id="page-home">
     <div class="hdr">
       <div class="hdr-top">
-        <div class="brand">QI <em>Business</em><small>ESPACE PROFESSEUR</small></div>
+        <div class="brand">QI <em>Business</em></div>
         <div class="avatar" id="avatarInit" onclick="showPage('profile')">··</div>
       </div>
       <div class="greet" id="greetTxt">Bonjour<small>Chargement de ton espace…</small></div>
-      <div class="onduty">
-        <div class="dot" id="dutyDot"></div>
-        <b id="dutyLabel">Disponibilité désactivée</b>
-        <button class="mswitch" id="dutyBtn" onclick="toggleDuty()"><i></i></button>
+      <div class="roles" role="tablist" aria-label="Choisir un profil" id="rolesBar">
+        <button class="role-btn" role="tab" aria-selected="true" data-role="eleve">Élève</button>
+        <button class="role-btn" role="tab" aria-selected="false" data-role="parent">Parent</button>
+        <button class="role-btn" role="tab" aria-selected="false" data-role="prof">Enseignant</button>
       </div>
     </div>
 
     <div class="content">
       <div class="score-card">
-        <div class="score-ring" style="--pct:86"><i><b>86</b><small>/100</small></i></div>
+        <div class="score-ring" style="--pct:72"><i><b>72</b><small>/100</small></i></div>
         <div class="score-txt">
-          <p>Note moyenne des élèves</p>
-          <span>▲ 12 élèves actifs</span>
-          <em>Prochaine séance : 16h00 — Maths, 3e B</em>
+          <p id="scoreTitle">QI Score de Koffi</p>
+          <span>▲ +8% ce mois-ci</span>
+          <em>Prochaine activité : Exercices de Maths — Fractions</em>
         </div>
       </div>
 
-      <div class="grid">
-        <div class="tile" onclick="showPage('planning')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><span>Planning</span></div>
-        <div class="tile" onclick="showPage('students')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.4"/><path d="M15.8 13a5 5 0 0 1 6.7 4.7"/></svg></div><span>Mes élèves</span></div>
-        <div class="tile" onclick="showPage('earnings')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><span>Mes gains</span></div>
+      <div class="route-banner" id="routeBanner"></div>
+
+      <div id="panel-eleve">
+        <div class="grid">
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Mes cours</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span>Exercices</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5 1-1.5 2.2"/><path d="M12 17h.01"/></svg></div><span>Quiz</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><span>Progression</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><span>Bibliothèque</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span>Messages</span></div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Reprendre où j'en étais</h3><a href="#">Tout voir</a></div>
+          <div class="hlist">
+            <div class="subj"><b>Mathématiques</b><div class="bar"><i style="width:48%"></i></div><em>48% terminé</em></div>
+            <div class="subj"><b>Français</b><div class="bar"><i style="width:81%"></i></div><em>81% terminé</em></div>
+            <div class="subj"><b>Anglais</b><div class="bar"><i style="width:67%"></i></div><em>67% terminé</em></div>
+            <div class="subj"><b>Physique-Chimie</b><div class="bar"><i style="width:76%"></i></div><em>76% terminé</em></div>
+            <div class="subj"><b>Histoire-Géo</b><div class="bar"><i style="width:84%"></i></div><em>84% terminé</em></div>
+          </div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Recommandé pour toi</h3></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div class="t"><b>Fractions — Maths, 3e</b><small>Ton point le plus faible cette semaine</small></div><div class="meta warn">48%</div></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="t"><b>Quiz — Conjugaison</b><small>10 questions · 8 min</small></div><div class="meta">Nouveau</div></div>
+        </div>
+        <span class="demo-flag">Données de démonstration</span>
       </div>
 
-      <div class="sec">
-        <div class="sec-hd"><h3>Aujourd'hui</h3><a href="#" onclick="event.preventDefault();showPage('planning')">Tout voir</a></div>
-        <div id="todaySessions"></div>
+      <div id="panel-parent" class="hidden">
+        <div class="grid">
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div><span>Mes enfants</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><span>Résultats</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><span>Rendez-vous</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span>Messages</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><span>Paiements</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9L2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><span>Alertes</span></div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Chercher un professeur</h3><a href="#">Voir tout</a></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><div class="t"><b>Jean Kouamé</b><small>Maths · Collège/Lycée · ★4.8 vérifié</small></div><div class="meta">Voir</div></div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Activité récente</h3></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="t"><b>Quiz Anglais terminé</b><small>Koffi Junior · aujourd'hui</small></div><div class="meta ok">15/20</div></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9L2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><div class="t"><b>Baisse en Maths</b><small>Koffi Junior · cette semaine</small></div><div class="meta warn">-6%</div></div>
+        </div>
+        <span class="demo-flag">Données de démonstration</span>
       </div>
-      <span class="demo-flag">Données de démonstration</span>
+
+      <div id="panel-prof" class="hidden">
+        <div class="grid">
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.4"/><path d="M15.8 13a5 5 0 0 1 6.7 4.7"/></svg></div><span>Mes élèves</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Cours</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span>Exercices</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><span>Évaluations</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><span>Planning</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><span>Statistiques</span></div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Aujourd'hui</h3></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><div class="t"><b>Cours Maths — 3e B</b><small>16h00 · en ligne</small></div><div class="meta">4 élèves</div></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.4"/><path d="M15.8 13a5 5 0 0 1 6.7 4.7"/></svg></div><div class="t"><b>12 élèves actifs</b><small>2 nouvelles copies à corriger</small></div><div class="meta warn">2</div></div>
+        </div>
+        <span class="demo-flag">Données de démonstration</span>
+      </div>
     </div>
+
     </div><!-- /page-home -->
 
-    <!-- PLANNING -->
-    <div class="page" id="page-planning">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mon planning</h2></div>
-      <div class="pbody">
-        <div class="datehd">Aujourd'hui</div>
-        <div id="planningToday"></div>
-        <div class="datehd">Demain</div>
-        <div class="sess"><div class="sess-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>Anglais — Grammaire</b><small>Marie Adjoua · en ligne</small></div><div class="time">09h00</div></div></div>
-        <div class="sess"><div class="sess-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>Physique-Chimie</b><small>Koffi Junior · à domicile</small></div><div class="time">15h30</div></div></div>
-        <span class="demo-flag">Données de démonstration</span>
+    <!-- HISTORIQUE -->
+    <div class="page" id="page-history">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes séances</h2></div>
+      <div class="pbody" id="sessionsListContainer">
+        <div class="datehd">Chargement…</div>
       </div>
     </div>
 
-    <!-- ELEVES -->
-    <div class="page" id="page-students">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes élèves</h2></div>
+    <!-- ASSISTANCE -->
+    <div class="page" id="page-help">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Assistance</h2></div>
       <div class="pbody">
-        <div class="elrow" onclick="openFeature('Koffi Junior')"><div class="av">KJ</div><div class="t"><b>Koffi Junior</b><small>Maths, 3e · 8 séances suivies</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="elrow" onclick="openFeature('Aïcha Traoré')"><div class="av">AT</div><div class="t"><b>Aïcha Traoré</b><small>Maths, 3e · 5 séances suivies</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="elrow" onclick="openFeature('Marie Adjoua')"><div class="av">MA</div><div class="t"><b>Marie Adjoua</b><small>Anglais, Grammaire · 12 séances suivies</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <span class="demo-flag">Données de démonstration</span>
-      </div>
-    </div>
-
-    <!-- GAINS -->
-    <div class="page" id="page-earnings">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes gains</h2></div>
-      <div class="pbody">
-        <div class="stat-row" id="earningsStats">
-          <div class="stat"><b>—</b><small>REVENU TOTAL</small></div>
-          <div class="stat"><b>—</b><small>TA PART</small></div>
-          <div class="stat"><b>—</b><small>À TE VERSER</small></div>
-        </div>
-        <div class="sechd2">Détail des paiements</div>
-        <div id="earningsList"><div class="txrow">Chargement…</div></div>
+        <div class="sechd2">Cours et devoirs</div>
+        <div class="help-row"><div class="t"><b>Cours Maths — auj. 16h00</b><small>Jean Kouamé</small></div><div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+        <div class="help-row"><div class="t"><b>Quiz Conjugaison — 22 sept.</b><small>Résultat 15/20</small></div><div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+        <div class="help-row"><div class="t"><b>Devoir Physique-Chimie — 14 sept.</b><small>Noté 16/20</small></div><div class="bubble"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+        <div class="folder-row" style="margin-bottom:10px" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg><b>Toutes mes séances</b><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="sechd2">Autres</div>
+        <div class="folder-row"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg><b>Toutes les conversations</b><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
       </div>
     </div>
 
     <!-- PROFIL -->
     <div class="page" id="page-profile">
-      <div class="prof-hero" id="profHero">
-        <div class="prof-avatar">··</div>
-        <div class="nm">Chargement…</div>
-        <small>—</small>
+      <div class="prof-hero">
+        <div class="prof-avatar">KJ</div>
+        <div class="nm">Koffi Junior<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></div>
+        <small>+225 07 57 44 36 61 · Élève vérifié</small>
+      </div>
+      <div class="qgrid">
+        <div class="qbtn" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Historique</span></div>
+        <div class="qbtn" onclick="showPage('help')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Assistance</span></div>
+        <div class="qbtn"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/></svg><span>Mes classes</span></div>
+        <div class="qbtn" onclick="showPage('settings')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Paramètres</span></div>
       </div>
       <div class="plist">
-        <div class="sechd2">Disponibilité &amp; position</div>
-        <div class="geobox" id="geoBox"><b>Position non partagée</b>Active "Disponibilité" sur l'accueil pour partager ta position quand tu es en route vers une séance.</div>
-        <div class="sechd2">Compte</div>
-        <div class="prow" onclick="showPage('payoutMethod')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Moyen de versement</b><small id="payoutLabel">Orange Money</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="openFeature('Mes matières')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Mes matières</b><small>Maths · Collège/Lycée</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="openFeature('Documents & vérification')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/></svg><div class="t"><b>Documents &amp; vérification</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="stog"><div class="t"><b>Notifications de nouvelles demandes</b></div><button class="switch on" data-key="notif" onclick="toggleSetting(this)"><i></i></button></div>
+        <div class="prow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7c-2 0-4-1.5-4-3.5S9.5 1 11 2s1 3 1 5zm0 0c2 0 4-1.5 4-3.5S13.5 1 12 2s-1 3-1 5z"/></svg><div class="t"><b>Codes promo &amp; parrainage</b><small>Invite un ami, gagnez des séances</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Mon abonnement</b><small>Formule Standard</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('payment')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Modes de paiement</b><small id="payDefaultLabel">Orange Money</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.4"/><path d="M15.8 13a5 5 0 0 1 6.7 4.7"/></svg><div class="t"><b>Devenir professeur QI Business</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg><div class="t"><b>Compte établissement / école</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/></svg><div class="t"><b>Sécurité et confidentialité</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><div class="t"><b>Excellent ! Bonne assiduité</b><small>Continue comme ça, ça compte pour ton profil</small></div></div>
+        <div class="prow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg><div class="t"><b>Informations</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="doLogout()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Se déconnecter</b></div></div>
       </div>
     </div>
 
-    <!-- MOYEN DE VERSEMENT -->
-    <div class="page" id="page-payoutMethod">
-      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Moyen de versement</h2></div>
+
+    <!-- MODES DE PAIEMENT -->
+    <div class="page" id="page-payment">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Modes de paiement</h2></div>
       <div class="pbody">
-        <div class="prow" data-pay="Orange Money" onclick="selectPayout(this)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Orange Money</b><small>07 12 34 56 78</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" data-pay="MTN Mobile Money" onclick="selectPayout(this)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>MTN Mobile Money</b><small>Non lié</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" data-pay="Wave" onclick="selectPayout(this)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Wave</b><small>Non lié</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" data-pay="Compte bancaire" onclick="selectPayout(this)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Compte bancaire</b><small>Non lié</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="sechd2">Mobile money</div>
+        <div class="pay-row selected" data-pay="Orange Money"><div class="picn">OM</div><div class="t"><b>Orange Money</b><small>07 57 44 36 61</small></div><div class="radio"></div></div>
+        <div class="pay-row" data-pay="MTN Mobile Money"><div class="picn">MTN</div><div class="t"><b>MTN Mobile Money</b><small>Non lié</small></div><div class="radio"></div></div>
+        <div class="pay-row" data-pay="Moov Money"><div class="picn">MV</div><div class="t"><b>Moov Money</b><small>Non lié</small></div><div class="radio"></div></div>
+        <div class="pay-row" data-pay="Wave"><div class="picn">W</div><div class="t"><b>Wave</b><small>Non lié</small></div><div class="radio"></div></div>
+
+        <div class="sechd2">Autres</div>
+        <div class="pay-row" data-pay="Carte bancaire"><div class="picn"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="var(--gold)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div class="t"><b>Carte bancaire</b><small>Visa, Mastercard</small></div><div class="radio"></div></div>
+        <div class="pay-row" data-pay="Espèces"><div class="picn"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5h4.5a1.8 1.8 0 1 1 0 3.6H9.5a1.8 1.8 0 1 0 0 3.6H15"/></svg></div><div class="t"><b>Espèces</b><small>Payer directement le professeur</small></div><div class="radio"></div></div>
+
+        <button class="add-pay">+ Ajouter un mode de paiement</button>
+
+        <div class="sechd2">Historique des paiements</div>
+        <div class="hist-row">
+          <div class="pay-tx"><div><b>Abonnement — Formule Standard</b><small>Orange Money · 12 sept.</small></div><span>15 000 F</span></div>
+          <div class="pay-tx"><div><b>Cours particulier — Maths</b><small>Espèces · 3 sept.</small></div><span>4 000 F</span></div>
+          <div class="pay-tx"><div><b>Abonnement — Formule Standard</b><small>Orange Money · 12 août</small></div><span>15 000 F</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARAMETRES -->
+    <div class="page" id="page-settings">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Paramètres</h2></div>
+      <div class="pbody">
+        <div class="stog"><div class="t"><b>Rappels de révision</b></div><button class="switch on" data-key="rappels" onclick="toggleSetting(this)"><i></i></button></div>
+        <div class="prow"><div class="t"><b>Langue de l'application</b><small>Français</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="stog"><div class="t"><b>Messagerie avec le professeur intégrée à l'application</b></div><button class="switch" data-key="messagerie" onclick="toggleSetting(this)"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Partager ma progression avec mes parents</b><small>Vos parents pourront suivre vos résultats et votre assiduité</small></div><button class="switch on" data-key="partage" onclick="toggleSetting(this)"><i></i></button></div>
+        <div class="sechd2">Notifications</div>
+        <div class="prow"><div class="t"><b>Afficher plus</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
       </div>
     </div>
 
@@ -318,15 +433,15 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
       <div class="pbody">
         <div class="prow" style="cursor:default">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
-          <div class="t"><b>Bientôt disponible</b><small id="featureDesc">Cette fonctionnalité sera activée dès que l'app sera connectée au back-office.</small></div>
+          <div class="t"><b>Bientôt disponible</b><small id="featureDesc">Cette fonctionnalité sera activée dès que l'app sera connectée à un service (compte, base de données ou paiement).</small></div>
         </div>
       </div>
     </div>
 
     <nav class="tabbar">
       <button class="tab active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><span>Accueil</span></button>
-      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span>Planning</span></button>
-      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span>Gains</span></button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Historique</span></button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Assistance</span></button>
       <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg><span>Profil</span></button>
     </nav>
   </div>
@@ -334,6 +449,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+document.querySelectorAll('.tile .ic svg, .row .ic svg').forEach(s=>s.setAttribute('stroke','var(--gold)'));
 document.getElementById('enterBtn').addEventListener('click', ()=>{
   document.getElementById('splash').classList.add('hide');
 });
@@ -343,72 +459,46 @@ const SUPABASE_URL = 'https://jscyolaupfhroqfjwirl.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_33193ujPLkXAqfcF-71F4w_aq-9kK6u';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let myProfile = null;
+let myChildrenIds = [];
+function initialsOf(name){ return name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase(); }
 
-function initialsOf(name){
-  return name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+const roles = {
+  eleve:  {greet:"Bonjour", sub:"Prêt pour une nouvelle séance de révision ?", score:"Mon QI Score"},
+  parent: {greet:"Bonjour", sub:"Voici le suivi de vos enfants aujourd'hui", score:"QI Score de l'enfant"},
+  prof:   {greet:"Bonjour", sub:"Aperçu démo de l'espace enseignant", score:"Moyenne de progression classe"}
+};
+const btns = document.querySelectorAll(".role-btn");
+function activateRole(r){
+  btns.forEach(x=>x.setAttribute("aria-selected", x.dataset.role===r ? "true" : "false"));
+  document.querySelectorAll('[id^="panel-"]').forEach(p=>p.classList.add("hidden"));
+  document.getElementById("panel-"+r).classList.remove("hidden");
+  const d = roles[r];
+  const name = myProfile ? myProfile.full_name.split(' ')[0] : (r==='eleve'?'Koffi':r==='parent'?'Awa':'Jean');
+  document.getElementById("greetTxt").innerHTML = d.greet+' '+name + "<small>"+d.sub+"</small>";
+  document.getElementById("avatarInit").textContent = myProfile ? (myProfile.avatar_initials||initialsOf(myProfile.full_name)) : (r==='eleve'?'KJ':r==='parent'?'AK':'JK');
+  document.getElementById("scoreTitle").textContent = d.score;
 }
-
-/* ---------- Navigation ---------- */
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  const map={home:0,planning:1,earnings:2,profile:3};
-  if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
-  if(name==='earnings' && typeof refreshEarnings==='function') refreshEarnings();
-  window.scrollTo(0,0);
-}
-document.querySelectorAll('.tab').forEach((t,i)=>{
-  const names=['home','planning','earnings','profile'];
-  t.addEventListener('click', ()=>showPage(names[i]));
-});
-
-let prevPage = 'home';
-function openFeature(title){
-  prevPage = document.querySelector('.page.active').id.replace('page-','');
-  document.getElementById('featureTitle').textContent = title || 'Fonctionnalité';
-  showPage('feature');
-}
-function goBackFromFeature(){ showPage(prevPage); }
-document.querySelectorAll('.prow').forEach(el=>{
-  if(el.hasAttribute('onclick')) return;
-  const label = el.querySelector('b');
-  el.addEventListener('click', ()=>openFeature(label ? label.textContent.trim() : 'Fonctionnalité'));
-});
-
-/* ---------- Réglages persistés localement (préférences d'affichage) ---------- */
-function toggleSetting(btn){
-  btn.classList.toggle('on');
-  localStorage.setItem('qip_toggle_'+btn.dataset.key, btn.classList.contains('on'));
-}
-document.querySelectorAll('.switch[data-key]').forEach(btn=>{
-  const saved = localStorage.getItem('qip_toggle_'+btn.dataset.key);
-  if(saved!==null) btn.classList.toggle('on', saved==='true');
-});
-
-/* ---------- Moyen de versement (encore local — la vraie répartition viendra avec le paiement mobile money) ---------- */
-function selectPayout(row){
-  localStorage.setItem('qip_payout', row.dataset.pay);
-  document.getElementById('payoutLabel').textContent = row.dataset.pay;
-  showPage('profile');
-}
-const savedPayout = localStorage.getItem('qip_payout');
-if(savedPayout) document.getElementById('payoutLabel').textContent = savedPayout;
+btns.forEach(b=>b.addEventListener("click", ()=>{ if(myProfile && b.dataset.role!==myProfile.role) return; activateRole(b.dataset.role); }));
 
 /* ================= AUTHENTIFICATION ================= */
 let authMode = 'login';
+let authRole = 'eleve';
+function pickAuthRole(r){
+  authRole = r;
+  document.getElementById('authRoleEleve').classList.toggle('picked', r==='eleve');
+  document.getElementById('authRoleParent').classList.toggle('picked', r==='parent');
+}
 function setAuthMode(mode){
   authMode = mode;
-  document.getElementById('authModeLabel').textContent = mode==='login' ? 'Connexion' : 'Créer un compte professeur';
+  document.getElementById('authModeLabel').textContent = mode==='login' ? 'Connexion' : "Créer un compte";
+  document.getElementById('authRoleRow').style.display = mode==='login' ? 'none' : 'flex';
   document.getElementById('authNameRow').style.display = mode==='login' ? 'none' : 'block';
-  document.getElementById('authSubjectRow').style.display = mode==='login' ? 'none' : 'block';
   document.getElementById('authSubmitBtn').textContent = mode==='login' ? 'Se connecter' : 'Créer mon compte';
   document.getElementById('authSwitchTxt').innerHTML = mode==='login'
     ? 'Pas encore de compte ? <a onclick="setAuthMode(\'signup\')">Créer un compte</a>'
     : 'Déjà un compte ? <a onclick="setAuthMode(\'login\')">Se connecter</a>';
   document.getElementById('authError').style.display = 'none';
 }
-
 async function submitAuth(){
   const email = document.getElementById('authEmail').value.trim();
   const password = document.getElementById('authPassword').value;
@@ -423,8 +513,6 @@ async function submitAuth(){
       if(error) throw error;
     } else {
       const fullName = document.getElementById('authName').value.trim();
-      const subject = document.getElementById('authSubject').value.trim();
-      const level = document.getElementById('authLevel').value.trim();
       if(!fullName){ throw new Error("Renseigne ton nom complet."); }
       const { data, error } = await sb.auth.signUp({ email, password });
       if(error) throw error;
@@ -437,8 +525,7 @@ async function submitAuth(){
       }
       if(data.user){
         const { error: perr } = await sb.from('profiles').upsert({
-          id: data.user.id, role: 'professeur', full_name: fullName,
-          avatar_initials: initialsOf(fullName), subject, level
+          id: data.user.id, role: authRole, full_name: fullName, avatar_initials: initialsOf(fullName)
         });
         if(perr) throw perr;
       }
@@ -452,12 +539,6 @@ async function submitAuth(){
     btn.textContent = authMode==='login' ? 'Se connecter' : 'Créer mon compte';
   }
 }
-
-async function doLogout(){
-  await sb.auth.signOut();
-  location.reload();
-}
-
 async function afterAuthSuccess(){
   const { data: { user } } = await sb.auth.getUser();
   if(!user) return;
@@ -465,158 +546,136 @@ async function afterAuthSuccess(){
   if(!profile){
     const name = prompt("Complète ton profil — quel est ton nom complet ?");
     if(!name){ await sb.auth.signOut(); showPage('auth'); return; }
-    const subject = prompt("Quelle matière enseignes-tu ?") || '';
+    const isParent = confirm("Es-tu un parent ? (Annuler = Élève)");
     const { data: created, error: cerr } = await sb.from('profiles')
-      .upsert({ id:user.id, role:'professeur', full_name:name, avatar_initials:initialsOf(name), subject })
+      .upsert({ id:user.id, role: isParent?'parent':'eleve', full_name:name, avatar_initials:initialsOf(name) })
       .select().single();
     if(cerr){ alert("Erreur : "+cerr.message); await sb.auth.signOut(); showPage('auth'); return; }
     profile = created;
   }
   myProfile = profile;
-  applyProfileToUI(myProfile);
-  await refreshSessionsFromDB();
+  document.getElementById('rolesBar').style.display = 'none';
+  activateRole(myProfile.role==='professeur' ? 'prof' : myProfile.role);
+  if(myProfile.role==='parent'){
+    const { data: pc } = await sb.from('parent_child').select('child_id').eq('parent_id', myProfile.id);
+    myChildrenIds = (pc||[]).map(r=>r.child_id);
+  }
+  await refreshSessionsAndBanner();
   showPage('home');
 }
 
-function applyProfileToUI(p){
-  const initials = p.avatar_initials || initialsOf(p.full_name);
-  document.getElementById('avatarInit').textContent = initials;
-  document.querySelector('.prof-avatar').textContent = initials;
-  document.querySelector('.prof-hero .nm').textContent = p.full_name;
-  document.querySelector('.prof-hero small').textContent = [p.phone, p.subject, p.level].filter(Boolean).join(' · ');
-  document.getElementById('greetTxt').innerHTML = 'Bonjour '+p.full_name.split(' ')[0]+'<small>'+todaySessionsData.length+' séance(s) prévue(s) aujourd\'hui</small>';
+/* ================= SÉANCES + POSITION DU PROFESSEUR (réel) ================= */
+async function refreshSessionsAndBanner(){
+  if(!myProfile) return;
+  let query = sb.from('sessions').select('*').order('scheduled_at', {ascending:false});
+  if(myProfile.role==='eleve') query = query.eq('student_id', myProfile.id);
+  else if(myProfile.role==='parent'){
+    if(!myChildrenIds.length){ renderSessionsList([]); return; }
+    query = query.in('student_id', myChildrenIds);
+  } else { renderSessionsList([]); return; }
+  const { data: rows } = await query;
+  const list = rows || [];
+  const teacherIds = [...new Set(list.map(r=>r.teacher_id))];
+  let teacherNames = {};
+  if(teacherIds.length){
+    const { data: teachers } = await sb.from('profiles').select('id, full_name').in('id', teacherIds);
+    (teachers||[]).forEach(t=>{ teacherNames[t.id] = t.full_name; });
+  }
+  renderSessionsList(list.map(r=>({...r, teacherName: teacherNames[r.teacher_id] || 'Professeur'})));
+
+  const routeSession = list.find(r=>r.status==='route');
+  const banner = document.getElementById('routeBanner');
+  if(routeSession){
+    const { data: loc } = await sb.from('teacher_locations').select('*').eq('teacher_id', routeSession.teacher_id).single();
+    if(loc){
+      banner.style.display = 'block';
+      banner.innerHTML = routeSession.teacherName+' est en route pour la séance de '+routeSession.subject+' — <a href="https://www.google.com/maps?q='+loc.lat+','+loc.lon+'" target="_blank">voir sur la carte</a>';
+    } else { banner.style.display = 'none'; }
+  } else { banner.style.display = 'none'; }
+}
+function renderSessionsList(list){
+  const box = document.getElementById('sessionsListContainer');
+  if(!box) return;
+  if(!list.length){ box.innerHTML = '<div class="datehd">Aucune séance pour l\'instant</div>'; return; }
+  box.innerHTML = list.map(r=>{
+    const d = new Date(r.scheduled_at);
+    const date = d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+    const time = d.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
+    const statusTxt = r.status==='done' ? '<div class="sc">Terminée</div>' : r.status==='route' ? '<div class="sc">En route</div>' : r.status==='cancelled' ? '<div class="sc miss">Annulée</div>' : '<div class="sc">À venir</div>';
+    return '<div class="datehd">'+date+'</div><div class="hist-row"><div class="hist-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+r.subject+'</b><small>'+r.teacherName+' · '+time+'</small></div>'+statusTxt+'</div></div>';
+  }).join('');
 }
 
-document.getElementById('profHero').addEventListener('click', async ()=>{
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click", ()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  t.classList.add("active");
+}));
+
+/* --- Interrupteurs des paramètres, sauvegardés localement --- */
+function toggleSetting(btn){
+  btn.classList.toggle('on');
+  localStorage.setItem('qi_toggle_'+btn.dataset.key, btn.classList.contains('on'));
+}
+document.querySelectorAll('.switch[data-key]').forEach(btn=>{
+  const saved = localStorage.getItem('qi_toggle_'+btn.dataset.key);
+  if(saved!==null) btn.classList.toggle('on', saved==='true');
+});
+
+/* --- Moyens de paiement : sélection + ajout, sauvegardés localement --- */
+function wirePayRow(row){
+  row.addEventListener('click', ()=>{
+    document.querySelectorAll('.pay-row').forEach(r=>r.classList.remove('selected'));
+    row.classList.add('selected');
+    document.getElementById('payDefaultLabel').textContent = row.dataset.pay;
+    localStorage.setItem('qi_pay', row.dataset.pay);
+  });
+}
+function renderCustomPayments(){
+  document.querySelectorAll('.pay-row.custom').forEach(r=>r.remove());
+  const addBtn = document.querySelector('.add-pay');
+  const custom = JSON.parse(localStorage.getItem('qi_custom_pay') || '[]');
+  custom.forEach(name=>{
+    const row = document.createElement('div');
+    row.className = 'pay-row custom';
+    row.dataset.pay = name;
+    row.innerHTML = '<div class="picn">'+name.slice(0,2).toUpperCase()+'</div><div class="t"><b>'+name+'</b><small>Ajouté</small></div><div class="radio"></div>';
+    addBtn.parentNode.insertBefore(row, addBtn);
+    wirePayRow(row);
+  });
+}
+document.querySelectorAll('.pay-row').forEach(wirePayRow);
+renderCustomPayments();
+const savedPay = localStorage.getItem('qi_pay');
+if(savedPay){
+  document.querySelectorAll('.pay-row').forEach(r=>r.classList.toggle('selected', r.dataset.pay===savedPay));
+  document.getElementById('payDefaultLabel').textContent = savedPay;
+}
+document.querySelector('.add-pay').addEventListener('click', ()=>{
+  const name = prompt("Nom du nouveau mode de paiement (ex : PayPal, Free Money...)");
+  if(!name) return;
+  const custom = JSON.parse(localStorage.getItem('qi_custom_pay') || '[]');
+  custom.push(name);
+  localStorage.setItem('qi_custom_pay', JSON.stringify(custom));
+  renderCustomPayments();
+});
+
+/* --- Profil : nom modifiable, synchronisé avec le compte réel --- */
+const profHero = document.querySelector('.prof-hero');
+profHero.style.cursor = 'pointer';
+profHero.addEventListener('click', async ()=>{
   if(!myProfile) return;
   const name = prompt('Modifier votre nom', myProfile.full_name);
   if(!name) return;
   myProfile.full_name = name;
   myProfile.avatar_initials = initialsOf(name);
   await sb.from('profiles').update({ full_name:name, avatar_initials: myProfile.avatar_initials }).eq('id', myProfile.id);
-  applyProfileToUI(myProfile);
+  document.querySelector('.prof-avatar').textContent = myProfile.avatar_initials;
+  document.querySelector('.prof-hero .nm').childNodes[0].nodeValue = name + ' ';
+  activateRole(myProfile.role==='professeur' ? 'prof' : myProfile.role);
 });
-
-/* ================= SÉANCES (données réelles Supabase) ================= */
-let todaySessionsData = [];
-
-async function refreshSessionsFromDB(){
-  if(!myProfile) return;
-  const { data: rows } = await sb.from('sessions').select('*').eq('teacher_id', myProfile.id).order('scheduled_at', {ascending:true});
-  const list = rows || [];
-  const ids = [...new Set(list.map(r=>r.student_id))];
-  let names = {};
-  if(ids.length){
-    const { data: studs } = await sb.from('profiles').select('id, full_name').in('id', ids);
-    (studs||[]).forEach(s=>{ names[s.id] = s.full_name; });
-  }
-  todaySessionsData = list.map(r=>({
-    id: r.id,
-    subject: r.subject,
-    student: names[r.student_id] || 'Élève',
-    time: new Date(r.scheduled_at).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'}),
-    mode: r.mode==='a_domicile' ? 'à domicile' : 'en ligne',
-    status: r.status
-  }));
-  renderSessions();
-}
-
-async function setSessionStatus(id, status){
-  await sb.from('sessions').update({ status }).eq('id', id);
-  await refreshSessionsFromDB();
-}
-
-function sessionCard(s){
-  const st = s.status;
-  const pill = st==='route' ? '<span class="status-pill route">En route</span>' : st==='done' ? '<span class="status-pill ok">Terminée</span>' : '';
-  let actions = '';
-  if(s.mode==='à domicile'){
-    if(st==='pending') actions = '<div class="sess-actions"><button class="sbtn primary" onclick="startRoute(\''+s.id+'\')">Je suis en route</button><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
-    else if(st==='route') actions = '<div class="sess-actions"><button class="sbtn done" disabled>Position partagée</button><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
-    else actions = '<div class="sess-actions"><button class="sbtn done" disabled>Séance terminée</button></div>';
-  } else {
-    actions = st==='done' ? '<div class="sess-actions"><button class="sbtn done" disabled>Séance terminée</button></div>' : '<div class="sess-actions"><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
-  }
-  return '<div class="sess"><div class="sess-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+s.subject+pill+'</b><small>'+s.student+' · '+s.mode+'</small></div><div class="time">'+s.time+'</div></div>'+actions+'</div>';
-}
-function renderSessions(){
-  const html = todaySessionsData.map(sessionCard).join('');
-  document.getElementById('todaySessions').innerHTML = html || '<div class="sess">Aucune séance pour l\'instant — elles seront créées depuis le back office.</div>';
-  document.getElementById('planningToday').innerHTML = html;
-}
-renderSessions();
-
-/* ---------- Disponibilité + partage de position RÉEL (GPS -> Supabase) ---------- */
-let geoWatchId = null;
-function toggleDuty(){
-  const btn = document.getElementById('dutyBtn');
-  const on = !btn.classList.contains('on');
-  btn.classList.toggle('on', on);
-  document.getElementById('dutyDot').classList.toggle('live', on);
-  document.getElementById('dutyLabel').textContent = on ? 'Disponible — position active' : 'Disponibilité désactivée';
-  if(on) startGeo(); else stopGeo();
-}
-function startRoute(id){
-  setSessionStatus(id, 'route');
-  if(!document.getElementById('dutyBtn').classList.contains('on')) toggleDuty();
-}
-function startGeo(){
-  const box = document.getElementById('geoBox');
-  if(!navigator.geolocation){
-    box.innerHTML = '<b>Géolocalisation indisponible</b>Ton appareil ne permet pas le partage de position.';
-    return;
-  }
-  geoWatchId = navigator.geolocation.watchPosition(
-    async pos=>{
-      const lat = pos.coords.latitude, lon = pos.coords.longitude;
-      box.innerHTML = '<b>Position active</b>Lat '+lat.toFixed(5)+', Lon '+lon.toFixed(5)+' — visible par les parents/élèves pendant une séance "en route".';
-      if(myProfile){
-        await sb.from('teacher_locations').upsert({ teacher_id: myProfile.id, lat, lon, is_sharing:true, updated_at: new Date().toISOString() });
-      }
-    },
-    err=>{ box.innerHTML = '<b>Position non disponible</b>Autorise l\'accès à la localisation pour QI Business Pro dans les réglages du téléphone.'; },
-    {enableHighAccuracy:true}
-  );
-}
-async function stopGeo(){
-  if(geoWatchId!==null && navigator.geolocation){ navigator.geolocation.clearWatch(geoWatchId); geoWatchId=null; }
-  document.getElementById('geoBox').innerHTML = '<b>Position non partagée</b>Active "Disponibilité" sur l\'accueil pour partager ta position quand tu es en route vers une séance.';
-  if(myProfile){
-    await sb.from('teacher_locations').update({ is_sharing:false }).eq('teacher_id', myProfile.id);
-  }
-}
-
-/* ================= GAINS (données réelles Supabase) ================= */
-async function refreshEarnings(){
-  if(!myProfile) return;
-  const { data: rows } = await sb.from('payments').select('*').eq('teacher_id', myProfile.id).order('created_at', {ascending:false});
-  const list = rows || [];
-  const payerIds = [...new Set(list.map(r=>r.payer_id))];
-  let names = {};
-  if(payerIds.length){
-    const { data: payers } = await sb.from('profiles').select('id, full_name').in('id', payerIds);
-    (payers||[]).forEach(p=>{ names[p.id] = p.full_name; });
-  }
-  const paid = list.filter(p=>p.status==='paid');
-  const totalRevenue = paid.reduce((s,p)=>s+p.amount,0);
-  const totalMine = paid.reduce((s,p)=>s+p.teacher_share,0);
-  const totalOwed = paid.filter(p=>!p.teacher_paid).reduce((s,p)=>s+p.teacher_share,0);
-  const money = n => n.toLocaleString('fr-FR')+' F';
-  document.getElementById('earningsStats').innerHTML =
-    '<div class="stat"><b>'+money(totalRevenue)+'</b><small>REVENU TOTAL</small></div>'+
-    '<div class="stat"><b>'+money(totalMine)+'</b><small>TA PART</small></div>'+
-    '<div class="stat"><b>'+money(totalOwed)+'</b><small>À TE VERSER</small></div>';
-
-  const box = document.getElementById('earningsList');
-  if(!list.length){ box.innerHTML = '<div class="txrow">Aucun paiement enregistré pour l\'instant — ils apparaîtront ici une fois enregistrés depuis le back office.</div>'; return; }
-  box.innerHTML = list.map(p=>{
-    const d = new Date(p.created_at).toLocaleDateString('fr-FR', {day:'2-digit', month:'long'});
-    const payerName = names[p.payer_id] || 'Élève';
-    const statusTxt = p.status!=='paid' ? '<span class="status-pill route">En attente</span>' : p.teacher_paid ? '<span class="status-pill ok">Versé</span>' : '<span class="status-pill route">À verser</span>';
-    return '<div class="txrow"><div class="txrow-top"><b>Séance — '+payerName+statusTxt+'</b><span>'+money(p.amount)+'</span></div>'+
-      '<small>'+(p.method||'—')+' · '+payerName+' · '+d+'</small>'+
-      '<div class="split"><div class="mine"><b>'+money(p.teacher_share)+'</b>Ta part</div><div class="fee"><b>'+money(p.platform_share)+'</b>Commission QIB</div></div></div>';
-  }).join('');
+async function doLogout(){
+  await sb.auth.signOut();
+  location.reload();
 }
 
 /* ================= DÉMARRAGE ================= */
@@ -625,6 +684,48 @@ async function refreshEarnings(){
   if(session) await afterAuthSuccess();
   else showPage('auth');
 })();
+
+/* --- Navigation générique : rend cliquable tout bouton/tuile sans action définie --- */
+let prevPage = 'home';
+function openFeature(title){
+  prevPage = document.querySelector('.page.active').id.replace('page-','');
+  document.getElementById('featureTitle').textContent = title || 'Fonctionnalité';
+  showPage('feature');
+}
+function goBackFromFeature(){ showPage(prevPage); }
+document.querySelectorAll('.tile, .qbtn, .prow, .help-row, .folder-row').forEach(el=>{
+  if(el.hasAttribute('onclick')) return;
+  const label = el.querySelector('span, b');
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', ()=>openFeature(label ? label.textContent.trim() : 'Fonctionnalité'));
+});
+document.querySelectorAll('a[href="#"]').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const h3 = a.closest('.sec-hd')?.querySelector('h3');
+    openFeature(h3 ? h3.textContent.trim() : 'Voir tout');
+  });
+});
+</script>
+
+<script>
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const map={home:0,history:1,help:2,profile:3};
+  if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
+  document.querySelector('.tabbar').style.display = name==='auth' ? 'none' : 'flex';
+  if(name==='history' && typeof refreshSessionsAndBanner==='function') refreshSessionsAndBanner();
+  document.querySelector('.frame').scrollTo?.(0,0);
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.tab').forEach((t,i)=>{
+  const names=['home','history','help','profile'];
+  t.addEventListener('click', ()=>showPage(names[i]));
+});
+document.getElementById('avatarInit').closest('.hdr-top').style.cursor='pointer';
+document.getElementById('avatarInit').addEventListener('click', ()=>showPage('profile'));
 </script>
 </body>
 </html>
