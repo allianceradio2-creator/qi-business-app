@@ -167,6 +167,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .sechd2{font-size:.72rem; font-weight:800; color:var(--sub); margin:18px 0 8px;}
 .geobox{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; font-size:.76rem; color:var(--sub);}
 .geobox b{display:block; color:var(--text); font-size:.83rem; margin-bottom:3px;}
+.empty{padding:16px; text-align:center; color:var(--sub); font-size:.82rem;}
 .auth-input{width:100%; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 14px; font-family:inherit; font-size:.85rem; color:var(--text); margin-bottom:10px;}
 .auth-btn{width:100%; background:var(--gold); color:var(--ink); border:0; border-radius:14px; padding:14px; font-family:inherit; font-weight:800; font-size:.88rem; cursor:pointer; margin-top:6px;}
 .auth-btn[disabled]{opacity:.6;}
@@ -240,7 +241,6 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
         <div class="sec-hd"><h3>Aujourd'hui</h3><a href="#" onclick="event.preventDefault();showPage('planning')">Tout voir</a></div>
         <div id="todaySessions"></div>
       </div>
-      <span class="demo-flag">Données de démonstration</span>
     </div>
     </div><!-- /page-home -->
 
@@ -248,23 +248,16 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
     <div class="page" id="page-planning">
       <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mon planning</h2></div>
       <div class="pbody">
-        <div class="datehd">Aujourd'hui</div>
+        <div class="datehd">Toutes mes séances</div>
         <div id="planningToday"></div>
-        <div class="datehd">Demain</div>
-        <div class="sess"><div class="sess-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>Anglais — Grammaire</b><small>Marie Adjoua · en ligne</small></div><div class="time">09h00</div></div></div>
-        <div class="sess"><div class="sess-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>Physique-Chimie</b><small>Koffi Junior · à domicile</small></div><div class="time">15h30</div></div></div>
-        <span class="demo-flag">Données de démonstration</span>
       </div>
     </div>
 
     <!-- ELEVES -->
     <div class="page" id="page-students">
       <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes élèves</h2></div>
-      <div class="pbody">
-        <div class="elrow" onclick="openFeature('Koffi Junior')"><div class="av">KJ</div><div class="t"><b>Koffi Junior</b><small>Maths, 3e · 8 séances suivies</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="elrow" onclick="openFeature('Aïcha Traoré')"><div class="av">AT</div><div class="t"><b>Aïcha Traoré</b><small>Maths, 3e · 5 séances suivies</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="elrow" onclick="openFeature('Marie Adjoua')"><div class="av">MA</div><div class="t"><b>Marie Adjoua</b><small>Anglais, Grammaire · 12 séances suivies</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <span class="demo-flag">Données de démonstration</span>
+      <div class="pbody" id="studentsListContainer">
+        <div class="empty">Chargement…</div>
       </div>
     </div>
 
@@ -294,7 +287,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
         <div class="geobox" id="geoBox"><b>Position non partagée</b>Active "Disponibilité" sur l'accueil pour partager ta position quand tu es en route vers une séance.</div>
         <div class="sechd2">Compte</div>
         <div class="prow" onclick="showPage('payoutMethod')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Moyen de versement</b><small id="payoutLabel">Orange Money</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="openFeature('Mes matières')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Mes matières</b><small>Maths · Collège/Lycée</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="editSubject()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Mes matières</b><small id="subjectLabel">—</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="openFeature('Documents & vérification')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/></svg><div class="t"><b>Documents &amp; vérification</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="stog"><div class="t"><b>Notifications de nouvelles demandes</b></div><button class="switch on" data-key="notif" onclick="toggleSetting(this)"><i></i></button></div>
         <div class="prow" onclick="doLogout()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Se déconnecter</b></div></div>
@@ -356,6 +349,7 @@ function showPage(name){
   const map={home:0,planning:1,earnings:2,profile:3};
   if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
   if(name==='earnings' && typeof refreshEarnings==='function') refreshEarnings();
+  if(name==='students' && typeof refreshStudents==='function') refreshStudents();
   window.scrollTo(0,0);
 }
 document.querySelectorAll('.tab').forEach((t,i)=>{
@@ -492,7 +486,21 @@ function applyProfileToUI(p){
   document.querySelector('.prof-avatar').textContent = initials;
   document.querySelector('.prof-hero .nm').textContent = name;
   document.querySelector('.prof-hero small').textContent = [p.phone, p.subject, p.level].filter(Boolean).join(' · ') || '—';
+  document.getElementById('subjectLabel').textContent = [p.subject, p.level].filter(Boolean).join(' · ') || 'Non renseigné';
   document.getElementById('greetTxt').innerHTML = 'Bonjour '+name.split(' ')[0]+'<small>'+todaySessionsData.length+' séance(s) prévue(s) aujourd\'hui</small>';
+}
+
+async function editSubject(){
+  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
+  const subject = prompt("Quelle(s) matière(s) enseignes-tu ?", myProfile.subject || '');
+  if(subject===null) return;
+  const level = prompt("Quel niveau enseignes-tu ? (ex : Collège/Lycée, Primaire...)", myProfile.level || '');
+  if(level===null) return;
+  const { error } = await sb.from('profiles').update({ subject, level }).eq('id', myProfile.id);
+  if(error){ alert("Erreur : "+error.message); return; }
+  myProfile.subject = subject;
+  myProfile.level = level;
+  applyProfileToUI(myProfile);
 }
 
 document.getElementById('profHero').addEventListener('click', async ()=>{
@@ -625,6 +633,26 @@ async function refreshEarnings(){
     return '<div class="txrow"><div class="txrow-top"><b>Séance — '+payerName+statusTxt+'</b><span>'+money(p.amount)+'</span></div>'+
       '<small>'+(p.method||'—')+' · '+payerName+' · '+d+'</small>'+
       '<div class="split"><div class="mine"><b>'+money(p.teacher_share)+'</b>Ta part</div><div class="fee"><b>'+money(p.platform_share)+'</b>Commission QIB</div></div></div>';
+  }).join('');
+}
+
+/* ================= MES ÉLÈVES (données réelles Supabase) ================= */
+async function refreshStudents(){
+  if(!myProfile) return;
+  const box = document.getElementById('studentsListContainer');
+  const { data: links } = await sb.from('teacher_students').select('student_id, subject').eq('teacher_id', myProfile.id);
+  const list = links || [];
+  if(!list.length){ box.innerHTML = '<div class="empty">Aucun élève lié pour l\'instant — ça se fait depuis le back office.</div>'; return; }
+  const ids = [...new Set(list.map(l=>l.student_id))];
+  const { data: profs } = await sb.from('profiles').select('id, full_name').in('id', ids);
+  const names = {}; (profs||[]).forEach(p=>{ names[p.id] = p.full_name; });
+  const { data: sess } = await sb.from('sessions').select('student_id').eq('teacher_id', myProfile.id);
+  const counts = {}; (sess||[]).forEach(s=>{ counts[s.student_id] = (counts[s.student_id]||0)+1; });
+  box.innerHTML = list.map(l=>{
+    const name = names[l.student_id] || 'Élève';
+    const initials = name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+    const n = counts[l.student_id] || 0;
+    return '<div class="elrow" onclick="openFeature(\''+name.replace(/'/g,"\\'")+'\')"><div class="av">'+initials+'</div><div class="t"><b>'+name+'</b><small>'+(l.subject||'')+' · '+n+' séance(s) suivie(s)</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>';
   }).join('');
 }
 
