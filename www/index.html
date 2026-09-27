@@ -473,9 +473,9 @@ function activateRole(r){
   document.querySelectorAll('[id^="panel-"]').forEach(p=>p.classList.add("hidden"));
   document.getElementById("panel-"+r).classList.remove("hidden");
   const d = roles[r];
-  const name = myProfile ? myProfile.full_name.split(' ')[0] : (r==='eleve'?'Koffi':r==='parent'?'Awa':'Jean');
+  const name = (myProfile && myProfile.full_name) ? myProfile.full_name.split(' ')[0] : (r==='eleve'?'Koffi':r==='parent'?'Awa':'Jean');
   document.getElementById("greetTxt").innerHTML = d.greet+' '+name + "<small>"+d.sub+"</small>";
-  document.getElementById("avatarInit").textContent = myProfile ? (myProfile.avatar_initials||initialsOf(myProfile.full_name)) : (r==='eleve'?'KJ':r==='parent'?'AK':'JK');
+  document.getElementById("avatarInit").textContent = (myProfile && myProfile.full_name) ? (myProfile.avatar_initials||initialsOf(myProfile.full_name)) : (r==='eleve'?'KJ':r==='parent'?'AK':'JK');
   document.getElementById("scoreTitle").textContent = d.score;
 }
 btns.forEach(b=>b.addEventListener("click", ()=>{ if(myProfile && b.dataset.role!==myProfile.role) return; activateRole(b.dataset.role); }));
@@ -540,28 +540,35 @@ async function submitAuth(){
   }
 }
 async function afterAuthSuccess(){
-  const { data: { user } } = await sb.auth.getUser();
-  if(!user) return;
-  let { data: profile } = await sb.from('profiles').select('*').eq('id', user.id).single();
-  if(!profile){
-    const name = prompt("Complète ton profil — quel est ton nom complet ?");
-    if(!name){ await sb.auth.signOut(); showPage('auth'); return; }
-    const isParent = confirm("Es-tu un parent ? (Annuler = Élève)");
-    const { data: created, error: cerr } = await sb.from('profiles')
-      .upsert({ id:user.id, role: isParent?'parent':'eleve', full_name:name, avatar_initials:initialsOf(name) })
-      .select().single();
-    if(cerr){ alert("Erreur : "+cerr.message); await sb.auth.signOut(); showPage('auth'); return; }
-    profile = created;
+  try{
+    const { data: { user } } = await sb.auth.getUser();
+    if(!user) return;
+    let { data: profile, error: ferr } = await sb.from('profiles').select('*').eq('id', user.id).single();
+    if(ferr && ferr.code !== 'PGRST116'){ throw ferr; }
+    if(!profile){
+      const name = prompt("Complète ton profil — quel est ton nom complet ?");
+      if(!name){ await sb.auth.signOut(); showPage('auth'); return; }
+      const isParent = confirm("Es-tu un parent ? (Annuler = Élève)");
+      const { data: created, error: cerr } = await sb.from('profiles')
+        .upsert({ id:user.id, role: isParent?'parent':'eleve', full_name:name, avatar_initials:initialsOf(name) })
+        .select().single();
+      if(cerr) throw cerr;
+      profile = created;
+    }
+    if(!profile || !profile.full_name){ throw new Error("Profil incomplet (nom manquant) — réessaie de te connecter."); }
+    myProfile = profile;
+    document.getElementById('rolesBar').style.display = 'none';
+    activateRole(myProfile.role==='professeur' ? 'prof' : myProfile.role);
+    if(myProfile.role==='parent'){
+      const { data: pc } = await sb.from('parent_child').select('child_id').eq('parent_id', myProfile.id);
+      myChildrenIds = (pc||[]).map(r=>r.child_id);
+    }
+    await refreshSessionsAndBanner();
+    showPage('home');
+  } catch(e){
+    alert("Problème au chargement du profil : "+(e.message||e)+"\n\nEssaie de te déconnecter puis de te reconnecter.");
+    showPage('profile');
   }
-  myProfile = profile;
-  document.getElementById('rolesBar').style.display = 'none';
-  activateRole(myProfile.role==='professeur' ? 'prof' : myProfile.role);
-  if(myProfile.role==='parent'){
-    const { data: pc } = await sb.from('parent_child').select('child_id').eq('parent_id', myProfile.id);
-    myChildrenIds = (pc||[]).map(r=>r.child_id);
-  }
-  await refreshSessionsAndBanner();
-  showPage('home');
 }
 
 /* ================= SÉANCES + POSITION DU PROFESSEUR (réel) ================= */
