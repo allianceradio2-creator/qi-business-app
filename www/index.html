@@ -392,11 +392,12 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
     <div class="page" id="page-payment">
       <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Modes de paiement</h2></div>
       <div class="pbody">
-        <div class="sechd2">Mobile money</div>
-        <div class="pay-row selected" data-pay="Orange Money"><div class="picn">OM</div><div class="t"><b>Orange Money</b><small>07 57 44 36 61</small></div><div class="radio"></div></div>
-        <div class="pay-row" data-pay="MTN Mobile Money"><div class="picn">MTN</div><div class="t"><b>MTN Mobile Money</b><small>Non lié</small></div><div class="radio"></div></div>
-        <div class="pay-row" data-pay="Moov Money"><div class="picn">MV</div><div class="t"><b>Moov Money</b><small>Non lié</small></div><div class="radio"></div></div>
-        <div class="pay-row" data-pay="Wave"><div class="picn">W</div><div class="t"><b>Wave</b><small>Non lié</small></div><div class="radio"></div></div>
+        <div class="route-banner" style="display:block; margin-bottom:14px;">Envoie ton paiement à l'un des numéros ci-dessous, puis attends la confirmation de QI Business.</div>
+        <div class="sechd2">Mobile money — envoie ton paiement ici</div>
+        <div class="pay-row selected" data-pay="Orange Money"><div class="picn">OM</div><div class="t"><b>Orange Money</b><small id="payNumOrange">Chargement…</small></div><div class="radio"></div></div>
+        <div class="pay-row" data-pay="MTN Mobile Money"><div class="picn">MTN</div><div class="t"><b>MTN Mobile Money</b><small id="payNumMtn">Chargement…</small></div><div class="radio"></div></div>
+        <div class="pay-row" data-pay="Moov Money"><div class="picn">MV</div><div class="t"><b>Moov Money</b><small>Non renseigné</small></div><div class="radio"></div></div>
+        <div class="pay-row" data-pay="Wave"><div class="picn">W</div><div class="t"><b>Wave</b><small id="payNumWave">Chargement…</small></div><div class="radio"></div></div>
 
         <div class="sechd2">Autres</div>
         <div class="pay-row" data-pay="Carte bancaire"><div class="picn"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="var(--gold)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div class="t"><b>Carte bancaire</b><small>Visa, Mastercard</small></div><div class="radio"></div></div>
@@ -684,6 +685,14 @@ async function doLogout(){
   location.reload();
 }
 
+async function loadPaymentNumbers(){
+  const { data } = await sb.from('platform_settings').select('*');
+  const byKey = {}; (data||[]).forEach(s=>{ byKey[s.key] = s.value; });
+  document.getElementById('payNumOrange').textContent = (byKey.orange_money && byKey.orange_money.number) || 'Non renseigné';
+  document.getElementById('payNumMtn').textContent = (byKey.mtn_momo && byKey.mtn_momo.number) || 'Non renseigné';
+  document.getElementById('payNumWave').textContent = (byKey.wave && byKey.wave.number) || 'Non renseigné';
+}
+
 /* ================= DÉMARRAGE ================= */
 (async function initApp(){
   const { data: { session } } = await sb.auth.getSession();
@@ -723,6 +732,7 @@ function showPage(name){
   if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
   document.querySelector('.tabbar').style.display = name==='auth' ? 'none' : 'flex';
   if(name==='history' && typeof refreshSessionsAndBanner==='function') refreshSessionsAndBanner();
+  if(name==='payment' && typeof loadPaymentNumbers==='function') loadPaymentNumbers();
   document.querySelector('.frame').scrollTo?.(0,0);
   window.scrollTo(0,0);
 }
