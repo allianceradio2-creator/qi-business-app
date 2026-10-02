@@ -251,15 +251,28 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
       </div>
     </div>
 
+    <!-- CHANGER MON MOT DE PASSE -->
+    <div class="page" id="page-changePassword">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Changer mon mot de passe</h2></div>
+      <div class="pbody">
+        <div id="cpError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
+        <input class="auth-input" id="cpNew1" type="password" placeholder="Nouveau mot de passe (6 caractères minimum)" autocomplete="new-password">
+        <input class="auth-input" id="cpNew2" type="password" placeholder="Confirme le mot de passe" autocomplete="new-password">
+        <button class="auth-btn" id="cpBtn" onclick="changePassword()">Enregistrer</button>
+      </div>
+    </div>
+
     <!-- RÉINITIALISATION DU MOT DE PASSE -->
     <div class="page" id="page-resetPassword">
       <div class="pagehead" style="border-radius:0"><h2>Nouveau mot de passe</h2></div>
       <div class="pbody">
         <div id="resetError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
-        <p style="font-size:.82rem; color:var(--sub); margin-bottom:14px;">Choisis un nouveau mot de passe pour ton compte.</p>
+        <p id="resetInfo" style="font-size:.82rem; color:var(--sub); margin-bottom:14px;">Saisis le code reçu par e-mail et choisis un nouveau mot de passe.</p>
+        <input class="auth-input" id="resetCode" inputmode="numeric" maxlength="10" placeholder="Code reçu par e-mail" autocomplete="one-time-code">
         <input class="auth-input" id="newPassword1" type="password" placeholder="Nouveau mot de passe" autocomplete="new-password">
         <input class="auth-input" id="newPassword2" type="password" placeholder="Confirme le mot de passe" autocomplete="new-password">
         <button class="auth-btn" id="resetSubmitBtn" onclick="submitNewPassword()">Valider</button>
+        <div class="auth-switch"><a onclick="forgotPassword()">Renvoyer le code</a> · <a onclick="showPage('auth')">Annuler</a></div>
       </div>
     </div>
 
@@ -355,6 +368,25 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
       </div>
     </div>
 
+    <!-- LIEU DE LA SÉANCE -->
+    <div class="page" id="page-place">
+      <div class="pagehead"><button class="back" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Lieu de la séance</h2></div>
+      <div class="pbody">
+        <div class="qz-fb">Indique où la séance a lieu pour que ton professeur trouve le chemin, comme la destination dans Yango.</div>
+        <button class="qbtn2" style="width:100%;padding:12px" onclick="usePlaceGps()">📍 Utiliser ma position actuelle</button>
+        <div class="qz-fb" id="placeGpsState">Aucune position enregistrée</div>
+        <textarea class="auth-input" id="placeNote" rows="3" maxlength="300" placeholder="Repère utile (ex : derrière la pharmacie, portail vert, 2e étage)"></textarea>
+        <button class="auth-btn" onclick="savePlace()">Enregistrer le lieu</button>
+        <div id="placeMsg" style="font-size:.78rem;margin-top:6px"></div>
+      </div>
+    </div>
+
+    <!-- MON PROFESSEUR -->
+    <div class="page" id="page-teacher">
+      <div class="pagehead"><button class="back" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mon professeur</h2></div>
+      <div class="pbody" id="teacherCard" style="text-align:center"></div>
+    </div>
+
     <!-- MA PROGRESSION -->
     <div class="page" id="page-progress">
       <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Ma progression</h2></div>
@@ -411,7 +443,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 
     <!-- CONVERSATION -->
     <div class="page" id="page-chat">
-      <div class="pagehead"><button class="back" onclick="showPage('messages')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="chatTitle">Conversation</h2></div>
+      <div class="pagehead"><button class="back" onclick="showPage('messages')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="chatTitle">Conversation</h2><button class="qbtn2 ghost" style="margin-left:auto" onclick="reportChat()">Signaler</button></div>
       <div id="chatLog"></div>
       <div class="chatbar"><input id="chatInput" maxlength="2000" placeholder="Écris ton message…" onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">Envoyer</button></div>
     </div>
@@ -467,7 +499,8 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
       <div class="plist">
                 <div class="prow" onclick="showPage('referral')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Parrainage</b><small>Invite un ami, gagne une réduction</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="editPhone()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Numéro de téléphone</b><small id="phoneLabel">Non renseigné</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="showPage('payment')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Modes de paiement</b><small id="payDefaultLabel">Orange Money</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('payment')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Modes de paiement</b><small id="payDefaultLabel">Payer mes séances</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('changePassword')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Changer mon mot de passe</b></div></div>
         <div class="prow" onclick="doLogout()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Se déconnecter</b></div></div>
       </div>
     </div>
@@ -481,15 +514,11 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
         <div class="sechd2">Séances à régler</div>
         <div id="payableSessions"><div class="empty">Chargement…</div></div>
 
-        <div class="sechd2">Mode préféré (pour info)</div>
-        <div class="pay-row selected" data-pay="Orange Money"><div class="picn">OM</div><div class="t"><b>Orange Money</b><small id="payNumOrange">Chargement…</small></div><div class="radio"></div></div>
-        <div class="pay-row" data-pay="MTN Mobile Money"><div class="picn">MTN</div><div class="t"><b>MTN Mobile Money</b><small id="payNumMtn">Chargement…</small></div><div class="radio"></div></div>
-        <div class="pay-row" data-pay="Wave"><div class="picn">W</div><div class="t"><b>Wave</b><small id="payNumWave">Chargement…</small></div><div class="radio"></div></div>
-
-        <div class="sechd2">Autres</div>
-        <div class="pay-row" data-pay="Carte bancaire"><div class="picn"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="var(--gold)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div class="t"><b>Carte bancaire</b><small>Visa, Mastercard</small></div><div class="radio"></div></div>
-        <div class="pay-row" data-pay="Espèces"><div class="picn"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5h4.5a1.8 1.8 0 1 1 0 3.6H9.5a1.8 1.8 0 1 0 0 3.6H15"/></svg></div><div class="t"><b>Espèces</b><small>Payer directement le professeur</small></div><div class="radio"></div></div>
-
+        <div class="sechd2">Mon numéro Mobile Money</div>
+        <div class="qz-fb">Ce numéro est proposé automatiquement quand tu paies. Tu choisis ensuite Orange Money, MTN, Moov, Wave ou carte sur l'écran de paiement sécurisé qui s'ouvre avec le bouton « Payer ».</div>
+        <input class="auth-input" id="payPhone" type="tel" inputmode="tel" maxlength="16" placeholder="Ex : 07 00 00 00 00">
+        <button class="auth-btn" onclick="savePayPhone()">Enregistrer mon numéro</button>
+        <div id="payPhoneMsg" style="font-size:.78rem;margin-top:6px"></div>
 
         <div class="sechd2">Historique des paiements</div>
         <div class="hist-row" id="payHistory"><div class="empty">Chargement…</div></div>
@@ -538,7 +567,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
       </div>
     </div>
 
-    <nav class="tabbar">
+    <nav class="tabbar" style="display:none">
       <button class="tab active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><span>Accueil</span></button>
       <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Historique</span></button>
       <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Assistance</span></button>
@@ -621,28 +650,39 @@ function pollPaymentStatus(transaction_id){
 }
 
 
+/* ================= MOT DE PASSE OUBLIÉ : code à 6 chiffres reçu par e-mail ================= */
+let resetEmail = null;
 async function forgotPassword(){
-  const email = document.getElementById('authEmail').value.trim();
+  const email = document.getElementById('authEmail').value.trim() || resetEmail || '';
   if(!email){ alert('Renseigne d\'abord ton e-mail dans le champ ci-dessus, puis clique sur "Mot de passe oublié ?".'); return; }
-  const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: window.location.href });
-  if(error){ alert('Erreur : '+error.message); return; }
-  alert('Un e-mail vient de t\'être envoyé à '+email+' avec un lien pour choisir un nouveau mot de passe.');
+  const { error } = await sb.auth.resetPasswordForEmail(email);
+  if(error){ alert('Envoi impossible : '+error.message); return; }
+  resetEmail = email;
+  document.getElementById('resetInfo').textContent = 'Un code vient d\'être envoyé à '+email+'. Saisis-le ci-dessous avec ton nouveau mot de passe.';
+  showPage('resetPassword');
 }
 async function submitNewPassword(){
+  const code = document.getElementById('resetCode').value.trim();
   const p1 = document.getElementById('newPassword1').value;
   const p2 = document.getElementById('newPassword2').value;
   const err = document.getElementById('resetError');
   err.style.display = 'none';
-  if(!p1 || p1.length<6){ err.textContent = 'Le mot de passe doit faire au moins 6 caractères.'; err.style.display='block'; return; }
-  if(p1!==p2){ err.textContent = 'Les deux mots de passe ne correspondent pas.'; err.style.display='block'; return; }
+  const fail = m=>{ err.textContent = m; err.style.display='block'; };
+  if(!resetEmail){ fail('Demande d\'abord un code depuis l\'écran de connexion.'); return; }
+  if(code.length<6){ fail('Saisis le code reçu par e-mail.'); return; }
+  if(!p1 || p1.length<6){ fail('Le mot de passe doit faire au moins 6 caractères.'); return; }
+  if(p1!==p2){ fail('Les deux mots de passe ne correspondent pas.'); return; }
   const btn = document.getElementById('resetSubmitBtn');
   btn.disabled = true; btn.textContent = 'Enregistrement…';
-  const { error } = await sb.auth.updateUser({ password: p1 });
-  btn.disabled = false; btn.textContent = 'Valider';
-  if(error){ err.textContent = error.message; err.style.display='block'; return; }
-  alert('Mot de passe mis à jour. Tu peux continuer.');
-  location.hash = '';
-  location.reload();
+  try{
+    const { error: vErr } = await sb.auth.verifyOtp({ email: resetEmail, token: code, type: 'recovery' });
+    if(vErr) throw new Error(vErr.message.toLowerCase().includes('expired')||vErr.message.toLowerCase().includes('invalid') ? 'Code incorrect ou expiré. Demande un nouveau code.' : vErr.message);
+    const { error: uErr } = await sb.auth.updateUser({ password: p1 });
+    if(uErr) throw uErr;
+    alert('Mot de passe mis à jour.');
+    await afterAuthSuccess();
+  }catch(e){ fail(e.message || 'Une erreur est survenue.'); }
+  finally{ btn.disabled = false; btn.textContent = 'Valider'; }
 }
 sb.auth.onAuthStateChange((event)=>{
   if(event==='PASSWORD_RECOVERY') showPage('resetPassword');
@@ -957,8 +997,13 @@ async function refreshSessionsAndBanner(){
   const teacherIds = [...new Set(list.map(r=>r.teacher_id))];
   let teacherNames = {};
   if(teacherIds.length){
-    const { data: teachers } = await sb.from('profiles').select('id, full_name').in('id', teacherIds);
-    (teachers||[]).forEach(t=>{ teacherNames[t.id] = t.full_name; });
+    const { data: teachers } = await sb.from('profiles').select('id, full_name, avatar_url, matricule, is_verified, subject').in('id', teacherIds);
+    const ratings = await Promise.all(teacherIds.map(id=>sb.rpc('teacher_rating',{p_teacher:id})));
+    (teachers||[]).forEach(t=>{
+      teacherNames[t.id] = t.full_name;
+      const i=teacherIds.indexOf(t.id), rr=ratings[i]&&ratings[i].data, rw=Array.isArray(rr)?rr[0]:rr;
+      teacherInfo[t.id]={ name:t.full_name, avatar_url:t.avatar_url, matricule:t.matricule, is_verified:t.is_verified, subject:t.subject, avg:rw?rw.avg_stars:null, nb:rw?rw.nb:0 };
+    });
   }
   renderSessionsList(list.map(r=>({...r, teacherName: teacherNames[r.teacher_id] || 'Professeur'})));
 
@@ -968,7 +1013,8 @@ async function refreshSessionsAndBanner(){
     const { data: loc } = await sb.from('teacher_locations').select('*').eq('teacher_id', routeSession.teacher_id).single();
     if(loc){
       banner.style.display = 'block';
-      banner.innerHTML = routeSession.teacherName+' est en route pour la séance de '+routeSession.subject+' — <a href="https://www.google.com/maps?q='+loc.lat+','+loc.lon+'" target="_blank">voir sur la carte</a>';
+      const ti=teacherInfo[routeSession.teacher_id]||{};
+      banner.innerHTML = routeSession.teacherName+(ti.matricule?' ('+esc(ti.matricule)+')':'')+' est en route pour la séance de '+routeSession.subject+' — <a href="https://www.google.com/maps?q='+loc.lat+','+loc.lon+'" target="_blank">voir sur la carte</a>';
     } else { banner.style.display = 'none'; }
   } else { banner.style.display = 'none'; }
 }
@@ -980,7 +1026,8 @@ function renderSessionsList(list){
     const d = new Date(r.scheduled_at);
     const date = d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
     const time = d.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
-    const statusTxt = r.status==='done' ? '<div class="sc">Terminée · <a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openRate(\''+r.id+'\',\''+r.teacher_id+'\')">Noter</a></div>' : r.status==='route' ? '<div class="sc">En route</div>' : r.status==='cancelled' ? '<div class="sc miss">Annulée</div>' : '<div class="sc">À venir</div>';
+    let statusTxt = r.status==='done' ? '<div class="sc">Terminée · <a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openRate(\''+r.id+'\',\''+r.teacher_id+'\')">Noter</a></div>' : r.status==='route' ? '<div class="sc">En route</div>' : r.status==='cancelled' ? '<div class="sc miss">Annulée</div>' : '<div class="sc">À venir</div>';
+    statusTxt += teacherLink(r) + placeBtn(r);
     return '<div class="datehd">'+date+'</div><div class="hist-row"><div class="hist-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+r.subject+'</b><small>'+r.teacherName+' · '+time+'</small></div>'+statusTxt+'</div></div>';
   }).join('');
 }
@@ -1014,6 +1061,15 @@ async function loadPayHistory(){
   box.innerHTML=data.map(p=>'<div class="pay-tx"><div><b>Paiement de séance — '+(lbl[p.status]||p.status)+'</b><small>'+(p.method||'—')+' · '+new Date(p.created_at).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+'</small></div><span>'+Number(p.amount).toLocaleString('fr-FR')+' F</span></div>').join('');
 }
 
+
+
+/* ================= SIGNALER UNE CONVERSATION (arrive dans Assistance côté admin) ================= */
+async function reportChat(){
+  if(!chatWith||!myProfile) return;
+  if(!confirm('Signaler cette conversation à l\'administration ?\nElle pourra la lire et la suspendre si nécessaire.')) return;
+  const { error } = await sb.from('support_tickets').insert({ user_id:myProfile.id, category:'signalement', subject:'Signalement : conversation avec '+chatWith.full_name, body:'Conversation signalée depuis la messagerie. Contact : '+chatWith.full_name+' ('+chatWith.id+').' });
+  alert(error ? 'Signalement impossible : '+error.message : 'Merci. L\'administration va examiner cette conversation.');
+}
 
 /* ================= MESSAGERIE (table messages + temps réel) ================= */
 let chatWith=null, msgChannel=null, contactsCache=[];
@@ -1126,6 +1182,60 @@ async function toggleShare(btn){
 }
 
 
+
+/* ================= LIEU DE LA SÉANCE (séances à domicile) ================= */
+let placeCtx={sessionId:null,lat:null,lon:null};
+function placeBtn(r){
+  if(r.mode!=='a_domicile'||!(r.status==='pending'||r.status==='route')) return '';
+  return '<div class="sc"><a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openPlace(\''+r.id+'\')">📍 Lieu de la séance</a></div>';
+}
+async function openPlace(sessionId){
+  placeCtx={sessionId,lat:null,lon:null};
+  document.getElementById('placeNote').value=''; document.getElementById('placeMsg').textContent='';
+  document.getElementById('placeGpsState').textContent='Aucune position enregistrée';
+  showPage('place');
+  const { data } = await sb.from('session_places').select('lat,lon,note').eq('session_id',sessionId).maybeSingle();
+  if(data){ placeCtx.lat=data.lat; placeCtx.lon=data.lon; document.getElementById('placeNote').value=data.note||''; if(data.lat!=null) document.getElementById('placeGpsState').textContent='Position enregistrée ✓ (tu peux la remplacer)'; }
+}
+function usePlaceGps(){
+  const st=document.getElementById('placeGpsState'); st.textContent='Recherche de ta position…';
+  navigator.geolocation.getCurrentPosition(pos=>{ placeCtx.lat=pos.coords.latitude; placeCtx.lon=pos.coords.longitude; st.textContent='Position trouvée ✓ — pense à enregistrer.'; },
+    ()=>{ st.textContent='Position indisponible. Autorise la localisation, ou écris seulement un repère.'; },{enableHighAccuracy:true,timeout:10000});
+}
+async function savePlace(){
+  const m=document.getElementById('placeMsg'); m.style.color='var(--alert)';
+  const { error } = await sb.rpc('set_session_place',{ p_session:placeCtx.sessionId, p_lat:placeCtx.lat, p_lon:placeCtx.lon, p_note:document.getElementById('placeNote').value });
+  if(error){ m.textContent=error.message.includes('Renseigne')?'Utilise ta position ou écris un repère.':'Erreur : '+error.message+' (script SQL 18 ?)'; return; }
+  m.style.color='var(--mint)'; m.textContent='Lieu enregistré. Ton professeur est prévenu.';
+}
+
+
+/* ================= CARTE DU PROFESSEUR (photo + matricule, comme le chauffeur dans Yango) ================= */
+let teacherInfo={};
+function teacherAvatarHtml(t,size){
+  const ini=(t.name||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const st='width:'+size+'px;height:'+size+'px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex:none;background:var(--gold);color:var(--ink);';
+  return t.avatar_url ? '<span style="'+st+'background:url(\''+esc(t.avatar_url)+'\') center/cover"></span>' : '<span style="'+st+'font-size:'+Math.round(size*0.4)+'px">'+esc(ini)+'</span>';
+}
+function teacherLink(r){
+  const t=teacherInfo[r.teacher_id]; if(!t) return '';
+  return '<div class="sc" style="display:flex;align-items:center;gap:8px">'+teacherAvatarHtml(t,24)+'<a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openTeacher(\''+r.teacher_id+'\')">'+esc(t.name)+' · '+esc(t.matricule||'matricule en attente')+'</a></div>';
+}
+function openTeacher(id){
+  const t=teacherInfo[id]; if(!t) return;
+  const rating = t.nb ? '★ '+Number(t.avg).toFixed(1)+' ('+t.nb+' avis)' : 'Pas encore d\'avis';
+  document.getElementById('teacherCard').innerHTML=
+    '<div style="margin:10px 0">'+teacherAvatarHtml(t,110)+'</div>'+
+    '<div style="font-size:1.2rem;font-weight:800">'+esc(t.name)+'</div>'+
+    '<div class="qz-fb">'+esc(t.subject||'Professeur')+'</div>'+
+    '<div style="display:inline-block;margin:8px 0;padding:6px 14px;border-radius:14px;background:rgba(128,128,128,.18);font-weight:800;letter-spacing:1px">'+esc(t.matricule||'Matricule en attente')+'</div>'+
+    '<div class="qz-fb">'+(t.is_verified?'✓ Identité vérifiée par QI Business':'⚠ Identité non vérifiée')+'</div>'+
+    '<div class="qz-fb">'+rating+'</div>'+
+    '<button class="auth-btn" style="margin-top:14px" onclick="writeToTeacher(\''+id+'\')">Écrire un message</button>';
+  showPage('teacher');
+}
+async function writeToTeacher(id){ await openMessages(); await openChat(id); }
+
 /* ================= MA PROGRESSION (données réelles) ================= */
 async function refreshProgress(){
   const box=document.getElementById('progressBody');
@@ -1138,6 +1248,22 @@ async function refreshProgress(){
   if(!crs.length && !list.length){ box.innerHTML='<div class="empty">Ta progression apparaîtra dès que tu auras terminé un cours, un exercice ou un quiz.</div>'; return; }
   box.innerHTML='<div class="qz-fb">'+(crs.length?done+' / '+crs.length+' cours terminés':'Aucun cours assigné')+'</div><div class="qz-fb">'+(tot?Math.round(sc/tot*100)+' % de réussite aux exercices et quiz':'Aucun exercice ou quiz terminé')+'</div>'+
     (list.length?'<div class="sechd2">Derniers résultats</div>'+list.map(r=>'<div class="qrow"><div class="t"><b>'+esc(r.quizzes?r.quizzes.title:'')+'</b><small>'+(r.quizzes&&r.quizzes.kind==='exercice'?'Exercice':'Quiz')+' · '+esc(r.quizzes?r.quizzes.subject:'')+'</small></div><span class="qz-prog">'+r.score+'/'+r.total+'</span></div>').join(''):'');
+}
+
+
+/* ================= CHANGER MON MOT DE PASSE ================= */
+async function changePassword(){
+  const p1=document.getElementById('cpNew1').value, p2=document.getElementById('cpNew2').value, err=document.getElementById('cpError');
+  err.style.display='none';
+  const fail=m=>{ err.textContent=m; err.style.display='block'; };
+  if(!p1||p1.length<6){ fail('Le mot de passe doit faire au moins 6 caractères.'); return; }
+  if(p1!==p2){ fail('Les deux mots de passe ne correspondent pas.'); return; }
+  const btn=document.getElementById('cpBtn'); btn.disabled=true; btn.textContent='Enregistrement…';
+  const { error } = await sb.auth.updateUser({ password:p1 });
+  btn.disabled=false; btn.textContent='Enregistrer';
+  if(error){ fail(error.message); return; }
+  document.getElementById('cpNew1').value=''; document.getElementById('cpNew2').value='';
+  alert('Mot de passe mis à jour.'); showPage('profile');
 }
 
 /* ================= PARRAINAGE ================= */
@@ -1340,35 +1466,8 @@ document.querySelectorAll('.switch[data-key]').forEach(btn=>{
   if(saved!==null) btn.classList.toggle('on', saved==='true');
 });
 
-/* --- Moyens de paiement : sélection + ajout, sauvegardés localement --- */
-function wirePayRow(row){
-  row.addEventListener('click', ()=>{
-    document.querySelectorAll('.pay-row').forEach(r=>r.classList.remove('selected'));
-    row.classList.add('selected');
-    document.getElementById('payDefaultLabel').textContent = row.dataset.pay;
-    localStorage.setItem('qi_pay', row.dataset.pay);
-  });
-}
-function renderCustomPayments(){
-  document.querySelectorAll('.pay-row.custom').forEach(r=>r.remove());
-  const addBtn = document.querySelector('.add-pay'); if(!addBtn) return;
-  const custom = JSON.parse(localStorage.getItem('qi_custom_pay') || '[]');
-  custom.forEach(name=>{
-    const row = document.createElement('div');
-    row.className = 'pay-row custom';
-    row.dataset.pay = name;
-    row.innerHTML = '<div class="picn">'+name.slice(0,2).toUpperCase()+'</div><div class="t"><b>'+name+'</b><small>Ajouté</small></div><div class="radio"></div>';
-    addBtn.parentNode.insertBefore(row, addBtn);
-    wirePayRow(row);
-  });
-}
-document.querySelectorAll('.pay-row').forEach(wirePayRow);
-renderCustomPayments();
-const savedPay = localStorage.getItem('qi_pay');
-if(savedPay){
-  document.querySelectorAll('.pay-row').forEach(r=>r.classList.toggle('selected', r.dataset.pay===savedPay));
-  document.getElementById('payDefaultLabel').textContent = savedPay;
-}
+/* Anciennes préférences de mode de paiement (supprimées : le choix se fait sur l'écran CinetPay) */
+try{ localStorage.removeItem('qi_pay'); localStorage.removeItem('qi_custom_pay'); }catch(e){}
 
 /* --- Profil : nom modifiable, synchronisé avec le compte réel --- */
 const profHero = document.querySelector('.prof-hero');
@@ -1390,11 +1489,17 @@ async function doLogout(){
 }
 
 async function loadPaymentNumbers(){
-  const { data } = await sb.from('platform_settings').select('*');
-  const byKey = {}; (data||[]).forEach(s=>{ byKey[s.key] = s.value; });
-  document.getElementById('payNumOrange').textContent = (byKey.orange_money && byKey.orange_money.number) || 'Non renseigné';
-  document.getElementById('payNumMtn').textContent = (byKey.mtn_momo && byKey.mtn_momo.number) || 'Non renseigné';
-  document.getElementById('payNumWave').textContent = (byKey.wave && byKey.wave.number) || 'Non renseigné';
+  const inp=document.getElementById('payPhone'); if(inp && myProfile) inp.value = myProfile.phone || '';
+}
+async function savePayPhone(){
+  const m=document.getElementById('payPhoneMsg'); m.style.color='var(--alert)';
+  const raw=document.getElementById('payPhone').value.replace(/[\s.\-]/g,'');
+  if(!/^\+?\d{8,15}$/.test(raw)){ m.textContent='Numéro invalide. Exemple : 0700000000'; return; }
+  const { error } = await sb.from('profiles').update({ phone: raw }).eq('id', myProfile.id);
+  if(error){ m.textContent='Erreur : '+error.message; return; }
+  myProfile.phone = raw;
+  const lbl=document.getElementById('phoneLabel'); if(lbl) lbl.textContent = raw;
+  m.style.color='var(--mint)'; m.textContent='Numéro enregistré.';
 }
 
 /* ================= DÉMARRAGE ================= */
@@ -1429,12 +1534,13 @@ document.querySelectorAll('a[href="#"]').forEach(a=>{
 
 <script>
 function showPage(name){
+  if(!myProfile && name!=='auth' && name!=='resetPassword') name='auth';
+  { const tb=document.querySelector('.tabbar'); if(tb) tb.style.display = (!myProfile || name==='auth' || name==='resetPassword' || name==='chat') ? 'none' : 'flex'; }
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   const map={home:0,history:1,help:2,profile:3};
   if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
-  document.querySelector('.tabbar').style.display = (name==='auth'||name==='chat') ? 'none' : 'flex';
   if(name==='history' && typeof refreshSessionsAndBanner==='function') refreshSessionsAndBanner();
   if(name==='payment' && typeof loadPaymentNumbers==='function') loadPaymentNumbers();
   if(name==='payment' && typeof refreshPayableSessions==='function') refreshPayableSessions();
