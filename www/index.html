@@ -170,6 +170,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .pill.todo{background:var(--gold-soft); color:var(--gold-dark);}
 .pill.done{background:var(--mint-soft); color:var(--mint);}
 textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
+select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; padding-right:38px; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a8a7a' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right 14px center;}
 .geobox{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; font-size:.76rem; color:var(--sub);}
 .geobox b{display:block; color:var(--text); font-size:.83rem; margin-bottom:3px;}
 .empty{padding:16px; text-align:center; color:var(--sub); font-size:.82rem;}
@@ -200,26 +201,18 @@ textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
         <div id="authError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
         <div id="authNameRow" style="display:none">
           <input class="auth-input" id="authName" placeholder="Nom complet">
+          <select class="auth-input" id="authCity" data-list="cities"><option value="">Ville…</option></select>
+          <input class="auth-input" id="authDistrict" placeholder="Quartier (facultatif)">
         </div>
         <input class="auth-input" id="authEmail" type="email" placeholder="E-mail" autocomplete="email">
         <input class="auth-input" id="authPassword" type="password" placeholder="Mot de passe" autocomplete="current-password">
         <div id="authSubjectRow" style="display:none">
-          <input class="auth-input" id="authSubject" placeholder="Matière enseignée (ex : Maths)">
+          <input class="auth-input" id="authSubject" placeholder="Matières enseignées (touche pour choisir)" readonly onclick="openSubjectPicker('authSubject')">
           <input class="auth-input" id="authLevel" placeholder="Niveau (ex : Collège/Lycée)">
         </div>
         <div id="authIdDocRow" style="display:none">
-          <label class="auth-input" for="authIdCam" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
-            <span id="authIdCamLabel">📷 Prendre ma pièce d'identité en photo — obligatoire</span>
-          </label>
-          <input type="file" id="authIdCam" accept="image/*" capture="environment" style="display:none" onchange="document.getElementById('authIdCamLabel').textContent = this.files[0] ? '✓ Photo prise' : '📷 Prendre ma pièce d\'identité en photo — obligatoire'">
-          <label class="auth-input" for="authIdDoc" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
-            <span id="authIdDocLabel">…ou choisir un fichier (photo, PDF)</span>
-          </label>
-          <input type="file" id="authIdDoc" accept="image/*,.pdf" style="display:none" onchange="document.getElementById('authIdDocLabel').textContent = this.files[0] ? this.files[0].name : '…ou choisir un fichier (photo, PDF)'">
-          <label class="auth-input" for="authSelfie" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
-            <span id="authSelfieLabel">🤳 Selfie en tenant ma pièce d'identité (recommandé)</span>
-          </label>
-          <input type="file" id="authSelfie" accept="image/*" capture="user" style="display:none" onchange="document.getElementById('authSelfieLabel').textContent = this.files[0] ? '✓ Selfie pris' : '🤳 Selfie en tenant ma pièce d\'identité (recommandé)'">
+          <div class="auth-input" onclick="captureSignup('id')" style="cursor:pointer"><span id="authIdLabel">📷 Ma pièce d'identité (photo ou fichier) — obligatoire</span></div>
+          <div class="auth-input" onclick="captureSignup('selfie')" style="cursor:pointer"><span id="authSelfieLabel">🤳 Selfie en tenant ma pièce d'identité (recommandé)</span></div>
         </div>
         <button class="auth-btn" id="authSubmitBtn" onclick="submitAuth()">Se connecter</button>
         <div id="forgotRow" style="text-align:right; margin:-4px 0 10px;"><a onclick="forgotPassword()" style="font-size:.76rem; color:var(--gold-dark); cursor:pointer;">Mot de passe oublié ?</a></div>
@@ -317,7 +310,7 @@ textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
       <div class="pbody">
         <div class="sechd2">Créer une leçon</div>
         <input class="auth-input" id="crsTitle" placeholder="Titre de la leçon (ex : Les fractions)">
-        <input class="auth-input" id="crsSubject" placeholder="Matière (ex : Maths)">
+        <select class="auth-input" id="crsSubject" data-list="subjects"><option value="">Matière…</option></select>
         <input class="auth-input" id="crsLevel" placeholder="Niveau (ex : 3e)">
         <textarea class="auth-input" id="crsContent" placeholder="Contenu de la leçon (texte que l'élève va lire)"></textarea>
         <button class="auth-btn" onclick="createCourse()">Publier la leçon</button>
@@ -382,7 +375,7 @@ textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
       <div class="pbody">
         <div class="sechd2">Déposer un document</div>
         <input class="auth-input" id="libTitle" placeholder="Titre (ex : Fiche — les fractions)">
-        <input class="auth-input" id="libSubject" placeholder="Matière (ex : Maths)">
+        <select class="auth-input" id="libSubject" data-list="subjects"><option value="">Matière…</option></select>
         <input class="auth-input" id="libLevel" placeholder="Niveau (ex : 3e)">
         <input class="auth-input" type="file" id="libFile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.docx">
         <button class="auth-btn" id="libBtn" onclick="uploadLib()">Déposer</button>
@@ -398,7 +391,7 @@ textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
       <div class="pbody">
         <div class="sechd2">Créer un QCM</div>
         <input class="auth-input" id="qzTitle" placeholder="Titre (ex : Les fractions — niveau 1)">
-        <input class="auth-input" id="qzSubject" placeholder="Matière (ex : Maths)">
+        <select class="auth-input" id="qzSubject" data-list="subjects"><option value="">Matière…</option></select>
         <input class="auth-input" id="qzLevel" placeholder="Niveau (ex : 3e)">
         <select class="auth-input" id="qzKind"><option value="quiz">Quiz (note à la fin)</option><option value="exercice">Exercice (correction après chaque question)</option></select>
         <div id="qBuilder"></div>
@@ -445,7 +438,6 @@ textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
       <div class="prof-hero" id="profHero">
         <div class="prof-avatar" onclick="event.stopPropagation(); pickAvatar();" style="cursor:pointer;" title="Changer la photo">··</div>
         <input type="file" id="avatarFile" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
-        <input type="file" id="avatarCam" accept="image/*" capture="user" style="display:none" onchange="handleAvatarChange(event)">
         <div class="nm">Chargement…</div>
         <small>—</small>
       </div>
@@ -456,11 +448,10 @@ textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
         <div class="prow" onclick="showPage('payoutMethod')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Moyen de versement</b><small id="payoutLabel">Orange Money</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="editPhone()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Numéro de téléphone</b><small id="phoneLabel">Non renseigné</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="editSubject()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Mes matières</b><small id="subjectLabel">—</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="editCity()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Ville</b><small id="cityLabel">Non renseignée</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="pickIdDoc()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M14 10h6M14 14h4"/></svg><div class="t"><b>Pièce d'identité</b><small id="idDocLabel">Chargement…</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <input type="file" id="reuploadIdDoc" accept="image/*,.pdf" style="display:none" onchange="handleIdDocChange(event)">
-        <input type="file" id="reuploadIdCam" accept="image/*" capture="environment" style="display:none" onchange="handleIdDocChange(event)">
-        <input type="file" id="selfieCam" accept="image/*" capture="user" style="display:none" onchange="handleSelfieChange(event)">
-        <div class="prow" onclick="document.getElementById('selfieCam').click()"><div class="t"><b>Selfie avec ma pièce d'identité</b><small id="selfieLabel">Appuie pour prendre un selfie</small></div></div>
+        <div class="prow" onclick="captureSelfie()"><div class="t"><b>Selfie avec ma pièce d'identité</b><small id="selfieLabel">Appuie pour prendre un selfie</small></div></div>
         <div class="stog"><div class="t"><b>Notifications de séances</b></div><button class="switch on" data-pref="session" onclick="togglePref(this)"><i></i></button></div>
         <div class="stog"><div class="t"><b>Notifications de messages</b></div><button class="switch on" data-pref="message" onclick="togglePref(this)"><i></i></button></div>
         <div class="stog"><div class="t"><b>Notifications d'avis</b></div><button class="switch on" data-pref="rating" onclick="togglePref(this)"><i></i></button></div>
@@ -573,7 +564,7 @@ function showPage(name){
   if(name==='library') refreshMyLib();
   if(name==='help') refreshSupport();
   if(name==='earnings') refreshBonus();
-  if(name==='profile') applyPrefsToUI();
+  if(name==='profile'){ applyPrefsToUI(); updateCityLabel(); }
   if(name==='reviews') refreshReviews();
   if(name==='courses' && typeof refreshCourses==='function') refreshCourses();
   window.scrollTo(0,0);
@@ -660,11 +651,14 @@ async function submitAuth(){
       const fullName = document.getElementById('authName').value.trim();
       const subject = document.getElementById('authSubject').value.trim();
       const level = document.getElementById('authLevel').value.trim();
-      const idFile = document.getElementById('authIdCam').files[0] || document.getElementById('authIdDoc').files[0];
-      const selfieFile = document.getElementById('authSelfie').files[0];
+      const idFile = signupPhotos.id;
+      const selfieFile = signupPhotos.selfie;
       if(!fullName){ throw new Error("Renseigne ton nom complet."); }
+      const city = document.getElementById('authCity').value, district = document.getElementById('authDistrict').value.trim();
+      if(!city){ throw new Error("Choisis ta ville."); }
+      if(!subject){ throw new Error("Choisis au moins une matière."); }
       if(!idFile){ throw new Error("La pièce d'identité est obligatoire pour créer un compte professeur."); }
-      const { data, error } = await sb.auth.signUp({ email, password, options:{ data:{ full_name: fullName, role:'professeur', subject, level } } });
+      const { data, error } = await sb.auth.signUp({ email, password, options:{ data:{ full_name: fullName, role:'professeur', subject, level, city, district } } });
       if(error) throw error;
       if(!data.session){
         errBox.style.color = 'var(--mint)';
@@ -676,7 +670,7 @@ async function submitAuth(){
       if(data.user){
         const { error: perr } = await sb.from('profiles').upsert({
           id: data.user.id, role: 'professeur', full_name: fullName,
-          avatar_initials: initialsOf(fullName), subject, level
+          avatar_initials: initialsOf(fullName), subject, level, city, district
         });
         if(perr) throw perr;
         const idPath = data.user.id + '/' + Date.now() + '_' + idFile.name.replace(/[^a-zA-Z0-9.]/g,'_');
@@ -723,7 +717,7 @@ async function afterAuthSuccess(){
         subject = prompt("Quelle matière enseignes-tu ?") || '';
       }
       const { data: created, error: cerr } = await sb.from('profiles')
-        .upsert({ id:user.id, role:'professeur', full_name:name, avatar_initials:initialsOf(name), subject, level })
+        .upsert({ id:user.id, role:'professeur', full_name:name, avatar_initials:initialsOf(name), subject, level, city:md.city||null, district:md.district||null })
         .select().single();
       if(cerr) throw cerr;
       profile = created;
@@ -814,8 +808,10 @@ async function uploadAvatar(file){
 
 async function editSubject(){
   if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
-  const subject = prompt("Quelle(s) matière(s) enseignes-tu ?", myProfile.subject || '');
-  if(subject===null) return;
+  const cur=(myProfile.subject||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const picked = await chooseFromList('Mes matières', SUBJECTS, cur, true);
+  if(picked===null) return;
+  const subject = picked.join(', ');
   const level = prompt("Quel niveau enseignes-tu ? (ex : Collège/Lycée, Primaire...)", myProfile.level || '');
   if(level===null) return;
   const { error } = await sb.from('profiles').update({ subject, level }).eq('id', myProfile.id);
@@ -855,6 +851,7 @@ async function refreshSessionsFromDB(){
     student: names[r.student_id] || 'Élève',
     time: new Date(r.scheduled_at).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'}),
     mode: r.mode==='a_domicile' ? 'à domicile' : 'en ligne',
+    meeting_url: r.meeting_url || null,
     status: r.status
   }));
   renderSessions();
@@ -875,6 +872,12 @@ function sessionCard(s){
     else actions = '<div class="sess-actions"><button class="sbtn done" disabled>Séance terminée</button></div>';
   } else {
     actions = st==='done' ? '<div class="sess-actions"><button class="sbtn done" disabled>Séance terminée</button></div>' : '<div class="sess-actions"><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
+  }
+  if(s.mode==='en ligne' && st!=='done'){
+    const btns = s.meeting_url
+      ? '<button class="sbtn primary" onclick="openClassLink(\''+s.id+'\')">Rejoindre le cours</button><button class="sbtn ghost" onclick="setMeetingLink(\''+s.id+'\')">Changer le lien</button>'
+      : '<button class="sbtn primary" onclick="setMeetingLink(\''+s.id+'\')">Ajouter le lien du cours</button>';
+    actions = actions.replace('<div class="sess-actions">', '<div class="sess-actions">'+btns);
   }
   if(s.mode==='à domicile' && st!=='done'){ actions = actions.replace('</div>', '<button class="sbtn ghost" onclick="openItinerary(\''+s.id+'\')">Itinéraire</button></div>'); }
   return '<div class="sess"><div class="sess-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+s.subject+pill+'</b><small>'+s.student+' · '+s.mode+'</small></div><div class="time">'+s.time+'</div></div>'+actions+'</div>';
@@ -1028,25 +1031,78 @@ async function changePassword(){
 
 
 /* ================= PIÈCE D'IDENTITÉ : caméra ou fichier + selfie ================= */
-function pickAvatar(){
-  const cam = confirm("Prendre ta photo de profil avec la caméra ?\n(les élèves la voient avant la séance)\n\nOK = caméra   |   Annuler = choisir dans la galerie");
-  document.getElementById(cam ? 'avatarCam' : 'avatarFile').click();
+/* ---- Caméra ---- */
+const signupPhotos={ id:null, selfie:null };
+function chooseSource(title, allowFile){
+  return new Promise(resolve=>{
+    const ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    const box=document.createElement('div');
+    box.style.cssText='width:100%;max-width:480px;background:var(--card,#fff);color:var(--text,#111);border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box';
+    const done=v=>{ ov.remove(); resolve(v); };
+    const t=document.createElement('div'); t.style.cssText='font-weight:800;margin-bottom:12px'; t.textContent=title; box.appendChild(t);
+    const mk=(label,val,ghost)=>{ const b=document.createElement('button'); b.className='auth-btn'; b.style.cssText=ghost?'margin:0 0 10px;background:transparent;border:1px solid var(--line);color:inherit':'margin:0 0 10px'; b.textContent=label; b.onclick=()=>done(val); box.appendChild(b); };
+    mk('📷 Prendre une photo','camera',false);
+    if(allowFile) mk('📁 Choisir un fichier','file',true);
+    mk('Annuler',null,true);
+    ov.onclick=e=>{ if(e.target===ov) done(null); };
+    ov.appendChild(box); document.body.appendChild(ov);
+  });
 }
-function pickIdDoc(){
-  const cam = confirm("Prendre la pièce d'identité en photo avec la caméra ?\n\nOK = caméra   |   Annuler = choisir un fichier");
-  document.getElementById(cam ? 'reuploadIdCam' : 'reuploadIdDoc').click();
+async function capturePhoto(facing){
+  const cam = window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Camera;
+  if(cam){
+    try{
+      const ph = await cam.getPhoto({ quality:85, allowEditing:false, resultType:'base64', source:'CAMERA', direction: facing==='front'?'FRONT':'REAR', correctOrientation:true, width:1600 });
+      const bin=atob(ph.base64String), arr=new Uint8Array(bin.length);
+      for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
+      const fmt=ph.format||'jpeg';
+      return new File([arr],'photo.'+fmt,{type:'image/'+fmt});
+    }catch(e){
+      const msg=String((e&&e.message)||e);
+      if(/cancel|annul|user/i.test(msg)) return null;
+      alert("La caméra n'a pas pu s'ouvrir ("+msg+").\nVérifie que l'autorisation Caméra est accordée à QI Business Pro dans les paramètres du téléphone, ou choisis un fichier.");
+      return null;
+    }
+  }
+  return new Promise(res=>{ const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.setAttribute('capture', facing==='front'?'user':'environment'); inp.onchange=()=>res(inp.files[0]||null); inp.click(); });
 }
-async function handleSelfieChange(event){
-  const file = event.target.files && event.target.files[0]; event.target.value='';
-  if(!file||!myProfile) return;
-  document.getElementById('selfieLabel').textContent='Envoi en cours…';
+function pickFile(accept){
+  return new Promise(res=>{ const inp=document.createElement('input'); inp.type='file'; inp.accept=accept||'image/*,.pdf'; inp.onchange=()=>res(inp.files[0]||null); inp.click(); });
+}
+async function pickAvatar(){
+  const s=await chooseSource('Photo de profil',true); if(!s) return;
+  const f = s==='camera' ? await capturePhoto('front') : await pickFile('image/*');
+  if(f) uploadAvatar(f);
+}
+async function pickIdDoc(){
+  const s=await chooseSource("Pièce d'identité",true); if(!s) return;
+  const f = s==='camera' ? await capturePhoto('rear') : await pickFile();
+  if(f) uploadIdDocument(f);
+}
+async function captureSelfie(){
+  const f=await capturePhoto('front'); if(f) uploadSelfie(f);
+}
+async function captureSignup(kind){
+  let f;
+  if(kind==='id'){
+    const s=await chooseSource("Pièce d'identité",true); if(!s) return;
+    f = s==='camera' ? await capturePhoto('rear') : await pickFile();
+  } else { f=await capturePhoto('front'); }
+  if(!f) return;
+  signupPhotos[kind]=f;
+  document.getElementById(kind==='id'?'authIdLabel':'authSelfieLabel').textContent = kind==='id' ? '✓ Pièce d\'identité ajoutée' : '✓ Selfie pris';
+}
+async function uploadSelfie(file){
+  if(!myProfile) return;
+  const lbl=document.getElementById('selfieLabel'); lbl.textContent='Envoi en cours…';
   const path = myProfile.id + '/selfie_' + Date.now() + '.jpg';
   const { error: upErr } = await sb.storage.from('documents').upload(path, file, { upsert:true });
-  if(upErr){ document.getElementById('selfieLabel').textContent='Échec : '+upErr.message; return; }
+  if(upErr){ lbl.textContent='Échec : '+upErr.message; return; }
   const { error } = await sb.from('profiles').update({ selfie_path: path }).eq('id', myProfile.id);
-  if(error){ document.getElementById('selfieLabel').textContent='Échec : '+error.message+' (script SQL 18 ?)'; return; }
+  if(error){ lbl.textContent='Échec : '+error.message+' (script SQL 18 ?)'; return; }
   myProfile.selfie_path = path;
-  document.getElementById('selfieLabel').textContent='Envoyé ✓ — appuie pour le remplacer';
+  lbl.textContent='Envoyé ✓ — appuie pour le remplacer';
 }
 /* Itinéraire vers l'adresse indiquée par l'élève (comme la destination dans Yango) */
 async function openItinerary(sessionId){
@@ -1055,6 +1111,86 @@ async function openItinerary(sessionId){
   if(!data){ alert("L'élève n'a pas encore indiqué le lieu de la séance. Écris-lui dans Messages pour le lui demander."); return; }
   if(data.note) alert('Indication de l\'élève :\n'+data.note);
   if(data.lat!=null) window.open('https://www.google.com/maps/dir/?api=1&destination='+data.lat+','+data.lon+'&travelmode=driving','_blank');
+}
+
+
+/* ================= COURS EN LIGNE : lien de la classe virtuelle ================= */
+async function setMeetingLink(id){
+  const s=todaySessionsData.find(x=>x.id===id); let url;
+  if(confirm("Créer le lien du cours automatiquement ?\n\nOK = salle Jitsi créée pour toi\nAnnuler = coller mon propre lien (Google Meet, Zoom, Teams)")){
+    url='https://meet.jit.si/QIBusiness-'+id.replace(/-/g,'');
+  } else {
+    url=prompt('Colle le lien de ta classe (Google Meet, Zoom, Teams ou Jitsi) :', (s&&s.meeting_url)||'');
+    if(!url) return;
+  }
+  const { error } = await sb.rpc('set_meeting_url',{ p_session:id, p_url:url.trim() });
+  if(error){ alert(error.message+(error.message.includes('function')?' (script SQL 20 ?)':'')); return; }
+  alert("Lien enregistré. L'élève et ses parents sont prévenus.");
+  await refreshSessionsFromDB();
+}
+function openClassLink(id){
+  const s=todaySessionsData.find(x=>x.id===id); if(s&&s.meeting_url) window.open(s.meeting_url,'_blank');
+}
+
+/* ================= LISTES : villes et matières (gérées par l'admin) ================= */
+let CITIES=[], SUBJECTS=[];
+async function loadLists(){
+  try{
+    const [c,s]=await Promise.all([
+      sb.from('cities').select('name').eq('active',true).order('position').order('name'),
+      sb.from('subjects').select('name').eq('active',true).order('name')
+    ]);
+    CITIES=(c.data||[]).map(x=>x.name); SUBJECTS=(s.data||[]).map(x=>x.name);
+  }catch(e){}
+  fillListSelects();
+}
+function fillListSelects(){
+  document.querySelectorAll('select[data-list]').forEach(sel=>{
+    const cur=sel.value, isCity=sel.dataset.list==='cities', arr=isCity?CITIES:SUBJECTS;
+    sel.innerHTML='<option value="">'+(isCity?'Ville…':'Matière…')+'</option>'+arr.map(n=>'<option value="'+esc(n)+'">'+esc(n)+'</option>').join('');
+    if(cur) sel.value=cur;
+  });
+}
+function chooseFromList(title, items, selected, multi){
+  return new Promise(resolve=>{
+    const ov=document.createElement('div'); ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    const box=document.createElement('div'); box.style.cssText='width:100%;max-width:480px;max-height:80vh;overflow:auto;background:var(--card,#fff);color:var(--text,#111);border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box';
+    const done=v=>{ ov.remove(); resolve(v); };
+    const sel=new Set(selected||[]);
+    const t=document.createElement('div'); t.style.cssText='font-weight:800;margin-bottom:12px'; t.textContent=title; box.appendChild(t);
+    items.forEach(n=>{
+      const b=document.createElement('button'); b.className='auth-btn';
+      const style=()=>{ b.style.cssText='margin:0 0 8px;text-align:left;'+(sel.has(n)?'':'background:transparent;border:1px solid var(--line);color:inherit'); b.textContent=(multi&&sel.has(n)?'✓ ':'')+n; };
+      style();
+      b.onclick=()=>{ if(!multi){ done(n); return; } if(sel.has(n)) sel.delete(n); else sel.add(n); style(); };
+      box.appendChild(b);
+    });
+    if(!items.length){ const e=document.createElement('div'); e.style.cssText='margin-bottom:10px'; e.textContent="Liste vide : demande à l'administration de la compléter."; box.appendChild(e); }
+    if(multi){ const ok=document.createElement('button'); ok.className='auth-btn'; ok.textContent='Valider'; ok.onclick=()=>done([...sel]); box.appendChild(ok); }
+    const c=document.createElement('button'); c.className='auth-btn'; c.style.cssText='margin:8px 0 0;background:transparent;border:1px solid var(--line);color:inherit'; c.textContent='Annuler'; c.onclick=()=>done(null); box.appendChild(c);
+    ov.onclick=e=>{ if(e.target===ov) done(null); };
+    ov.appendChild(box); document.body.appendChild(ov);
+  });
+}
+function updateCityLabel(){
+  const el=document.getElementById('cityLabel'); if(!el||!myProfile) return;
+  el.textContent=[myProfile.city,myProfile.district].filter(Boolean).join(' · ')||'Non renseignée';
+}
+async function editCity(){
+  if(!myProfile) return;
+  const city=await chooseFromList('Ma ville',CITIES,[myProfile.city],false); if(city===null) return;
+  const d=prompt('Ton quartier (facultatif) :', myProfile.district||''); if(d===null) return;
+  const district=d.trim()||null;
+  const { error } = await sb.from('profiles').update({ city, district }).eq('id',myProfile.id);
+  if(error){ alert('Erreur : '+error.message+' (script SQL 21 ?)'); return; }
+  myProfile.city=city; myProfile.district=district; updateCityLabel();
+}
+loadLists();
+async function openSubjectPicker(inputId){
+  const el=document.getElementById(inputId);
+  const cur=(el.value||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const r=await chooseFromList('Matières que tu enseignes',SUBJECTS,cur,true);
+  if(r) el.value=r.join(', ');
 }
 
 /* ================= BONUS HEBDOMADAIRE ================= */
@@ -1176,17 +1312,21 @@ async function assignTo(studentId){
 }
 
 /* ================= ACCUEIL RÉEL : note, élèves, prochaine séance ================= */
+function placeBanner(b){
+  const c=document.querySelector('#page-home .content'); if(!c) return;
+  c.insertBefore(b, c.querySelector('.grid')||null);
+}
 async function refreshHomeStats(){
   if(!myProfile) return;
   { let b=document.getElementById('verifyBanner');
     if(!myProfile.is_verified){
-      if(!b){ b=document.createElement('div'); b.id='verifyBanner'; b.style.cssText='background:#fff3d6;color:#6b4e00;padding:12px 16px;font-size:.8rem;font-weight:700;line-height:1.35'; document.getElementById('page-home').insertBefore(b, document.getElementById('page-home').children[1]||null); }
+      if(!b){ b=document.createElement('div'); b.id='verifyBanner'; b.style.cssText='background:#fff3d6;color:#6b4e00;padding:12px 16px;border-radius:12px;margin:0 0 12px;font-size:.8rem;font-weight:700;line-height:1.35'; placeBanner(b); }
       b.textContent = myProfile.id_document_path
         ? 'Compte en cours de vérification : l\'administration contrôle ta pièce d\'identité. Tant que ce n\'est pas fait, tu ne peux pas être lié à des élèves ni passer En ligne.'
         : 'Il manque ta pièce d\'identité. Appuie ici pour la prendre en photo : sans elle, ton compte ne peut pas être vérifié.';
       b.onclick = myProfile.id_document_path ? null : pickIdDoc;
     } else if(!myProfile.avatar_url){
-      if(!b){ b=document.createElement('div'); b.id='verifyBanner'; b.style.cssText='background:#fff3d6;color:#6b4e00;padding:12px 16px;font-size:.8rem;font-weight:700;line-height:1.35;cursor:pointer'; document.getElementById('page-home').insertBefore(b, document.getElementById('page-home').children[1]||null); }
+      if(!b){ b=document.createElement('div'); b.id='verifyBanner'; b.style.cssText='background:#fff3d6;color:#6b4e00;padding:12px 16px;border-radius:12px;margin:0 0 12px;font-size:.8rem;font-weight:700;line-height:1.35;cursor:pointer'; placeBanner(b); }
       b.textContent='Ajoute ta photo de profil : les élèves et parents la voient avant la séance, avec ton matricule.';
       b.onclick = pickAvatar;
     } else if(b){ b.remove(); }
