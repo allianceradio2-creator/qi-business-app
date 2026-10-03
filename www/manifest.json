@@ -1,7 +1,7 @@
 {
-  "name": "QI Business Pro",
-  "short_name": "QIB Pro",
-  "description": "Espace professeur QI Business : planning, élèves, gains et disponibilité en temps réel.",
+  "name": "QI Business",
+  "short_name": "QI Business",
+  "description": "Le savoir, au sommet. Cours, exercices, suivi et messagerie pour élèves, parents et enseignants.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

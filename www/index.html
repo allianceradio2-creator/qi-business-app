@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>QI Business Pro</title>
+<title>QI Business</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -34,41 +34,53 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .serif{font-family:"Fraunces",serif;}
 .frame{width:100%; max-width:430px; min-height:100%; background:var(--bg); position:relative; overflow:hidden;}
 
-.splash{position:absolute; inset:0; z-index:20; background:radial-gradient(120% 90% at 15% 0%, #1C3968 0%, var(--ink) 55%, #081226 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; transition:opacity .5s ease, visibility .5s ease;}
+/* SPLASH */
+.splash{
+  position:absolute; inset:0; z-index:20; background:
+    radial-gradient(120% 90% at 15% 0%, #1C3968 0%, var(--ink) 55%, #081226 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:24px; text-align:center; transition:opacity .5s ease, visibility .5s ease;
+}
 .splash.hide{opacity:0; visibility:hidden; pointer-events:none;}
-.mono{width:76px; height:76px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-bottom:20px;}
-.mono span{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:var(--gold);}
-.splash h1{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:#fff;}
+.mono{
+  width:76px; height:76px; border-radius:50%; border:1.5px solid var(--gold);
+  display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+}
+.mono span{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:var(--gold); letter-spacing:.5px;}
+.splash h1{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:#fff; letter-spacing:.2px;}
 .splash h1 em{font-style:normal; color:var(--gold);}
 .splash p{color:#B9C2D6; font-size:.86rem; margin-top:8px; font-weight:500;}
 .splash-line{width:34px; height:1px; background:var(--gold); margin:22px 0;}
-.enter-btn{background:var(--gold); color:var(--ink); border:0; font-family:"Manrope",sans-serif; font-weight:800; font-size:.86rem; padding:13px 34px; border-radius:30px; cursor:pointer;}
+.enter-btn{
+  background:var(--gold); color:var(--ink); border:0; font-family:"Manrope",sans-serif;
+  font-weight:800; font-size:.86rem; padding:13px 34px; border-radius:30px; cursor:pointer;
+  letter-spacing:.2px;
+}
 
+/* APP SHELL */
 .app{min-height:100%; padding-bottom:calc(78px + env(safe-area-inset-bottom,0px));}
-.hdr{background:linear-gradient(155deg, var(--ink-3) 0%, var(--ink) 62%, #081226 100%); color:#fff; padding:18px 18px 50px; border-radius:0 0 24px 24px; padding-top:calc(18px + env(safe-area-inset-top,0px));}
+.hdr{
+  background:linear-gradient(155deg, var(--ink-3) 0%, var(--ink) 62%, #081226 100%);
+  color:#fff; padding:18px 18px 50px; border-radius:0 0 24px 24px;
+  padding-top:calc(18px + env(safe-area-inset-top,0px));
+}
 .hdr-top{display:flex; align-items:center; justify-content:space-between;}
-.brand{font-family:"Fraunces",serif; font-weight:600; font-size:1.05rem;}
+.brand{font-family:"Fraunces",serif; font-weight:600; font-size:1.05rem; letter-spacing:.2px;}
 .brand em{font-style:normal; color:var(--gold);}
-.brand small{display:block; font-size:.62rem; color:var(--gold); font-weight:700; letter-spacing:.5px; margin-top:1px;}
-.avatar{width:36px; height:36px; border-radius:50%; border:1px solid var(--gold); color:var(--gold); font-weight:800; font-size:.82rem; display:flex; align-items:center; justify-content:center; cursor:pointer;}
+.qrow{padding:14px;border-bottom:1px solid rgba(128,128,128,.2);display:flex;align-items:center;gap:10px}.qrow .t{flex:1;min-width:0}.qrow .t b{display:block;font-size:.92rem}.qrow .t small{opacity:.7}.qbtn2{border:0;border-radius:10px;background:var(--gold);color:var(--ink);font-weight:800;padding:8px 14px;cursor:pointer;font-size:.8rem}.qbtn2.ghost{background:transparent;border:1px solid rgba(128,128,128,.4);color:inherit}.qz-q{font-size:1.02rem;font-weight:700;margin:10px 0 16px;line-height:1.4}.qz-c{display:block;width:100%;text-align:left;padding:13px 14px;margin-bottom:10px;border-radius:12px;border:1px solid rgba(128,128,128,.35);background:transparent;color:inherit;font:inherit;cursor:pointer}.qz-c.sel{border-color:var(--gold);background:rgba(200,160,60,.15)}.qz-c.ok{border-color:#2e9e6b;background:rgba(46,158,107,.18)}.qz-c.ko{border-color:#e5484d;background:rgba(229,72,77,.15)}.qz-fb{font-size:.84rem;margin:6px 0 14px;opacity:.9}.qz-prog{font-size:.75rem;opacity:.7;letter-spacing:.5px}.qb{border:1px solid rgba(128,128,128,.3);border-radius:12px;padding:10px;margin:10px 0}.qb .auth-input{margin-bottom:8px}.contact{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(128,128,128,.2);cursor:pointer}.contact .av{width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}.contact .t{flex:1;min-width:0}.contact .t b{display:block;font-size:.9rem}.contact .t small{opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}.contact .un{background:#e5484d;color:#fff;border-radius:10px;min-width:20px;height:20px;font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 5px}#chatLog{display:flex;flex-direction:column;gap:6px;padding:12px;height:calc(100vh - 230px);overflow-y:auto}.bub{max-width:78%;padding:9px 12px;border-radius:14px;font-size:.88rem;line-height:1.35;word-wrap:break-word}.bub.me{align-self:flex-end;background:var(--gold);color:var(--ink);border-bottom-right-radius:4px}.bub.them{align-self:flex-start;background:rgba(128,128,128,.18);border-bottom-left-radius:4px}.bub small{display:block;font-size:.62rem;opacity:.65;margin-top:3px}.chatbar{display:flex;gap:8px;padding:10px 12px}.chatbar input{flex:1;padding:12px;border-radius:22px;border:1px solid rgba(128,128,128,.3);background:transparent;color:inherit;font:inherit}.chatbar button{border:0;border-radius:22px;background:var(--gold);color:var(--ink);font-weight:800;padding:0 18px;cursor:pointer}.bell{position:relative;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--gold);cursor:pointer}.bell svg{width:22px;height:22px}.bell i{position:absolute;top:0;right:0;min-width:16px;height:16px;border-radius:8px;background:#e5484d;color:#fff;font-size:.62rem;font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px}.star-row{display:flex;gap:8px;justify-content:center;margin:18px 0}.star-row button{background:none;border:0;font-size:2.2rem;color:#888;cursor:pointer}.star-row button.on{color:var(--gold)}.notif{padding:12px 14px;border-bottom:1px solid rgba(128,128,128,.2)}.notif.unread{border-left:3px solid var(--gold)}.notif b{display:block;font-size:.9rem}.notif small{opacity:.7}.avatar{width:36px; height:36px; border-radius:50%; border:1px solid var(--gold); color:var(--gold); font-weight:800; font-size:.82rem; display:flex; align-items:center; justify-content:center;}
 .greet{margin-top:18px; font-family:"Fraunces",serif; font-size:1.35rem; font-weight:600; line-height:1.3;}
 .greet small{display:block; font-family:"Manrope",sans-serif; font-weight:500; font-size:.8rem; color:#AEB9D2; margin-top:4px;}
 
-.onduty{display:flex; align-items:center; gap:8px; margin-top:16px; background:rgba(255,255,255,.08); padding:10px 12px; border-radius:12px;}
-.onduty b{flex:1; font-size:.78rem; font-weight:700;}
-.dot{width:8px; height:8px; border-radius:50%; background:var(--sub); flex-shrink:0;}
-.dot.live{background:#3FBE7A; box-shadow:0 0 0 3px rgba(63,190,122,.25);}
-.mswitch{width:40px; height:24px; border-radius:20px; background:rgba(255,255,255,.18); position:relative; flex-shrink:0; cursor:pointer; border:0;}
-.mswitch i{position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; transition:transform .18s ease;}
-.mswitch.on{background:var(--gold);}
-.mswitch.on i{transform:translateX(16px);}
+.roles{display:flex; gap:4px; margin:18px 0 0; background:rgba(255,255,255,.08); padding:4px; border-radius:13px;}
+.role-btn{flex:1; border:0; background:transparent; color:#C7CFE3; font-family:inherit; font-weight:700; font-size:.76rem; padding:9px 4px; border-radius:9px; cursor:pointer;}
+.role-btn[aria-selected="true"]{background:var(--gold); color:var(--ink);}
 
 .content{padding:0 16px; margin-top:-32px;}
 .score-card{background:var(--card); border-radius:18px; padding:16px 18px; box-shadow:0 14px 30px -18px rgba(11,27,51,.45); display:flex; align-items:center; gap:14px; border:1px solid var(--line);}
 .score-ring{width:58px; height:58px; border-radius:50%; background:conic-gradient(var(--gold) calc(var(--pct,72)*1%), var(--gold-soft) 0); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
 .score-ring i{width:46px; height:46px; border-radius:50%; background:var(--card); display:flex; flex-direction:column; align-items:center; justify-content:center; font-style:normal;}
-.score-ring b{font-family:"Fraunces",serif; font-size:1rem; font-weight:600; line-height:1; color:var(--ink-3);}
-.score-ring small{font-size:.5rem; color:var(--sub); font-weight:700;}
+.score-ring b{font-family:"Fraunces",serif; font-size:1.05rem; font-weight:600; line-height:1; color:var(--ink-3);}
+.score-ring small{font-size:.53rem; color:var(--sub); font-weight:700;}
 .score-txt{flex:1;}
 .score-txt p{font-weight:800; font-size:.9rem;}
 .score-txt span{font-size:.75rem; color:var(--mint); font-weight:700;}
@@ -85,23 +97,23 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .sec-hd h3{font-family:"Fraunces",serif; font-size:1rem; font-weight:600;}
 .sec-hd a{font-size:.74rem; color:var(--gold-dark); font-weight:700; text-decoration:none;}
 
-.sess{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px;}
-.sess-top{display:flex; align-items:center; gap:12px;}
-.sess .ic{width:36px; height:36px; border-radius:10px; flex-shrink:0; background:var(--ink); display:flex; align-items:center; justify-content:center;}
-.sess .ic svg{width:16px; height:16px; stroke:var(--gold);}
-.sess .t{flex:1; min-width:0;}
-.sess .t b{font-size:.83rem; font-weight:800; display:block;}
-.sess .t small{font-size:.73rem; color:var(--sub);}
-.sess .time{font-size:.8rem; font-weight:800; color:var(--ink-3); text-align:right; flex-shrink:0;}
-.sess-actions{display:flex; gap:8px; margin-top:10px;}
-.sbtn{flex:1; border:0; border-radius:11px; padding:9px; font-family:inherit; font-weight:700; font-size:.74rem; cursor:pointer;}
-.sbtn.primary{background:var(--gold); color:var(--ink);}
-.sbtn.ghost{background:var(--bg); border:1px solid var(--line); color:var(--text);}
-.sbtn.done{background:var(--mint-soft); color:var(--mint);}
-.sbtn[disabled]{opacity:.55; pointer-events:none;}
-.status-pill{display:inline-block; font-size:.6rem; font-weight:800; padding:3px 8px; border-radius:8px; margin-left:8px; vertical-align:middle;}
-.status-pill.route{background:var(--gold-soft); color:var(--gold-dark);}
-.status-pill.ok{background:var(--mint-soft); color:var(--mint);}
+.hlist{display:flex; gap:10px; overflow-x:auto; margin:0 -16px; padding:0 16px 4px;}
+.hlist::-webkit-scrollbar{display:none;}
+.subj{min-width:126px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px; flex-shrink:0;}
+.subj b{font-size:.81rem; font-weight:800; display:block;}
+.subj .bar{height:5px; border-radius:4px; background:var(--gold-soft); margin:10px 0 6px; overflow:hidden;}
+.subj .bar i{display:block; height:100%; border-radius:4px; background:var(--gold);}
+.subj em{font-style:normal; font-size:.71rem; color:var(--sub); font-weight:700;}
+
+.row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:9px;}
+.row .ic{width:36px; height:36px; border-radius:10px; flex-shrink:0; background:var(--ink); display:flex; align-items:center; justify-content:center;}
+.row .ic svg{width:16px; height:16px; stroke:var(--gold);}
+.row .t{flex:1; min-width:0;}
+.row .t b{font-size:.83rem; font-weight:800; display:block;}
+.row .t small{font-size:.73rem; color:var(--sub);}
+.row .meta{font-size:.75rem; font-weight:800; color:var(--sub); text-align:right; flex-shrink:0;}
+.row .meta.ok{color:var(--mint);}
+.row .meta.warn{color:var(--alert);}
 
 .demo-flag{display:inline-block; font-size:.6rem; font-weight:800; letter-spacing:.3px; background:var(--alert-soft); color:var(--alert); padding:3px 8px; border-radius:8px; margin-top:8px;}
 
@@ -112,7 +124,7 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .tab.active{color:var(--gold-dark);}
 
 .hidden{display:none !important;}
-.qrow{padding:14px;border-bottom:1px solid rgba(128,128,128,.2);display:flex;align-items:center;gap:10px}.qrow .t{flex:1;min-width:0}.qrow .t b{display:block;font-size:.92rem}.qrow .t small{opacity:.7}.qbtn2{border:0;border-radius:10px;background:var(--gold);color:var(--ink);font-weight:800;padding:8px 14px;cursor:pointer;font-size:.8rem}.qbtn2.ghost{background:transparent;border:1px solid rgba(128,128,128,.4);color:inherit}.qz-q{font-size:1.02rem;font-weight:700;margin:10px 0 16px;line-height:1.4}.qz-c{display:block;width:100%;text-align:left;padding:13px 14px;margin-bottom:10px;border-radius:12px;border:1px solid rgba(128,128,128,.35);background:transparent;color:inherit;font:inherit;cursor:pointer}.qz-c.sel{border-color:var(--gold);background:rgba(200,160,60,.15)}.qz-c.ok{border-color:#2e9e6b;background:rgba(46,158,107,.18)}.qz-c.ko{border-color:#e5484d;background:rgba(229,72,77,.15)}.qz-fb{font-size:.84rem;margin:6px 0 14px;opacity:.9}.qz-prog{font-size:.75rem;opacity:.7;letter-spacing:.5px}.qb{border:1px solid rgba(128,128,128,.3);border-radius:12px;padding:10px;margin:10px 0}.qb .auth-input{margin-bottom:8px}.contact{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(128,128,128,.2);cursor:pointer}.contact .av{width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}.contact .t{flex:1;min-width:0}.contact .t b{display:block;font-size:.9rem}.contact .t small{opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}.contact .un{background:#e5484d;color:#fff;border-radius:10px;min-width:20px;height:20px;font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 5px}#chatLog{display:flex;flex-direction:column;gap:6px;padding:12px;height:calc(100vh - 230px);overflow-y:auto}.bub{max-width:78%;padding:9px 12px;border-radius:14px;font-size:.88rem;line-height:1.35;word-wrap:break-word}.bub.me{align-self:flex-end;background:var(--gold);color:var(--ink);border-bottom-right-radius:4px}.bub.them{align-self:flex-start;background:rgba(128,128,128,.18);border-bottom-left-radius:4px}.bub small{display:block;font-size:.62rem;opacity:.65;margin-top:3px}.chatbar{display:flex;gap:8px;padding:10px 12px}.chatbar input{flex:1;padding:12px;border-radius:22px;border:1px solid rgba(128,128,128,.3);background:transparent;color:inherit;font:inherit}.chatbar button{border:0;border-radius:22px;background:var(--gold);color:var(--ink);font-weight:800;padding:0 18px;cursor:pointer}.bell{position:relative;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--gold);cursor:pointer}.bell svg{width:22px;height:22px}.bell i{position:absolute;top:0;right:0;min-width:16px;height:16px;border-radius:8px;background:#e5484d;color:#fff;font-size:.62rem;font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px}.notif{padding:12px 14px;border-bottom:1px solid rgba(128,128,128,.2)}.notif.unread{border-left:3px solid var(--gold)}.notif b{display:block;font-size:.9rem}.notif small{opacity:.7}.rev{padding:12px 14px;border-bottom:1px solid rgba(128,128,128,.2)}.rev b{color:var(--gold)}
+
 .page{display:none;}
 .page.active{display:block;}
 #page-home.active{display:block;}
@@ -121,73 +133,98 @@ body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope"
 .back{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.12); border:0; color:var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;}
 .back svg{width:16px; height:16px;}
 .pbody{padding:16px;}
-.datehd{font-size:.72rem; font-weight:800; color:var(--sub); margin:16px 0 8px;}
+.datehd{font-size:.72rem; font-weight:800; color:var(--sub); text-transform:none; margin:16px 0 8px;}
 .datehd:first-child{margin-top:2px;}
+.hist-row{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px;}
+.hist-top{display:flex; align-items:center; gap:12px;}
+.hist-top .ic{width:36px; height:36px; border-radius:10px; background:var(--ink); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.hist-top .ic svg{width:16px; height:16px; stroke:var(--gold);}
+.hist-top .t{flex:1; min-width:0;}
+.hist-top .t b{font-size:.83rem; font-weight:800; display:block;}
+.hist-top .t small{font-size:.72rem; color:var(--sub);}
+.hist-top .sc{font-size:.83rem; font-weight:800;}
+.hist-top .sc.miss{color:var(--alert);}
+.aide-pill{margin-top:10px; width:100%; background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:9px; font-family:inherit; font-weight:700; font-size:.76rem; color:var(--text); display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer;}
+.aide-pill svg{width:14px; height:14px; stroke:var(--gold-dark);}
+.help-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:10px; cursor:pointer;}
+.help-row .t{flex:1; min-width:0;}
+.help-row .t b{font-size:.82rem; font-weight:800; display:block;}
+.help-row .t small{font-size:.72rem; color:var(--sub);}
+.help-row .bubble{width:34px; height:34px; border-radius:50%; background:var(--gold-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.help-row .bubble svg{width:15px; height:15px; stroke:var(--gold-dark);}
+.folder-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; cursor:pointer;}
+.folder-row svg{width:18px; height:18px; stroke:var(--gold-dark); flex-shrink:0;}
+.folder-row b{flex:1; font-size:.83rem; font-weight:800;}
+.folder-row .chev{stroke:var(--sub); width:15px; height:15px;}
 
-.stat-row{display:flex; gap:10px; margin-bottom:16px;}
-.stat{flex:1; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px; text-align:center;}
-.stat b{font-family:"Fraunces",serif; font-size:1.15rem; display:block; color:var(--ink-3);}
-.stat small{font-size:.68rem; color:var(--sub); font-weight:700;}
-
-.txrow{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px;}
-.txrow-top{display:flex; align-items:center; justify-content:space-between;}
-.txrow-top b{font-size:.83rem; font-weight:800;}
-.txrow-top span{font-size:.85rem; font-weight:800; color:var(--mint);}
-.txrow small{font-size:.72rem; color:var(--sub); display:block; margin-top:2px;}
-.split{display:flex; justify-content:space-between; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:.72rem;}
-.split div{text-align:center; flex:1;}
-.split b{display:block; font-size:.82rem;}
-.split .mine b{color:var(--mint);}
-.split .fee b{color:var(--sub);}
-
-.elrow{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:9px; cursor:pointer;}
-.elrow .av{width:38px; height:38px; border-radius:50%; background:var(--gold-soft); color:var(--gold-dark); font-family:"Fraunces",serif; font-weight:700; font-size:.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
-.elrow .t{flex:1; min-width:0;}
-.elrow .t b{font-size:.83rem; font-weight:800; display:block;}
-.elrow .t small{font-size:.72rem; color:var(--sub);}
-.elrow .chev{stroke:var(--sub); width:15px; height:15px;}
-
-.prof-hero{background:var(--ink); color:#fff; padding:26px 18px 24px; text-align:center; border-radius:0 0 22px 22px; padding-top:calc(26px + env(safe-area-inset-top,0px)); cursor:pointer;}
+.prof-hero{background:var(--ink); color:#fff; padding:26px 18px 24px; text-align:center; border-radius:0 0 22px 22px; padding-top:calc(26px + env(safe-area-inset-top,0px));}
 .prof-avatar{width:76px; height:76px; border-radius:50%; background:var(--gold-soft); color:var(--ink); font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;}
-.prof-hero .nm{font-family:"Fraunces",serif; font-weight:600; font-size:1.15rem;}
+.prof-hero .nm{font-family:"Fraunces",serif; font-weight:600; font-size:1.15rem; display:flex; align-items:center; justify-content:center; gap:6px;}
+.prof-hero .nm svg{width:15px; height:15px; stroke:var(--gold); fill:none;}
 .prof-hero small{color:#AEB9D2; font-size:.78rem; display:block; margin-top:3px;}
-.plist{padding:16px;}
+.qgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:16px 16px 4px;}
+.qbtn{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 4px; display:flex; flex-direction:column; align-items:center; gap:7px; cursor:pointer;}
+.qbtn svg{width:17px; height:17px; stroke:var(--gold-dark);}
+.qbtn span{font-size:.66rem; font-weight:700;}
+.plist{padding:6px 16px 16px;}
 .prow{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; cursor:pointer;}
 .prow svg{width:18px; height:18px; stroke:var(--ink-3); flex-shrink:0;}
 .prow .t{flex:1;}
 .prow .t b{font-size:.83rem; font-weight:800; display:block;}
 .prow .t small{font-size:.72rem; color:var(--sub);}
-.prow .chev{stroke:var(--sub); width:15px; height:15px;}
+.prow .chev{stroke:var(--sub); width:15px; height:15px; margin-left:0;}
+.prow.badge{background:var(--mint-soft); border-color:var(--mint-soft);}
+.prow.badge svg{stroke:var(--mint);}
+
 .stog{display:flex; align-items:center; justify-content:space-between; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:14px; margin-bottom:10px;}
 .stog .t b{font-size:.85rem; font-weight:800; display:block;}
-.stog .t small{font-size:.72rem; color:var(--sub); display:block; margin-top:3px;}
+.stog .t small{font-size:.72rem; color:var(--sub); display:block; margin-top:3px; max-width:230px;}
+.stog .t em{font-style:normal; font-size:.76rem; color:var(--sub); font-weight:600;}
 .switch{width:44px; height:26px; border-radius:20px; background:var(--line); position:relative; flex-shrink:0; cursor:pointer; border:0;}
 .switch i{position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:#fff; transition:transform .18s ease; box-shadow:0 1px 3px rgba(0,0,0,.25);}
 .switch.on{background:var(--gold);}
 .switch.on i{transform:translateX(18px);}
 .sechd2{font-size:.72rem; font-weight:800; color:var(--sub); margin:18px 0 8px;}
+select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; padding-right:38px; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a8a7a' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right 14px center;}
+.auth-input{width:100%; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 14px; font-family:inherit; font-size:.85rem; color:var(--text); margin-bottom:10px;}
 .pill{display:inline-block; font-size:.66rem; font-weight:800; padding:3px 9px; border-radius:8px;}
 .pill.todo{background:var(--gold-soft); color:var(--gold-dark);}
 .pill.done{background:var(--mint-soft); color:var(--mint);}
-textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
-select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; padding-right:38px; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a8a7a' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right 14px center;}
-.geobox{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; font-size:.76rem; color:var(--sub);}
-.geobox b{display:block; color:var(--text); font-size:.83rem; margin-bottom:3px;}
-.empty{padding:16px; text-align:center; color:var(--sub); font-size:.82rem;}
-.auth-input{width:100%; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 14px; font-family:inherit; font-size:.85rem; color:var(--text); margin-bottom:10px;}
 .auth-btn{width:100%; background:var(--gold); color:var(--ink); border:0; border-radius:14px; padding:14px; font-family:inherit; font-weight:800; font-size:.88rem; cursor:pointer; margin-top:6px;}
 .auth-btn[disabled]{opacity:.6;}
 .auth-switch{text-align:center; margin-top:14px; font-size:.8rem; color:var(--sub);}
 .auth-switch a{color:var(--gold-dark); font-weight:700; cursor:pointer;}
+.role-pick{flex:1; border:1px solid var(--line); background:var(--card); color:var(--text); font-family:inherit; font-weight:700; font-size:.82rem; padding:12px; border-radius:12px; cursor:pointer;}
+.role-pick.picked{background:var(--gold); color:var(--ink); border-color:var(--gold);}
+.route-banner{background:var(--gold-soft); color:var(--gold-dark); border-radius:14px; padding:12px 14px; font-size:.78rem; font-weight:700; margin-bottom:14px; display:none;}
+.route-banner a{color:var(--ink-3); text-decoration:underline; font-weight:800;}
+
+
+.pay-row{display:flex; align-items:center; gap:12px; background:var(--card); border:1.5px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; cursor:pointer;}
+.pay-row.selected{border-color:var(--gold);}
+.pay-row .picn{width:38px; height:38px; border-radius:10px; background:var(--ink); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:"Fraunces",serif; font-weight:700; font-size:.78rem; color:var(--gold);}
+.pay-row .t{flex:1;}
+.pay-row .t b{font-size:.84rem; font-weight:800; display:block;}
+.pay-row .t small{font-size:.72rem; color:var(--sub);}
+.radio{width:20px; height:20px; border-radius:50%; border:2px solid var(--line); flex-shrink:0; position:relative;}
+.pay-row.selected .radio{border-color:var(--gold);}
+.pay-row.selected .radio::after{content:""; position:absolute; inset:3px; border-radius:50%; background:var(--gold);}
+.add-pay{width:100%; background:transparent; border:1.5px dashed var(--line); border-radius:14px; padding:13px; font-family:inherit; font-weight:700; font-size:.8rem; color:var(--ink-3); margin-top:6px; cursor:pointer;}
+.pay-tx{display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line);}
+.pay-tx:last-child{border-bottom:0;}
+.pay-tx b{font-size:.8rem; font-weight:700; display:block;}
+.pay-tx small{font-size:.71rem; color:var(--sub);}
+.pay-tx span{font-size:.8rem; font-weight:800;}
+
 </style>
 </head>
 <body>
 <div class="frame">
 
   <div class="splash" id="splash">
-    <img src="icons/icon-512.png" alt="QI Business Pro" style="width:120px;height:120px;border-radius:26px;margin-bottom:20px;box-shadow:0 12px 30px rgba(0,0,0,.35)">
-    <h1>QI Business <em>Pro</em></h1>
-    <p>L'espace des enseignants.</p>
+    <img src="icons/icon-512.png" alt="QI Business" style="width:120px;height:120px;border-radius:26px;margin-bottom:20px;box-shadow:0 12px 30px rgba(0,0,0,.35)">
+    <h1>QI <em>Business</em></h1>
+    <p>Le savoir, au sommet.</p>
     <div class="splash-line"></div>
     <button class="enter-btn" id="enterBtn">Commencer</button>
   </div>
@@ -195,27 +232,24 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
   <div class="app">
     <!-- CONNEXION / INSCRIPTION -->
     <div class="page active" id="page-auth">
-      <div class="pagehead" style="border-radius:0"><h2>QI Business Pro</h2></div>
+      <div class="pagehead" style="border-radius:0"><h2>QI Business</h2></div>
       <div class="pbody">
         <div class="sechd2" id="authModeLabel">Connexion</div>
         <div id="authError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
+        <div id="authRoleRow" style="display:none; gap:10px; margin-bottom:10px;">
+          <button class="role-pick picked" id="authRoleEleve" onclick="pickAuthRole('eleve')">Élève</button>
+          <button class="role-pick" id="authRoleParent" onclick="pickAuthRole('parent')">Parent</button>
+        </div>
         <div id="authNameRow" style="display:none">
           <input class="auth-input" id="authName" placeholder="Nom complet">
           <select class="auth-input" id="authCity" data-list="cities"><option value="">Ville…</option></select>
           <input class="auth-input" id="authDistrict" placeholder="Quartier (facultatif)">
+          <input class="auth-input" id="authReferral" placeholder="Code de parrainage (facultatif)" maxlength="12" style="text-transform:uppercase">
         </div>
         <input class="auth-input" id="authEmail" type="email" placeholder="E-mail" autocomplete="email">
         <input class="auth-input" id="authPassword" type="password" placeholder="Mot de passe" autocomplete="current-password">
-        <div id="authSubjectRow" style="display:none">
-          <input class="auth-input" id="authSubject" placeholder="Matières enseignées (touche pour choisir)" readonly onclick="openSubjectPicker('authSubject')">
-          <input class="auth-input" id="authLevel" placeholder="Niveau (ex : Collège/Lycée)">
-        </div>
-        <div id="authIdDocRow" style="display:none">
-          <div class="auth-input" onclick="captureSignup('id')" style="cursor:pointer"><span id="authIdLabel">📷 Ma pièce d'identité (photo ou fichier) — obligatoire</span></div>
-          <div class="auth-input" onclick="captureSignup('selfie')" style="cursor:pointer"><span id="authSelfieLabel">🤳 Selfie en tenant ma pièce d'identité (recommandé)</span></div>
-        </div>
-        <button class="auth-btn" id="authSubmitBtn" onclick="submitAuth()">Se connecter</button>
         <div id="forgotRow" style="text-align:right; margin:-4px 0 10px;"><a onclick="forgotPassword()" style="font-size:.76rem; color:var(--gold-dark); cursor:pointer;">Mot de passe oublié ?</a></div>
+        <button class="auth-btn" id="authSubmitBtn" onclick="submitAuth()">Se connecter</button>
         <div class="auth-switch" id="authSwitchTxt">Pas encore de compte ? <a onclick="setAuthMode('signup')">Créer un compte</a></div>
       </div>
     </div>
@@ -248,164 +282,160 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
     <div class="page" id="page-home">
     <div class="hdr">
       <div class="hdr-top">
-        <div class="brand">QI <em>Business</em><small>ESPACE PROFESSEUR</small></div>
+        <div class="brand">QI <em>Business</em></div>
         <div style="display:flex;align-items:center;gap:10px"><button onclick="sendSOS()" aria-label="SOS" style="background:#e5484d;color:#fff;border:0;border-radius:18px;padding:6px 12px;font-weight:800;font-size:.75rem;letter-spacing:.5px;cursor:pointer">SOS</button><div class="bell" onclick="showPage('notifs')" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><i id="bellBadge" class="hidden">0</i></div><div class="avatar" id="avatarInit" onclick="showPage('profile')">··</div></div>
       </div>
       <div class="greet" id="greetTxt">Bonjour<small>Chargement de ton espace…</small></div>
-      <div class="onduty">
-        <div class="dot" id="dutyDot"></div>
-        <b id="dutyLabel">Hors ligne</b>
-        <button class="mswitch" id="dutyBtn" onclick="toggleDuty()"><i></i></button>
-      </div>
+      <div class="roles" role="tablist" aria-label="Choisir un profil" id="rolesBar">
+        <button class="role-btn" role="tab" aria-selected="true" data-role="eleve">Élève</button>
+        <button class="role-btn" role="tab" aria-selected="false" data-role="parent">Parent</button>
+        </div>
     </div>
 
     <div class="content">
       <div class="score-card">
-        <div class="score-ring" id="ratingRing" style="--pct:0" onclick="showPage('reviews')"><i><b id="ratingVal">—</b><small>/5</small></i></div>
+        <div class="score-ring" id="scoreRing" style="--pct:0"><i><b id="scoreVal">—</b><small>/100</small></i></div>
         <div class="score-txt">
-          <p>Note moyenne des élèves</p>
-          <span id="activeStudentsTxt">Aucun élève pour l'instant</span>
-          <em id="nextSessionTxt">Prochaine séance : aucune</em>
+          <p id="scoreTitle">Mon QI Score</p>
+          <span id="scoreDelta">Calculé selon tes cours terminés</span>
+          <em id="nextActivityTxt">Prochaine activité : —</em>
         </div>
       </div>
 
-      <div class="grid">
-        <div class="tile" onclick="showPage('planning')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><span>Planning</span></div>
-        <div class="tile" onclick="showPage('students')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.4"/><path d="M15.8 13a5 5 0 0 1 6.7 4.7"/></svg></div><span>Mes élèves</span></div>
-        <div class="tile" onclick="showPage('earnings')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><span>Mes gains</span></div>
-        <div class="tile" onclick="showPage('courses')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Mes cours</span></div>
-        <div class="tile" onclick="showPage('messages')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span>Messages</span></div>
-        <div class="tile" onclick="showPage('quizzes')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div><span>Quiz</span></div>
-        <div class="tile" onclick="showPage('library')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Bibliothèque</span></div>
-        <div class="tile" onclick="showPage('help')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>Assistance</span></div>
+      <div class="route-banner" id="routeBanner"></div>
+
+      <div id="panel-eleve">
+        <div class="grid">
+          <div class="tile" onclick="showPage('myCourses')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Mes cours</span></div>
+          <div class="tile" onclick="openQuizList('exercice')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span>Exercices</span></div>
+          <div class="tile" onclick="openQuizList('quiz')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5 1-1.5 2.2"/><path d="M12 17h.01"/></svg></div><span>Quiz</span></div>
+          <div class="tile" onclick="showPage('progress')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><span>Progression</span></div>
+          <div class="tile" onclick="showPage('library')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><span>Bibliothèque</span></div>
+          <div class="tile" onclick="showPage('messages')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span>Messages</span></div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Reprendre où j'en étais</h3><a href="#" onclick="event.preventDefault();showPage('myCourses')">Tout voir</a></div>
+          <div class="hlist" id="progressList">
+            <div class="subj"><b>—</b><div class="bar"><i style="width:0%"></i></div><em>Chargement…</em></div>
+          </div>
+        </div>
+        <div class="sec" id="recommendedSec">
+          <div class="sec-hd"><h3>Recommandé pour toi</h3></div>
+          <div id="recommendedList"></div>
+        </div>
       </div>
 
-      <div class="sec">
-        <div class="sec-hd"><h3>Aujourd'hui</h3><a href="#" onclick="event.preventDefault();showPage('planning')">Tout voir</a></div>
-        <div id="todaySessions"></div>
+      <div id="panel-parent" class="hidden">
+        <div class="grid">
+          <div class="tile" onclick="showPage('children')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div><span>Mes enfants</span></div>
+          <div class="tile" onclick="openResults(null)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><span>Résultats</span></div>
+          <div class="tile" onclick="showPage('history')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><span>Rendez-vous</span></div>
+          <div class="tile" onclick="showPage('messages')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span>Messages</span></div>
+          <div class="tile" onclick="showPage('library')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><span>Bibliothèque</span></div>
+          <div class="tile" onclick="showPage('payment')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><span>Paiements</span></div>
+          <div class="tile" onclick="showPage('notifs')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9L2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><span>Alertes</span></div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Chercher un professeur</h3></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><div class="t"><b>Trouver un professeur vérifié</b><small>Recherche par matière et niveau</small></div><div class="meta">Bientôt</div></div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Activité récente</h3></div>
+          <div id="parentActivityList"><div class="empty">Chargement…</div></div>
+        </div>
+      </div>
+
+      <div id="panel-prof" class="hidden">
+        <div class="grid">
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.4"/><path d="M15.8 13a5 5 0 0 1 6.7 4.7"/></svg></div><span>Mes élèves</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Cours</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span>Exercices</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><span>Évaluations</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><span>Planning</span></div>
+          <div class="tile"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><span>Statistiques</span></div>
+        </div>
+        <div class="sec">
+          <div class="sec-hd"><h3>Aujourd'hui</h3></div>
+          <div class="empty">Utilise l'application "QI Business Pro" pour gérer tes séances et ton planning.</div>
+        </div>
       </div>
     </div>
+
     </div><!-- /page-home -->
 
-    <!-- PLANNING -->
-    <div class="page" id="page-planning">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mon planning</h2></div>
+    <!-- HISTORIQUE -->
+    <div class="page" id="page-history">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes séances</h2></div>
+      <div class="pbody" id="sessionsListContainer">
+        <div class="datehd">Chargement…</div>
+      </div>
+    </div>
+
+    <!-- LIEU DE LA SÉANCE -->
+    <div class="page" id="page-place">
+      <div class="pagehead"><button class="back" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Lieu de la séance</h2></div>
       <div class="pbody">
-        <div class="datehd">Toutes mes séances</div>
-        <div id="planningToday"></div>
+        <div class="qz-fb">Indique où la séance a lieu pour que ton professeur trouve le chemin, comme la destination dans Yango.</div>
+        <button class="qbtn2" style="width:100%;padding:12px" onclick="usePlaceGps()">📍 Utiliser ma position actuelle</button>
+        <div class="qz-fb" id="placeGpsState">Aucune position enregistrée</div>
+        <textarea class="auth-input" id="placeNote" rows="3" maxlength="300" placeholder="Repère utile (ex : derrière la pharmacie, portail vert, 2e étage)"></textarea>
+        <button class="auth-btn" onclick="savePlace()">Enregistrer le lieu</button>
+        <div id="placeMsg" style="font-size:.78rem;margin-top:6px"></div>
       </div>
     </div>
 
-    <!-- ELEVES -->
-    <div class="page" id="page-students">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes élèves</h2></div>
-      <div class="pbody" id="studentsListContainer">
-        <div class="empty">Chargement…</div>
+    <!-- MON PROFESSEUR -->
+    <div class="page" id="page-teacher">
+      <div class="pagehead"><button class="back" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mon professeur</h2></div>
+      <div class="pbody" id="teacherCard" style="text-align:center"></div>
+    </div>
+
+    <!-- MA PROGRESSION -->
+    <div class="page" id="page-progress">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Ma progression</h2></div>
+      <div class="pbody" id="progressBody"><div class="empty">Chargement…</div></div>
+    </div>
+
+    <!-- PARRAINAGE -->
+    <div class="page" id="page-referral">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Parrainage</h2></div>
+      <div class="pbody" style="text-align:center">
+        <div class="qz-fb" id="refInfo"></div>
+        <div style="font-size:2.2rem;font-weight:800;letter-spacing:6px;margin:16px 0" id="refCode">—</div>
+        <button class="auth-btn" onclick="shareReferral()">Partager mon code</button>
+        <div class="sechd2" style="text-align:left">Mon crédit</div>
+        <div class="qz-fb" id="refBalance"></div>
       </div>
     </div>
 
-    <!-- MES COURS -->
-    <div class="page" id="page-courses">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes cours</h2></div>
-      <div class="pbody">
-        <div class="sechd2">Créer une leçon</div>
-        <input class="auth-input" id="crsTitle" placeholder="Titre de la leçon (ex : Les fractions)">
-        <select class="auth-input" id="crsSubject" data-list="subjects"><option value="">Matière…</option></select>
-        <input class="auth-input" id="crsLevel" placeholder="Niveau (ex : 3e)">
-        <textarea class="auth-input" id="crsContent" placeholder="Contenu de la leçon (texte que l'élève va lire)"></textarea>
-        <button class="auth-btn" onclick="createCourse()">Publier la leçon</button>
-        <div id="crsMsg" style="font-size:.78rem; margin-top:6px;"></div>
-
-        <div class="sechd2">Mes leçons publiées</div>
-        <div id="myCoursesList"><div class="empty">Chargement…</div></div>
-      </div>
-    </div>
-
-    <!-- DÉTAIL D'UN COURS -->
-    <div class="page" id="page-courseDetail">
-      <div class="pagehead"><button class="back" onclick="showPage('courses')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="crsDetailTitle">Leçon</h2></div>
-      <div class="pbody">
-        <div id="crsDetailMeta" style="font-size:.78rem; color:var(--sub); margin-bottom:10px;"></div>
-        <div id="crsDetailContent" style="font-size:.85rem; line-height:1.5; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:16px; white-space:pre-wrap;"></div>
-
-        <div class="sechd2">Assigner à un élève</div>
-        <select class="auth-input" id="crsAssignSelect"><option value="">Choisir un élève…</option></select>
-        <button class="auth-btn" onclick="assignCourseToStudent()">Assigner ce parcours</button>
-        <div id="crsAssignMsg" style="font-size:.78rem; margin-top:6px;"></div>
-
-        <div class="sechd2">Déjà assigné à</div>
-        <div id="crsAssignmentsList"><div class="empty">Aucun élève pour l'instant.</div></div>
-      </div>
-    </div>
-
-    <!-- GAINS -->
-    <div class="page" id="page-earnings">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes gains</h2></div>
-      <div class="pbody">
-        <div class="stat-row" id="earningsStats">
-          <div class="stat"><b>—</b><small>REVENU TOTAL</small></div>
-          <div class="stat"><b>—</b><small>TA PART</small></div>
-          <div class="stat"><b>—</b><small>À TE VERSER</small></div>
-        </div>
-        <div id="bonusCard"></div>
-        <div class="sechd2">Détail des paiements</div>
-        <div id="earningsList"><div class="txrow">Chargement…</div></div>
-      </div>
-    </div>
-
-    <!-- ASSISTANCE -->
-    <div class="page" id="page-help">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Assistance</h2></div>
-      <div class="pbody">
-        <div class="sechd2">Nouvelle demande</div>
-        <select class="auth-input" id="tkCat"><option value="question">Question</option><option value="litige">Litige sur une séance</option><option value="signalement">Signaler un comportement</option><option value="autre">Autre</option></select>
-        <select class="auth-input" id="tkSession"><option value="">Aucune séance concernée</option></select>
-        <input class="auth-input" id="tkSubject" maxlength="120" placeholder="Sujet">
-        <textarea class="auth-input" id="tkBody" rows="4" maxlength="2000" placeholder="Décris ton problème"></textarea>
-        <button class="auth-btn" onclick="sendTicket()">Envoyer</button>
-        <div id="tkMsg" style="font-size:.78rem;margin-top:6px"></div>
-        <div class="sechd2">Mes demandes</div>
-        <div id="tkList"><div class="empty">Chargement…</div></div>
-      </div>
-    </div>
-
-    <!-- BIBLIOTHÈQUE DU PROFESSEUR -->
+    <!-- BIBLIOTHÈQUE -->
     <div class="page" id="page-library">
       <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Bibliothèque</h2></div>
-      <div class="pbody">
-        <div class="sechd2">Déposer un document</div>
-        <input class="auth-input" id="libTitle" placeholder="Titre (ex : Fiche — les fractions)">
-        <select class="auth-input" id="libSubject" data-list="subjects"><option value="">Matière…</option></select>
-        <input class="auth-input" id="libLevel" placeholder="Niveau (ex : 3e)">
-        <input class="auth-input" type="file" id="libFile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.docx">
-        <button class="auth-btn" id="libBtn" onclick="uploadLib()">Déposer</button>
-        <div id="libMsg" style="font-size:.78rem;margin-top:6px"></div>
-        <div class="sechd2">Mes documents</div>
-        <div id="myLibList"><div class="empty">Chargement…</div></div>
-      </div>
+      <div class="pbody" id="libraryBody"><div class="empty">Chargement…</div></div>
     </div>
 
-    <!-- QUIZ / EXERCICES DU PROFESSEUR -->
-    <div class="page" id="page-quizzes">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Quiz &amp; exercices</h2></div>
-      <div class="pbody">
-        <div class="sechd2">Créer un QCM</div>
-        <input class="auth-input" id="qzTitle" placeholder="Titre (ex : Les fractions — niveau 1)">
-        <select class="auth-input" id="qzSubject" data-list="subjects"><option value="">Matière…</option></select>
-        <input class="auth-input" id="qzLevel" placeholder="Niveau (ex : 3e)">
-        <select class="auth-input" id="qzKind"><option value="quiz">Quiz (note à la fin)</option><option value="exercice">Exercice (correction après chaque question)</option></select>
-        <div id="qBuilder"></div>
-        <button class="qbtn2 ghost" onclick="addQBlock()">+ Ajouter une question</button>
-        <button class="auth-btn" style="margin-top:12px" onclick="publishQuiz()">Publier</button>
-        <div id="qzMsg" style="font-size:.78rem;margin-top:6px"></div>
-        <div class="sechd2">Mes quiz et exercices</div>
-        <div id="myQuizzesList"><div class="empty">Chargement…</div></div>
-      </div>
+    <!-- MES ENFANTS -->
+    <div class="page" id="page-children">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes enfants</h2></div>
+      <div class="pbody" id="childrenBody"><div class="empty">Chargement…</div></div>
     </div>
 
-    <div class="page" id="page-quizAssign">
-      <div class="pagehead"><button class="back" onclick="showPage('quizzes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Assigner à un élève</h2></div>
-      <div class="pbody"><div id="assignList"><div class="empty">Chargement…</div></div><div id="assignMsg" style="font-size:.78rem;margin-top:8px"></div></div>
+    <!-- RÉSULTATS DES ENFANTS -->
+    <div class="page" id="page-results">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Résultats</h2></div>
+      <div class="pbody" id="resultsBody"><div class="empty">Chargement…</div></div>
+    </div>
+
+    <!-- EXERCICES / QUIZ : LISTE -->
+    <div class="page" id="page-quizList">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="quizListTitle">Quiz</h2></div>
+      <div class="pbody" id="quizListBody"><div class="empty">Chargement…</div></div>
+    </div>
+
+    <!-- EXERCICES / QUIZ : PASSER -->
+    <div class="page" id="page-quizPlay">
+      <div class="pagehead"><button class="back" onclick="leaveQuiz()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="quizPlayTitle">Quiz</h2></div>
+      <div class="pbody" id="quizPlayBody"></div>
     </div>
 
     <!-- MESSAGES -->
@@ -427,48 +457,106 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
       <div class="pbody" id="notifList"><div class="empty">Chargement…</div></div>
     </div>
 
-    <!-- MES AVIS -->
-    <div class="page" id="page-reviews">
-      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes avis</h2></div>
-      <div class="pbody" id="reviewsList"><div class="empty">Chargement…</div></div>
+    <!-- NOTER UNE SÉANCE -->
+    <div class="page" id="page-rate">
+      <div class="pagehead"><button class="back" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Noter la séance</h2></div>
+      <div class="pbody">
+        <div class="star-row" id="starRow"></div>
+        <textarea id="rateComment" rows="4" placeholder="Un commentaire (facultatif)" style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(128,128,128,.3);background:transparent;color:inherit;font:inherit"></textarea>
+        <button class="auth-btn" style="margin-top:14px" onclick="submitRating()">Envoyer mon avis</button>
+      </div>
+    </div>
+
+    <!-- ASSISTANCE -->
+    <div class="page" id="page-help">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Assistance</h2></div>
+      <div class="pbody">
+        <div class="sechd2">Nouvelle demande</div>
+        <select class="auth-input" id="tkCat"><option value="question">Question</option><option value="litige">Litige sur une séance</option><option value="signalement">Signaler un comportement</option><option value="autre">Autre</option></select>
+        <select class="auth-input" id="tkSession"><option value="">Aucune séance concernée</option></select>
+        <input class="auth-input" id="tkSubject" maxlength="120" placeholder="Sujet">
+        <textarea class="auth-input" id="tkBody" rows="4" maxlength="2000" placeholder="Décris ton problème"></textarea>
+        <button class="auth-btn" onclick="sendTicket()">Envoyer</button>
+        <div id="tkMsg" style="font-size:.78rem;margin-top:6px"></div>
+        <div class="sechd2">Mes demandes</div>
+        <div id="tkList"><div class="empty">Chargement…</div></div>
+        <div class="folder-row" style="margin-bottom:10px" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg><b>Toutes mes séances</b><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="sechd2">Autres</div>
+        <div class="folder-row" onclick="showPage('messages')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg><b>Mes messages</b><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+      </div>
     </div>
 
     <!-- PROFIL -->
     <div class="page" id="page-profile">
-      <div class="prof-hero" id="profHero">
-        <div class="prof-avatar" onclick="event.stopPropagation(); pickAvatar();" style="cursor:pointer;" title="Changer la photo">··</div>
+      <div class="prof-hero">
+        <div class="prof-avatar" onclick="event.stopPropagation(); document.getElementById('avatarFile').click();" style="cursor:pointer;" title="Changer la photo">KJ</div>
         <input type="file" id="avatarFile" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
-        <div class="nm">Chargement…</div>
-        <small>—</small>
+        <div class="nm">Mon compte<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg></div>
+        <small id="heroSub">…</small>
+      </div>
+      <div class="qgrid">
+        <div class="qbtn" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Historique</span></div>
+        <div class="qbtn" onclick="showPage('help')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Assistance</span></div>
+        <div class="qbtn" onclick="showPage('settings')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Paramètres</span></div>
       </div>
       <div class="plist">
-        <div class="sechd2">Disponibilité &amp; position</div>
-        <div class="geobox" id="geoBox"><b>Position non partagée</b>Active "Disponibilité" sur l'accueil pour partager ta position quand tu es en route vers une séance.</div>
-        <div class="sechd2">Compte</div>
-        <div class="prow" onclick="showPage('payoutMethod')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Moyen de versement</b><small id="payoutLabel">Orange Money</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+                <div class="prow" onclick="showPage('referral')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Parrainage</b><small>Invite un ami, gagne une réduction</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="editPhone()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Numéro de téléphone</b><small id="phoneLabel">Non renseigné</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="editSubject()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Mes matières</b><small id="subjectLabel">—</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="editCity()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Ville</b><small id="cityLabel">Non renseignée</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="pickIdDoc()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M14 10h6M14 14h4"/></svg><div class="t"><b>Pièce d'identité</b><small id="idDocLabel">Chargement…</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <input type="file" id="reuploadIdDoc" accept="image/*,.pdf" style="display:none" onchange="handleIdDocChange(event)">
-        <div class="prow" onclick="captureSelfie()"><div class="t"><b>Selfie avec ma pièce d'identité</b><small id="selfieLabel">Appuie pour prendre un selfie</small></div></div>
-        <div class="stog"><div class="t"><b>Notifications de séances</b></div><button class="switch on" data-pref="session" onclick="togglePref(this)"><i></i></button></div>
-        <div class="stog"><div class="t"><b>Notifications de messages</b></div><button class="switch on" data-pref="message" onclick="togglePref(this)"><i></i></button></div>
-        <div class="stog"><div class="t"><b>Notifications d'avis</b></div><button class="switch on" data-pref="rating" onclick="togglePref(this)"><i></i></button></div>
-        <div class="stog"><div class="t"><b>Résultats des quiz</b></div><button class="switch on" data-pref="quiz" onclick="togglePref(this)"><i></i></button></div>
+        <div class="prow" onclick="editCity()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Ville</b><small id="cityLabel">Non renseignée</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('payment')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Modes de paiement</b><small id="payDefaultLabel">Payer mes séances</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="showPage('changePassword')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Changer mon mot de passe</b></div></div>
         <div class="prow" onclick="doLogout()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Se déconnecter</b></div></div>
       </div>
     </div>
 
-    <!-- MOYEN DE VERSEMENT -->
-    <div class="page" id="page-payoutMethod">
-      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Moyen de versement</h2></div>
+
+    <!-- MODES DE PAIEMENT -->
+    <div class="page" id="page-payment">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Modes de paiement</h2></div>
       <div class="pbody">
-        <div class="prow" onclick="selectPayout('orange_money','Orange Money')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Orange Money</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="selectPayout('mtn_momo','MTN Mobile Money')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>MTN Mobile Money</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="selectPayout('wave','Wave')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Wave</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        <div class="prow" onclick="selectPayout('banque','Compte bancaire')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Compte bancaire</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="route-banner" style="display:block; margin-bottom:14px;">Paie directement dans l'app — Orange Money, MTN, Moov, Wave ou carte.</div>
+        <div class="sechd2">Séances à régler</div>
+        <div id="payableSessions"><div class="empty">Chargement…</div></div>
+
+        <div class="sechd2">Mon numéro Mobile Money</div>
+        <div class="qz-fb">Ce numéro est proposé automatiquement quand tu paies. Tu choisis ensuite Orange Money, MTN, Moov, Wave ou carte sur l'écran de paiement sécurisé qui s'ouvre avec le bouton « Payer ».</div>
+        <input class="auth-input" id="payPhone" type="tel" inputmode="tel" maxlength="16" placeholder="Ex : 07 00 00 00 00">
+        <button class="auth-btn" onclick="savePayPhone()">Enregistrer mon numéro</button>
+        <div id="payPhoneMsg" style="font-size:.78rem;margin-top:6px"></div>
+
+        <div class="sechd2">Historique des paiements</div>
+        <div class="hist-row" id="payHistory"><div class="empty">Chargement…</div></div>
+      </div>
+    </div>
+
+    <!-- PARAMETRES -->
+    <div class="page" id="page-settings">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Paramètres</h2></div>
+      <div class="pbody">
+        <div class="sechd2">Notifications</div>
+        <div class="stog"><div class="t"><b>Messages</b></div><button class="switch on" data-pref="message" onclick="togglePref(this)"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Séances</b></div><button class="switch on" data-pref="session" onclick="togglePref(this)"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Exercices et quiz</b></div><button class="switch on" data-pref="quiz" onclick="togglePref(this)"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Nouveaux documents</b></div><button class="switch on" data-pref="library" onclick="togglePref(this)"><i></i></button></div>
+        <div class="sechd2">Confidentialité</div>
+        <div class="stog" id="shareRow"><div class="t"><b>Partager ma progression avec mes parents</b><small>Ils voient tes résultats aux quiz, exercices et cours</small></div><button class="switch on" id="shareSwitch" onclick="toggleShare(this)"><i></i></button></div>
+        <div class="qz-fb">Les alertes SOS, les paiements et les réponses de l'assistance sont toujours envoyés.</div>
+      </div>
+    </div>
+
+    <!-- MES COURS -->
+    <div class="page" id="page-myCourses">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes cours</h2></div>
+      <div class="pbody" id="myCoursesList"><div class="empty">Chargement…</div></div>
+    </div>
+
+    <!-- VUE D'UN COURS -->
+    <div class="page" id="page-courseView">
+      <div class="pagehead"><button class="back" onclick="showPage('myCourses')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="courseViewTitle">Cours</h2></div>
+      <div class="pbody">
+        <div id="courseViewMeta" style="font-size:.78rem; color:var(--sub); margin-bottom:10px;"></div>
+        <div id="courseViewContent" style="font-size:.85rem; line-height:1.5; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:16px; white-space:pre-wrap;"></div>
+        <button class="auth-btn" id="courseViewBtn" onclick="markCourseDone()">Marquer comme terminé</button>
       </div>
     </div>
 
@@ -478,15 +566,15 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
       <div class="pbody">
         <div class="prow" style="cursor:default">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
-          <div class="t"><b>Bientôt disponible</b><small id="featureDesc">Cette fonctionnalité sera activée dès que l'app sera connectée au back-office.</small></div>
+          <div class="t"><b>Bientôt disponible</b><small id="featureDesc">Cette fonctionnalité sera activée dès que l'app sera connectée à un service (compte, base de données ou paiement).</small></div>
         </div>
       </div>
     </div>
 
     <nav class="tabbar" style="display:none">
       <button class="tab active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><span>Accueil</span></button>
-      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span>Planning</span></button>
-      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span>Gains</span></button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>Historique</span></button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Assistance</span></button>
       <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg><span>Profil</span></button>
     </nav>
   </div>
@@ -494,6 +582,7 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+document.querySelectorAll('.tile .ic svg, .row .ic svg').forEach(s=>s.setAttribute('stroke','var(--gold)'));
 document.getElementById('enterBtn').addEventListener('click', ()=>{
   document.getElementById('splash').classList.add('hide');
 });
@@ -503,8 +592,68 @@ const SUPABASE_URL = 'https://jscyolaupfhroqfjwirl.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_33193ujPLkXAqfcF-71F4w_aq-9kK6u';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let myProfile = null;
+let myChildrenIds = [];
+let myUserEmail = null;
+function initialsOf(name){ return name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase(); }
 
-/* ================= MOT DE PASSE OUBLIÉ ================= */
+/* ================= PAIEMENT AUTOMATIQUE (CinetPay) ================= */
+async function refreshPayableSessions(){
+  const box = document.getElementById('payableSessions');
+  if(!box || !myProfile) return;
+  const studentIds = myProfile.role==='parent' ? myChildrenIds : [myProfile.id];
+  if(!studentIds.length){ box.innerHTML = '<div class="empty">Rien à régler pour l\'instant.</div>'; return; }
+  const { data: sess } = await sb.from('sessions').select('*').in('student_id', studentIds).neq('status','cancelled').order('scheduled_at', {ascending:false}).limit(15);
+  if(!sess || !sess.length){ box.innerHTML = '<div class="empty">Aucune séance pour l\'instant.</div>'; return; }
+  const ids = sess.map(s=>s.id);
+  const { data: pays } = await sb.from('payments').select('session_id,status').in('session_id', ids);
+  const settled = new Set((pays||[]).filter(p=>p.status==='paid'||p.status==='pending').map(p=>p.session_id));
+  const unpaid = sess.filter(s=>!settled.has(s.id));
+  if(!unpaid.length){ box.innerHTML = '<div class="empty">Toutes tes séances sont réglées ✓</div>'; return; }
+  box.innerHTML = unpaid.map(s=>{
+    const date = s.scheduled_at ? new Date(s.scheduled_at).toLocaleDateString('fr-FR', {day:'2-digit', month:'short'}) : '—';
+    return '<div class="pay-tx"><div><b>Séance du '+date+'</b><small>À régler</small></div><button class="mini-btn gold" onclick="payForSession(\''+s.id+'\')">Payer</button></div>';
+  }).join('');
+}
+
+async function payForSession(sessionId){
+  const amountStr = prompt('Montant à payer pour cette séance (F CFA, multiple de 5) :', '5000');
+  if(!amountStr) return;
+  const amount = parseInt(amountStr, 10);
+  if(!amount || amount % 5 !== 0){ alert('Le montant doit être un multiple de 5 F CFA.'); return; }
+  const { data, error } = await sb.functions.invoke('initiate-payment', { body: { session_id: sessionId, amount } });
+  if(error || !data || data.error){ alert('Erreur : '+(data?.error || error?.message || 'impossible de démarrer le paiement')); return; }
+  if(data.discount>0) alert('Réduction de parrainage de '+data.discount+' F appliquée. Tu paies '+data.amount+' F.');
+  window.open(data.payment_url, '_blank');
+  pollPaymentStatus(data.transaction_id);
+}
+
+function pollPaymentStatus(transaction_id){
+  const box = document.getElementById('payableSessions');
+  const msg = document.createElement('div');
+  msg.className = 'empty';
+  msg.textContent = 'Paiement en cours de vérification…';
+  box.prepend(msg);
+  let tries = 0;
+  const iv = setInterval(async ()=>{
+    tries++;
+    const { data } = await sb.from('payments').select('status').eq('transaction_id', transaction_id).maybeSingle();
+    if(data && data.status==='paid'){
+      clearInterval(iv);
+      msg.textContent = 'Paiement confirmé ✓';
+      msg.style.color = 'var(--mint)';
+      await refreshPayableSessions();
+    } else if(data && data.status==='failed'){
+      clearInterval(iv);
+      msg.textContent = 'Paiement échoué ou annulé.';
+      msg.style.color = 'var(--alert)';
+    } else if(tries>45){
+      clearInterval(iv);
+      msg.textContent = 'Toujours en attente — reviens sur cette page dans quelques minutes.';
+    }
+  }, 4000);
+}
+
+
 /* ================= MOT DE PASSE OUBLIÉ : code à 6 chiffres reçu par e-mail ================= */
 let resetEmail = null;
 async function forgotPassword(){
@@ -543,212 +692,26 @@ sb.auth.onAuthStateChange((event)=>{
   if(event==='PASSWORD_RECOVERY') showPage('resetPassword');
 });
 
-function initialsOf(name){
-  return name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
-}
-
-/* ---------- Navigation ---------- */
-function showPage(name){
-  if(!myProfile && name!=='auth' && name!=='resetPassword') name='auth';
-  { const tb=document.querySelector('.tabbar'); if(tb) tb.style.display = (!myProfile || name==='auth' || name==='resetPassword' || name==='chat') ? 'none' : ''; }
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  const map={home:0,planning:1,earnings:2,profile:3};
-  if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
-  if(name==='earnings' && typeof refreshEarnings==='function') refreshEarnings();
-  if(name==='students' && typeof refreshStudents==='function') refreshStudents();
-  if(name==='notifs') markNotifsRead();
-  if(name==='messages') openMessages();
-  if(name==='quizzes') refreshQuizzes();
-  if(name==='library') refreshMyLib();
-  if(name==='help') refreshSupport();
-  if(name==='earnings') refreshBonus();
-  if(name==='profile'){ applyPrefsToUI(); updateCityLabel(); }
-  if(name==='reviews') refreshReviews();
-  if(name==='courses' && typeof refreshCourses==='function') refreshCourses();
-  window.scrollTo(0,0);
-}
-document.querySelectorAll('.tab').forEach((t,i)=>{
-  const names=['home','planning','earnings','profile'];
-  t.addEventListener('click', ()=>showPage(names[i]));
-});
-
-let prevPage = 'home';
-function openFeature(title){
-  prevPage = document.querySelector('.page.active').id.replace('page-','');
-  document.getElementById('featureTitle').textContent = title || 'Fonctionnalité';
-  showPage('feature');
-}
-function goBackFromFeature(){ showPage(prevPage); }
-document.querySelectorAll('.prow').forEach(el=>{
-  if(el.hasAttribute('onclick')) return;
-  const label = el.querySelector('b');
-  el.addEventListener('click', ()=>openFeature(label ? label.textContent.trim() : 'Fonctionnalité'));
-});
-
-/* ---------- Réglages persistés localement (préférences d'affichage) ---------- */
-function toggleSetting(btn){
-  btn.classList.toggle('on');
-  localStorage.setItem('qip_toggle_'+btn.dataset.key, btn.classList.contains('on'));
-}
-document.querySelectorAll('.switch[data-key]').forEach(btn=>{
-  const saved = localStorage.getItem('qip_toggle_'+btn.dataset.key);
-  if(saved!==null) btn.classList.toggle('on', saved==='true');
-});
-
-/* ---------- Moyen de versement : vrai numéro, sauvegardé en base ---------- */
-async function selectPayout(type, label){
-  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
-  const number = prompt('Ton numéro '+label+' pour recevoir tes paiements :', '');
-  if(!number) return;
-  await sb.from('payout_methods').delete().eq('teacher_id', myProfile.id);
-  const { error } = await sb.from('payout_methods').insert({ teacher_id: myProfile.id, type, details:{number: number}, is_default:true });
-  if(error){ alert("Erreur : "+error.message); return; }
-  document.getElementById('payoutLabel').textContent = label+' · '+number;
-  showPage('profile');
-}
-async function loadPayout(){
-  if(!myProfile) return;
-  const { data } = await sb.from('payout_methods').select('*').eq('teacher_id', myProfile.id).eq('is_default', true).maybeSingle();
-  const labels = {orange_money:'Orange Money', mtn_momo:'MTN Mobile Money', wave:'Wave', banque:'Compte bancaire'};
-  if(data){
-    document.getElementById('payoutLabel').textContent = (labels[data.type]||data.type)+' · '+((data.details&&data.details.number)||'');
-  } else {
-    document.getElementById('payoutLabel').textContent = 'Non renseigné — touche ici';
-  }
-}
-
-/* ================= AUTHENTIFICATION ================= */
-let authMode = 'login';
-function setAuthMode(mode){
-  authMode = mode;
-  document.getElementById('authModeLabel').textContent = mode==='login' ? 'Connexion' : 'Créer un compte professeur';
-  document.getElementById('authNameRow').style.display = mode==='login' ? 'none' : 'block';
-  document.getElementById('authSubjectRow').style.display = mode==='login' ? 'none' : 'block';
-  document.getElementById('authIdDocRow').style.display = mode==='login' ? 'none' : 'block';
-  document.getElementById('authSubmitBtn').textContent = mode==='login' ? 'Se connecter' : 'Créer mon compte';
-  document.getElementById('forgotRow').style.display = mode==='login' ? 'block' : 'none';
-  document.getElementById('authSwitchTxt').innerHTML = mode==='login'
-    ? 'Pas encore de compte ? <a onclick="setAuthMode(\'signup\')">Créer un compte</a>'
-    : 'Déjà un compte ? <a onclick="setAuthMode(\'login\')">Se connecter</a>';
-  document.getElementById('authError').style.display = 'none';
-}
-
-async function submitAuth(){
-  const email = document.getElementById('authEmail').value.trim();
-  const password = document.getElementById('authPassword').value;
-  const errBox = document.getElementById('authError');
-  errBox.style.display = 'none';
-  if(!email || !password){ errBox.textContent = "Renseigne un e-mail et un mot de passe."; errBox.style.display='block'; return; }
-  const btn = document.getElementById('authSubmitBtn');
-  btn.disabled = true; btn.textContent = 'Patiente...';
-  try{
-    if(authMode==='login'){
-      const { error } = await sb.auth.signInWithPassword({ email, password });
-      if(error) throw error;
-    } else {
-      const fullName = document.getElementById('authName').value.trim();
-      const subject = document.getElementById('authSubject').value.trim();
-      const level = document.getElementById('authLevel').value.trim();
-      const idFile = signupPhotos.id;
-      const selfieFile = signupPhotos.selfie;
-      if(!fullName){ throw new Error("Renseigne ton nom complet."); }
-      const city = document.getElementById('authCity').value, district = document.getElementById('authDistrict').value.trim();
-      if(!city){ throw new Error("Choisis ta ville."); }
-      if(!subject){ throw new Error("Choisis au moins une matière."); }
-      if(!idFile){ throw new Error("La pièce d'identité est obligatoire pour créer un compte professeur."); }
-      const { data, error } = await sb.auth.signUp({ email, password, options:{ data:{ full_name: fullName, role:'professeur', subject, level, city, district } } });
-      if(error) throw error;
-      if(!data.session){
-        errBox.style.color = 'var(--mint)';
-        errBox.textContent = "Compte créé ! Vérifie ta boîte mail, clique sur le lien de confirmation, puis reviens te connecter ici.";
-        errBox.style.display = 'block';
-        setAuthMode('login');
-        return;
-      }
-      if(data.user){
-        const { error: perr } = await sb.from('profiles').upsert({
-          id: data.user.id, role: 'professeur', full_name: fullName,
-          avatar_initials: initialsOf(fullName), subject, level, city, district
-        });
-        if(perr) throw perr;
-        const idPath = data.user.id + '/' + Date.now() + '_' + idFile.name.replace(/[^a-zA-Z0-9.]/g,'_');
-        const { error: upErr } = await sb.storage.from('documents').upload(idPath, idFile, { upsert:true });
-        if(upErr) throw new Error("Compte créé, mais l'envoi de la pièce d'identité a échoué : "+upErr.message+". Tu pourras la renvoyer depuis ton profil.");
-        await sb.from('profiles').update({ id_document_path: idPath }).eq('id', data.user.id);
-        if(selfieFile){
-          const sp = data.user.id + '/selfie_' + Date.now() + '.jpg';
-          const { error: sErr } = await sb.storage.from('documents').upload(sp, selfieFile, { upsert:true });
-          if(!sErr) await sb.from('profiles').update({ selfie_path: sp }).eq('id', data.user.id);
-        }
-      }
-    }
-    await afterAuthSuccess();
-  } catch(e){
-    errBox.textContent = e.message || "Une erreur est survenue.";
-    errBox.style.display = 'block';
-  } finally {
-    btn.disabled = false;
-    btn.textContent = authMode==='login' ? 'Se connecter' : 'Créer mon compte';
-  }
-}
-
-async function doLogout(){
-  await sb.auth.signOut();
-  location.reload();
-}
-
-async function afterAuthSuccess(){
-  try{
-    const { data: { user } } = await sb.auth.getUser();
-    if(!user) return;
-    let { data: profile, error: ferr } = await sb.from('profiles').select('*').eq('id', user.id).single();
-    if(ferr && ferr.code !== 'PGRST116'){ throw ferr; } // PGRST116 = aucune ligne trouvée, cas normal
-    if(!profile){
-      // Reprend les infos saisies à l'inscription (conservées par Supabase) au lieu de les redemander
-      const md = user.user_metadata || {};
-      let name = md.full_name;
-      let subject = md.subject || '';
-      const level = md.level || '';
-      if(!name){
-        name = prompt("Complète ton profil — quel est ton nom complet ?");
-        if(!name){ await sb.auth.signOut(); showPage('auth'); return; }
-        subject = prompt("Quelle matière enseignes-tu ?") || '';
-      }
-      const { data: created, error: cerr } = await sb.from('profiles')
-        .upsert({ id:user.id, role:'professeur', full_name:name, avatar_initials:initialsOf(name), subject, level, city:md.city||null, district:md.district||null })
-        .select().single();
-      if(cerr) throw cerr;
-      profile = created;
-    }
-    if(!profile || !profile.full_name){ throw new Error("Profil incomplet (nom manquant) — réessaie de te connecter."); }
-    if(profile.is_suspended){ await sb.auth.signOut(); throw new Error("Ton compte est suspendu. Contacte l'administration."); }
-    myProfile = profile;
-    applyProfileToUI(myProfile);
-    await refreshSessionsFromDB();
-    loadNotifs(); refreshHomeStats(); restoreDuty();
-    await loadPayout();
-    showPage('home');
-  } catch(e){
-    alert("Problème au chargement du profil : "+(e.message||e)+"\n\nEssaie de te déconnecter puis de te reconnecter.");
-    showPage('profile');
-  }
-}
-
-function applyProfileToUI(p){
-  const name = p.full_name || 'Professeur';
-  const initials = p.avatar_initials || initialsOf(name);
-  document.getElementById('avatarInit').textContent = initials;
-  document.querySelector('.prof-avatar').textContent = initials;
-  document.querySelector('.prof-hero .nm').textContent = name;
-  document.querySelector('.prof-hero small').textContent = [p.phone, p.subject, p.level].filter(Boolean).join(' · ') || '—';
-  document.getElementById('subjectLabel').textContent = [p.subject, p.level].filter(Boolean).join(' · ') || 'Non renseigné';
-  document.getElementById('phoneLabel').textContent = p.phone || 'Non renseigné';
-  document.getElementById('idDocLabel').textContent = p.id_document_path ? 'Envoyée ✓ — appuie pour la remplacer' : 'Non envoyée — appuie pour l\'ajouter';
-  document.getElementById('greetTxt').innerHTML = 'Bonjour '+name.split(' ')[0]+'<small>'+todaySessionsData.length+' séance(s) prévue(s) aujourd\'hui</small>';
-  applyAvatarPhoto(document.querySelector('.prof-avatar'));
-  applyAvatarPhoto(document.getElementById('avatarInit'));
+const roles = {
+  eleve:  {greet:"Bonjour", sub:"Prêt pour une nouvelle séance de révision ?", score:"Mon QI Score"},
+  parent: {greet:"Bonjour", sub:"Voici le suivi de vos enfants aujourd'hui", score:"QI Score de l'enfant"},
+  prof:   {greet:"Bonjour", sub:"Aperçu démo de l'espace enseignant", score:"Moyenne de progression classe"}
+};
+const btns = document.querySelectorAll(".role-btn");
+function activateRole(r){
+  btns.forEach(x=>x.setAttribute("aria-selected", x.dataset.role===r ? "true" : "false"));
+  document.querySelectorAll('[id^="panel-"]').forEach(p=>p.classList.add("hidden"));
+  document.getElementById("panel-"+r).classList.remove("hidden");
+  const d = roles[r];
+  const name = (myProfile && myProfile.full_name) ? myProfile.full_name.split(' ')[0] : '';
+  document.getElementById("greetTxt").innerHTML = d.greet+' '+name + "<small>"+d.sub+"</small>";
+  document.getElementById("avatarInit").textContent = (myProfile && myProfile.full_name) ? (myProfile.avatar_initials||initialsOf(myProfile.full_name)) : (r==='eleve'?'KJ':r==='parent'?'AK':'JK');
+  applyAvatarPhoto(document.getElementById("avatarInit"));
+  document.getElementById("scoreTitle").textContent = d.score;
+  syncProfileHero(r);
+  document.getElementById('phoneLabel').textContent = (myProfile && myProfile.phone) ? myProfile.phone : 'Non renseigné';
+  if(r==='eleve' && myProfile && myProfile.role==='eleve' && typeof refreshMyCourses==='function') refreshMyCourses();
+  if(r==='parent' && myProfile && myProfile.role==='parent' && typeof refreshParentActivity==='function') refreshParentActivity();
 }
 function applyAvatarPhoto(el){
   // Affiche la vraie photo de profil si elle existe, sinon laisse les initiales.
@@ -763,30 +726,12 @@ function applyAvatarPhoto(el){
   }
 }
 async function editPhone(){
-  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
-  const val = prompt('Ton numéro de téléphone :', myProfile.phone || '');
-  if(val===null) return;
+  const val = prompt('Ton numéro de téléphone :', (myProfile && myProfile.phone) || '');
+  if(val===null || !myProfile) return;
   const { error } = await sb.from('profiles').update({ phone: val.trim() }).eq('id', myProfile.id);
   if(error){ alert('Erreur : '+error.message); return; }
   myProfile.phone = val.trim();
-  applyProfileToUI(myProfile);
-}
-function handleIdDocChange(event){
-  if(false){}
-  const file = event.target.files && event.target.files[0];
-  if(file) uploadIdDocument(file);
-  event.target.value = '';
-}
-async function uploadIdDocument(file){
-  if(!myProfile) return;
-  document.getElementById('idDocLabel').textContent = 'Envoi en cours…';
-  const path = myProfile.id + '/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9.]/g,'_');
-  const { error: upErr } = await sb.storage.from('documents').upload(path, file, { upsert:true });
-  if(upErr){ alert("Erreur pendant l'envoi : "+upErr.message); applyProfileToUI(myProfile); return; }
-  const { error: dbErr } = await sb.from('profiles').update({ id_document_path: path }).eq('id', myProfile.id);
-  if(dbErr){ alert('Erreur : '+dbErr.message); return; }
-  myProfile.id_document_path = path;
-  applyProfileToUI(myProfile);
+  document.getElementById('phoneLabel').textContent = myProfile.phone || 'Non renseigné';
 }
 function handleAvatarChange(event){
   const file = event.target.files && event.target.files[0];
@@ -797,7 +742,7 @@ async function uploadAvatar(file){
   if(!myProfile) return;
   const path = myProfile.id + '/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9.]/g,'_');
   const { error: upErr } = await sb.storage.from('avatars').upload(path, file, { upsert:true });
-  if(upErr){ alert("Erreur pendant l'envoi de la photo : "+upErr.message); return; }
+  if(upErr){ alert('Erreur pendant l\'envoi de la photo : '+upErr.message); return; }
   const { data: pub } = sb.storage.from('avatars').getPublicUrl(path);
   const { error: dbErr } = await sb.from('profiles').update({ avatar_url: pub.publicUrl }).eq('id', myProfile.id);
   if(dbErr){ alert('Erreur : '+dbErr.message); return; }
@@ -805,89 +750,294 @@ async function uploadAvatar(file){
   applyAvatarPhoto(document.querySelector('.prof-avatar'));
   applyAvatarPhoto(document.getElementById('avatarInit'));
 }
-
-async function editSubject(){
-  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
-  const cur=(myProfile.subject||'').split(',').map(x=>x.trim()).filter(Boolean);
-  const picked = await chooseFromList('Mes matières', SUBJECTS, cur, true);
-  if(picked===null) return;
-  const subject = picked.join(', ');
-  const level = prompt("Quel niveau enseignes-tu ? (ex : Collège/Lycée, Primaire...)", myProfile.level || '');
-  if(level===null) return;
-  const { error } = await sb.from('profiles').update({ subject, level }).eq('id', myProfile.id);
-  if(error){ alert("Erreur : "+error.message); return; }
-  myProfile.subject = subject;
-  myProfile.level = level;
-  applyProfileToUI(myProfile);
-}
-
-document.getElementById('profHero').addEventListener('click', async ()=>{
-  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
-  const name = prompt('Modifier votre nom', myProfile.full_name || '');
-  if(!name) return;
-  myProfile.full_name = name;
-  myProfile.avatar_initials = initialsOf(name);
-  const { error } = await sb.from('profiles').update({ full_name:name, avatar_initials: myProfile.avatar_initials }).eq('id', myProfile.id);
-  if(error){ alert("Erreur : "+error.message); return; }
-  applyProfileToUI(myProfile);
-});
-
-/* ================= SÉANCES (données réelles Supabase) ================= */
-let todaySessionsData = [];
-
-async function refreshSessionsFromDB(){
-  if(!myProfile) return;
-  const { data: rows } = await sb.from('sessions').select('*').eq('teacher_id', myProfile.id).order('scheduled_at', {ascending:true});
-  const list = rows || [];
-  const ids = [...new Set(list.map(r=>r.student_id))];
-  let names = {};
-  if(ids.length){
-    const { data: studs } = await sb.from('profiles').select('id, full_name').in('id', ids);
-    (studs||[]).forEach(s=>{ names[s.id] = s.full_name; });
-  }
-  todaySessionsData = list.map(r=>({
-    id: r.id,
-    subject: r.subject,
-    student: names[r.student_id] || 'Élève',
-    time: new Date(r.scheduled_at).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'}),
-    mode: r.mode==='a_domicile' ? 'à domicile' : 'en ligne',
-    meeting_url: r.meeting_url || null,
-    status: r.status
-  }));
-  renderSessions();
-}
-
-async function setSessionStatus(id, status){
-  await sb.from('sessions').update({ status }).eq('id', id);
-  await refreshSessionsFromDB();
-}
-
-function sessionCard(s){
-  const st = s.status;
-  const pill = st==='route' ? '<span class="status-pill route">En route</span>' : st==='done' ? '<span class="status-pill ok">Terminée</span>' : '';
-  let actions = '';
-  if(s.mode==='à domicile'){
-    if(st==='pending') actions = '<div class="sess-actions"><button class="sbtn primary" onclick="startRoute(\''+s.id+'\')">Je suis en route</button><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
-    else if(st==='route') actions = '<div class="sess-actions"><button class="sbtn done" disabled>Position partagée</button><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
-    else actions = '<div class="sess-actions"><button class="sbtn done" disabled>Séance terminée</button></div>';
+function syncProfileHero(r){
+  // Remplace le profil de démonstration (Koffi Junior) par le vrai compte connecté,
+  // dès la connexion/inscription — plus besoin de cliquer sur le profil pour le voir passer.
+  const avatarEl = document.querySelector('.prof-avatar');
+  const nmEl = document.querySelector('.prof-hero .nm');
+  const smallEl = document.querySelector('.prof-hero small');
+  if(!avatarEl || !nmEl || !smallEl) return;
+  if(myProfile && myProfile.full_name){
+    avatarEl.textContent = myProfile.avatar_initials || initialsOf(myProfile.full_name);
+    applyAvatarPhoto(avatarEl);
+    if(nmEl.childNodes[0]) nmEl.childNodes[0].nodeValue = myProfile.full_name + ' ';
+    else nmEl.prepend(myProfile.full_name + ' ');
+    const roleLabel = myProfile.role==='parent' ? 'Parent vérifié' : myProfile.role==='professeur' ? 'Professeur' : 'Élève vérifié';
+    smallEl.textContent = (myUserEmail ? myUserEmail+' · ' : '') + roleLabel;
   } else {
-    actions = st==='done' ? '<div class="sess-actions"><button class="sbtn done" disabled>Séance terminée</button></div>' : '<div class="sess-actions"><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
+    // Aucun compte réel chargé : on affiche un état neutre plutôt que l'ancien profil de démo.
+    avatarEl.textContent = '··';
+    if(nmEl.childNodes[0]) nmEl.childNodes[0].nodeValue = 'Mon profil ';
+    smallEl.textContent = '';
   }
-  if(s.mode==='en ligne' && st!=='done'){
-    const btns = s.meeting_url
-      ? '<button class="sbtn primary" onclick="openClassLink(\''+s.id+'\')">Rejoindre le cours</button><button class="sbtn ghost" onclick="setMeetingLink(\''+s.id+'\')">Changer le lien</button>'
-      : '<button class="sbtn primary" onclick="setMeetingLink(\''+s.id+'\')">Ajouter le lien du cours</button>';
-    actions = actions.replace('<div class="sess-actions">', '<div class="sess-actions">'+btns);
+}
+btns.forEach(b=>b.addEventListener("click", ()=>{ if(myProfile && b.dataset.role!==myProfile.role) return; activateRole(b.dataset.role); }));
+
+/* ================= ACTIVITÉ RÉCENTE (panneau parent) ================= */
+async function refreshParentActivity(){
+  const box = document.getElementById('parentActivityList');
+  if(!box) return;
+  if(!myChildrenIds.length){
+    box.innerHTML = '<div class="empty">Aucun enfant lié à ce compte pour l\'instant — ça se fait depuis le back office.</div>';
+    return;
   }
-  if(s.mode==='à domicile' && st!=='done'){ actions = actions.replace('</div>', '<button class="sbtn ghost" onclick="openItinerary(\''+s.id+'\')">Itinéraire</button></div>'); }
-  return '<div class="sess"><div class="sess-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+s.subject+pill+'</b><small>'+s.student+' · '+s.mode+'</small></div><div class="time">'+s.time+'</div></div>'+actions+'</div>';
+  const { data: assigns, error } = await sb.from('course_assignments').select('*, courses(*)').in('student_id', myChildrenIds).order('assigned_at', {ascending:false}).limit(5);
+  if(error || !assigns || !assigns.length){
+    box.innerHTML = '<div class="empty">Aucune activité pour l\'instant.</div>';
+    return;
+  }
+  const { data: kids } = await sb.from('profiles').select('id, full_name').in('id', myChildrenIds);
+  const names = {}; (kids||[]).forEach(k=>{ names[k.id] = k.full_name; });
+  box.innerHTML = assigns.map(a=>{
+    const childName = names[a.student_id] || 'Ton enfant';
+    const done = a.status==='termine';
+    const icon = done
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+    const meta = done ? '<div class="meta ok">Terminé</div>' : '<div class="meta warn">À faire</div>';
+    return '<div class="row"><div class="ic">'+icon+'</div><div class="t"><b>'+a.courses.title+'</b><small>'+childName+' · '+a.courses.subject+'</small></div>'+meta+'</div>';
+  }).join('');
 }
-function renderSessions(){
-  const html = todaySessionsData.map(sessionCard).join('');
-  document.getElementById('todaySessions').innerHTML = html || '<div class="sess">Aucune séance pour l\'instant — elles seront créées depuis le back office.</div>';
-  document.getElementById('planningToday').innerHTML = html;
+
+
+let myCourseAssignments = [];
+async function refreshMyCourses(){
+  if(!myProfile || myProfile.role!=='eleve') return;
+  const { data: assigns, error } = await sb.from('course_assignments').select('*, courses(*)').eq('student_id', myProfile.id).order('assigned_at', {ascending:false});
+  if(error){ myCourseAssignments = []; return; }
+  myCourseAssignments = assigns || [];
+  renderHomeProgress();
+  renderMyCoursesPage();
 }
-renderSessions();
+
+function renderHomeProgress(){
+  const progressList = document.getElementById('progressList');
+  const nextTxt = document.getElementById('nextActivityTxt');
+  const recSec = document.getElementById('recommendedSec');
+  const recList = document.getElementById('recommendedList');
+  updateScoreCard();
+  if(!progressList) return;
+
+  if(!myCourseAssignments.length){
+    progressList.innerHTML = '<div class="subj"><b>Aucun parcours</b><div class="bar"><i style="width:0%"></i></div><em>En attente d\'un cours assigné par ton professeur</em></div>';
+    if(nextTxt) nextTxt.textContent = 'Prochaine activité : aucune pour l\'instant';
+    if(recSec) recSec.style.display = 'none';
+    return;
+  }
+
+  const bySubject = {};
+  myCourseAssignments.forEach(a=>{
+    const subj = (a.courses && a.courses.subject) || 'Autre';
+    (bySubject[subj] = bySubject[subj]||[]).push(a);
+  });
+  progressList.innerHTML = Object.keys(bySubject).map(subj=>{
+    const list = bySubject[subj];
+    const done = list.filter(a=>a.status==='termine').length;
+    const pct = Math.round((done/list.length)*100);
+    return '<div class="subj"><b>'+subj+'</b><div class="bar"><i style="width:'+pct+'%"></i></div><em>'+pct+'% terminé</em></div>';
+  }).join('');
+
+  const pending = myCourseAssignments.filter(a=>a.status!=='termine');
+  if(nextTxt) nextTxt.textContent = pending.length ? ('Prochaine activité : '+pending[0].courses.title) : 'Prochaine activité : tout est à jour !';
+
+  if(recSec){
+    if(pending.length){
+      recSec.style.display = '';
+      recList.innerHTML = pending.slice(0,3).map(a=>{
+        return '<div class="row" onclick="openCourseView(\''+a.id+'\')" style="cursor:pointer;"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+a.courses.title+'</b><small>'+a.courses.subject+(a.courses.level?' · '+a.courses.level:'')+'</small></div><div class="meta warn">À faire</div></div>';
+      }).join('');
+    } else {
+      recSec.style.display = 'none';
+    }
+  }
+}
+
+function renderMyCoursesPage(){
+  const box = document.getElementById('myCoursesList');
+  if(!box) return;
+  if(!myCourseAssignments.length){ box.innerHTML = '<div class="empty">Aucun cours assigné pour l\'instant — ton professeur ou l\'école s\'en charge.</div>'; return; }
+  box.innerHTML = myCourseAssignments.map(a=>{
+    const c = a.courses;
+    const pill = a.status==='termine' ? '<span class="pill done">Terminé</span>' : '<span class="pill todo">À faire</span>';
+    return '<div class="row" onclick="openCourseView(\''+a.id+'\')" style="cursor:pointer;"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+c.title+'</b><small>'+c.subject+(c.level?' · '+c.level:'')+'</small></div>'+pill+'</div>';
+  }).join('');
+}
+
+let currentAssignmentId = null;
+function openCourseView(assignmentId){
+  const a = myCourseAssignments.find(x=>x.id===assignmentId);
+  if(!a) return;
+  currentAssignmentId = assignmentId;
+  document.getElementById('courseViewTitle').textContent = a.courses.title;
+  document.getElementById('courseViewMeta').textContent = [a.courses.subject, a.courses.level].filter(Boolean).join(' · ');
+  document.getElementById('courseViewContent').textContent = a.courses.content;
+  const btn = document.getElementById('courseViewBtn');
+  if(a.status==='termine'){ btn.textContent = 'Terminé ✓'; btn.disabled = true; }
+  else { btn.textContent = 'Marquer comme terminé'; btn.disabled = false; }
+  showPage('courseView');
+}
+
+async function markCourseDone(){
+  if(!currentAssignmentId) return;
+  const { error } = await sb.from('course_assignments').update({ status:'termine', completed_at: new Date().toISOString() }).eq('id', currentAssignmentId);
+  if(error){ alert('Erreur : '+error.message); return; }
+  await refreshMyCourses();
+  loadNotifs();
+  openCourseView(currentAssignmentId);
+}
+
+/* ================= AUTHENTIFICATION ================= */
+let authMode = 'login';
+let authRole = 'eleve';
+function pickAuthRole(r){
+  authRole = r;
+  document.getElementById('authRoleEleve').classList.toggle('picked', r==='eleve');
+  document.getElementById('authRoleParent').classList.toggle('picked', r==='parent');
+}
+function setAuthMode(mode){
+  authMode = mode;
+  document.getElementById('authModeLabel').textContent = mode==='login' ? 'Connexion' : "Créer un compte";
+  document.getElementById('authRoleRow').style.display = mode==='login' ? 'none' : 'flex';
+  document.getElementById('authNameRow').style.display = mode==='login' ? 'none' : 'block';
+  document.getElementById('authSubmitBtn').textContent = mode==='login' ? 'Se connecter' : 'Créer mon compte';
+  document.getElementById('forgotRow').style.display = mode==='login' ? 'block' : 'none';
+  document.getElementById('authSwitchTxt').innerHTML = mode==='login'
+    ? 'Pas encore de compte ? <a onclick="setAuthMode(\'signup\')">Créer un compte</a>'
+    : 'Déjà un compte ? <a onclick="setAuthMode(\'login\')">Se connecter</a>';
+  document.getElementById('authError').style.display = 'none';
+}
+async function submitAuth(){
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const errBox = document.getElementById('authError');
+  errBox.style.display = 'none';
+  if(!email || !password){ errBox.textContent = "Renseigne un e-mail et un mot de passe."; errBox.style.display='block'; return; }
+  const btn = document.getElementById('authSubmitBtn');
+  btn.disabled = true; btn.textContent = 'Patiente...';
+  try{
+    if(authMode==='login'){
+      const { error } = await sb.auth.signInWithPassword({ email, password });
+      if(error) throw error;
+    } else {
+      const fullName = document.getElementById('authName').value.trim();
+      if(!fullName){ throw new Error("Renseigne ton nom complet."); }
+      const city = document.getElementById('authCity').value, district = document.getElementById('authDistrict').value.trim();
+      if(!city){ throw new Error("Choisis ta ville."); }
+      const { data, error } = await sb.auth.signUp({ email, password, options:{ data:{ full_name: fullName, role: authRole, city, district, referral_code: ((document.getElementById('authReferral')||{}).value||'').trim().toUpperCase() || null } } });
+      if(error) throw error;
+      if(!data.session){
+        errBox.style.color = 'var(--mint)';
+        errBox.textContent = "Compte créé ! Vérifie ta boîte mail, clique sur le lien de confirmation, puis reviens te connecter ici.";
+        errBox.style.display = 'block';
+        setAuthMode('login');
+        return;
+      }
+      if(data.user){
+        const { error: perr } = await sb.from('profiles').upsert({
+          id: data.user.id, role: authRole, full_name: fullName, avatar_initials: initialsOf(fullName)
+        });
+        if(perr) throw perr;
+      }
+    }
+    await afterAuthSuccess();
+  } catch(e){
+    errBox.textContent = e.message || "Une erreur est survenue.";
+    errBox.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = authMode==='login' ? 'Se connecter' : 'Créer mon compte';
+  }
+}
+async function afterAuthSuccess(){
+  try{
+    const { data: { user } } = await sb.auth.getUser();
+    if(!user) return;
+    myUserEmail = user.email || null;
+    let { data: profile, error: ferr } = await sb.from('profiles').select('*').eq('id', user.id).single();
+    if(ferr && ferr.code !== 'PGRST116'){ throw ferr; }
+    if(!profile){
+      // Reprend le nom et le rôle saisis à l'inscription (conservés par Supabase) au lieu de les redemander
+      const md = user.user_metadata || {};
+      let name = md.full_name;
+      let role = (md.role==='parent' || md.role==='eleve') ? md.role : null;
+      if(!name){
+        name = prompt("Complète ton profil — quel est ton nom complet ?");
+        if(!name){ await sb.auth.signOut(); showPage('auth'); return; }
+      }
+      if(!role){ role = confirm("Es-tu un parent ? (Annuler = Élève)") ? 'parent' : 'eleve'; }
+      const { data: created, error: cerr } = await sb.from('profiles')
+        .upsert({ id:user.id, role, full_name:name, avatar_initials:initialsOf(name), city:md.city||null, district:md.district||null })
+        .select().single();
+      if(cerr) throw cerr;
+      if(md.referral_code){ try{ await sb.rpc('apply_referral',{p_code:md.referral_code}); }catch(e){} }
+      profile = created;
+    }
+    if(!profile || !profile.full_name){ throw new Error("Profil incomplet (nom manquant) — réessaie de te connecter."); }
+    myProfile = profile;
+    document.getElementById('rolesBar').style.display = 'none';
+    activateRole(myProfile.role==='professeur' ? 'prof' : myProfile.role);
+    if(myProfile.role==='parent'){
+      const { data: pc } = await sb.from('parent_child').select('child_id').eq('parent_id', myProfile.id);
+      myChildrenIds = (pc||[]).map(r=>r.child_id);
+      await refreshParentActivity();
+    }
+    await refreshSessionsAndBanner();
+    showPage('home');
+  } catch(e){
+    alert("Problème au chargement du profil : "+(e.message||e)+"\n\nEssaie de te déconnecter puis de te reconnecter.");
+    showPage('profile');
+  }
+}
+
+/* ================= SÉANCES + POSITION DU PROFESSEUR (réel) ================= */
+async function refreshSessionsAndBanner(){
+  if(!myProfile) return;
+  let query = sb.from('sessions').select('*').order('scheduled_at', {ascending:false});
+  if(myProfile.role==='eleve') query = query.eq('student_id', myProfile.id);
+  else if(myProfile.role==='parent'){
+    if(!myChildrenIds.length){ renderSessionsList([]); return; }
+    query = query.in('student_id', myChildrenIds);
+  } else { renderSessionsList([]); return; }
+  const { data: rows } = await query;
+  const list = rows || [];
+  const teacherIds = [...new Set(list.map(r=>r.teacher_id))];
+  let teacherNames = {};
+  if(teacherIds.length){
+    const { data: teachers } = await sb.from('profiles').select('id, full_name, avatar_url, matricule, is_verified, subject').in('id', teacherIds);
+    const ratings = await Promise.all(teacherIds.map(id=>sb.rpc('teacher_rating',{p_teacher:id})));
+    (teachers||[]).forEach(t=>{
+      teacherNames[t.id] = t.full_name;
+      const i=teacherIds.indexOf(t.id), rr=ratings[i]&&ratings[i].data, rw=Array.isArray(rr)?rr[0]:rr;
+      teacherInfo[t.id]={ name:t.full_name, avatar_url:t.avatar_url, matricule:t.matricule, is_verified:t.is_verified, subject:t.subject, avg:rw?rw.avg_stars:null, nb:rw?rw.nb:0 };
+    });
+  }
+  renderSessionsList(list.map(r=>({...r, teacherName: teacherNames[r.teacher_id] || 'Professeur'})));
+
+  const routeSession = list.find(r=>r.status==='route');
+  const banner = document.getElementById('routeBanner');
+  if(routeSession){
+    const { data: loc } = await sb.from('teacher_locations').select('*').eq('teacher_id', routeSession.teacher_id).single();
+    if(loc){
+      banner.style.display = 'block';
+      const ti=teacherInfo[routeSession.teacher_id]||{};
+      banner.innerHTML = routeSession.teacherName+(ti.matricule?' ('+esc(ti.matricule)+')':'')+' est en route pour la séance de '+routeSession.subject+' — <a href="https://www.google.com/maps?q='+loc.lat+','+loc.lon+'" target="_blank">voir sur la carte</a>';
+    } else { banner.style.display = 'none'; }
+  } else { banner.style.display = 'none'; }
+}
+function renderSessionsList(list){
+  window.sessionsCache = list;
+  const box = document.getElementById('sessionsListContainer');
+  if(!box) return;
+  if(!list.length){ box.innerHTML = '<div class="datehd">Aucune séance pour l\'instant</div>'; return; }
+  box.innerHTML = list.map(r=>{
+    const d = new Date(r.scheduled_at);
+    const date = d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+    const time = d.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
+    let statusTxt = r.status==='done' ? '<div class="sc">Terminée · <a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openRate(\''+r.id+'\',\''+r.teacher_id+'\')">Noter</a></div>' : r.status==='route' ? '<div class="sc">En route</div>' : r.status==='cancelled' ? '<div class="sc miss">Annulée</div>' : '<div class="sc">À venir</div>';
+    statusTxt += teacherLink(r) + onlineBtn(r) + placeBtn(r);
+    return '<div class="datehd">'+date+'</div><div class="hist-row"><div class="hist-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+r.subject+'</b><small>'+r.teacherName+' · '+time+'</small></div>'+statusTxt+'</div></div>';
+  }).join('');
+}
 
 
 
@@ -904,6 +1054,18 @@ async function sendSOS(){
   const { data: act } = await sb.from('sessions').select('id').eq(col, myProfile.id).in('status',['pending','route']).order('scheduled_at',{ascending:true}).limit(1);
   const { error } = await sb.from('sos_alerts').insert({ user_id:myProfile.id, session_id:(act&&act[0])?act[0].id:null, lat, lon });
   alert(error ? "L'alerte n'a pas pu partir : "+error.message+"\nAppelle directement les secours ou un proche." : "Alerte envoyée. Les personnes concernées ont été prévenues.");
+}
+
+
+/* --- Historique réel des paiements --- */
+async function loadPayHistory(){
+  const box=document.getElementById('payHistory'); if(!box||!myProfile) return;
+  let ids=[myProfile.id];
+  if(myProfile.role==='parent'){ const { data:k } = await sb.from('parent_child').select('child_id').eq('parent_id',myProfile.id); ids=ids.concat((k||[]).map(x=>x.child_id)); }
+  const { data, error } = await sb.from('payments').select('amount,method,status,created_at').in('payer_id',ids).order('created_at',{ascending:false}).limit(30);
+  if(error||!data||!data.length){ box.innerHTML='<div class="empty">Aucun paiement pour l\'instant.</div>'; return; }
+  const lbl={paid:'Payé',pending:'En attente',failed:'Échoué'};
+  box.innerHTML=data.map(p=>'<div class="pay-tx"><div><b>Paiement de séance — '+(lbl[p.status]||p.status)+'</b><small>'+(p.method||'—')+' · '+new Date(p.created_at).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+'</small></div><span>'+Number(p.amount).toLocaleString('fr-FR')+' F</span></div>').join('');
 }
 
 
@@ -971,12 +1133,13 @@ async function sendChat(){
 
 
 
+
 /* ================= ASSISTANCE & LITIGES ================= */
 async function refreshSupport(){
   const sel=document.getElementById('tkSession');
   let q=sb.from('sessions').select('id,subject,scheduled_at').order('scheduled_at',{ascending:false}).limit(20);
   const ids=await mySupportScope();
-  q = q.in('teacher_id', ids);
+  q = q.in('student_id', ids);
   const { data: ss } = await q;
   sel.innerHTML='<option value="">Aucune séance concernée</option>'+(ss||[]).map(x=>'<option value="'+x.id+'">'+esc(x.subject)+' — '+new Date(x.scheduled_at).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+'</option>').join('');
   const box=document.getElementById('tkList');
@@ -995,7 +1158,11 @@ async function sendTicket(){
   document.getElementById('tkSubject').value=''; document.getElementById('tkBody').value='';
   refreshSupport();
 }
-async function mySupportScope(){ return [myProfile.id]; }
+
+async function mySupportScope(){
+  if(myProfile.role!=='parent') return [myProfile.id];
+  const { data } = await sb.rpc('my_children'); return (data||[]).map(c=>c.id).concat([myProfile.id]);
+}
 
 
 
@@ -1004,6 +1171,8 @@ function applyPrefsToUI(){
   if(!myProfile) return;
   const prefs=myProfile.notif_prefs||{};
   document.querySelectorAll('.switch[data-pref]').forEach(b=>b.classList.toggle('on', prefs[b.dataset.pref]!==false));
+  const sh=document.getElementById('shareSwitch'); if(sh) sh.classList.toggle('on', myProfile.share_progress!==false);
+  const row=document.getElementById('shareRow'); if(row) row.style.display = myProfile.role==='eleve' ? '' : 'none';
 }
 async function togglePref(btn){
   const on=!btn.classList.contains('on'); btn.classList.toggle('on',on);
@@ -1011,6 +1180,93 @@ async function togglePref(btn){
   const { error } = await sb.from('profiles').update({ notif_prefs:prefs }).eq('id',myProfile.id);
   if(error){ btn.classList.toggle('on',!on); alert('Enregistrement impossible : '+error.message+' (le script SQL 16 est-il exécuté ?)'); return; }
   myProfile.notif_prefs=prefs;
+}
+async function toggleShare(btn){
+  const on=!btn.classList.contains('on'); btn.classList.toggle('on',on);
+  const { error } = await sb.from('profiles').update({ share_progress:on }).eq('id',myProfile.id);
+  if(error){ btn.classList.toggle('on',!on); alert('Enregistrement impossible : '+error.message); return; }
+  myProfile.share_progress=on;
+}
+
+
+
+
+/* ================= COURS EN LIGNE : rejoindre la classe ================= */
+function onlineBtn(r){
+  if(r.mode!=='en_ligne'||!(r.status==='pending'||r.status==='route')) return '';
+  return r.meeting_url
+    ? '<div class="sc"><a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openClass(\''+r.id+'\')">▶ Rejoindre le cours en ligne</a></div>'
+    : '<div class="sc" style="opacity:.75">Cours en ligne · le professeur ajoutera bientôt le lien</div>';
+}
+function openClass(id){
+  const r=(window.sessionsCache||[]).find(x=>x.id===id); if(r&&r.meeting_url) window.open(r.meeting_url,'_blank');
+}
+
+/* ================= LIEU DE LA SÉANCE (séances à domicile) ================= */
+let placeCtx={sessionId:null,lat:null,lon:null};
+function placeBtn(r){
+  if(r.mode!=='a_domicile'||!(r.status==='pending'||r.status==='route')) return '';
+  return '<div class="sc"><a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openPlace(\''+r.id+'\')">📍 Lieu de la séance</a></div>';
+}
+async function openPlace(sessionId){
+  placeCtx={sessionId,lat:null,lon:null};
+  document.getElementById('placeNote').value=''; document.getElementById('placeMsg').textContent='';
+  document.getElementById('placeGpsState').textContent='Aucune position enregistrée';
+  showPage('place');
+  const { data } = await sb.from('session_places').select('lat,lon,note').eq('session_id',sessionId).maybeSingle();
+  if(data){ placeCtx.lat=data.lat; placeCtx.lon=data.lon; document.getElementById('placeNote').value=data.note||''; if(data.lat!=null) document.getElementById('placeGpsState').textContent='Position enregistrée ✓ (tu peux la remplacer)'; }
+}
+function usePlaceGps(){
+  const st=document.getElementById('placeGpsState'); st.textContent='Recherche de ta position…';
+  navigator.geolocation.getCurrentPosition(pos=>{ placeCtx.lat=pos.coords.latitude; placeCtx.lon=pos.coords.longitude; st.textContent='Position trouvée ✓ — pense à enregistrer.'; },
+    ()=>{ st.textContent='Position indisponible. Autorise la localisation, ou écris seulement un repère.'; },{enableHighAccuracy:true,timeout:10000});
+}
+async function savePlace(){
+  const m=document.getElementById('placeMsg'); m.style.color='var(--alert)';
+  const { error } = await sb.rpc('set_session_place',{ p_session:placeCtx.sessionId, p_lat:placeCtx.lat, p_lon:placeCtx.lon, p_note:document.getElementById('placeNote').value });
+  if(error){ m.textContent=error.message.includes('Renseigne')?'Utilise ta position ou écris un repère.':'Erreur : '+error.message+' (script SQL 18 ?)'; return; }
+  m.style.color='var(--mint)'; m.textContent='Lieu enregistré. Ton professeur est prévenu.';
+}
+
+
+/* ================= CARTE DU PROFESSEUR (photo + matricule, comme le chauffeur dans Yango) ================= */
+let teacherInfo={};
+function teacherAvatarHtml(t,size){
+  const ini=(t.name||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const st='width:'+size+'px;height:'+size+'px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:800;flex:none;background:var(--gold);color:var(--ink);';
+  return t.avatar_url ? '<span style="'+st+'background:url(\''+esc(t.avatar_url)+'\') center/cover"></span>' : '<span style="'+st+'font-size:'+Math.round(size*0.4)+'px">'+esc(ini)+'</span>';
+}
+function teacherLink(r){
+  const t=teacherInfo[r.teacher_id]; if(!t) return '';
+  return '<div class="sc" style="display:flex;align-items:center;gap:8px">'+teacherAvatarHtml(t,24)+'<a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openTeacher(\''+r.teacher_id+'\')">'+esc(t.name)+' · '+esc(t.matricule||'matricule en attente')+'</a></div>';
+}
+function openTeacher(id){
+  const t=teacherInfo[id]; if(!t) return;
+  const rating = t.nb ? '★ '+Number(t.avg).toFixed(1)+' ('+t.nb+' avis)' : 'Pas encore d\'avis';
+  document.getElementById('teacherCard').innerHTML=
+    '<div style="margin:10px 0">'+teacherAvatarHtml(t,110)+'</div>'+
+    '<div style="font-size:1.2rem;font-weight:800">'+esc(t.name)+'</div>'+
+    '<div class="qz-fb">'+esc(t.subject||'Professeur')+'</div>'+
+    '<div style="display:inline-block;margin:8px 0;padding:6px 14px;border-radius:14px;background:rgba(128,128,128,.18);font-weight:800;letter-spacing:1px">'+esc(t.matricule||'Matricule en attente')+'</div>'+
+    '<div class="qz-fb">'+(t.is_verified?'✓ Identité vérifiée par QI Business':'⚠ Identité non vérifiée')+'</div>'+
+    '<div class="qz-fb">'+rating+'</div>'+
+    '<button class="auth-btn" style="margin-top:14px" onclick="writeToTeacher(\''+id+'\')">Écrire un message</button>';
+  showPage('teacher');
+}
+async function writeToTeacher(id){ await openMessages(); await openChat(id); }
+
+/* ================= MA PROGRESSION (données réelles) ================= */
+async function refreshProgress(){
+  const box=document.getElementById('progressBody');
+  const [{data:qa},{data:ca}] = await Promise.all([
+    sb.from('quiz_assignments').select('score,total,status,completed_at,quizzes(title,subject,kind)').eq('student_id',myProfile.id).eq('status','termine').order('completed_at',{ascending:false}).limit(15),
+    sb.from('course_assignments').select('status').eq('student_id',myProfile.id)
+  ]);
+  const crs=ca||[], done=crs.filter(c=>c.status==='termine').length, list=qa||[];
+  const tot=list.reduce((a,r)=>a+(r.total||0),0), sc=list.reduce((a,r)=>a+(r.score||0),0);
+  if(!crs.length && !list.length){ box.innerHTML='<div class="empty">Ta progression apparaîtra dès que tu auras terminé un cours, un exercice ou un quiz.</div>'; return; }
+  box.innerHTML='<div class="qz-fb">'+(crs.length?done+' / '+crs.length+' cours terminés':'Aucun cours assigné')+'</div><div class="qz-fb">'+(tot?Math.round(sc/tot*100)+' % de réussite aux exercices et quiz':'Aucun exercice ou quiz terminé')+'</div>'+
+    (list.length?'<div class="sechd2">Derniers résultats</div>'+list.map(r=>'<div class="qrow"><div class="t"><b>'+esc(r.quizzes?r.quizzes.title:'')+'</b><small>'+(r.quizzes&&r.quizzes.kind==='exercice'?'Exercice':'Quiz')+' · '+esc(r.quizzes?r.quizzes.subject:'')+'</small></div><span class="qz-prog">'+r.score+'/'+r.total+'</span></div>').join(''):'');
 }
 
 
@@ -1027,109 +1283,6 @@ async function changePassword(){
   if(error){ fail(error.message); return; }
   document.getElementById('cpNew1').value=''; document.getElementById('cpNew2').value='';
   alert('Mot de passe mis à jour.'); showPage('profile');
-}
-
-
-/* ================= PIÈCE D'IDENTITÉ : caméra ou fichier + selfie ================= */
-/* ---- Caméra ---- */
-const signupPhotos={ id:null, selfie:null };
-function chooseSource(title, allowFile){
-  return new Promise(resolve=>{
-    const ov=document.createElement('div');
-    ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
-    const box=document.createElement('div');
-    box.style.cssText='width:100%;max-width:480px;background:var(--card,#fff);color:var(--text,#111);border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box';
-    const done=v=>{ ov.remove(); resolve(v); };
-    const t=document.createElement('div'); t.style.cssText='font-weight:800;margin-bottom:12px'; t.textContent=title; box.appendChild(t);
-    const mk=(label,val,ghost)=>{ const b=document.createElement('button'); b.className='auth-btn'; b.style.cssText=ghost?'margin:0 0 10px;background:transparent;border:1px solid var(--line);color:inherit':'margin:0 0 10px'; b.textContent=label; b.onclick=()=>done(val); box.appendChild(b); };
-    mk('📷 Prendre une photo','camera',false);
-    if(allowFile) mk('📁 Choisir un fichier','file',true);
-    mk('Annuler',null,true);
-    ov.onclick=e=>{ if(e.target===ov) done(null); };
-    ov.appendChild(box); document.body.appendChild(ov);
-  });
-}
-async function capturePhoto(facing){
-  const cam = window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Camera;
-  if(cam){
-    try{
-      const ph = await cam.getPhoto({ quality:85, allowEditing:false, resultType:'base64', source:'CAMERA', direction: facing==='front'?'FRONT':'REAR', correctOrientation:true, width:1600 });
-      const bin=atob(ph.base64String), arr=new Uint8Array(bin.length);
-      for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
-      const fmt=ph.format||'jpeg';
-      return new File([arr],'photo.'+fmt,{type:'image/'+fmt});
-    }catch(e){
-      const msg=String((e&&e.message)||e);
-      if(/cancel|annul|user/i.test(msg)) return null;
-      alert("La caméra n'a pas pu s'ouvrir ("+msg+").\nVérifie que l'autorisation Caméra est accordée à QI Business Pro dans les paramètres du téléphone, ou choisis un fichier.");
-      return null;
-    }
-  }
-  return new Promise(res=>{ const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.setAttribute('capture', facing==='front'?'user':'environment'); inp.onchange=()=>res(inp.files[0]||null); inp.click(); });
-}
-function pickFile(accept){
-  return new Promise(res=>{ const inp=document.createElement('input'); inp.type='file'; inp.accept=accept||'image/*,.pdf'; inp.onchange=()=>res(inp.files[0]||null); inp.click(); });
-}
-async function pickAvatar(){
-  const s=await chooseSource('Photo de profil',true); if(!s) return;
-  const f = s==='camera' ? await capturePhoto('front') : await pickFile('image/*');
-  if(f) uploadAvatar(f);
-}
-async function pickIdDoc(){
-  const s=await chooseSource("Pièce d'identité",true); if(!s) return;
-  const f = s==='camera' ? await capturePhoto('rear') : await pickFile();
-  if(f) uploadIdDocument(f);
-}
-async function captureSelfie(){
-  const f=await capturePhoto('front'); if(f) uploadSelfie(f);
-}
-async function captureSignup(kind){
-  let f;
-  if(kind==='id'){
-    const s=await chooseSource("Pièce d'identité",true); if(!s) return;
-    f = s==='camera' ? await capturePhoto('rear') : await pickFile();
-  } else { f=await capturePhoto('front'); }
-  if(!f) return;
-  signupPhotos[kind]=f;
-  document.getElementById(kind==='id'?'authIdLabel':'authSelfieLabel').textContent = kind==='id' ? '✓ Pièce d\'identité ajoutée' : '✓ Selfie pris';
-}
-async function uploadSelfie(file){
-  if(!myProfile) return;
-  const lbl=document.getElementById('selfieLabel'); lbl.textContent='Envoi en cours…';
-  const path = myProfile.id + '/selfie_' + Date.now() + '.jpg';
-  const { error: upErr } = await sb.storage.from('documents').upload(path, file, { upsert:true });
-  if(upErr){ lbl.textContent='Échec : '+upErr.message; return; }
-  const { error } = await sb.from('profiles').update({ selfie_path: path }).eq('id', myProfile.id);
-  if(error){ lbl.textContent='Échec : '+error.message+' (script SQL 18 ?)'; return; }
-  myProfile.selfie_path = path;
-  lbl.textContent='Envoyé ✓ — appuie pour le remplacer';
-}
-/* Itinéraire vers l'adresse indiquée par l'élève (comme la destination dans Yango) */
-async function openItinerary(sessionId){
-  const { data, error } = await sb.from('session_places').select('lat,lon,note').eq('session_id',sessionId).maybeSingle();
-  if(error){ alert('Lecture impossible : '+error.message+' (script SQL 18 ?)'); return; }
-  if(!data){ alert("L'élève n'a pas encore indiqué le lieu de la séance. Écris-lui dans Messages pour le lui demander."); return; }
-  if(data.note) alert('Indication de l\'élève :\n'+data.note);
-  if(data.lat!=null) window.open('https://www.google.com/maps/dir/?api=1&destination='+data.lat+','+data.lon+'&travelmode=driving','_blank');
-}
-
-
-/* ================= COURS EN LIGNE : lien de la classe virtuelle ================= */
-async function setMeetingLink(id){
-  const s=todaySessionsData.find(x=>x.id===id); let url;
-  if(confirm("Créer le lien du cours automatiquement ?\n\nOK = salle Jitsi créée pour toi\nAnnuler = coller mon propre lien (Google Meet, Zoom, Teams)")){
-    url='https://meet.jit.si/QIBusiness-'+id.replace(/-/g,'');
-  } else {
-    url=prompt('Colle le lien de ta classe (Google Meet, Zoom, Teams ou Jitsi) :', (s&&s.meeting_url)||'');
-    if(!url) return;
-  }
-  const { error } = await sb.rpc('set_meeting_url',{ p_session:id, p_url:url.trim() });
-  if(error){ alert(error.message+(error.message.includes('function')?' (script SQL 20 ?)':'')); return; }
-  alert("Lien enregistré. L'élève et ses parents sont prévenus.");
-  await refreshSessionsFromDB();
-}
-function openClassLink(id){
-  const s=todaySessionsData.find(x=>x.id===id); if(s&&s.meeting_url) window.open(s.meeting_url,'_blank');
 }
 
 /* ================= LISTES : villes et matières (gérées par l'admin) ================= */
@@ -1186,385 +1339,241 @@ async function editCity(){
   myProfile.city=city; myProfile.district=district; updateCityLabel();
 }
 loadLists();
-async function openSubjectPicker(inputId){
-  const el=document.getElementById(inputId);
-  const cur=(el.value||'').split(',').map(x=>x.trim()).filter(Boolean);
-  const r=await chooseFromList('Matières que tu enseignes',SUBJECTS,cur,true);
-  if(r) el.value=r.join(', ');
+
+/* ================= PARRAINAGE ================= */
+async function refreshReferral(){
+  const { data: st } = await sb.from('platform_settings').select('value').eq('key','referral_discount').maybeSingle();
+  const amt=(st&&st.value&&st.value.amount)||500;
+  document.getElementById('refCode').textContent=(myProfile&&myProfile.referral_code)||'—';
+  document.getElementById('refInfo').textContent='Invite un ami avec ton code. Quand il paie sa première séance, tu gagnes '+amt+' F de réduction sur ton prochain paiement.';
+  const { data: cr } = await sb.from('referral_credits').select('amount,used').eq('user_id',myProfile.id);
+  const avail=(cr||[]).filter(c=>!c.used).reduce((a,c)=>a+c.amount,0), n=(cr||[]).length;
+  document.getElementById('refBalance').textContent=(avail?avail.toLocaleString('fr-FR')+' F disponibles, déduits automatiquement de ton prochain paiement.':'Aucun crédit pour l\'instant.')+(n?' ('+n+' ami'+(n>1?'s':'')+' parrainé'+(n>1?'s':'')+')':'');
+}
+async function shareReferral(){
+  const code=(myProfile&&myProfile.referral_code)||''; if(!code) return;
+  const text='Rejoins QI Business avec mon code de parrainage : '+code;
+  if(navigator.share){ try{ await navigator.share({text}); }catch(e){} }
+  else { try{ await navigator.clipboard.writeText(text); alert('Message copié, colle-le dans ta conversation.'); }catch(e){ prompt('Copie ce message :',text); } }
 }
 
-/* ================= BONUS HEBDOMADAIRE ================= */
-async function refreshBonus(){
-  const box=document.getElementById('bonusCard'); if(!box||!myProfile) return;
-  const { data: pr, error } = await sb.rpc('my_week_progress');
-  if(error){ box.innerHTML=''; return; }
-  const p=Array.isArray(pr)?pr[0]:pr; if(!p){ box.innerHTML=''; return; }
-  const { data: bl } = await sb.from('teacher_bonuses').select('amount,paid,week_start').eq('teacher_id',myProfile.id).order('week_start',{ascending:false}).limit(10);
-  const money=n=>Number(n).toLocaleString('fr-FR')+' F';
-  const owed=(bl||[]).filter(b=>!b.paid).reduce((a,b)=>a+b.amount,0);
-  const pct=Math.min(100,Math.round(p.done/p.threshold*100));
-  box.innerHTML='<div class="sechd2">Bonus de la semaine</div>'+
-    '<div class="txrow" style="display:block"><b>'+(p.earned?'Bonus de '+money(p.amount)+' débloqué cette semaine !':p.done+' / '+p.threshold+' séances terminées')+'</b>'+
-    '<div style="height:8px;border-radius:4px;background:rgba(128,128,128,.25);margin:8px 0"><div style="height:8px;border-radius:4px;background:var(--gold);width:'+(p.earned?100:pct)+'%"></div></div>'+
-    '<small>'+(p.earned?'Bravo, continue comme ça.':'Encore '+Math.max(0,p.threshold-p.done)+' séance'+(p.threshold-p.done>1?'s':'')+' pour gagner '+money(p.amount)+'.')+'</small></div>'+
-    ((bl&&bl.length)?'<div class="txrow" style="display:block"><b>Bonus à te verser : '+money(owed)+'</b>'+bl.map(b=>'<br><small>Semaine du '+new Date(b.week_start).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+' — '+money(b.amount)+' — '+(b.paid?'versé':'à verser')+'</small>').join('')+'</div>':'');
-}
-
-/* ================= BIBLIOTHÈQUE : dépôt de documents ================= */
-let myLibItems=[];
-async function uploadLib(){
-  const msg=document.getElementById('libMsg'), btn=document.getElementById('libBtn'); msg.style.color='var(--alert)'; msg.textContent='';
-  const title=document.getElementById('libTitle').value.trim(), subject=document.getElementById('libSubject').value.trim(), level=document.getElementById('libLevel').value.trim();
-  const file=document.getElementById('libFile').files[0];
-  if(!title||!subject){ msg.textContent='Renseigne le titre et la matière.'; return; }
-  if(!file){ msg.textContent='Choisis un fichier.'; return; }
-  if(file.size>10*1024*1024){ msg.textContent='Fichier trop lourd (10 Mo maximum).'; return; }
-  btn.disabled=true; btn.textContent='Envoi…';
-  const safe=file.name.replace(/[^A-Za-z0-9._-]/g,'_');
-  const path=myProfile.id+'/'+Date.now()+'-'+safe;
-  const { error: upErr } = await sb.storage.from('library').upload(path,file,{contentType:file.type||undefined});
-  if(upErr){ btn.disabled=false; btn.textContent='Déposer'; msg.textContent='Envoi impossible : '+upErr.message+' (le script SQL 13 est-il exécuté ?)'; return; }
-  const { error } = await sb.from('library_items').insert({ title, subject, level:level||null, file_path:path, file_name:file.name, teacher_name:myProfile.full_name, created_by:myProfile.id });
-  btn.disabled=false; btn.textContent='Déposer';
-  if(error){ await sb.storage.from('library').remove([path]); msg.textContent='Erreur : '+error.message; return; }
-  msg.style.color='var(--mint)'; msg.textContent='Document déposé. Tes élèves sont prévenus.';
-  ['libTitle','libSubject','libLevel','libFile'].forEach(id=>document.getElementById(id).value='');
-  refreshMyLib();
-}
-async function refreshMyLib(){
-  const box=document.getElementById('myLibList');
-  const { data, error } = await sb.from('library_items').select('*').eq('created_by',myProfile.id).order('created_at',{ascending:false});
+/* ================= BIBLIOTHÈQUE (documents de mes professeurs) ================= */
+let libItems=[];
+async function refreshLibrary(){
+  const box=document.getElementById('libraryBody');
+  const { data, error } = await sb.from('library_items').select('*').order('created_at',{ascending:false});
   if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
-  myLibItems=data||[];
-  box.innerHTML=myLibItems.length?myLibItems.map((it,i)=>'<div class="qrow"><div class="t"><b>'+esc(it.title)+'</b><small>'+esc(it.subject)+(it.level?' · '+esc(it.level):'')+' · '+esc(it.file_name)+'</small></div><button class="qbtn2 ghost" onclick="deleteLib('+i+')">Suppr.</button></div>').join(''):'<div class="empty">Aucun document pour l\'instant.</div>';
+  libItems=data||[];
+  box.innerHTML=libItems.length?libItems.map((it,i)=>'<div class="qrow"><div class="t"><b>'+esc(it.title)+'</b><small>'+esc(it.subject)+(it.level?' · '+esc(it.level):'')+(it.teacher_name?' · '+esc(it.teacher_name):'')+'</small></div><button class="qbtn2" onclick="openLibFile('+i+')">Ouvrir</button></div>').join(''):'<div class="empty">Aucun document pour l\'instant. Ceux que tes professeurs déposent apparaîtront ici.</div>';
 }
-async function deleteLib(i){
-  const it=myLibItems[i]; if(!it||!confirm('Supprimer « '+it.title+' » ? Les élèves ne pourront plus l\'ouvrir.')) return;
-  await sb.storage.from('library').remove([it.file_path]);
-  const { error } = await sb.from('library_items').delete().eq('id',it.id);
-  if(error){ alert('Erreur : '+error.message); return; }
-  refreshMyLib();
+async function openLibFile(i){
+  const it=libItems[i]; if(!it) return;
+  const { data, error } = await sb.storage.from('library').createSignedUrl(it.file_path,300);
+  if(error){ alert('Ouverture impossible : '+error.message); return; }
+  window.open(data.signedUrl,'_blank');
 }
 
-/* ================= QUIZ & EXERCICES : création et assignation ================= */
-let assignQuizId=null;
-function addQBlock(){
-  const box=document.getElementById('qBuilder'), n=box.children.length+1;
-  const d=document.createElement('div'); d.className='qb';
-  d.innerHTML='<b style="font-size:.8rem">Question '+n+'</b><textarea class="auth-input q-text" rows="2" placeholder="Énoncé de la question"></textarea>'+
-    ['A','B','C','D'].map(l=>'<input class="auth-input q-ch" placeholder="Choix '+l+(l>'B'?' (facultatif)':'')+'">').join('')+
-    '<select class="auth-input q-ok"><option value="0">Bonne réponse : A</option><option value="1">Bonne réponse : B</option><option value="2">Bonne réponse : C</option><option value="3">Bonne réponse : D</option></select>'+
-    '<input class="auth-input q-ex" placeholder="Explication (facultatif, affichée dans un exercice)">';
-  box.appendChild(d);
-}
-async function publishQuiz(){
-  const msg=document.getElementById('qzMsg'); msg.style.color='var(--alert)'; msg.textContent='';
-  const title=document.getElementById('qzTitle').value.trim(), subject=document.getElementById('qzSubject').value.trim(), level=document.getElementById('qzLevel').value.trim(), kind=document.getElementById('qzKind').value;
-  if(!title||!subject){ msg.textContent='Renseigne le titre et la matière.'; return; }
-  const blocks=[...document.querySelectorAll('#qBuilder .qb')];
-  if(!blocks.length){ msg.textContent='Ajoute au moins une question.'; return; }
-  const questions=[];
-  for(let i=0;i<blocks.length;i++){
-    const b=blocks[i], text=b.querySelector('.q-text').value.trim();
-    const raw=[...b.querySelectorAll('.q-ch')].map(x=>x.value.trim());
-    const okRaw=parseInt(b.querySelector('.q-ok').value,10);
-    const choices=[]; let correct=-1;
-    raw.forEach((c,idx)=>{ if(c){ if(idx===okRaw) correct=choices.length; choices.push(c); } });
-    if(!text){ msg.textContent='Question '+(i+1)+' : énoncé manquant.'; return; }
-    if(choices.length<2){ msg.textContent='Question '+(i+1)+' : au moins 2 choix.'; return; }
-    if(correct<0){ msg.textContent='Question '+(i+1)+' : la bonne réponse désigne un choix vide.'; return; }
-    questions.push({ position:i, question:text, choices, correct_index:correct, explanation:b.querySelector('.q-ex').value.trim()||null });
-  }
-  const { data: quiz, error } = await sb.from('quizzes').insert({ title, subject, level:level||null, kind, created_by:myProfile.id }).select().single();
-  if(error){ msg.textContent='Erreur : '+error.message+' (les scripts SQL 9, 10 et 11 sont-ils exécutés ?)'; return; }
-  const { error: qerr } = await sb.from('quiz_questions').insert(questions.map(q=>Object.assign({quiz_id:quiz.id},q)));
-  if(qerr){ await sb.from('quizzes').delete().eq('id',quiz.id); msg.textContent='Erreur : '+qerr.message; return; }
-  msg.style.color='var(--mint)'; msg.textContent='Publié. Tu peux maintenant l\'assigner à un élève.';
-  ['qzTitle','qzSubject','qzLevel'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('qBuilder').innerHTML=''; addQBlock();
-  refreshQuizzes();
-}
-async function refreshQuizzes(){
-  const box=document.getElementById('myQuizzesList');
-  if(!document.getElementById('qBuilder').children.length) addQBlock();
-  const { data, error } = await sb.from('quizzes').select('id,title,subject,level,kind,created_at').eq('created_by',myProfile.id).order('created_at',{ascending:false});
+/* ================= SUIVI PARENT : enfants et résultats réels ================= */
+let resFilter=null;
+function openResults(childId){ resFilter=childId; showPage('results'); }
+async function refreshChildren(){
+  const box=document.getElementById('childrenBody');
+  const { data, error } = await sb.rpc('my_children');
   if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
-  box.innerHTML=(data&&data.length)?data.map(q=>'<div class="qrow"><div class="t"><b>'+esc(q.title)+'</b><small>'+(q.kind==='exercice'?'Exercice':'Quiz')+' · '+esc(q.subject)+(q.level?' · '+esc(q.level):'')+'</small></div><button class="qbtn2" onclick="openAssign(\''+q.id+'\')">Assigner</button><button class="qbtn2 ghost" onclick="deleteQuiz(\''+q.id+'\')">Suppr.</button></div>').join(''):'<div class="empty">Aucun quiz ni exercice pour l\'instant.</div>';
+  box.innerHTML=(data&&data.length)?data.map(c=>'<div class="qrow"><div class="t"><b>'+esc(c.full_name)+'</b><small>Élève</small></div><button class="qbtn2" onclick="openResults(\''+c.id+'\')">Résultats</button></div>').join(''):'<div class="empty">Aucun enfant lié à ton compte. L\'administration doit d\'abord lier ton compte à celui de ton enfant.</div>';
 }
-async function deleteQuiz(id){
-  if(!confirm('Supprimer définitivement ? Les résultats des élèves seront aussi supprimés.')) return;
-  const { error } = await sb.from('quizzes').delete().eq('id',id);
-  if(error){ alert('Erreur : '+error.message); return; }
-  refreshQuizzes();
-}
-async function openAssign(id){ assignQuizId=id; showPage('quizAssign'); await renderAssignList(); }
-async function renderAssignList(){
-  const box=document.getElementById('assignList'); document.getElementById('assignMsg').textContent='';
-  if(!window.myStudentNames) await refreshStudents();
-  const names=window.myStudentNames||{}, ids=Object.keys(names);
-  box.innerHTML=ids.length?ids.map(id=>'<div class="qrow"><div class="t"><b>'+esc(names[id])+'</b></div><button class="qbtn2" onclick="assignTo(\''+id+'\')">Envoyer</button></div>').join(''):'<div class="empty">Aucun élève lié. L\'administration doit d\'abord te lier à tes élèves.</div>';
-}
-async function assignTo(studentId){
-  const m=document.getElementById('assignMsg');
-  const { error } = await sb.from('quiz_assignments').insert({ quiz_id:assignQuizId, student_id:studentId, assigned_by:myProfile.id });
-  m.style.color = error&&error.code!=='23505' ? 'var(--alert)' : 'var(--mint)';
-  m.textContent = error ? (error.code==='23505' ? 'Déjà assigné à cet élève.' : 'Erreur : '+error.message) : 'Envoyé. L\'élève est prévenu par notification.';
-}
-
-/* ================= ACCUEIL RÉEL : note, élèves, prochaine séance ================= */
-function placeBanner(b){
-  const c=document.querySelector('#page-home .content'); if(!c) return;
-  c.insertBefore(b, c.querySelector('.grid')||null);
-}
-async function refreshHomeStats(){
-  if(!myProfile) return;
-  { let b=document.getElementById('verifyBanner');
-    if(!myProfile.is_verified){
-      if(!b){ b=document.createElement('div'); b.id='verifyBanner'; b.style.cssText='background:#fff3d6;color:#6b4e00;padding:12px 16px;border-radius:12px;margin:0 0 12px;font-size:.8rem;font-weight:700;line-height:1.35'; placeBanner(b); }
-      b.textContent = myProfile.id_document_path
-        ? 'Compte en cours de vérification : l\'administration contrôle ta pièce d\'identité. Tant que ce n\'est pas fait, tu ne peux pas être lié à des élèves ni passer En ligne.'
-        : 'Il manque ta pièce d\'identité. Appuie ici pour la prendre en photo : sans elle, ton compte ne peut pas être vérifié.';
-      b.onclick = myProfile.id_document_path ? null : pickIdDoc;
-    } else if(!myProfile.avatar_url){
-      if(!b){ b=document.createElement('div'); b.id='verifyBanner'; b.style.cssText='background:#fff3d6;color:#6b4e00;padding:12px 16px;border-radius:12px;margin:0 0 12px;font-size:.8rem;font-weight:700;line-height:1.35;cursor:pointer'; placeBanner(b); }
-      b.textContent='Ajoute ta photo de profil : les élèves et parents la voient avant la séance, avec ton matricule.';
-      b.onclick = pickAvatar;
-    } else if(b){ b.remove(); }
-  }
-  const ring=document.getElementById('ratingRing'), val=document.getElementById('ratingVal');
-  const { data: r } = await sb.rpc('teacher_rating',{p_teacher:myProfile.id});
-  const row = Array.isArray(r)?r[0]:r;
-  if(row && row.nb>0){ val.textContent=Number(row.avg_stars).toFixed(1); ring.style.setProperty('--pct', Number(row.avg_stars)*20); }
-  else { val.textContent='—'; ring.style.setProperty('--pct',0); }
-  const { data: links } = await sb.from('teacher_students').select('student_id').eq('teacher_id', myProfile.id);
-  const n = new Set((links||[]).map(l=>l.student_id)).size;
-  document.getElementById('activeStudentsTxt').textContent = n ? n+' élève'+(n>1?'s':'')+' suivi'+(n>1?'s':'') : "Aucun élève pour l'instant";
-  const { data: nx } = await sb.from('sessions').select('subject,scheduled_at').eq('teacher_id',myProfile.id).in('status',['pending','route']).gte('scheduled_at', new Date(Date.now()-3600*1000).toISOString()).order('scheduled_at',{ascending:true}).limit(1);
-  const el=document.getElementById('nextSessionTxt');
-  if(nx && nx[0]){ const d=new Date(nx[0].scheduled_at); el.textContent='Prochaine séance : '+d.toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'})+' à '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})+' — '+nx[0].subject; }
-  else el.textContent='Prochaine séance : aucune';
-}
-async function refreshReviews(){
-  const box=document.getElementById('reviewsList');
-  const { data } = await sb.from('session_ratings').select('stars,comment,created_at').eq('teacher_id',myProfile.id).order('created_at',{ascending:false}).limit(50);
-  box.innerHTML = (data&&data.length) ? data.map(r=>'<div class="rev"><b>'+'★'.repeat(r.stars)+'☆'.repeat(5-r.stars)+'</b> '+new Date(r.created_at).toLocaleDateString('fr-FR')+(r.comment?'<br>'+esc(r.comment):'')+'</div>').join('') : '<div class="empty">Aucun avis pour l\'instant. Ils apparaissent après tes séances terminées.</div>';
+async function refreshResults(){
+  const box=document.getElementById('resultsBody');
+  const { data, error } = await sb.rpc('children_results');
+  if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
+  let rows=(data||[]); if(resFilter) rows=rows.filter(r=>r.child_id===resFilter);
+  if(!rows.length){ box.innerHTML='<div class="empty">Aucun résultat pour l\'instant. Ils apparaîtront dès que ton enfant aura des cours, exercices ou quiz.</div>'; return; }
+  const byChild={};
+  rows.forEach(r=>{ (byChild[r.child_id]=byChild[r.child_id]||{name:r.child_name,items:[]}).items.push(r); });
+  const typeLbl={quiz:'Quiz',exercice:'Exercice',cours:'Cours'};
+  box.innerHTML=Object.values(byChild).map(c=>{
+    const graded=c.items.filter(i=>i.item_type!=='cours'&&i.status==='termine'&&i.total);
+    const sc=graded.reduce((a,i)=>a+i.score,0), tot=graded.reduce((a,i)=>a+i.total,0);
+    const crs=c.items.filter(i=>i.item_type==='cours'), crsDone=crs.filter(i=>i.status==='termine').length;
+    const summary=[tot?Math.round(sc/tot*100)+' % de réussite aux quiz et exercices':null, crs.length?crsDone+'/'+crs.length+' cours terminés':null].filter(Boolean).join(' · ')||'Rien de terminé pour l\'instant';
+    const items=c.items.sort((a,b)=>String(b.at).localeCompare(String(a.at))).slice(0,15).map(i=>'<div class="qrow"><div class="t"><b>'+esc(i.title)+'</b><small>'+typeLbl[i.item_type]+' · '+esc(i.subject||'')+' · '+new Date(i.at).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+'</small></div><span class="qz-prog">'+(i.status==='termine'?(i.item_type==='cours'?'TERMINÉ':i.score+'/'+i.total):'À FAIRE')+'</span></div>').join('');
+    return '<div class="sechd2">'+esc(c.name)+'</div><div class="qz-fb">'+summary+'</div>'+items;
+  }).join('');
 }
 
-/* ================= NOTIFICATIONS (table notifications + temps réel) ================= */
+/* ================= EXERCICES & QUIZ (correction côté serveur) ================= */
+let qz={kind:'quiz',assign:null,data:null,idx:0,answers:{},locked:false}, myQuizPct=null;
+function openQuizList(kind){ qz.kind=kind; showPage('quizList'); }
+async function refreshQuizList(){
+  const box=document.getElementById('quizListBody');
+  document.getElementById('quizListTitle').textContent = qz.kind==='exercice' ? 'Exercices' : 'Quiz';
+  const { data, error } = await sb.from('quiz_assignments').select('id,status,score,total,assigned_at,quizzes(title,subject,level,kind)').eq('student_id',myProfile.id).order('assigned_at',{ascending:false});
+  if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
+  const list=(data||[]).filter(a=>a.quizzes && a.quizzes.kind===qz.kind);
+  if(!list.length){ box.innerHTML='<div class="empty">Aucun '+(qz.kind==='exercice'?'exercice':'quiz')+' pour l\'instant. Ton professeur t\'en enverra ici.</div>'; return; }
+  box.innerHTML=list.map(a=>'<div class="qrow"><div class="t"><b>'+esc(a.quizzes.title)+'</b><small>'+esc(a.quizzes.subject)+(a.quizzes.level?' · '+esc(a.quizzes.level):'')+(a.status==='termine'?' · Score '+a.score+'/'+a.total:'')+'</small></div>'+(a.status==='termine'?'<span class="qz-prog">TERMINÉ</span>':'<button class="qbtn2" onclick="startQuiz(\''+a.id+'\')">Commencer</button>')+'</div>').join('');
+}
+async function startQuiz(id){
+  const { data, error } = await sb.rpc('get_quiz',{p_assignment:id});
+  if(error){ alert('Impossible d\'ouvrir : '+error.message); return; }
+  if(!data.questions.length){ alert('Ce contenu ne contient pas encore de questions.'); return; }
+  qz.assign=id; qz.data=data; qz.idx=0; qz.answers={}; qz.locked=false;
+  document.getElementById('quizPlayTitle').textContent=data.title;
+  showPage('quizPlay'); renderQuestion();
+}
+function renderQuestion(){
+  const q=qz.data.questions[qz.idx], n=qz.data.questions.length;
+  document.getElementById('quizPlayBody').innerHTML=
+    '<div class="qz-prog">QUESTION '+(qz.idx+1)+' / '+n+'</div><div class="qz-q">'+esc(q.question)+'</div>'+
+    q.choices.map((c,i)=>'<button class="qz-c" id="qzc'+i+'" onclick="pickChoice('+i+')">'+esc(c)+'</button>').join('')+
+    '<div class="qz-fb" id="qzFb"></div><button class="auth-btn hidden" id="qzNext" onclick="nextQuestion()">'+(qz.idx+1<n?'Suivant':'Terminer')+'</button>';
+}
+async function pickChoice(i){
+  if(qz.locked) return; qz.locked=true;
+  const q=qz.data.questions[qz.idx]; qz.answers[q.id]=i;
+  if(qz.data.kind==='exercice'){
+    const { data, error } = await sb.rpc('check_answer',{p_assignment:qz.assign,p_question:q.id,p_choice:i});
+    if(!error && data){
+      document.getElementById('qzc'+data.correct_index).classList.add('ok');
+      if(!data.correct) document.getElementById('qzc'+i).classList.add('ko');
+      document.getElementById('qzFb').textContent=(data.correct?'Bonne réponse ! ':'Pas tout à fait. ')+(data.explanation||'');
+    }
+  } else { document.getElementById('qzc'+i).classList.add('sel'); }
+  document.getElementById('qzNext').classList.remove('hidden');
+}
+function nextQuestion(){
+  qz.locked=false;
+  if(qz.idx+1<qz.data.questions.length){ qz.idx++; renderQuestion(); } else finishQuiz();
+}
+async function finishQuiz(){
+  const { data, error } = await sb.rpc('submit_quiz',{p_assignment:qz.assign,p_answers:qz.answers});
+  if(error){ alert('Envoi impossible : '+error.message); return; }
+  const pct=data.total?Math.round(data.score/data.total*100):0;
+  document.getElementById('quizPlayBody').innerHTML='<div style="text-align:center;padding:30px 10px"><div style="font-size:2.6rem;font-weight:800">'+data.score+' / '+data.total+'</div><div class="qz-fb">'+pct+' % de bonnes réponses</div><button class="auth-btn" onclick="qz.data=null;refreshQuizStats();showPage(\'quizList\')">Retour à la liste</button></div>';
+  qz.data=null;
+}
+function leaveQuiz(){
+  if(qz.data && !confirm('Quitter maintenant ? Tes réponses ne seront pas enregistrées.')) return;
+  qz.data=null; showPage('quizList');
+}
+async function refreshQuizStats(){
+  if(!myProfile||myProfile.role!=='eleve') return;
+  const { data } = await sb.from('quiz_assignments').select('score,total').eq('student_id',myProfile.id).eq('status','termine');
+  const tot=(data||[]).reduce((a,r)=>a+(r.total||0),0), sc=(data||[]).reduce((a,r)=>a+(r.score||0),0);
+  myQuizPct = tot ? Math.round(sc/tot*100) : null;
+  updateScoreCard();
+}
+
+/* --- QI Score réel : part des cours assignés qui sont terminés --- */
+function updateScoreCard(){
+  const ring=document.getElementById('scoreRing'), val=document.getElementById('scoreVal'), d=document.getElementById('scoreDelta');
+  if(!ring||!val) return;
+  const list = (typeof myCourseAssignments!=='undefined' && myCourseAssignments) || [];
+  const parts=[], notes=[];
+  if(list.length){ const done=list.filter(a=>a.status==='termine').length; parts.push(Math.round(done/list.length*100)); notes.push(done+'/'+list.length+' cours'); }
+  if(myQuizPct!==null){ parts.push(myQuizPct); notes.push(myQuizPct+' % aux quiz'); }
+  if(!parts.length){ ring.style.setProperty('--pct',0); val.textContent='—'; if(d) d.textContent='Pas encore de cours ni de quiz'; return; }
+  const pct=Math.round(parts.reduce((a,b)=>a+b,0)/parts.length);
+  ring.style.setProperty('--pct',pct); val.textContent=pct;
+  if(d) d.textContent=notes.join(' · ');
+}
+
+/* --- Notifications réelles (table notifications + temps réel) --- */
 let notifChannel=null;
-function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 async function loadNotifs(){
   if(!myProfile) return;
   startMsgRealtime();
+  refreshQuizStats();
+  applyPrefsToUI();
   const { data, error } = await sb.from('notifications').select('*').eq('user_id', myProfile.id).order('created_at',{ascending:false}).limit(50);
   if(error) return;
-  const list=data||[], box=document.getElementById('notifList'), badge=document.getElementById('bellBadge');
-  const unread=list.filter(n=>!n.is_read).length;
-  badge.textContent=unread>9?'9+':unread; badge.classList.toggle('hidden',!unread);
-  box.innerHTML = list.length ? list.map(n=>'<div class="notif'+(n.is_read?'':' unread')+'"><b>'+esc(n.title)+'</b>'+(n.body?'<span>'+esc(n.body)+'</span><br>':'')+'<small>'+new Date(n.created_at).toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+'</small></div>').join('') : '<div class="empty">Aucune notification pour l\'instant.</div>';
+  renderNotifs(data||[]);
   if(!notifChannel){
     notifChannel = sb.channel('notifs-'+myProfile.id)
-      .on('postgres_changes',{event:'INSERT',schema:'public',table:'notifications',filter:'user_id=eq.'+myProfile.id},()=>{ loadNotifs(); refreshSessionsFromDB(); refreshHomeStats(); })
+      .on('postgres_changes',{event:'INSERT',schema:'public',table:'notifications',filter:'user_id=eq.'+myProfile.id},()=>loadNotifs())
       .subscribe();
   }
 }
+function renderNotifs(list){
+  const box=document.getElementById('notifList'), badge=document.getElementById('bellBadge');
+  const unread=list.filter(n=>!n.is_read).length;
+  if(badge){ badge.textContent=unread>9?'9+':unread; badge.classList.toggle('hidden',!unread); }
+  if(!box) return;
+  box.innerHTML = list.length ? list.map(n=>'<div class="notif'+(n.is_read?'':' unread')+'"><b>'+esc(n.title)+'</b>'+(n.body?'<span>'+esc(n.body)+'</span><br>':'')+'<small>'+new Date(n.created_at).toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+'</small></div>').join('') : '<div class="empty">Aucune notification pour l\'instant.</div>';
+}
+function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 async function markNotifsRead(){
   if(!myProfile) return;
   await sb.from('notifications').update({is_read:true}).eq('user_id',myProfile.id).eq('is_read',false);
   loadNotifs();
 }
 
-/* ================= EN LIGNE / HORS LIGNE : état sauvegardé sur le compte ================= */
-async function saveOnline(on){
-  if(myProfile){ myProfile.is_online = on; await sb.from('profiles').update({ is_online:on }).eq('id', myProfile.id); }
+/* --- Notes et avis --- */
+let rateCtx=null, rateStars=0;
+function openRate(sessionId, teacherId){
+  rateCtx={sessionId,teacherId}; rateStars=0;
+  document.getElementById('rateComment').value='';
+  drawStars(); showPage('rate');
 }
-function restoreDuty(){
-  if(myProfile && myProfile.is_verified && myProfile.is_online && !document.getElementById('dutyBtn').classList.contains('on')){
-    document.getElementById('dutyBtn').classList.add('on');
-    document.getElementById('dutyDot').classList.add('live');
-    document.getElementById('dutyLabel').textContent='En ligne — position active';
-    startGeo();
-  }
+function drawStars(){
+  document.getElementById('starRow').innerHTML=[1,2,3,4,5].map(i=>'<button class="'+(i<=rateStars?'on':'')+'" onclick="rateStars='+i+';drawStars()" aria-label="'+i+' étoiles">★</button>').join('');
 }
-
-/* ---------- Disponibilité + partage de position RÉEL (GPS -> Supabase) ---------- */
-let geoWatchId = null;
-function toggleDuty(){
-  if(!(myProfile && myProfile.is_verified)){ alert('Ton compte doit d\'abord être vérifié par l\'administration (contrôle de ta pièce d\'identité). Tu seras prévenu dès que ce sera fait.'); return; }
-  const btn = document.getElementById('dutyBtn');
-  const on = !btn.classList.contains('on');
-  btn.classList.toggle('on', on);
-  document.getElementById('dutyDot').classList.toggle('live', on);
-  document.getElementById('dutyLabel').textContent = on ? 'En ligne — position active' : 'Hors ligne';
-  saveOnline(on);
-  if(on) startGeo(); else stopGeo();
-}
-function startRoute(id){
-  setSessionStatus(id, 'route');
-  if(!document.getElementById('dutyBtn').classList.contains('on')) toggleDuty();
-}
-function startGeo(){
-  const box = document.getElementById('geoBox');
-  if(!navigator.geolocation){
-    box.innerHTML = '<b>Géolocalisation indisponible</b>Ton appareil ne permet pas le partage de position.';
-    return;
-  }
-  geoWatchId = navigator.geolocation.watchPosition(
-    async pos=>{
-      const lat = pos.coords.latitude, lon = pos.coords.longitude;
-      box.innerHTML = '<b>Position active</b>Lat '+lat.toFixed(5)+', Lon '+lon.toFixed(5)+' — visible par les parents/élèves pendant une séance "en route".';
-      if(myProfile){
-        await sb.from('teacher_locations').upsert({ teacher_id: myProfile.id, lat, lon, is_sharing:true, updated_at: new Date().toISOString() });
-      }
-    },
-    err=>{ box.innerHTML = '<b>Position non disponible</b>Autorise l\'accès à la localisation pour QI Business Pro dans les réglages du téléphone.'; },
-    {enableHighAccuracy:true}
-  );
-}
-async function stopGeo(){
-  if(geoWatchId!==null && navigator.geolocation){ navigator.geolocation.clearWatch(geoWatchId); geoWatchId=null; }
-  document.getElementById('geoBox').innerHTML = '<b>Position non partagée</b>Active "Disponibilité" sur l\'accueil pour partager ta position quand tu es en route vers une séance.';
-  if(myProfile){
-    await sb.from('teacher_locations').update({ is_sharing:false }).eq('teacher_id', myProfile.id);
-  }
+async function submitRating(){
+  if(!rateCtx||!rateStars){ alert('Choisis une note de 1 à 5 étoiles.'); return; }
+  const { error } = await sb.from('session_ratings').insert({ session_id:rateCtx.sessionId, teacher_id:rateCtx.teacherId, rater_id:myProfile.id, stars:rateStars, comment:document.getElementById('rateComment').value.trim()||null });
+  if(error){ alert(error.code==='23505' ? 'Tu as déjà noté cette séance.' : 'Impossible d\'envoyer l\'avis : '+error.message); return; }
+  alert('Merci pour ton avis !'); showPage('history');
 }
 
-/* ================= GAINS (données réelles Supabase) ================= */
-async function refreshEarnings(){
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click", ()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  t.classList.add("active");
+}));
+
+/* --- Interrupteurs des paramètres, sauvegardés localement --- */
+function toggleSetting(btn){
+  btn.classList.toggle('on');
+  localStorage.setItem('qi_toggle_'+btn.dataset.key, btn.classList.contains('on'));
+}
+document.querySelectorAll('.switch[data-key]').forEach(btn=>{
+  const saved = localStorage.getItem('qi_toggle_'+btn.dataset.key);
+  if(saved!==null) btn.classList.toggle('on', saved==='true');
+});
+
+/* Anciennes préférences de mode de paiement (supprimées : le choix se fait sur l'écran CinetPay) */
+try{ localStorage.removeItem('qi_pay'); localStorage.removeItem('qi_custom_pay'); }catch(e){}
+
+/* --- Profil : nom modifiable, synchronisé avec le compte réel --- */
+const profHero = document.querySelector('.prof-hero');
+profHero.style.cursor = 'pointer';
+profHero.addEventListener('click', async ()=>{
   if(!myProfile) return;
-  const { data: rows } = await sb.from('payments').select('*').eq('teacher_id', myProfile.id).order('created_at', {ascending:false});
-  const list = rows || [];
-  const payerIds = [...new Set(list.map(r=>r.payer_id))];
-  let names = {};
-  if(payerIds.length){
-    const { data: payers } = await sb.from('profiles').select('id, full_name').in('id', payerIds);
-    (payers||[]).forEach(p=>{ names[p.id] = p.full_name; });
-  }
-  const paid = list.filter(p=>p.status==='paid');
-  const totalRevenue = paid.reduce((s,p)=>s+p.amount,0);
-  const totalMine = paid.reduce((s,p)=>s+p.teacher_share,0);
-  const totalOwed = paid.filter(p=>!p.teacher_paid).reduce((s,p)=>s+p.teacher_share,0);
-  const money = n => n.toLocaleString('fr-FR')+' F';
-  document.getElementById('earningsStats').innerHTML =
-    '<div class="stat"><b>'+money(totalRevenue)+'</b><small>REVENU TOTAL</small></div>'+
-    '<div class="stat"><b>'+money(totalMine)+'</b><small>TA PART</small></div>'+
-    '<div class="stat"><b>'+money(totalOwed)+'</b><small>À TE VERSER</small></div>';
-
-  const box = document.getElementById('earningsList');
-  if(!list.length){ box.innerHTML = '<div class="txrow">Aucun paiement enregistré pour l\'instant — ils apparaîtront ici une fois enregistrés depuis le back office.</div>'; return; }
-  box.innerHTML = list.map(p=>{
-    const d = new Date(p.created_at).toLocaleDateString('fr-FR', {day:'2-digit', month:'long'});
-    const payerName = names[p.payer_id] || 'Élève';
-    const statusTxt = p.status!=='paid' ? '<span class="status-pill route">En attente</span>' : p.teacher_paid ? '<span class="status-pill ok">Versé</span>' : '<span class="status-pill route">À verser</span>';
-    return '<div class="txrow"><div class="txrow-top"><b>Séance — '+payerName+statusTxt+'</b><span>'+money(p.amount)+'</span></div>'+
-      '<small>'+(p.method||'—')+' · '+payerName+' · '+d+'</small>'+
-      '<div class="split"><div class="mine"><b>'+money(p.teacher_share)+'</b>Ta part</div><div class="fee"><b>'+money(p.platform_share)+'</b>Commission QIB</div></div></div>';
-  }).join('');
+  const name = prompt('Modifier votre nom', myProfile.full_name);
+  if(!name) return;
+  myProfile.full_name = name;
+  myProfile.avatar_initials = initialsOf(name);
+  await sb.from('profiles').update({ full_name:name, avatar_initials: myProfile.avatar_initials }).eq('id', myProfile.id);
+  document.querySelector('.prof-avatar').textContent = myProfile.avatar_initials;
+  document.querySelector('.prof-hero .nm').childNodes[0].nodeValue = name + ' ';
+  activateRole(myProfile.role==='professeur' ? 'prof' : myProfile.role);
+});
+async function doLogout(){
+  await sb.auth.signOut();
+  location.reload();
 }
 
-/* ================= MES ÉLÈVES (données réelles Supabase) ================= */
-async function refreshStudents(){
-  if(!myProfile) return;
-  const box = document.getElementById('studentsListContainer');
-  const { data: links } = await sb.from('teacher_students').select('student_id, subject').eq('teacher_id', myProfile.id);
-  const list = links || [];
-  window.myStudentLinks = list;
-  if(!list.length){ box.innerHTML = '<div class="empty">Aucun élève lié pour l\'instant — ça se fait depuis le back office.</div>'; window.myStudentNames = {}; return; }
-  const ids = [...new Set(list.map(l=>l.student_id))];
-  const { data: profs } = await sb.from('profiles').select('id, full_name').in('id', ids);
-  const names = {}; (profs||[]).forEach(p=>{ names[p.id] = p.full_name; });
-  window.myStudentNames = names;
-  const { data: sess } = await sb.from('sessions').select('student_id').eq('teacher_id', myProfile.id);
-  const counts = {}; (sess||[]).forEach(s=>{ counts[s.student_id] = (counts[s.student_id]||0)+1; });
-  box.innerHTML = list.map(l=>{
-    const name = names[l.student_id] || 'Élève';
-    const initials = name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
-    const n = counts[l.student_id] || 0;
-    return '<div class="elrow" onclick="openFeature(\''+name.replace(/'/g,"\\'")+'\')"><div class="av">'+initials+'</div><div class="t"><b>'+name+'</b><small>'+(l.subject||'')+' · '+n+' séance(s) suivie(s)</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>';
-  }).join('');
+async function loadPaymentNumbers(){
+  const inp=document.getElementById('payPhone'); if(inp && myProfile) inp.value = myProfile.phone || '';
 }
-
-/* ================= MES COURS (parcours assignés aux élèves) ================= */
-let currentCourseId = null;
-
-async function refreshCourses(){
-  if(!myProfile) return;
-  if(!window.myStudentNames) await refreshStudents();
-  const box = document.getElementById('myCoursesList');
-  const { data: courses, error } = await sb.from('courses').select('*').eq('created_by', myProfile.id).order('created_at', {ascending:false});
-  if(error){ box.innerHTML = '<div class="empty">'+error.message+'</div>'; return; }
-  window.myCourses = courses || [];
-  if(!courses || !courses.length){ box.innerHTML = '<div class="empty">Tu n\'as encore publié aucune leçon.</div>'; return; }
-  const courseIds = courses.map(c=>c.id);
-  const { data: assigns } = await sb.from('course_assignments').select('course_id, status').in('course_id', courseIds);
-  const countByCourse = {}, doneByCourse = {};
-  (assigns||[]).forEach(a=>{
-    countByCourse[a.course_id] = (countByCourse[a.course_id]||0)+1;
-    if(a.status==='termine') doneByCourse[a.course_id] = (doneByCourse[a.course_id]||0)+1;
-  });
-  box.innerHTML = courses.map(c=>{
-    const n = countByCourse[c.id]||0, d = doneByCourse[c.id]||0;
-    return '<div class="elrow" onclick="openCourseDetail(\''+c.id+'\')"><div class="av">'+(c.subject||'?').slice(0,2).toUpperCase()+'</div><div class="t"><b>'+c.title+'</b><small>'+(c.subject||'')+(c.level?' · '+c.level:'')+' · '+d+'/'+n+' élève(s) terminé(s)</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>';
-  }).join('');
-}
-
-async function createCourse(){
-  const msg = document.getElementById('crsMsg');
-  msg.textContent = '';
-  const title = document.getElementById('crsTitle').value.trim();
-  const subject = document.getElementById('crsSubject').value.trim();
-  const level = document.getElementById('crsLevel').value.trim();
-  const content = document.getElementById('crsContent').value.trim();
-  if(!title || !subject || !content){ msg.textContent = 'Titre, matière et contenu sont obligatoires.'; msg.style.color = 'var(--alert)'; return; }
-  const { error } = await sb.from('courses').insert({ title, subject, level: level||null, content, created_by: myProfile.id });
-  if(error){ msg.textContent = error.message; msg.style.color = 'var(--alert)'; return; }
-  msg.textContent = 'Leçon publiée.'; msg.style.color = 'var(--mint)';
-  document.getElementById('crsTitle').value = '';
-  document.getElementById('crsSubject').value = '';
-  document.getElementById('crsLevel').value = '';
-  document.getElementById('crsContent').value = '';
-  await refreshCourses();
-}
-
-async function openCourseDetail(courseId){
-  currentCourseId = courseId;
-  const course = (window.myCourses||[]).find(c=>c.id===courseId);
-  if(!course) return;
-  document.getElementById('crsDetailTitle').textContent = course.title;
-  document.getElementById('crsDetailMeta').textContent = [course.subject, course.level].filter(Boolean).join(' · ');
-  document.getElementById('crsDetailContent').textContent = course.content;
-  showPage('courseDetail');
-  await refreshCourseAssignments();
-}
-
-async function refreshCourseAssignments(){
-  const { data: assigns } = await sb.from('course_assignments').select('*').eq('course_id', currentCourseId);
-  const names = window.myStudentNames || {};
-  const assignedIds = new Set((assigns||[]).map(a=>a.student_id));
-
-  const sel = document.getElementById('crsAssignSelect');
-  const candidates = (window.myStudentLinks||[]).map(l=>l.student_id).filter((id,i,arr)=>arr.indexOf(id)===i && !assignedIds.has(id));
-  sel.innerHTML = '<option value="">Choisir un élève…</option>' + candidates.map(id=>'<option value="'+id+'">'+(names[id]||'Élève')+'</option>').join('');
-
-  const list = document.getElementById('crsAssignmentsList');
-  if(!assigns || !assigns.length){ list.innerHTML = '<div class="empty">Aucun élève pour l\'instant.</div>'; return; }
-  list.innerHTML = assigns.map(a=>{
-    const name = names[a.student_id] || 'Élève';
-    const pill = a.status==='termine' ? '<span class="pill done">Terminé</span>' : '<span class="pill todo">À faire</span>';
-    return '<div class="elrow" style="cursor:default;"><div class="av">'+name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase()+'</div><div class="t"><b>'+name+'</b></div>'+pill+'</div>';
-  }).join('');
-}
-
-async function assignCourseToStudent(){
-  const msg = document.getElementById('crsAssignMsg');
-  msg.textContent = '';
-  const student_id = document.getElementById('crsAssignSelect').value;
-  if(!student_id){ msg.textContent = 'Choisis un élève.'; msg.style.color = 'var(--alert)'; return; }
-  const { error } = await sb.from('course_assignments').insert({ course_id: currentCourseId, student_id, assigned_by: myProfile.id, status:'a_faire' });
-  if(error){ msg.textContent = error.message; msg.style.color = 'var(--alert)'; return; }
-  msg.textContent = 'Parcours assigné.'; msg.style.color = 'var(--mint)';
-  await refreshCourseAssignments();
-  await refreshCourses();
+async function savePayPhone(){
+  const m=document.getElementById('payPhoneMsg'); m.style.color='var(--alert)';
+  const raw=document.getElementById('payPhone').value.replace(/[\s.\-]/g,'');
+  if(!/^\+?\d{8,15}$/.test(raw)){ m.textContent='Numéro invalide. Exemple : 0700000000'; return; }
+  const { error } = await sb.from('profiles').update({ phone: raw }).eq('id', myProfile.id);
+  if(error){ m.textContent='Erreur : '+error.message; return; }
+  myProfile.phone = raw;
+  const lbl=document.getElementById('phoneLabel'); if(lbl) lbl.textContent = raw;
+  m.style.color='var(--mint)'; m.textContent='Numéro enregistré.';
 }
 
 /* ================= DÉMARRAGE ================= */
@@ -1573,6 +1582,64 @@ async function assignCourseToStudent(){
   if(session) await afterAuthSuccess();
   else showPage('auth');
 })();
+
+/* --- Navigation générique : rend cliquable tout bouton/tuile sans action définie --- */
+let prevPage = 'home';
+function openFeature(title){
+  prevPage = document.querySelector('.page.active').id.replace('page-','');
+  document.getElementById('featureTitle').textContent = title || 'Fonctionnalité';
+  showPage('feature');
+}
+function goBackFromFeature(){ showPage(prevPage); }
+document.querySelectorAll('.tile, .qbtn, .prow, .help-row, .folder-row').forEach(el=>{
+  if(el.hasAttribute('onclick')) return;
+  const label = el.querySelector('span, b');
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', ()=>openFeature(label ? label.textContent.trim() : 'Fonctionnalité'));
+});
+document.querySelectorAll('a[href="#"]').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const h3 = a.closest('.sec-hd')?.querySelector('h3');
+    openFeature(h3 ? h3.textContent.trim() : 'Voir tout');
+  });
+});
+</script>
+
+<script>
+function showPage(name){
+  if(!myProfile && name!=='auth' && name!=='resetPassword') name='auth';
+  { const tb=document.querySelector('.tabbar'); if(tb) tb.style.display = (!myProfile || name==='auth' || name==='resetPassword' || name==='chat') ? 'none' : 'flex'; }
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const map={home:0,history:1,help:2,profile:3};
+  if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
+  if(name==='history' && typeof refreshSessionsAndBanner==='function') refreshSessionsAndBanner();
+  if(name==='payment' && typeof loadPaymentNumbers==='function') loadPaymentNumbers();
+  if(name==='payment' && typeof refreshPayableSessions==='function') refreshPayableSessions();
+  if(name==='myCourses' && typeof refreshMyCourses==='function') refreshMyCourses();
+  if(name==='notifs') markNotifsRead();
+  if(name==='messages') openMessages();
+  if(name==='quizList') refreshQuizList();
+  if(name==='children') refreshChildren();
+  if(name==='library') refreshLibrary();
+  if(name==='help') refreshSupport();
+  if(name==='referral') refreshReferral();
+  if(name==='settings') applyPrefsToUI();
+  if(name==='profile') updateCityLabel();
+  if(name==='progress') refreshProgress();
+  if(name==='results') refreshResults();
+  if(name==='payment') loadPayHistory();
+  document.querySelector('.frame').scrollTo?.(0,0);
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.tab').forEach((t,i)=>{
+  const names=['home','history','help','profile'];
+  t.addEventListener('click', ()=>showPage(names[i]));
+});
+document.getElementById('avatarInit').closest('.hdr-top').style.cursor='pointer';
+document.getElementById('avatarInit').addEventListener('click', ()=>showPage('profile'));
 
 /* --- Navigation : le bouton Retour du téléphone remonte d'une page au lieu de quitter/bloquer --- */
 (function(){
