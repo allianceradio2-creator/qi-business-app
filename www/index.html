@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>QI Business</title>
+<title>QI Business Répétiteurs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -222,7 +222,7 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
 <div class="frame">
 
   <div class="splash" id="splash">
-    <img src="icons/icon-512.png" alt="QI Business" style="width:120px;height:120px;border-radius:26px;margin-bottom:20px;box-shadow:0 12px 30px rgba(0,0,0,.35)">
+    <img src="icons/icon-512.png" alt="QI Business Répétiteurs" style="width:120px;height:120px;border-radius:26px;margin-bottom:20px;box-shadow:0 12px 30px rgba(0,0,0,.35)">
     <h1>QI <em>Business</em></h1>
     <p>Le savoir, au sommet.</p>
     <div class="splash-line"></div>
@@ -232,7 +232,7 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
   <div class="app">
     <!-- CONNEXION / INSCRIPTION -->
     <div class="page active" id="page-auth">
-      <div class="pagehead" style="border-radius:0"><h2>QI Business</h2></div>
+      <div class="pagehead" style="border-radius:0"><h2>QI Business Répétiteurs</h2></div>
       <div class="pbody">
         <div class="sechd2" id="authModeLabel">Connexion</div>
         <div id="authError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
@@ -244,6 +244,8 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
           <input class="auth-input" id="authName" placeholder="Nom complet">
           <select class="auth-input" id="authCity" data-list="cities"><option value="">Ville…</option></select>
           <input class="auth-input" id="authDistrict" placeholder="Quartier (facultatif)">
+          <select class="auth-input" id="authLevel"><option value="">Niveau de l'élève…</option><option>Primaire</option><option>Collège</option><option>Lycée</option></select>
+          <label style="display:flex;gap:8px;align-items:flex-start;font-size:.78rem;margin:6px 0"><input type="checkbox" id="authRules" style="margin-top:2px"><span>J'ai lu et j'accepte les <a style="text-decoration:underline;cursor:pointer" onclick="showPage('rules')">règles de la plateforme</a></span></label>
           <input class="auth-input" id="authReferral" placeholder="Code de parrainage (facultatif)" maxlength="12" style="text-transform:uppercase">
         </div>
         <input class="auth-input" id="authEmail" type="email" placeholder="E-mail" autocomplete="email">
@@ -306,6 +308,7 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
 
       <div id="panel-eleve">
         <div class="grid">
+          <div class="tile" onclick="showPage('book')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg></div><span>Réserver</span></div>
           <div class="tile" onclick="showPage('myCourses')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Mes cours</span></div>
           <div class="tile" onclick="openQuizList('exercice')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span>Exercices</span></div>
           <div class="tile" onclick="openQuizList('quiz')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5 1-1.5 2.2"/><path d="M12 17h.01"/></svg></div><span>Quiz</span></div>
@@ -327,6 +330,7 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
 
       <div id="panel-parent" class="hidden">
         <div class="grid">
+          <div class="tile" onclick="showPage('book')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg></div><span>Réserver</span></div>
           <div class="tile" onclick="showPage('children')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div><span>Mes enfants</span></div>
           <div class="tile" onclick="openResults(null)"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div><span>Résultats</span></div>
           <div class="tile" onclick="showPage('history')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><span>Rendez-vous</span></div>
@@ -336,8 +340,8 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
           <div class="tile" onclick="showPage('notifs')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9L2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><span>Alertes</span></div>
         </div>
         <div class="sec">
-          <div class="sec-hd"><h3>Chercher un professeur</h3></div>
-          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><div class="t"><b>Trouver un professeur vérifié</b><small>Recherche par matière et niveau</small></div><div class="meta">Bientôt</div></div>
+          <div class="sec-hd"><h3>Chercher un répétiteur</h3></div>
+          <div class="row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><div class="t"><b>Trouver un répétiteur vérifié</b><small>Recherche par matière et niveau</small></div><div class="meta">Bientôt</div></div>
         </div>
         <div class="sec">
           <div class="sec-hd"><h3>Activité récente</h3></div>
@@ -356,7 +360,7 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
         </div>
         <div class="sec">
           <div class="sec-hd"><h3>Aujourd'hui</h3></div>
-          <div class="empty">Utilise l'application "QI Business Pro" pour gérer tes séances et ton planning.</div>
+          <div class="empty">Utilise l'application "QI Business Enseignants" pour gérer tes séances et ton planning.</div>
         </div>
       </div>
     </div>
@@ -371,11 +375,29 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
       </div>
     </div>
 
+    <!-- RÉSERVER UNE SÉANCE -->
+    <div class="page" id="page-book">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Réserver une séance</h2></div>
+      <div class="pbody">
+        <div id="bookChildRow" style="display:none"><select class="auth-input" id="bookChild"></select></div>
+        <select class="auth-input" id="bookSubject" data-list="subjects"><option value="">Matière…</option></select>
+        <select class="auth-input" id="bookLevel"><option value="">Niveau…</option><option>Primaire</option><option>Collège</option><option>Lycée</option></select>
+        <select class="auth-input" id="bookMode"><option value="en_ligne">Cours en ligne</option><option value="a_domicile">À domicile</option></select>
+        <input class="auth-input" type="date" id="bookDate">
+        <input class="auth-input" type="time" id="bookTime" value="16:00">
+        <select class="auth-input" id="bookHours" onchange="updateBookPrice()"></select>
+        <div class="qz-fb" id="bookPrice"></div>
+        <button class="auth-btn" onclick="searchTeachers()">Voir les répétiteurs disponibles</button>
+        <div id="bookMsg" style="font-size:.78rem;margin:8px 0"></div>
+        <div id="bookTeachers"></div>
+      </div>
+    </div>
+
     <!-- LIEU DE LA SÉANCE -->
     <div class="page" id="page-place">
       <div class="pagehead"><button class="back" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Lieu de la séance</h2></div>
       <div class="pbody">
-        <div class="qz-fb">Indique où la séance a lieu pour que ton professeur trouve le chemin, comme la destination dans Yango.</div>
+        <div class="qz-fb">Indique où la séance a lieu pour que ton répétiteur trouve le chemin, comme la destination dans Yango.</div>
         <button class="qbtn2" style="width:100%;padding:12px" onclick="usePlaceGps()">📍 Utiliser ma position actuelle</button>
         <div class="qz-fb" id="placeGpsState">Aucune position enregistrée</div>
         <textarea class="auth-input" id="placeNote" rows="3" maxlength="300" placeholder="Repère utile (ex : derrière la pharmacie, portail vert, 2e étage)"></textarea>
@@ -384,9 +406,29 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
       </div>
     </div>
 
+    <!-- VÉRIFICATION D'IDENTITÉ -->
+    <div class="page" id="page-identity">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Vérification d'identité</h2></div>
+      <div class="pbody">
+        <div class="qz-fb">Pour protéger les répétiteurs et les familles, le compte qui réserve un <b>cours à domicile</b> doit avoir son identité vérifiée : pièce d'identité du parent ou tuteur (ou de l'élève s'il est majeur). Le cours en ligne n'en demande pas.</div>
+        <div class="qz-fb">Ta pièce n'est visible que par toi et par l'administration.</div>
+        <div class="sechd2">Statut</div>
+        <div class="qz-fb" id="idStatus" style="font-weight:800">…</div>
+        <button class="auth-btn" onclick="pickClientId()">📷 Envoyer ma pièce d'identité</button>
+        <button class="auth-btn" style="background:transparent;border:1px solid var(--line);color:inherit" onclick="clientSelfie()">🤳 Selfie avec ma pièce (recommandé)</button>
+        <div id="idMsg" style="font-size:.78rem;margin-top:6px"></div>
+      </div>
+    </div>
+
+    <!-- RÈGLES DE LA PLATEFORME -->
+    <div class="page" id="page-rules">
+      <div class="pagehead"><button class="back" onclick="showPage(myProfile?'profile':'auth')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Règles de la plateforme</h2></div>
+      <div class="pbody" id="rulesBody"><div class="empty">Chargement…</div></div>
+    </div>
+
     <!-- MON PROFESSEUR -->
     <div class="page" id="page-teacher">
-      <div class="pagehead"><button class="back" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mon professeur</h2></div>
+      <div class="pagehead"><button class="back" onclick="showPage('history')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mon répétiteur</h2></div>
       <div class="pbody" id="teacherCard" style="text-align:center"></div>
     </div>
 
@@ -503,6 +545,9 @@ select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; pad
                 <div class="prow" onclick="showPage('referral')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Parrainage</b><small>Invite un ami, gagne une réduction</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="editPhone()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Numéro de téléphone</b><small id="phoneLabel">Non renseigné</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="editCity()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Ville</b><small id="cityLabel">Non renseignée</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="editLevelStudent()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Niveau</b><small id="levelLabel">Non renseigné</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('identity')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Vérification d'identité</b><small id="idLabel">Non envoyée</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('rules')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Règles de la plateforme</b><small>Réservation, paiement, annulation, sécurité</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="showPage('payment')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Modes de paiement</b><small id="payDefaultLabel">Payer mes séances</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
         <div class="prow" onclick="showPage('changePassword')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Changer mon mot de passe</b></div></div>
         <div class="prow" onclick="doLogout()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Se déconnecter</b></div></div>
@@ -616,10 +661,11 @@ async function refreshPayableSessions(){
 }
 
 async function payForSession(sessionId){
-  const amountStr = prompt('Montant à payer pour cette séance (F CFA, multiple de 5) :', '5000');
-  if(!amountStr) return;
-  const amount = parseInt(amountStr, 10);
-  if(!amount || amount % 5 !== 0){ alert('Le montant doit être un multiple de 5 F CFA.'); return; }
+  const { data: s, error: e0 } = await sb.from('sessions').select('price,duration_hours,subject').eq('id', sessionId).single();
+  if(e0 || !s){ alert('Séance introuvable.'); return; }
+  if(!(s.price>0)){ alert("Le prix de cette séance n'est pas défini. Contacte l'assistance."); return; }
+  if(!confirm('Payer '+fcfa(s.price)+' pour '+(s.duration_hours||1)+' h de '+s.subject+' ?')) return;
+  const amount = s.price;
   const { data, error } = await sb.functions.invoke('initiate-payment', { body: { session_id: sessionId, amount } });
   if(error || !data || data.error){ alert('Erreur : '+(data?.error || error?.message || 'impossible de démarrer le paiement')); return; }
   if(data.discount>0) alert('Réduction de parrainage de '+data.discount+' F appliquée. Tu paies '+data.amount+' F.');
@@ -762,7 +808,7 @@ function syncProfileHero(r){
     applyAvatarPhoto(avatarEl);
     if(nmEl.childNodes[0]) nmEl.childNodes[0].nodeValue = myProfile.full_name + ' ';
     else nmEl.prepend(myProfile.full_name + ' ');
-    const roleLabel = myProfile.role==='parent' ? 'Parent vérifié' : myProfile.role==='professeur' ? 'Professeur' : 'Élève vérifié';
+    const roleLabel = myProfile.role==='parent' ? 'Parent vérifié' : myProfile.role==='professeur' ? 'Répétiteur' : 'Élève vérifié';
     smallEl.textContent = (myUserEmail ? myUserEmail+' · ' : '') + roleLabel;
   } else {
     // Aucun compte réel chargé : on affiche un état neutre plutôt que l'ancien profil de démo.
@@ -819,7 +865,7 @@ function renderHomeProgress(){
   if(!progressList) return;
 
   if(!myCourseAssignments.length){
-    progressList.innerHTML = '<div class="subj"><b>Aucun parcours</b><div class="bar"><i style="width:0%"></i></div><em>En attente d\'un cours assigné par ton professeur</em></div>';
+    progressList.innerHTML = '<div class="subj"><b>Aucun parcours</b><div class="bar"><i style="width:0%"></i></div><em>En attente d\'un cours assigné par ton répétiteur</em></div>';
     if(nextTxt) nextTxt.textContent = 'Prochaine activité : aucune pour l\'instant';
     if(recSec) recSec.style.display = 'none';
     return;
@@ -855,7 +901,7 @@ function renderHomeProgress(){
 function renderMyCoursesPage(){
   const box = document.getElementById('myCoursesList');
   if(!box) return;
-  if(!myCourseAssignments.length){ box.innerHTML = '<div class="empty">Aucun cours assigné pour l\'instant — ton professeur ou l\'école s\'en charge.</div>'; return; }
+  if(!myCourseAssignments.length){ box.innerHTML = '<div class="empty">Aucun cours assigné pour l\'instant — ton répétiteur ou l\'école s\'en charge.</div>'; return; }
   box.innerHTML = myCourseAssignments.map(a=>{
     const c = a.courses;
     const pill = a.status==='termine' ? '<span class="pill done">Terminé</span>' : '<span class="pill todo">À faire</span>';
@@ -923,7 +969,10 @@ async function submitAuth(){
       if(!fullName){ throw new Error("Renseigne ton nom complet."); }
       const city = document.getElementById('authCity').value, district = document.getElementById('authDistrict').value.trim();
       if(!city){ throw new Error("Choisis ta ville."); }
-      const { data, error } = await sb.auth.signUp({ email, password, options:{ data:{ full_name: fullName, role: authRole, city, district, referral_code: ((document.getElementById('authReferral')||{}).value||'').trim().toUpperCase() || null } } });
+      const level = document.getElementById('authLevel').value;
+      if(authRole==='eleve' && !level){ throw new Error("Choisis le niveau de l'élève."); }
+      if(!document.getElementById('authRules').checked){ throw new Error("Accepte les règles de la plateforme pour continuer."); }
+      const { data, error } = await sb.auth.signUp({ email, password, options:{ data:{ full_name: fullName, role: authRole, city, district, level: authRole==='eleve'?level:null, accepted_rules:true, referral_code: ((document.getElementById('authReferral')||{}).value||'').trim().toUpperCase() || null } } });
       if(error) throw error;
       if(!data.session){
         errBox.style.color = 'var(--mint)';
@@ -966,7 +1015,7 @@ async function afterAuthSuccess(){
       }
       if(!role){ role = confirm("Es-tu un parent ? (Annuler = Élève)") ? 'parent' : 'eleve'; }
       const { data: created, error: cerr } = await sb.from('profiles')
-        .upsert({ id:user.id, role, full_name:name, avatar_initials:initialsOf(name), city:md.city||null, district:md.district||null })
+        .upsert({ id:user.id, role, full_name:name, avatar_initials:initialsOf(name), city:md.city||null, district:md.district||null, level: role==='eleve' ? (md.level||null) : null, accepted_rules_at: md.accepted_rules ? new Date().toISOString() : null })
         .select().single();
       if(cerr) throw cerr;
       if(md.referral_code){ try{ await sb.rpc('apply_referral',{p_code:md.referral_code}); }catch(e){} }
@@ -1011,7 +1060,7 @@ async function refreshSessionsAndBanner(){
       teacherInfo[t.id]={ name:t.full_name, avatar_url:t.avatar_url, matricule:t.matricule, is_verified:t.is_verified, subject:t.subject, avg:rw?rw.avg_stars:null, nb:rw?rw.nb:0 };
     });
   }
-  renderSessionsList(list.map(r=>({...r, teacherName: teacherNames[r.teacher_id] || 'Professeur'})));
+  renderSessionsList(list.map(r=>({...r, teacherName: teacherNames[r.teacher_id] || 'Répétiteur'})));
 
   const routeSession = list.find(r=>r.status==='route');
   const banner = document.getElementById('routeBanner');
@@ -1034,7 +1083,7 @@ function renderSessionsList(list){
     const date = d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
     const time = d.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
     let statusTxt = r.status==='done' ? '<div class="sc">Terminée · <a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openRate(\''+r.id+'\',\''+r.teacher_id+'\')">Noter</a></div>' : r.status==='route' ? '<div class="sc">En route</div>' : r.status==='cancelled' ? '<div class="sc miss">Annulée</div>' : '<div class="sc">À venir</div>';
-    statusTxt += teacherLink(r) + onlineBtn(r) + placeBtn(r);
+    statusTxt += durLine(r) + teacherLink(r) + onlineBtn(r) + placeBtn(r);
     return '<div class="datehd">'+date+'</div><div class="hist-row"><div class="hist-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+r.subject+'</b><small>'+r.teacherName+' · '+time+'</small></div>'+statusTxt+'</div></div>';
   }).join('');
 }
@@ -1094,11 +1143,11 @@ async function openMessages(){
   const { data: contacts, error } = await sb.rpc('my_contacts');
   if(error){ box.innerHTML='<div class="empty">Messagerie indisponible : '+esc(error.message)+'</div>'; return; }
   contactsCache = contacts||[];
-  if(!contactsCache.length){ box.innerHTML='<div class="empty">Aucun contact pour l\'instant. Les conversations apparaissent dès que l\'administration te lie à un professeur, un élève ou un parent.</div>'; return; }
+  if(!contactsCache.length){ box.innerHTML='<div class="empty">Aucun contact pour l\'instant. Les conversations apparaissent dès que l\'administration te lie à un répétiteur, un élève ou un parent.</div>'; return; }
   const { data: msgs } = await sb.from('messages').select('sender_id,receiver_id,body,is_read,created_at').or('sender_id.eq.'+myProfile.id+',receiver_id.eq.'+myProfile.id).order('created_at',{ascending:false}).limit(300);
   const last={}, unread={};
   (msgs||[]).forEach(m=>{ const o=m.sender_id===myProfile.id?m.receiver_id:m.sender_id; if(!last[o]) last[o]=m; if(m.receiver_id===myProfile.id && !m.is_read) unread[o]=(unread[o]||0)+1; });
-  const roleLbl={eleve:'Élève',parent:'Parent',professeur:'Professeur'};
+  const roleLbl={eleve:'Élève',parent:'Parent',professeur:'Répétiteur'};
   contactsCache.sort((a,b)=>((last[b.id]&&last[b.id].created_at)||'').localeCompare((last[a.id]&&last[a.id].created_at)||''));
   box.innerHTML=contactsCache.map(c=>{
     const ini=(c.full_name||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
@@ -1196,11 +1245,130 @@ function onlineBtn(r){
   if(r.mode!=='en_ligne'||!(r.status==='pending'||r.status==='route')) return '';
   return r.meeting_url
     ? '<div class="sc"><a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();openClass(\''+r.id+'\')">▶ Rejoindre le cours en ligne</a></div>'
-    : '<div class="sc" style="opacity:.75">Cours en ligne · le professeur ajoutera bientôt le lien</div>';
+    : '<div class="sc" style="opacity:.75">Cours en ligne · le répétiteur ajoutera bientôt le lien</div>';
 }
 function openClass(id){
   const r=(window.sessionsCache||[]).find(x=>x.id===id); if(r&&r.meeting_url) window.open(r.meeting_url,'_blank');
 }
+
+
+/* ================= RÉSERVATION : durée, prix et paiement AVANT validation ================= */
+let bookCfg={rate:1000,max:8}, bookResults=[], bookCtx=null;
+const fcfa=n=>Number(n).toLocaleString('fr-FR')+' F';
+async function initBook(){
+  { const { data: me } = await sb.from('profiles').select('is_verified,id_document_path').eq('id',myProfile.id).single(); if(me){ myProfile.is_verified=me.is_verified; myProfile.id_document_path=me.id_document_path; } }
+  const { data: r } = await sb.rpc('get_rules');
+  bookCfg.max=(r&&r.max_hours)||8; bookCfg.pct=(r&&r.cancellation_percent!=null)?r.cancellation_percent:20; bookCfg.min=(r&&r.rate_min)||1000; bookCfg.maxRate=(r&&r.rate_max)||5000;
+  const hs=document.getElementById('bookHours'), cur=hs.value||'1';
+  hs.innerHTML=Array.from({length:bookCfg.max},(_,i)=>i+1).map(h=>'<option value="'+h+'">'+h+(h>1?' heures':' heure')+'</option>').join('');
+  hs.value=cur;
+  const d=document.getElementById('bookDate'); const t=new Date(); d.min=t.toISOString().slice(0,10); if(!d.value){ t.setDate(t.getDate()+1); d.value=t.toISOString().slice(0,10); }
+  const lv=document.getElementById('bookLevel'); if(!lv.value && myProfile.level) lv.value=myProfile.level;
+  const row=document.getElementById('bookChildRow'), sel=document.getElementById('bookChild');
+  if(myProfile.role==='parent'){
+    const { data } = await sb.rpc('my_children');
+    row.style.display=''; sel.innerHTML=(data&&data.length)?data.map(c=>'<option value="'+c.id+'">Pour '+esc(c.full_name)+'</option>').join(''):'<option value="">Aucun enfant lié</option>';
+  } else row.style.display='none';
+  document.getElementById('bookTeachers').innerHTML=''; document.getElementById('bookMsg').textContent='';
+  updateBookPrice();
+}
+function updateBookPrice(){
+  document.getElementById('bookPrice').innerHTML='Chaque répétiteur fixe son tarif (de '+fcfa(bookCfg.min||1000)+' à '+fcfa(bookCfg.maxRate||5000)+' l\'heure). Le prix final s\'affiche avant le paiement. <b>Annulation après paiement : '+(bookCfg.pct!=null?bookCfg.pct:20)+' % retenus.</b> <a style="text-decoration:underline;cursor:pointer" onclick="showPage(\'rules\')">Voir les règles</a>';
+}
+async function searchTeachers(){
+  const m=document.getElementById('bookMsg'); m.style.color='var(--alert)'; m.textContent='';
+  const subject=document.getElementById('bookSubject').value, mode=document.getElementById('bookMode').value, level=document.getElementById('bookLevel').value;
+  const date=document.getElementById('bookDate').value, time=document.getElementById('bookTime').value;
+  const hours=parseInt(document.getElementById('bookHours').value,10)||1;
+  const student = myProfile.role==='parent' ? document.getElementById('bookChild').value : myProfile.id;
+  if(!student){ m.textContent='Aucun enfant lié à ton compte.'; return; }
+  if(!subject||!level||!date||!time){ m.textContent='Choisis la matière, le niveau, la date et l\'heure.'; return; }
+  const when=new Date(date+'T'+time+':00');
+  if(when.getTime()<Date.now()+3600*1000){ m.textContent='Choisis un horaire au moins 1 heure à l\'avance.'; return; }
+  if(mode==='a_domicile' && !myProfile.is_verified){
+    m.innerHTML='Pour un cours à domicile, ton identité doit d\'abord être vérifiée. <a style="text-decoration:underline;cursor:pointer" onclick="showPage(\'identity\')">Envoyer ma pièce d\'identité</a>'; return;
+  }
+  const city = mode==='a_domicile' ? (myProfile.city||null) : null;
+  if(mode==='a_domicile' && !city){ m.textContent='Renseigne ta ville dans ton profil pour voir les répétiteurs proches.'; }
+  const { data, error } = await sb.rpc('available_teachers',{ p_subject:subject, p_city:city, p_when:when.toISOString(), p_hours:hours, p_level:level, p_mode:mode });
+  if(error){ m.textContent='Erreur : '+error.message+' (script SQL 24 ?)'; return; }
+  bookResults=data||[]; bookCtx={student,subject,mode,when,hours,level};
+  document.getElementById('bookTeachers').innerHTML=bookResults.length?bookResults.map((t,i)=>
+    '<div class="qrow">'+teacherAvatarHtml({name:t.full_name,avatar_url:t.avatar_url},44)+'<div class="t"><b>'+esc(t.full_name)+'</b><small>'+esc(t.matricule||'matricule en attente')+' · '+(t.nb?'★ '+Number(t.avg_stars).toFixed(1)+' ('+t.nb+')':'nouveau')+(t.city?' · '+esc(t.city):'')+'<br><b>'+fcfa(t.hourly_rate*hours)+'</b> pour '+hours+' h ('+fcfa(t.hourly_rate)+'/h)</small></div><button class="qbtn2" onclick="chooseTeacher('+i+')">Choisir</button></div>').join(''):'<div class="empty">Aucun répétiteur disponible à cet horaire pour ce niveau. Essaie une autre heure ou un autre jour.</div>';
+}
+async function chooseTeacher(i){
+  const t=bookResults[i]; if(!t||!bookCtx) return;
+  const c=bookCtx, price=t.hourly_rate*c.hours;
+  const quand=c.when.toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+  if(!confirm(c.subject+' ('+c.level+') avec '+t.full_name+'\n'+quand+'\nDurée : '+c.hours+' h\nPrix : '+fcfa(price)+'\n\nLa séance sera confirmée dès que tu auras payé.\nSi tu annules après paiement, '+(bookCfg.pct!=null?bookCfg.pct:20)+' % sont retenus.')) return;
+  const { data: id, error } = await sb.rpc('book_session',{ p_student:c.student, p_teacher:t.id, p_subject:c.subject, p_mode:c.mode, p_when:c.when.toISOString(), p_hours:c.hours });
+  if(error){ const m=document.getElementById('bookMsg'); m.style.color='var(--alert)'; m.textContent=error.message; return; }
+  await payForSession(id);
+  showPage('history');
+}
+function durLine(r){
+  const h=r.duration_hours||1, unpaid=(r.confirmed===false && r.status==='pending');
+  return '<div class="sc">'+h+' h'+(r.price?' · '+fcfa(r.price):'')+(unpaid?' · <b>En attente de paiement</b> <a href="#" style="color:var(--gold);font-weight:800" onclick="event.preventDefault();payForSession(\''+r.id+'\')">Payer</a>':'')+(r.status==='pending'&&r.confirmed!==false?(r.teacher_accepted_at?' · ✓ Acceptée':' · ⏳ En attente de la réponse du répétiteur'):'')+(r.status==='pending'?' · <a href="#" style="color:var(--alert);font-weight:800" onclick="event.preventDefault();cancelSession(\''+r.id+'\')">Annuler</a>':'')+'</div>';
+}
+
+
+
+/* ================= MOTIF D'ANNULATION (obligatoire) ================= */
+function askCancelReason(title, infoHtml, reasons){
+  return new Promise(resolve=>{
+    const ov=document.createElement('div'); ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    const box=document.createElement('div'); box.style.cssText='width:100%;max-width:480px;max-height:88vh;overflow:auto;background:var(--card,#fff);color:var(--text,#111);border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box';
+    let chosen=null; const done=v=>{ ov.remove(); resolve(v); };
+    box.innerHTML='<div style="font-weight:800;margin-bottom:8px">'+esc(title)+'</div><div style="font-size:.82rem;line-height:1.5;margin-bottom:12px">'+infoHtml+'</div><div style="font-weight:700;font-size:.8rem;margin-bottom:6px">Motif de l\'annulation (obligatoire)</div><div id="crList"></div><textarea id="crNote" rows="3" maxlength="300" class="auth-input" style="display:none" placeholder="Précise ton motif"></textarea><div id="crErr" style="color:var(--alert);font-size:.78rem;margin:6px 0"></div>';
+    const list=box.querySelector('#crList');
+    const off='margin:0 0 8px;text-align:left;background:transparent;border:1px solid var(--line);color:inherit', on='margin:0 0 8px;text-align:left';
+    const btns=reasons.map(r=>{ const b=document.createElement('button'); b.className='auth-btn'; b.style.cssText=off; b.textContent=r;
+      b.onclick=()=>{ chosen=r; btns.forEach(x=>{ x.style.cssText = x===b ? on : off; }); box.querySelector('#crNote').style.display = /^autre/i.test(r)?'block':'none'; };
+      list.appendChild(b); return b; });
+    const ok=document.createElement('button'); ok.className='auth-btn'; ok.style.cssText='margin:6px 0 8px;background:var(--alert)'; ok.textContent="Confirmer l'annulation";
+    ok.onclick=()=>{ const note=box.querySelector('#crNote').value.trim(), err=box.querySelector('#crErr');
+      if(!chosen){ err.textContent='Choisis un motif.'; return; }
+      if(/^autre/i.test(chosen) && note.length<3){ err.textContent='Précise ton motif.'; return; }
+      done({ reason:chosen, note:note||null }); };
+    const back=document.createElement('button'); back.className='auth-btn'; back.style.cssText='margin:0;background:transparent;border:1px solid var(--line);color:inherit'; back.textContent='Retour'; back.onclick=()=>done(null);
+    box.appendChild(ok); box.appendChild(back); ov.appendChild(box); document.body.appendChild(ov);
+  });
+}
+
+/* ================= ANNULATION ET REMBOURSEMENT ================= */
+const CANCEL_REASONS_CLIENT=["Imprévu : je ne suis plus disponible","Erreur de réservation (date, heure ou matière)","J'ai trouvé un autre répétiteur","Le prix ne me convient pas","Problème de santé","Autre motif"];
+async function cancelSession(id){
+  const r=(window.sessionsCache||[]).find(x=>x.id===id); if(!r) return;
+  let info;
+  if(r.confirmed===false) info="Cette séance n'est pas payée : aucun montant ne sera débité.";
+  else {
+    const { data: rules } = await sb.rpc('get_rules');
+    const pctBase=(rules&&rules.cancellation_percent!=null)?rules.cancellation_percent:20, freeH=(rules&&rules.free_hours)||0;
+    const free = freeH>0 && (new Date(r.scheduled_at).getTime()-Date.now()) >= freeH*3600*1000;
+    const pct = free?0:pctBase;
+    const { data: pay } = await sb.from('payments').select('amount').eq('session_id',id).eq('status','paid').eq('refunded',false).order('created_at',{ascending:false}).limit(1).maybeSingle();
+    if(!pay) info='Annuler cette séance ?';
+    else {
+      const retained=Math.round(pay.amount*pct/100/5)*5;
+      info='Tu as payé <b>'+fcfa(pay.amount)+'</b>.<br>Frais d\'annulation '+(free?'(annulation gratuite)':'('+pct+' %)')+' : <b>'+fcfa(retained)+'</b><br>Remboursement : <b>'+fcfa(pay.amount-retained)+'</b><br>L\'annulation est définitive.';
+      if(!myProfile.phone){ alert("Renseigne d'abord ton numéro Mobile Money (Profil > Modes de paiement) pour recevoir ton remboursement."); return; }
+    }
+  }
+  const ans=await askCancelReason('Annuler la séance', info, CANCEL_REASONS_CLIENT); if(!ans) return;
+  const { data, error } = await sb.rpc('cancel_session',{ p_session:id, p_reason:ans.reason, p_note:ans.note });
+  if(error){ alert(error.message+(error.message.includes('function')?' (script SQL 25 ?)':'')); return; }
+  alert(data&&data.refund>0 ? 'Séance annulée. Remboursement de '+fcfa(data.refund)+' : tu le recevras sur ton numéro Mobile Money.' : 'Séance annulée.');
+  refreshSessionsAndBanner();
+}
+/* Historique des paiements : on y ajoute les frais d'annulation et remboursements */
+const _lphBase = loadPayHistory;
+loadPayHistory = async function(){
+  await _lphBase();
+  const box=document.getElementById('payHistory'); if(!box||!myProfile) return;
+  const { data } = await sb.from('refunds').select('*').order('created_at',{ascending:false}).limit(20);
+  if(!data||!data.length) return;
+  box.insertAdjacentHTML('beforeend','<div class="sechd2">Annulations et remboursements</div>'+data.map(r=>'<div class="pay-tx"><div><b>Annulation — '+(r.retained>0?'frais '+fcfa(r.retained):'sans frais')+'</b><small>Remboursé : '+fcfa(r.refund_amount)+' · '+(r.status==='rembourse'?'envoyé':'en cours')+' · '+new Date(r.created_at).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+'</small></div><span>'+fcfa(r.refund_amount)+'</span></div>').join(''));
+};
 
 /* ================= LIEU DE LA SÉANCE (séances à domicile) ================= */
 let placeCtx={sessionId:null,lat:null,lon:null};
@@ -1225,7 +1393,7 @@ async function savePlace(){
   const m=document.getElementById('placeMsg'); m.style.color='var(--alert)';
   const { error } = await sb.rpc('set_session_place',{ p_session:placeCtx.sessionId, p_lat:placeCtx.lat, p_lon:placeCtx.lon, p_note:document.getElementById('placeNote').value });
   if(error){ m.textContent=error.message.includes('Renseigne')?'Utilise ta position ou écris un repère.':'Erreur : '+error.message+' (script SQL 18 ?)'; return; }
-  m.style.color='var(--mint)'; m.textContent='Lieu enregistré. Ton professeur est prévenu.';
+  m.style.color='var(--mint)'; m.textContent='Lieu enregistré. Ton répétiteur est prévenu.';
 }
 
 
@@ -1246,7 +1414,7 @@ function openTeacher(id){
   document.getElementById('teacherCard').innerHTML=
     '<div style="margin:10px 0">'+teacherAvatarHtml(t,110)+'</div>'+
     '<div style="font-size:1.2rem;font-weight:800">'+esc(t.name)+'</div>'+
-    '<div class="qz-fb">'+esc(t.subject||'Professeur')+'</div>'+
+    '<div class="qz-fb">'+esc(t.subject||'Répétiteur')+'</div>'+
     '<div style="display:inline-block;margin:8px 0;padding:6px 14px;border-radius:14px;background:rgba(128,128,128,.18);font-weight:800;letter-spacing:1px">'+esc(t.matricule||'Matricule en attente')+'</div>'+
     '<div class="qz-fb">'+(t.is_verified?'✓ Identité vérifiée par QI Business':'⚠ Identité non vérifiée')+'</div>'+
     '<div class="qz-fb">'+rating+'</div>'+
@@ -1340,6 +1508,145 @@ async function editCity(){
 }
 loadLists();
 
+
+/* ================= RÈGLES DE BASE (affichées à tous) ================= */
+const LEVELS=['Primaire','Collège','Lycée'];
+const money0=n=>Number(n).toLocaleString('fr-FR')+' F';
+async function renderRules(){
+  const box=document.getElementById('rulesBody');
+  const { data: r, error } = await sb.rpc('get_rules');
+  if(error||!r){ box.innerHTML='<div class="empty">Règles indisponibles pour le moment.</div>'; return; }
+  const isTeacher = myProfile && myProfile.role==='professeur';
+  const sec=(t,items)=>'<div class="sechd2">'+t+'</div>'+items.map(i=>'<div class="qz-fb" style="margin:6px 0">• '+i+'</div>').join('');
+  if(r.rules_text){ box.innerHTML='<div style="white-space:pre-wrap;font-size:.88rem;line-height:1.5">'+esc(r.rules_text)+'</div>'; return; }
+  let h='';
+  h+=sec('Réservation et paiement',[
+    "Une séance n'est validée qu'après son paiement dans l'application.",
+    "Une séance réservée mais non payée est annulée au bout de 24 heures.",
+    "Après le paiement, le répétiteur accepte ou refuse la réservation. Sans réponse sous "+(r.accept_hours||12)+" h, la séance est annulée et l'élève est remboursé en totalité.",
+    "Chaque répétiteur indique ses disponibilités : on ne peut réserver que dans ses plages libres.",
+    "Tout paiement passe par l'application (Orange Money, MTN, Moov, Wave ou carte). Aucun paiement en espèces au répétiteur."]);
+  h+=sec('Tarifs',[
+    "Chaque répétiteur fixe son tarif horaire, entre "+money0(r.rate_min)+" et "+money0(r.rate_max)+" de l'heure.",
+    "Le prix est le tarif du répétiteur multiplié par le nombre d'heures choisi. Il est affiché avant le paiement."]);
+  h+=sec('Annulation',[
+    (r.free_hours>0?"Annulation gratuite jusqu'à "+r.free_hours+" h avant la séance. Ensuite, s":"S")+"i l'élève annule après avoir payé, "+r.cancellation_percent+" % du montant payé est retenu et le reste lui est remboursé sur son Mobile Money par l'administration.",
+    "Si le répétiteur annule, l'élève est remboursé en totalité.",
+    "Une séance déjà en route ou terminée ne peut plus être annulée.",
+    "Un motif est obligatoire pour toute annulation (liste de motifs ou texte libre). Il est conservé dans l'historique de la réservation."]);
+  h+=sec('Niveaux',[
+    "Un répétiteur ne peut pas enseigner à la fois au primaire et au collège.",
+    "Les cours en ligne ne sont proposés que par les répétiteurs dont le matériel et les documents pédagogiques ont été validés par l'administration.",
+    "Un cours en ligne se déroule grâce au lien de classe (Google Meet, Zoom, Teams ou Jitsi) ajouté par le répétiteur dans l'application."]);
+  h+=sec('Sécurité',[
+    "Les répétiteurs sont vérifiés par l'administration (pièce d'identité).",
+    "Pour un cours à domicile, le compte qui réserve (parent, tuteur ou élève majeur) doit aussi avoir son identité vérifiée. Le cours en ligne n'exige pas de pièce d'identité.",
+    "Les pièces d'identité ne sont visibles que par leur propriétaire et par l'administration.",
+    "Le bouton SOS prévient immédiatement l'administration.",
+    "Pour protéger les élèves et les répétiteurs, l'administration peut consulter les messages et bloquer une conversation qui ne respecte pas ces règles.",
+    "Un compte qui ne respecte pas les règles peut être suspendu."]);
+  if(isTeacher){
+    const mine = (myProfile.commission_percent!=null)?myProfile.commission_percent:r.commission_percent;
+    h+=sec('Pour les répétiteurs',[
+      "QI Business prélève une commission de "+mine+" % sur chaque prestation payée (elle est comprise entre 20 et 35 %). Elle est calculée et enregistrée automatiquement.",
+      "Ton tarif horaire se règle dans ton profil. Un répétiteur non vérifié ne peut pas recevoir de réservation."]);
+  }
+  box.innerHTML=h;
+}
+
+async function editLevelStudent(){
+  if(!myProfile) return;
+  const lv=await chooseFromList('Niveau de l\'élève',LEVELS,[myProfile.level],false); if(lv===null) return;
+  const { error } = await sb.from('profiles').update({ level:lv }).eq('id',myProfile.id);
+  if(error){ alert(error.message); return; }
+  myProfile.level=lv; updateLevelLabel();
+}
+function updateLevelLabel(){
+  const el=document.getElementById('levelLabel'); if(!el||!myProfile) return;
+  el.textContent = myProfile.level || 'Non renseigné';
+  const row=el.closest('.prow'); if(row) row.style.display = myProfile.role==='eleve' ? '' : 'none';
+}
+
+
+/* ================= VÉRIFICATION D'IDENTITÉ DU COMPTE QUI RÉSERVE ================= */
+/* ---- Caméra ---- */
+const signupPhotos={ id:null, selfie:null };
+function chooseSource(title, allowFile){
+  return new Promise(resolve=>{
+    const ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    const box=document.createElement('div');
+    box.style.cssText='width:100%;max-width:480px;background:var(--card,#fff);color:var(--text,#111);border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box';
+    const done=v=>{ ov.remove(); resolve(v); };
+    const t=document.createElement('div'); t.style.cssText='font-weight:800;margin-bottom:12px'; t.textContent=title; box.appendChild(t);
+    const mk=(label,val,ghost)=>{ const b=document.createElement('button'); b.className='auth-btn'; b.style.cssText=ghost?'margin:0 0 10px;background:transparent;border:1px solid var(--line);color:inherit':'margin:0 0 10px'; b.textContent=label; b.onclick=()=>done(val); box.appendChild(b); };
+    mk('📷 Prendre une photo','camera',false);
+    if(allowFile) mk('📁 Choisir un fichier','file',true);
+    mk('Annuler',null,true);
+    ov.onclick=e=>{ if(e.target===ov) done(null); };
+    ov.appendChild(box); document.body.appendChild(ov);
+  });
+}
+async function capturePhoto(facing){
+  const cam = window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Camera;
+  if(cam){
+    try{
+      const ph = await cam.getPhoto({ quality:85, allowEditing:false, resultType:'base64', source:'CAMERA', direction: facing==='front'?'FRONT':'REAR', correctOrientation:true, width:1600 });
+      const bin=atob(ph.base64String), arr=new Uint8Array(bin.length);
+      for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
+      const fmt=ph.format||'jpeg';
+      return new File([arr],'photo.'+fmt,{type:'image/'+fmt});
+    }catch(e){
+      const msg=String((e&&e.message)||e);
+      if(/cancel|annul|user/i.test(msg)) return null;
+      alert("La caméra n'a pas pu s'ouvrir ("+msg+").\nVérifie que l'autorisation Caméra est accordée à QI Business Répétiteurs dans les paramètres du téléphone, ou choisis un fichier.");
+      return null;
+    }
+  }
+  return new Promise(res=>{ const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.setAttribute('capture', facing==='front'?'user':'environment'); inp.onchange=()=>res(inp.files[0]||null); inp.click(); });
+}
+function pickFile(accept){
+  return new Promise(res=>{ const inp=document.createElement('input'); inp.type='file'; inp.accept=accept||'image/*,.pdf'; inp.onchange=()=>res(inp.files[0]||null); inp.click(); });
+}
+
+function updateIdLabel(){
+  const el=document.getElementById('idLabel'); if(!el||!myProfile) return;
+  el.textContent = myProfile.is_verified ? 'Vérifiée ✓' : (myProfile.id_document_path ? 'En cours de vérification' : 'Non envoyée');
+}
+async function refreshIdentity(){
+  const { data } = await sb.from('profiles').select('is_verified,id_document_path,selfie_path').eq('id',myProfile.id).single();
+  if(data){ myProfile.is_verified=data.is_verified; myProfile.id_document_path=data.id_document_path; myProfile.selfie_path=data.selfie_path; }
+  updateIdLabel();
+  document.getElementById('idStatus').textContent = myProfile.is_verified ? '✓ Identité vérifiée' : (myProfile.id_document_path ? "⏳ Pièce reçue : en cours de vérification par l'administration" : 'Aucune pièce envoyée');
+}
+async function pickClientId(){
+  const s=await chooseSource("Pièce d'identité",true); if(!s) return;
+  const f = s==='camera' ? await capturePhoto('rear') : await pickFile();
+  if(f) uploadClientId(f);
+}
+async function uploadClientId(file){
+  const st=document.getElementById('idStatus'); st.textContent='Envoi en cours…';
+  const safe=(file.name||'piece').replace(/[^A-Za-z0-9._-]/g,'_');
+  const path=myProfile.id+'/id_'+Date.now()+'_'+safe;
+  const { error: upErr } = await sb.storage.from('documents').upload(path,file,{upsert:true});
+  if(upErr){ st.textContent='Échec : '+upErr.message; return; }
+  const { error } = await sb.from('profiles').update({ id_document_path:path }).eq('id',myProfile.id);
+  if(error){ st.textContent='Échec : '+error.message; return; }
+  myProfile.id_document_path=path; myProfile.is_verified=false;
+  await refreshIdentity();
+  alert("Pièce envoyée. L'administration la vérifie et tu seras prévenu.");
+}
+async function clientSelfie(){
+  const f=await capturePhoto('front'); if(!f) return;
+  const m=document.getElementById('idMsg'); m.style.color='var(--alert)'; m.textContent='Envoi…';
+  const path=myProfile.id+'/selfie_'+Date.now()+'.jpg';
+  const { error: upErr } = await sb.storage.from('documents').upload(path,f,{upsert:true});
+  if(upErr){ m.textContent='Échec : '+upErr.message; return; }
+  const { error } = await sb.from('profiles').update({ selfie_path:path }).eq('id',myProfile.id);
+  if(error){ m.textContent='Échec : '+error.message; return; }
+  m.style.color='var(--mint)'; m.textContent='Selfie envoyé.';
+}
+
 /* ================= PARRAINAGE ================= */
 async function refreshReferral(){
   const { data: st } = await sb.from('platform_settings').select('value').eq('key','referral_discount').maybeSingle();
@@ -1357,14 +1664,14 @@ async function shareReferral(){
   else { try{ await navigator.clipboard.writeText(text); alert('Message copié, colle-le dans ta conversation.'); }catch(e){ prompt('Copie ce message :',text); } }
 }
 
-/* ================= BIBLIOTHÈQUE (documents de mes professeurs) ================= */
+/* ================= BIBLIOTHÈQUE (documents de mes répétiteurs) ================= */
 let libItems=[];
 async function refreshLibrary(){
   const box=document.getElementById('libraryBody');
   const { data, error } = await sb.from('library_items').select('*').order('created_at',{ascending:false});
   if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
   libItems=data||[];
-  box.innerHTML=libItems.length?libItems.map((it,i)=>'<div class="qrow"><div class="t"><b>'+esc(it.title)+'</b><small>'+esc(it.subject)+(it.level?' · '+esc(it.level):'')+(it.teacher_name?' · '+esc(it.teacher_name):'')+'</small></div><button class="qbtn2" onclick="openLibFile('+i+')">Ouvrir</button></div>').join(''):'<div class="empty">Aucun document pour l\'instant. Ceux que tes professeurs déposent apparaîtront ici.</div>';
+  box.innerHTML=libItems.length?libItems.map((it,i)=>'<div class="qrow"><div class="t"><b>'+esc(it.title)+'</b><small>'+esc(it.subject)+(it.level?' · '+esc(it.level):'')+(it.teacher_name?' · '+esc(it.teacher_name):'')+'</small></div><button class="qbtn2" onclick="openLibFile('+i+')">Ouvrir</button></div>').join(''):'<div class="empty">Aucun document pour l\'instant. Ceux que tes répétiteurs déposent apparaîtront ici.</div>';
 }
 async function openLibFile(i){
   const it=libItems[i]; if(!it) return;
@@ -1410,7 +1717,7 @@ async function refreshQuizList(){
   const { data, error } = await sb.from('quiz_assignments').select('id,status,score,total,assigned_at,quizzes(title,subject,level,kind)').eq('student_id',myProfile.id).order('assigned_at',{ascending:false});
   if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
   const list=(data||[]).filter(a=>a.quizzes && a.quizzes.kind===qz.kind);
-  if(!list.length){ box.innerHTML='<div class="empty">Aucun '+(qz.kind==='exercice'?'exercice':'quiz')+' pour l\'instant. Ton professeur t\'en enverra ici.</div>'; return; }
+  if(!list.length){ box.innerHTML='<div class="empty">Aucun '+(qz.kind==='exercice'?'exercice':'quiz')+' pour l\'instant. Ton répétiteur t\'en enverra ici.</div>'; return; }
   box.innerHTML=list.map(a=>'<div class="qrow"><div class="t"><b>'+esc(a.quizzes.title)+'</b><small>'+esc(a.quizzes.subject)+(a.quizzes.level?' · '+esc(a.quizzes.level):'')+(a.status==='termine'?' · Score '+a.score+'/'+a.total:'')+'</small></div>'+(a.status==='termine'?'<span class="qz-prog">TERMINÉ</span>':'<button class="qbtn2" onclick="startQuiz(\''+a.id+'\')">Commencer</button>')+'</div>').join('');
 }
 async function startQuiz(id){
@@ -1483,6 +1790,7 @@ let notifChannel=null;
 async function loadNotifs(){
   if(!myProfile) return;
   startMsgRealtime();
+  sb.rpc('expire_unpaid_sessions');
   refreshQuizStats();
   applyPrefsToUI();
   const { data, error } = await sb.from('notifications').select('*').eq('user_id', myProfile.id).order('created_at',{ascending:false}).limit(50);
@@ -1608,8 +1916,8 @@ document.querySelectorAll('a[href="#"]').forEach(a=>{
 
 <script>
 function showPage(name){
-  if(!myProfile && name!=='auth' && name!=='resetPassword') name='auth';
-  { const tb=document.querySelector('.tabbar'); if(tb) tb.style.display = (!myProfile || name==='auth' || name==='resetPassword' || name==='chat') ? 'none' : 'flex'; }
+  if(!myProfile && name!=='auth' && name!=='resetPassword' && name!=='rules') name='auth';
+  { const tb=document.querySelector('.tabbar'); if(tb) tb.style.display = (!myProfile || name==='auth' || name==='resetPassword' || name==='rules' || name==='chat') ? 'none' : 'flex'; }
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -1622,12 +1930,15 @@ function showPage(name){
   if(name==='notifs') markNotifsRead();
   if(name==='messages') openMessages();
   if(name==='quizList') refreshQuizList();
+  if(name==='book') initBook();
   if(name==='children') refreshChildren();
   if(name==='library') refreshLibrary();
   if(name==='help') refreshSupport();
   if(name==='referral') refreshReferral();
   if(name==='settings') applyPrefsToUI();
-  if(name==='profile') updateCityLabel();
+  if(name==='profile'){ updateCityLabel(); updateLevelLabel(); updateIdLabel(); }
+  if(name==='identity') refreshIdentity();
+  if(name==='rules') renderRules();
   if(name==='progress') refreshProgress();
   if(name==='results') refreshResults();
   if(name==='payment') loadPayHistory();

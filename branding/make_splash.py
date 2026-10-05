@@ -11,3 +11,6 @@ for p in glob.glob('android/app/src/main/res/drawable*/splash*.png'):
     canvas.save(p)
     n += 1
 print('écrans de démarrage remplacés :', n)
+open('branding/.splash_done', 'w').write(str(n))
+if n == 0:
+    print('ATTENTION : aucun fichier splash trouvé dans le projet Android')
