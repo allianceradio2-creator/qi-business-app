@@ -1,0 +1,58 @@
+name: Build APK
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Installer Capacitor
+        run: npm install
+      - name: Créer le projet Android
+        run: npx cap add android
+      - name: Autorisations Android (localisation, appareil photo)
+        run: python3 branding/patch_manifest.py
+      - name: Notifications téléphone (fichier Firebase)
+        env:
+          GSJ: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          if [ -n "$GSJ" ]; then
+            printf '%s' "$GSJ" > android/app/google-services.json
+            echo "google-services.json ajouté : notifications téléphone activées"
+          else
+            echo "Secret GOOGLE_SERVICES_JSON absent : l'app sera construite SANS notifications téléphone"
+          fi
+      - name: Logo QI Business (icône du téléphone)
+        run: |
+          cp -r android-res/* android/app/src/main/res/
+          rm -f android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+          rm -f android/app/src/main/res/drawable/ic_launcher_background.xml
+          rm -f android/app/src/main/res/values/ic_launcher_background.xml
+      - name: Synchroniser les fichiers web
+        run: npx cap sync android
+      - name: Logo QI Business (écran de démarrage)
+        run: |
+          pip install pillow
+          python3 branding/make_splash.py
+          python3 branding/patch_styles.py
+      - name: Vérifier que le logo est bien en place
+        run: python3 branding/check_branding.py
+      - name: Construire l'APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qi-business-pro-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk

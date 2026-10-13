@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QI Business Enseignants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B1B33; --ink-2:#142A4D; --ink-3:#1C3968;
+  --gold:#C9A24B; --gold-dark:#A9822F; --gold-soft:#F3E7CC;
+  --bg:#F8F5EE; --card:#FFFFFF; --line:#E9E2D0;
+  --text:#151F35; --sub:#767159;
+  --mint:#2E6E52; --mint-soft:#E3EEE7;
+  --alert:#A9432B; --alert-soft:#F4E2DC;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220; --card:#131E33; --line:#243450; --text:#EFEEE6; --sub:#9AA3B8;
+    --gold-soft:#2C2513; --mint-soft:#12241D; --alert-soft:#301B16;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1220; --card:#131E33; --line:#243450; --text:#EFEEE6; --sub:#9AA3B8;
+  --gold-soft:#2C2513; --mint-soft:#12241D; --alert-soft:#301B16;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
+*{margin:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+body{height:100%; background:var(--bg); color:var(--text); font-family:"Manrope",system-ui,sans-serif; display:flex; justify-content:center;}
+.serif{font-family:"Fraunces",serif;}
+.frame{width:100%; max-width:430px; min-height:100%; background:var(--bg); position:relative; overflow:hidden;}
+
+.splash{position:absolute; inset:0; z-index:20; background:radial-gradient(120% 90% at 15% 0%, #1C3968 0%, var(--ink) 55%, #081226 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; transition:opacity .5s ease, visibility .5s ease;}
+.splash.hide{opacity:0; visibility:hidden; pointer-events:none;}
+.mono{width:76px; height:76px; border-radius:50%; border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; margin-bottom:20px;}
+.mono span{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:var(--gold);}
+.splash h1{font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; color:#fff;}
+.splash h1 em{font-style:normal; color:var(--gold);}
+.splash p{color:#B9C2D6; font-size:.86rem; margin-top:8px; font-weight:500;}
+.splash-line{width:34px; height:1px; background:var(--gold); margin:22px 0;}
+.enter-btn{background:var(--gold); color:var(--ink); border:0; font-family:"Manrope",sans-serif; font-weight:800; font-size:.86rem; padding:13px 34px; border-radius:30px; cursor:pointer;}
+
+.app{min-height:100%; padding-bottom:calc(78px + env(safe-area-inset-bottom,0px));}
+.hdr{background:linear-gradient(155deg, var(--ink-3) 0%, var(--ink) 62%, #081226 100%); color:#fff; padding:18px 18px 50px; border-radius:0 0 24px 24px; padding-top:calc(18px + env(safe-area-inset-top,0px));}
+.hdr-top{display:flex; align-items:center; justify-content:space-between;}
+.brand{font-family:"Fraunces",serif; font-weight:600; font-size:1.05rem;}
+.brand em{font-style:normal; color:var(--gold);}
+.brand small{display:block; font-size:.62rem; color:var(--gold); font-weight:700; letter-spacing:.5px; margin-top:1px;}
+.avatar{width:36px; height:36px; border-radius:50%; border:1px solid var(--gold); color:var(--gold); font-weight:800; font-size:.82rem; display:flex; align-items:center; justify-content:center; cursor:pointer;}
+.greet{margin-top:18px; font-family:"Fraunces",serif; font-size:1.35rem; font-weight:600; line-height:1.3;}
+.greet small{display:block; font-family:"Manrope",sans-serif; font-weight:500; font-size:.8rem; color:#AEB9D2; margin-top:4px;}
+
+.onduty{display:flex; align-items:center; gap:8px; margin-top:16px; background:rgba(255,255,255,.08); padding:10px 12px; border-radius:12px;}
+.onduty b{flex:1; font-size:.78rem; font-weight:700;}
+.dot{width:8px; height:8px; border-radius:50%; background:var(--sub); flex-shrink:0;}
+.dot.live{background:#3FBE7A; box-shadow:0 0 0 3px rgba(63,190,122,.25);}
+.mswitch{width:40px; height:24px; border-radius:20px; background:rgba(255,255,255,.18); position:relative; flex-shrink:0; cursor:pointer; border:0;}
+.mswitch i{position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; transition:transform .18s ease;}
+.mswitch.on{background:var(--gold);}
+.mswitch.on i{transform:translateX(16px);}
+
+.content{padding:0 16px; margin-top:-32px;}
+.score-card{background:var(--card); border-radius:18px; padding:16px 18px; box-shadow:0 14px 30px -18px rgba(11,27,51,.45); display:flex; align-items:center; gap:14px; border:1px solid var(--line);}
+.score-ring{width:58px; height:58px; border-radius:50%; background:conic-gradient(var(--gold) calc(var(--pct,72)*1%), var(--gold-soft) 0); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.score-ring i{width:46px; height:46px; border-radius:50%; background:var(--card); display:flex; flex-direction:column; align-items:center; justify-content:center; font-style:normal;}
+.score-ring b{font-family:"Fraunces",serif; font-size:1rem; font-weight:600; line-height:1; color:var(--ink-3);}
+.score-ring small{font-size:.5rem; color:var(--sub); font-weight:700;}
+.score-txt{flex:1;}
+.score-txt p{font-weight:800; font-size:.9rem;}
+.score-txt span{font-size:.75rem; color:var(--mint); font-weight:700;}
+.score-txt em{display:block; font-style:normal; font-size:.71rem; color:var(--sub); margin-top:3px;}
+
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:11px; margin-top:18px;}
+.tile{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 6px 12px; text-align:center; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:9px;}
+.tile .ic{width:38px; height:38px; border-radius:11px; background:var(--ink); display:flex; align-items:center; justify-content:center;}
+.tile .ic svg{width:18px; height:18px; stroke:var(--gold);}
+.tile span{font-size:.71rem; font-weight:700; line-height:1.15;}
+
+.sec{margin-top:22px;}
+.sec-hd{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px;}
+.sec-hd h3{font-family:"Fraunces",serif; font-size:1rem; font-weight:600;}
+.sec-hd a{font-size:.74rem; color:var(--gold-dark); font-weight:700; text-decoration:none;}
+
+.sess{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px;}
+.sess-top{display:flex; align-items:center; gap:12px;}
+.sess .ic{width:36px; height:36px; border-radius:10px; flex-shrink:0; background:var(--ink); display:flex; align-items:center; justify-content:center;}
+.sess .ic svg{width:16px; height:16px; stroke:var(--gold);}
+.sess .t{flex:1; min-width:0;}
+.sess .t b{font-size:.83rem; font-weight:800; display:block;}
+.sess .t small{font-size:.73rem; color:var(--sub);}
+.sess .time{font-size:.8rem; font-weight:800; color:var(--ink-3); text-align:right; flex-shrink:0;}
+.sess-actions{display:flex; gap:8px; margin-top:10px;}
+.sbtn{flex:1; border:0; border-radius:11px; padding:9px; font-family:inherit; font-weight:700; font-size:.74rem; cursor:pointer;}
+.sbtn.primary{background:var(--gold); color:var(--ink);}
+.sbtn.ghost{background:var(--bg); border:1px solid var(--line); color:var(--text);}
+.sbtn.done{background:var(--mint-soft); color:var(--mint);}
+.sbtn[disabled]{opacity:.55; pointer-events:none;}
+.status-pill{display:inline-block; font-size:.6rem; font-weight:800; padding:3px 8px; border-radius:8px; margin-left:8px; vertical-align:middle;}
+.status-pill.route{background:var(--gold-soft); color:var(--gold-dark);}
+.status-pill.ok{background:var(--mint-soft); color:var(--mint);}
+
+.demo-flag{display:inline-block; font-size:.6rem; font-weight:800; letter-spacing:.3px; background:var(--alert-soft); color:var(--alert); padding:3px 8px; border-radius:8px; margin-top:8px;}
+
+.tabbar{position:fixed; left:50%; transform:translateX(-50%); bottom:0; width:100%; max-width:430px; background:var(--card); border-top:1px solid var(--line); display:flex; padding:8px 6px calc(10px + env(safe-area-inset-bottom,0px)); z-index:5;}
+.tab{flex:1; border:0; background:transparent; font-family:inherit; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--sub); padding:4px 2px;}
+.tab svg{width:20px; height:20px;}
+.tab span{font-size:.61rem; font-weight:700;}
+.tab.active{color:var(--gold-dark);}
+
+.hidden{display:none !important;}
+.qrow{padding:14px;border-bottom:1px solid rgba(128,128,128,.2);display:flex;align-items:center;gap:10px}.qrow .t{flex:1;min-width:0}.qrow .t b{display:block;font-size:.92rem}.qrow .t small{opacity:.7}.qbtn2{border:0;border-radius:10px;background:var(--gold);color:var(--ink);font-weight:800;padding:8px 14px;cursor:pointer;font-size:.8rem}.qbtn2.ghost{background:transparent;border:1px solid rgba(128,128,128,.4);color:inherit}.qz-q{font-size:1.02rem;font-weight:700;margin:10px 0 16px;line-height:1.4}.qz-c{display:block;width:100%;text-align:left;padding:13px 14px;margin-bottom:10px;border-radius:12px;border:1px solid rgba(128,128,128,.35);background:transparent;color:inherit;font:inherit;cursor:pointer}.qz-c.sel{border-color:var(--gold);background:rgba(200,160,60,.15)}.qz-c.ok{border-color:#2e9e6b;background:rgba(46,158,107,.18)}.qz-c.ko{border-color:#e5484d;background:rgba(229,72,77,.15)}.qz-fb{font-size:.84rem;margin:6px 0 14px;opacity:.9}.qz-prog{font-size:.75rem;opacity:.7;letter-spacing:.5px}.qb{border:1px solid rgba(128,128,128,.3);border-radius:12px;padding:10px;margin:10px 0}.qb .auth-input{margin-bottom:8px}.contact{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid rgba(128,128,128,.2);cursor:pointer}.contact .av{width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}.contact .t{flex:1;min-width:0}.contact .t b{display:block;font-size:.9rem}.contact .t small{opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}.contact .un{background:#e5484d;color:#fff;border-radius:10px;min-width:20px;height:20px;font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 5px}#chatLog{display:flex;flex-direction:column;gap:6px;padding:12px;height:calc(100vh - 230px);overflow-y:auto}.bub{max-width:78%;padding:9px 12px;border-radius:14px;font-size:.88rem;line-height:1.35;word-wrap:break-word}.bub.me{align-self:flex-end;background:var(--gold);color:var(--ink);border-bottom-right-radius:4px}.bub.them{align-self:flex-start;background:rgba(128,128,128,.18);border-bottom-left-radius:4px}.bub small{display:block;font-size:.62rem;opacity:.65;margin-top:3px}.chatbar{display:flex;gap:8px;padding:10px 12px}.chatbar input{flex:1;padding:12px;border-radius:22px;border:1px solid rgba(128,128,128,.3);background:transparent;color:inherit;font:inherit}.chatbar button{border:0;border-radius:22px;background:var(--gold);color:var(--ink);font-weight:800;padding:0 18px;cursor:pointer}.bell{position:relative;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--gold);cursor:pointer}.bell svg{width:22px;height:22px}.bell i{position:absolute;top:0;right:0;min-width:16px;height:16px;border-radius:8px;background:#e5484d;color:#fff;font-size:.62rem;font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px}.notif{padding:12px 14px;border-bottom:1px solid rgba(128,128,128,.2)}.notif.unread{border-left:3px solid var(--gold)}.notif b{display:block;font-size:.9rem}.notif small{opacity:.7}.rev{padding:12px 14px;border-bottom:1px solid rgba(128,128,128,.2)}.rev b{color:var(--gold)}
+.page{display:none;}
+.page.active{display:block;}
+#page-home.active{display:block;}
+.pagehead{padding:16px 18px 14px; padding-top:calc(16px + env(safe-area-inset-top,0px)); background:var(--ink); color:#fff; display:flex; align-items:center; gap:12px; border-radius:0 0 20px 20px;}
+.pagehead h2{font-family:"Fraunces",serif; font-weight:600; font-size:1.15rem;}
+.back{width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.12); border:0; color:var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;}
+.back svg{width:16px; height:16px;}
+.pbody{padding:16px;}
+.datehd{font-size:.72rem; font-weight:800; color:var(--sub); margin:16px 0 8px;}
+.datehd:first-child{margin-top:2px;}
+
+.stat-row{display:flex; gap:10px; margin-bottom:16px;}
+.stat{flex:1; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px; text-align:center;}
+.stat b{font-family:"Fraunces",serif; font-size:1.15rem; display:block; color:var(--ink-3);}
+.stat small{font-size:.68rem; color:var(--sub); font-weight:700;}
+
+.txrow{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px;}
+.txrow-top{display:flex; align-items:center; justify-content:space-between;}
+.txrow-top b{font-size:.83rem; font-weight:800;}
+.txrow-top span{font-size:.85rem; font-weight:800; color:var(--mint);}
+.txrow small{font-size:.72rem; color:var(--sub); display:block; margin-top:2px;}
+.split{display:flex; justify-content:space-between; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:.72rem;}
+.split div{text-align:center; flex:1;}
+.split b{display:block; font-size:.82rem;}
+.split .mine b{color:var(--mint);}
+.split .fee b{color:var(--sub);}
+
+.elrow{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:12px 14px; margin-bottom:9px; cursor:pointer;}
+.elrow .av{width:38px; height:38px; border-radius:50%; background:var(--gold-soft); color:var(--gold-dark); font-family:"Fraunces",serif; font-weight:700; font-size:.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.elrow .t{flex:1; min-width:0;}
+.elrow .t b{font-size:.83rem; font-weight:800; display:block;}
+.elrow .t small{font-size:.72rem; color:var(--sub);}
+.elrow .chev{stroke:var(--sub); width:15px; height:15px;}
+
+.prof-hero{background:var(--ink); color:#fff; padding:26px 18px 24px; text-align:center; border-radius:0 0 22px 22px; padding-top:calc(26px + env(safe-area-inset-top,0px)); cursor:pointer;}
+.prof-avatar{width:76px; height:76px; border-radius:50%; background:var(--gold-soft); color:var(--ink); font-family:"Fraunces",serif; font-weight:600; font-size:1.7rem; display:flex; align-items:center; justify-content:center; margin:0 auto 10px;}
+.prof-hero .nm{font-family:"Fraunces",serif; font-weight:600; font-size:1.15rem;}
+.prof-hero small{color:#AEB9D2; font-size:.78rem; display:block; margin-top:3px;}
+.plist{padding:16px;}
+.prow{display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; cursor:pointer;}
+.prow svg{width:18px; height:18px; stroke:var(--ink-3); flex-shrink:0;}
+.prow .t{flex:1;}
+.prow .t b{font-size:.83rem; font-weight:800; display:block;}
+.prow .t small{font-size:.72rem; color:var(--sub);}
+.prow .chev{stroke:var(--sub); width:15px; height:15px;}
+.stog{display:flex; align-items:center; justify-content:space-between; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:14px; margin-bottom:10px;}
+.stog .t b{font-size:.85rem; font-weight:800; display:block;}
+.stog .t small{font-size:.72rem; color:var(--sub); display:block; margin-top:3px;}
+.switch{width:44px; height:26px; border-radius:20px; background:var(--line); position:relative; flex-shrink:0; cursor:pointer; border:0;}
+.switch i{position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:#fff; transition:transform .18s ease; box-shadow:0 1px 3px rgba(0,0,0,.25);}
+.switch.on{background:var(--gold);}
+.switch.on i{transform:translateX(18px);}
+.sechd2{font-size:.72rem; font-weight:800; color:var(--sub); margin:18px 0 8px;}
+.pill{display:inline-block; font-size:.66rem; font-weight:800; padding:3px 9px; border-radius:8px;}
+.pill.todo{background:var(--gold-soft); color:var(--gold-dark);}
+.pill.done{background:var(--mint-soft); color:var(--mint);}
+textarea.auth-input{resize:vertical; min-height:90px; font-family:inherit;}
+select.auth-input{-webkit-appearance:none; appearance:none; line-height:1.3; padding-right:38px; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238a8a7a' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right 14px center;}
+.geobox{background:var(--card); border:1px solid var(--line); border-radius:15px; padding:13px 14px; margin-bottom:10px; font-size:.76rem; color:var(--sub);}
+.geobox b{display:block; color:var(--text); font-size:.83rem; margin-bottom:3px;}
+.empty{padding:16px; text-align:center; color:var(--sub); font-size:.82rem;}
+.auth-input{width:100%; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 14px; font-family:inherit; font-size:.85rem; color:var(--text); margin-bottom:10px;}
+.auth-btn{width:100%; background:var(--gold); color:var(--ink); border:0; border-radius:14px; padding:14px; font-family:inherit; font-weight:800; font-size:.88rem; cursor:pointer; margin-top:6px;}
+.auth-btn[disabled]{opacity:.6;}
+.auth-switch{text-align:center; margin-top:14px; font-size:.8rem; color:var(--sub);}
+.auth-switch a{color:var(--gold-dark); font-weight:700; cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="splash" id="splash">
+    <img src="icons/icon-512.png" alt="QI Business Enseignants" style="width:120px;height:120px;border-radius:26px;margin-bottom:20px;box-shadow:0 12px 30px rgba(0,0,0,.35)">
+    <h1>QI Business <em>Enseignants</em></h1>
+    <p>L'espace des enseignants.</p>
+    <div class="splash-line"></div>
+    <button class="enter-btn" id="enterBtn">Commencer</button>
+  </div>
+
+  <div class="app">
+    <!-- CONNEXION / INSCRIPTION -->
+    <div class="page active" id="page-auth">
+      <div class="pagehead" style="border-radius:0"><h2>QI Business Enseignants</h2></div>
+      <div class="pbody">
+        <div class="sechd2" id="authModeLabel">Connexion</div>
+        <div id="authError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
+        <div id="authNameRow" style="display:none">
+          <input class="auth-input" id="authName" placeholder="Nom complet">
+          <select class="auth-input" id="authCity" data-list="cities"><option value="">Ville…</option></select>
+          <input class="auth-input" id="authDistrict" placeholder="Quartier (facultatif)">
+          <label style="display:flex;gap:8px;align-items:flex-start;font-size:.78rem;margin:6px 0"><input type="checkbox" id="authRules" style="margin-top:2px"><span>J'ai lu et j'accepte les <a style="text-decoration:underline;cursor:pointer" onclick="showPage('rules')">règles de la plateforme</a></span></label>
+        </div>
+        <input class="auth-input" id="authEmail" type="email" placeholder="E-mail" autocomplete="email">
+        <input class="auth-input" id="authPassword" type="password" placeholder="Mot de passe" autocomplete="current-password">
+        <div id="authSubjectRow" style="display:none">
+          <input class="auth-input" id="authSubject" placeholder="Matières enseignées (touche pour choisir)" readonly onclick="openSubjectPicker('authSubject')">
+          <input class="auth-input" id="authLevel" placeholder="Niveaux enseignés (touche pour choisir)" readonly onclick="openLevelPicker('authLevel')">
+        </div>
+        <div id="authIdDocRow" style="display:none">
+          <div class="auth-input" onclick="captureSignup('id')" style="cursor:pointer"><span id="authIdLabel">📷 Ma pièce d'identité (photo ou fichier) — obligatoire</span></div>
+          <div class="auth-input" onclick="captureSignup('selfie')" style="cursor:pointer"><span id="authSelfieLabel">🤳 Selfie en tenant ma pièce d'identité (recommandé)</span></div>
+        </div>
+        <button class="auth-btn" id="authSubmitBtn" onclick="submitAuth()">Se connecter</button>
+        <div id="forgotRow" style="text-align:right; margin:-4px 0 10px;"><a onclick="forgotPassword()" style="font-size:.76rem; color:var(--gold-dark); cursor:pointer;">Mot de passe oublié ?</a></div>
+        <div class="auth-switch" id="authSwitchTxt">Pas encore de compte ? <a onclick="setAuthMode('signup')">Créer un compte</a></div>
+      </div>
+    </div>
+
+    <!-- CHANGER MON MOT DE PASSE -->
+    <div class="page" id="page-changePassword">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Changer mon mot de passe</h2></div>
+      <div class="pbody">
+        <div id="cpError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
+        <input class="auth-input" id="cpNew1" type="password" placeholder="Nouveau mot de passe (6 caractères minimum)" autocomplete="new-password">
+        <input class="auth-input" id="cpNew2" type="password" placeholder="Confirme le mot de passe" autocomplete="new-password">
+        <button class="auth-btn" id="cpBtn" onclick="changePassword()">Enregistrer</button>
+      </div>
+    </div>
+
+    <!-- RÉINITIALISATION DU MOT DE PASSE -->
+    <div class="page" id="page-resetPassword">
+      <div class="pagehead" style="border-radius:0"><h2>Nouveau mot de passe</h2></div>
+      <div class="pbody">
+        <div id="resetError" style="display:none; color:var(--alert); font-size:.78rem; font-weight:700; margin-bottom:10px;"></div>
+        <p id="resetInfo" style="font-size:.82rem; color:var(--sub); margin-bottom:14px;">Saisis le code reçu par e-mail et choisis un nouveau mot de passe.</p>
+        <input class="auth-input" id="resetCode" inputmode="numeric" maxlength="10" placeholder="Code reçu par e-mail" autocomplete="one-time-code">
+        <input class="auth-input" id="newPassword1" type="password" placeholder="Nouveau mot de passe" autocomplete="new-password">
+        <input class="auth-input" id="newPassword2" type="password" placeholder="Confirme le mot de passe" autocomplete="new-password">
+        <button class="auth-btn" id="resetSubmitBtn" onclick="submitNewPassword()">Valider</button>
+        <div class="auth-switch"><a onclick="forgotPassword()">Renvoyer le code</a> · <a onclick="showPage('auth')">Annuler</a></div>
+      </div>
+    </div>
+
+    <div class="page" id="page-home">
+    <div class="hdr">
+      <div class="hdr-top">
+        <div class="brand">QI <em>Business</em><small>ESPACE ENSEIGNANT</small></div>
+        <div style="display:flex;align-items:center;gap:10px"><button onclick="sendSOS()" aria-label="SOS" style="background:#e5484d;color:#fff;border:0;border-radius:18px;padding:6px 12px;font-weight:800;font-size:.75rem;letter-spacing:.5px;cursor:pointer">SOS</button><div class="bell" onclick="showPage('notifs')" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><i id="bellBadge" class="hidden">0</i></div><div class="avatar" id="avatarInit" onclick="showPage('profile')">··</div></div>
+      </div>
+      <div class="greet" id="greetTxt">Bonjour<small>Chargement de ton espace…</small></div>
+      <div class="onduty">
+        <div class="dot" id="dutyDot"></div>
+        <b id="dutyLabel">Hors ligne</b>
+        <button class="mswitch" id="dutyBtn" onclick="toggleDuty()"><i></i></button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="score-card">
+        <div class="score-ring" id="ratingRing" style="--pct:0" onclick="showPage('reviews')"><i><b id="ratingVal">—</b><small>/5</small></i></div>
+        <div class="score-txt">
+          <p>Note moyenne des élèves</p>
+          <span id="activeStudentsTxt">Aucun élève pour l'instant</span>
+          <em id="nextSessionTxt">Prochaine séance : aucune</em>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="tile" onclick="showPage('planning')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><span>Planning</span></div>
+        <div class="tile" onclick="showPage('students')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="18" cy="9" r="2.4"/><path d="M15.8 13a5 5 0 0 1 6.7 4.7"/></svg></div><span>Mes élèves</span></div>
+        <div class="tile" onclick="showPage('earnings')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><span>Mes gains</span></div>
+        <div class="tile" onclick="showPage('courses')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Mes cours</span></div>
+        <div class="tile" onclick="showPage('messages')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span>Messages</span></div>
+        <div class="tile" onclick="showPage('quizzes')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div><span>Quiz</span></div>
+        <div class="tile" onclick="showPage('library')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><span>Bibliothèque</span></div>
+        <div class="tile" onclick="showPage('help')"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div><span>Assistance</span></div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-hd"><h3>Aujourd'hui</h3><a href="#" onclick="event.preventDefault();showPage('planning')">Tout voir</a></div>
+        <div id="todaySessions"></div>
+      </div>
+    </div>
+    </div><!-- /page-home -->
+
+    <!-- PLANNING -->
+    <div class="page" id="page-planning">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mon planning</h2></div>
+      <div class="pbody">
+        <div class="datehd">Toutes mes séances</div>
+        <div id="planningToday"></div>
+      </div>
+    </div>
+
+    <!-- ELEVES -->
+    <div class="page" id="page-students">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes élèves</h2></div>
+      <div class="pbody" id="studentsListContainer">
+        <div class="empty">Chargement…</div>
+      </div>
+    </div>
+
+    <!-- MES COURS -->
+    <div class="page" id="page-courses">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes cours</h2></div>
+      <div class="pbody">
+        <div class="sechd2">Créer une leçon</div>
+        <input class="auth-input" id="crsTitle" placeholder="Titre de la leçon (ex : Les fractions)">
+        <select class="auth-input" id="crsSubject" data-list="subjects"><option value="">Matière…</option></select>
+        <input class="auth-input" id="crsLevel" placeholder="Niveau (ex : 3e)">
+        <textarea class="auth-input" id="crsContent" placeholder="Contenu de la leçon (texte que l'élève va lire)"></textarea>
+        <button class="auth-btn" onclick="createCourse()">Publier la leçon</button>
+        <div id="crsMsg" style="font-size:.78rem; margin-top:6px;"></div>
+
+        <div class="sechd2">Mes leçons publiées</div>
+        <div id="myCoursesList"><div class="empty">Chargement…</div></div>
+      </div>
+    </div>
+
+    <!-- DÉTAIL D'UN COURS -->
+    <div class="page" id="page-courseDetail">
+      <div class="pagehead"><button class="back" onclick="showPage('courses')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="crsDetailTitle">Leçon</h2></div>
+      <div class="pbody">
+        <div id="crsDetailMeta" style="font-size:.78rem; color:var(--sub); margin-bottom:10px;"></div>
+        <div id="crsDetailContent" style="font-size:.85rem; line-height:1.5; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:16px; white-space:pre-wrap;"></div>
+
+        <div class="sechd2">Assigner à un élève</div>
+        <select class="auth-input" id="crsAssignSelect"><option value="">Choisir un élève…</option></select>
+        <button class="auth-btn" onclick="assignCourseToStudent()">Assigner ce parcours</button>
+        <div id="crsAssignMsg" style="font-size:.78rem; margin-top:6px;"></div>
+
+        <div class="sechd2">Déjà assigné à</div>
+        <div id="crsAssignmentsList"><div class="empty">Aucun élève pour l'instant.</div></div>
+      </div>
+    </div>
+
+    <!-- GAINS -->
+    <div class="page" id="page-earnings">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes gains</h2></div>
+      <div class="pbody">
+        <div class="stat-row" id="earningsStats">
+          <div class="stat"><b>—</b><small>REVENU TOTAL</small></div>
+          <div class="stat"><b>—</b><small>TA PART</small></div>
+          <div class="stat"><b>—</b><small>À TE VERSER</small></div>
+        </div>
+        <div id="bonusCard"></div>
+        <div class="sechd2">Détail des paiements</div>
+        <div id="earningsList"><div class="txrow">Chargement…</div></div>
+      </div>
+    </div>
+
+    <!-- ASSISTANCE -->
+    <div class="page" id="page-help">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Assistance</h2></div>
+      <div class="pbody">
+        <div class="sechd2">Nouvelle demande</div>
+        <select class="auth-input" id="tkCat"><option value="question">Question</option><option value="litige">Litige sur une séance</option><option value="signalement">Signaler un comportement</option><option value="autre">Autre</option></select>
+        <select class="auth-input" id="tkSession"><option value="">Aucune séance concernée</option></select>
+        <input class="auth-input" id="tkSubject" maxlength="120" placeholder="Sujet">
+        <textarea class="auth-input" id="tkBody" rows="4" maxlength="2000" placeholder="Décris ton problème"></textarea>
+        <button class="auth-btn" onclick="sendTicket()">Envoyer</button>
+        <div id="tkMsg" style="font-size:.78rem;margin-top:6px"></div>
+        <div class="sechd2">Mes demandes</div>
+        <div id="tkList"><div class="empty">Chargement…</div></div>
+      </div>
+    </div>
+
+    <!-- RÈGLES DE LA PLATEFORME -->
+    <div class="page" id="page-rules">
+      <div class="pagehead"><button class="back" onclick="showPage(myProfile?'profile':'auth')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Règles de la plateforme</h2></div>
+      <div class="pbody" id="rulesBody"><div class="empty">Chargement…</div></div>
+    </div>
+
+    <!-- MES DISPONIBILITÉS -->
+    <div class="page" id="page-availability">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes disponibilités</h2></div>
+      <div class="pbody">
+        <div class="qz-fb">Indique les jours et les heures où tu peux donner cours. Les élèves ne peuvent réserver que dans ces plages. Si tu ne renseignes rien, tu es considéré disponible à toute heure.</div>
+        <div id="availRows"></div>
+        <button class="auth-btn" onclick="saveAvailability()">Enregistrer mes disponibilités</button>
+        <div id="availMsg" style="font-size:.78rem;margin-top:6px"></div>
+      </div>
+    </div>
+
+    <!-- COURS EN LIGNE : SOUSCRIPTION -->
+    <div class="page" id="page-online">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Cours en ligne</h2></div>
+      <div class="pbody">
+        <div id="onlineStatusBox"></div>
+        <div id="onlineForm">
+          <div class="qz-fb">Pour recevoir des réservations en ligne, tu souscris à l'offre de cours en ligne. L'administration contrôle ton matériel et tes documents pédagogiques avant de te valider.</div>
+          <div class="sechd2">Mon matériel</div>
+          <label class="qz-fb" style="display:flex;gap:8px"><input type="checkbox" id="oqDevice"> Un ordinateur, une tablette ou un téléphone adapté</label>
+          <label class="qz-fb" style="display:flex;gap:8px"><input type="checkbox" id="oqNet"> Une connexion internet stable</label>
+          <label class="qz-fb" style="display:flex;gap:8px"><input type="checkbox" id="oqMic"> Un micro (et des écouteurs)</label>
+          <label class="qz-fb" style="display:flex;gap:8px"><input type="checkbox" id="oqCam"> Une caméra</label>
+          <label class="qz-fb" style="display:flex;gap:8px"><input type="checkbox" id="oqBoard"> Je peux partager un tableau ou des documents pendant le cours</label>
+          <textarea class="auth-input" id="oqNotes" rows="3" maxlength="400" placeholder="Décris ton matériel et tes supports pédagogiques (fiches, programmes, exercices…)"></textarea>
+          <div class="sechd2">Preuves (photos du matériel, documents)</div>
+          <button class="qbtn2" style="margin-right:6px" onclick="addOnlineDoc('camera')">📷 Prendre une photo</button><button class="qbtn2 ghost" onclick="addOnlineDoc('file')">📁 Choisir un fichier</button>
+          <div id="oqDocs" style="margin-top:8px"></div>
+          <label class="qz-fb" style="display:flex;gap:8px;margin-top:10px"><input type="checkbox" id="oqAccept"> Je souscris à l'offre de cours en ligne et j'accepte les règles de la plateforme</label>
+          <button class="auth-btn" id="oqBtn" onclick="submitOnline()">Envoyer ma demande</button>
+          <div id="oqMsg" style="font-size:.78rem;margin-top:6px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIBLIOTHÈQUE DU PROFESSEUR -->
+    <div class="page" id="page-library">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Bibliothèque</h2></div>
+      <div class="pbody">
+        <div class="sechd2">Déposer un document</div>
+        <input class="auth-input" id="libTitle" placeholder="Titre (ex : Fiche — les fractions)">
+        <select class="auth-input" id="libSubject" data-list="subjects"><option value="">Matière…</option></select>
+        <input class="auth-input" id="libLevel" placeholder="Niveau (ex : 3e)">
+        <input class="auth-input" type="file" id="libFile" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.docx">
+        <button class="auth-btn" id="libBtn" onclick="uploadLib()">Déposer</button>
+        <div id="libMsg" style="font-size:.78rem;margin-top:6px"></div>
+        <div class="sechd2">Mes documents</div>
+        <div id="myLibList"><div class="empty">Chargement…</div></div>
+      </div>
+    </div>
+
+    <!-- QUIZ / EXERCICES DU PROFESSEUR -->
+    <div class="page" id="page-quizzes">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Quiz &amp; exercices</h2></div>
+      <div class="pbody">
+        <div class="sechd2">Créer un QCM</div>
+        <input class="auth-input" id="qzTitle" placeholder="Titre (ex : Les fractions — niveau 1)">
+        <select class="auth-input" id="qzSubject" data-list="subjects"><option value="">Matière…</option></select>
+        <input class="auth-input" id="qzLevel" placeholder="Niveau (ex : 3e)">
+        <select class="auth-input" id="qzKind"><option value="quiz">Quiz (note à la fin)</option><option value="exercice">Exercice (correction après chaque question)</option></select>
+        <div id="qBuilder"></div>
+        <button class="qbtn2 ghost" onclick="addQBlock()">+ Ajouter une question</button>
+        <button class="auth-btn" style="margin-top:12px" onclick="publishQuiz()">Publier</button>
+        <div id="qzMsg" style="font-size:.78rem;margin-top:6px"></div>
+        <div class="sechd2">Mes quiz et exercices</div>
+        <div id="myQuizzesList"><div class="empty">Chargement…</div></div>
+      </div>
+    </div>
+
+    <div class="page" id="page-quizAssign">
+      <div class="pagehead"><button class="back" onclick="showPage('quizzes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Assigner à un élève</h2></div>
+      <div class="pbody"><div id="assignList"><div class="empty">Chargement…</div></div><div id="assignMsg" style="font-size:.78rem;margin-top:8px"></div></div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div class="page" id="page-messages">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Messages</h2></div>
+      <div class="pbody" id="msgContacts"><div class="empty">Chargement…</div></div>
+    </div>
+
+    <!-- CONVERSATION -->
+    <div class="page" id="page-chat">
+      <div class="pagehead"><button class="back" onclick="showPage('messages')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="chatTitle">Conversation</h2><button class="qbtn2 ghost" style="margin-left:auto" onclick="reportChat()">Signaler</button></div>
+      <div id="chatLog"></div>
+      <div class="chatbar"><input id="chatInput" maxlength="2000" placeholder="Écris ton message…" onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">Envoyer</button></div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="page" id="page-notifs">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Notifications</h2></div>
+      <div class="pbody" id="notifList"><div class="empty">Chargement…</div></div>
+    </div>
+
+    <!-- MES AVIS -->
+    <div class="page" id="page-reviews">
+      <div class="pagehead"><button class="back" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Mes avis</h2></div>
+      <div class="pbody" id="reviewsList"><div class="empty">Chargement…</div></div>
+    </div>
+
+    <!-- PROFIL -->
+    <div class="page" id="page-profile">
+      <div class="prof-hero" id="profHero">
+        <div class="prof-avatar" onclick="event.stopPropagation(); pickAvatar();" style="cursor:pointer;" title="Changer la photo">··</div>
+        <input type="file" id="avatarFile" accept="image/*" style="display:none" onchange="handleAvatarChange(event)">
+        <div class="nm">Chargement…</div>
+        <small>—</small>
+      </div>
+      <div class="plist">
+        <div class="sechd2">Disponibilité &amp; position</div>
+        <div class="geobox" id="geoBox"><b>Position non partagée</b>Active "Disponibilité" sur l'accueil pour partager ta position quand tu es en route vers une séance.</div>
+        <div class="sechd2">Compte</div>
+        <div class="prow" onclick="showPage('payoutMethod')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Moyen de versement</b><small id="payoutLabel">Orange Money</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="editPhone()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg><div class="t"><b>Numéro de téléphone</b><small id="phoneLabel">Non renseigné</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="editSubject()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Mes matières</b><small id="subjectLabel">—</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="editCity()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Ville</b><small id="cityLabel">Non renseignée</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="editRate()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Mon tarif horaire</b><small id="rateLabel">—</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('availability')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Mes disponibilités</b><small id="availLabel">—</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('online')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Cours en ligne</b><small id="onlineLabel">—</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="showPage('rules')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><div class="t"><b>Règles de la plateforme</b><small>Réservation, paiement, annulation, sécurité</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="pickIdDoc()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M14 10h6M14 14h4"/></svg><div class="t"><b>Pièce d'identité</b><small id="idDocLabel">Chargement…</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <input type="file" id="reuploadIdDoc" accept="image/*,.pdf" style="display:none" onchange="handleIdDocChange(event)">
+        <div class="prow" onclick="captureSelfie()"><div class="t"><b>Selfie avec ma pièce d'identité</b><small id="selfieLabel">Appuie pour prendre un selfie</small></div></div>
+        <div class="stog"><div class="t"><b>Notifications de séances</b></div><button class="switch on" data-pref="session" onclick="togglePref(this)"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Notifications de messages</b></div><button class="switch on" data-pref="message" onclick="togglePref(this)"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Notifications d'avis</b></div><button class="switch on" data-pref="rating" onclick="togglePref(this)"><i></i></button></div>
+        <div class="stog"><div class="t"><b>Résultats des quiz</b></div><button class="switch on" data-pref="quiz" onclick="togglePref(this)"><i></i></button></div>
+        <div class="prow" onclick="showPage('changePassword')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Changer mon mot de passe</b></div></div>
+        <div class="prow" onclick="doLogout()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><div class="t"><b>Se déconnecter</b></div></div>
+      </div>
+    </div>
+
+    <!-- MOYEN DE VERSEMENT -->
+    <div class="page" id="page-payoutMethod">
+      <div class="pagehead"><button class="back" onclick="showPage('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2>Moyen de versement</h2></div>
+      <div class="pbody">
+        <div class="prow" onclick="selectPayout('orange_money','Orange Money')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Orange Money</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="selectPayout('mtn_momo','MTN Mobile Money')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>MTN Mobile Money</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="selectPayout('wave','Wave')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Wave</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+        <div class="prow" onclick="selectPayout('banque','Compte bancaire')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div class="t"><b>Compte bancaire</b></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+      </div>
+    </div>
+
+    <!-- FONCTIONNALITÉ GÉNÉRIQUE -->
+    <div class="page" id="page-feature">
+      <div class="pagehead"><button class="back" onclick="goBackFromFeature()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><h2 id="featureTitle">Fonctionnalité</h2></div>
+      <div class="pbody">
+        <div class="prow" style="cursor:default">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div class="t"><b>Bientôt disponible</b><small id="featureDesc">Cette fonctionnalité sera activée dès que l'app sera connectée au back-office.</small></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="tabbar" style="display:none">
+      <button class="tab active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><span>Accueil</span></button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span>Planning</span></button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><span>Gains</span></button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg><span>Profil</span></button>
+    </nav>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+document.getElementById('enterBtn').addEventListener('click', ()=>{
+  document.getElementById('splash').classList.add('hide');
+});
+
+/* ================= SUPABASE ================= */
+const SUPABASE_URL = 'https://jscyolaupfhroqfjwirl.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_33193ujPLkXAqfcF-71F4w_aq-9kK6u';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+let myProfile = null;
+
+/* ================= MOT DE PASSE OUBLIÉ ================= */
+/* ================= MOT DE PASSE OUBLIÉ : code à 6 chiffres reçu par e-mail ================= */
+let resetEmail = null;
+async function forgotPassword(){
+  const email = document.getElementById('authEmail').value.trim() || resetEmail || '';
+  if(!email){ alert('Renseigne d\'abord ton e-mail dans le champ ci-dessus, puis clique sur "Mot de passe oublié ?".'); return; }
+  const { error } = await sb.auth.resetPasswordForEmail(email);
+  if(error){ alert('Envoi impossible : '+error.message); return; }
+  resetEmail = email;
+  document.getElementById('resetInfo').textContent = 'Un code vient d\'être envoyé à '+email+'. Saisis-le ci-dessous avec ton nouveau mot de passe.';
+  showPage('resetPassword');
+}
+async function submitNewPassword(){
+  const code = document.getElementById('resetCode').value.trim();
+  const p1 = document.getElementById('newPassword1').value;
+  const p2 = document.getElementById('newPassword2').value;
+  const err = document.getElementById('resetError');
+  err.style.display = 'none';
+  const fail = m=>{ err.textContent = m; err.style.display='block'; };
+  if(!resetEmail){ fail('Demande d\'abord un code depuis l\'écran de connexion.'); return; }
+  if(code.length<6){ fail('Saisis le code reçu par e-mail.'); return; }
+  if(!p1 || p1.length<6){ fail('Le mot de passe doit faire au moins 6 caractères.'); return; }
+  if(p1!==p2){ fail('Les deux mots de passe ne correspondent pas.'); return; }
+  const btn = document.getElementById('resetSubmitBtn');
+  btn.disabled = true; btn.textContent = 'Enregistrement…';
+  try{
+    const { error: vErr } = await sb.auth.verifyOtp({ email: resetEmail, token: code, type: 'recovery' });
+    if(vErr) throw new Error(vErr.message.toLowerCase().includes('expired')||vErr.message.toLowerCase().includes('invalid') ? 'Code incorrect ou expiré. Demande un nouveau code.' : vErr.message);
+    const { error: uErr } = await sb.auth.updateUser({ password: p1 });
+    if(uErr) throw uErr;
+    alert('Mot de passe mis à jour.');
+    await afterAuthSuccess();
+  }catch(e){ fail(e.message || 'Une erreur est survenue.'); }
+  finally{ btn.disabled = false; btn.textContent = 'Valider'; }
+}
+sb.auth.onAuthStateChange((event)=>{
+  if(event==='PASSWORD_RECOVERY') showPage('resetPassword');
+});
+
+function initialsOf(name){
+  return name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+}
+
+/* ---------- Navigation ---------- */
+function showPage(name){
+  if(!myProfile && name!=='auth' && name!=='resetPassword' && name!=='rules') name='auth';
+  { const tb=document.querySelector('.tabbar'); if(tb) tb.style.display = (!myProfile || name==='auth' || name==='resetPassword' || name==='rules' || name==='chat') ? 'none' : ''; }
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const map={home:0,planning:1,earnings:2,profile:3};
+  if(name in map) document.querySelectorAll('.tab')[map[name]].classList.add('active');
+  if(name==='earnings' && typeof refreshEarnings==='function') refreshEarnings();
+  if(name==='students' && typeof refreshStudents==='function') refreshStudents();
+  if(name==='notifs') markNotifsRead();
+  if(name==='messages') openMessages();
+  if(name==='quizzes') refreshQuizzes();
+  if(name==='library') refreshMyLib();
+  if(name==='help') refreshSupport();
+  if(name==='earnings') refreshBonus();
+  if(name==='profile'){ applyPrefsToUI(); updateCityLabel(); updateRateLabel(); updateOnlineLabel(); refreshAvailLabel(); }
+  if(name==='availability') refreshAvailability();
+  if(name==='rules') renderRules();
+  if(name==='online') refreshOnline();
+  if(name==='reviews') refreshReviews();
+  if(name==='courses' && typeof refreshCourses==='function') refreshCourses();
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.tab').forEach((t,i)=>{
+  const names=['home','planning','earnings','profile'];
+  t.addEventListener('click', ()=>showPage(names[i]));
+});
+
+let prevPage = 'home';
+function openFeature(title){
+  prevPage = document.querySelector('.page.active').id.replace('page-','');
+  document.getElementById('featureTitle').textContent = title || 'Fonctionnalité';
+  showPage('feature');
+}
+function goBackFromFeature(){ showPage(prevPage); }
+document.querySelectorAll('.prow').forEach(el=>{
+  if(el.hasAttribute('onclick')) return;
+  const label = el.querySelector('b');
+  el.addEventListener('click', ()=>openFeature(label ? label.textContent.trim() : 'Fonctionnalité'));
+});
+
+/* ---------- Réglages persistés localement (préférences d'affichage) ---------- */
+function toggleSetting(btn){
+  btn.classList.toggle('on');
+  localStorage.setItem('qip_toggle_'+btn.dataset.key, btn.classList.contains('on'));
+}
+document.querySelectorAll('.switch[data-key]').forEach(btn=>{
+  const saved = localStorage.getItem('qip_toggle_'+btn.dataset.key);
+  if(saved!==null) btn.classList.toggle('on', saved==='true');
+});
+
+/* ---------- Moyen de versement : vrai numéro, sauvegardé en base ---------- */
+async function selectPayout(type, label){
+  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
+  const number = prompt('Ton numéro '+label+' pour recevoir tes paiements :', '');
+  if(!number) return;
+  await sb.from('payout_methods').delete().eq('teacher_id', myProfile.id);
+  const { error } = await sb.from('payout_methods').insert({ teacher_id: myProfile.id, type, details:{number: number}, is_default:true });
+  if(error){ alert("Erreur : "+error.message); return; }
+  document.getElementById('payoutLabel').textContent = label+' · '+number;
+  showPage('profile');
+}
+async function loadPayout(){
+  if(!myProfile) return;
+  const { data } = await sb.from('payout_methods').select('*').eq('teacher_id', myProfile.id).eq('is_default', true).maybeSingle();
+  const labels = {orange_money:'Orange Money', mtn_momo:'MTN Mobile Money', wave:'Wave', banque:'Compte bancaire'};
+  if(data){
+    document.getElementById('payoutLabel').textContent = (labels[data.type]||data.type)+' · '+((data.details&&data.details.number)||'');
+  } else {
+    document.getElementById('payoutLabel').textContent = 'Non renseigné — touche ici';
+  }
+}
+
+/* ================= AUTHENTIFICATION ================= */
+let authMode = 'login';
+function setAuthMode(mode){
+  authMode = mode;
+  document.getElementById('authModeLabel').textContent = mode==='login' ? 'Connexion' : 'Créer un compte enseignant';
+  document.getElementById('authNameRow').style.display = mode==='login' ? 'none' : 'block';
+  document.getElementById('authSubjectRow').style.display = mode==='login' ? 'none' : 'block';
+  document.getElementById('authIdDocRow').style.display = mode==='login' ? 'none' : 'block';
+  document.getElementById('authSubmitBtn').textContent = mode==='login' ? 'Se connecter' : 'Créer mon compte';
+  document.getElementById('forgotRow').style.display = mode==='login' ? 'block' : 'none';
+  document.getElementById('authSwitchTxt').innerHTML = mode==='login'
+    ? 'Pas encore de compte ? <a onclick="setAuthMode(\'signup\')">Créer un compte</a>'
+    : 'Déjà un compte ? <a onclick="setAuthMode(\'login\')">Se connecter</a>';
+  document.getElementById('authError').style.display = 'none';
+}
+
+async function submitAuth(){
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const errBox = document.getElementById('authError');
+  errBox.style.display = 'none';
+  if(!email || !password){ errBox.textContent = "Renseigne un e-mail et un mot de passe."; errBox.style.display='block'; return; }
+  const btn = document.getElementById('authSubmitBtn');
+  btn.disabled = true; btn.textContent = 'Patiente...';
+  try{
+    if(authMode==='login'){
+      const { error } = await sb.auth.signInWithPassword({ email, password });
+      if(error) throw error;
+    } else {
+      const fullName = document.getElementById('authName').value.trim();
+      const subject = document.getElementById('authSubject').value.trim();
+      const level = document.getElementById('authLevel').value.trim();
+      const idFile = signupPhotos.id;
+      const selfieFile = signupPhotos.selfie;
+      if(!fullName){ throw new Error("Renseigne ton nom complet."); }
+      const city = document.getElementById('authCity').value, district = document.getElementById('authDistrict').value.trim();
+      if(!city){ throw new Error("Choisis ta ville."); }
+      if(!subject){ throw new Error("Choisis au moins une matière."); }
+      if(!level){ throw new Error("Choisis au moins un niveau."); }
+      if(!document.getElementById('authRules').checked){ throw new Error("Accepte les règles de la plateforme pour continuer."); }
+      if(!idFile){ throw new Error("La pièce d'identité est obligatoire pour créer un compte enseignant."); }
+      const { data, error } = await sb.auth.signUp({ email, password, options:{ data:{ full_name: fullName, role:'professeur', subject, level, city, district, accepted_rules:true } } });
+      if(error) throw error;
+      if(!data.session){
+        errBox.style.color = 'var(--mint)';
+        errBox.textContent = "Compte créé ! Vérifie ta boîte mail, clique sur le lien de confirmation, puis reviens te connecter ici.";
+        errBox.style.display = 'block';
+        setAuthMode('login');
+        return;
+      }
+      if(data.user){
+        const { error: perr } = await sb.from('profiles').upsert({
+          id: data.user.id, role: 'professeur', full_name: fullName,
+          avatar_initials: initialsOf(fullName), subject, level, city, district
+        });
+        if(perr) throw perr;
+        const idPath = data.user.id + '/' + Date.now() + '_' + idFile.name.replace(/[^a-zA-Z0-9.]/g,'_');
+        const { error: upErr } = await sb.storage.from('documents').upload(idPath, idFile, { upsert:true });
+        if(upErr) throw new Error("Compte créé, mais l'envoi de la pièce d'identité a échoué : "+upErr.message+". Tu pourras la renvoyer depuis ton profil.");
+        await sb.from('profiles').update({ id_document_path: idPath }).eq('id', data.user.id);
+        if(selfieFile){
+          const sp = data.user.id + '/selfie_' + Date.now() + '.jpg';
+          const { error: sErr } = await sb.storage.from('documents').upload(sp, selfieFile, { upsert:true });
+          if(!sErr) await sb.from('profiles').update({ selfie_path: sp }).eq('id', data.user.id);
+        }
+      }
+    }
+    await afterAuthSuccess();
+  } catch(e){
+    errBox.textContent = e.message || "Une erreur est survenue.";
+    errBox.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = authMode==='login' ? 'Se connecter' : 'Créer mon compte';
+  }
+}
+
+async function doLogout(){
+  try{ if(currentPushToken) await sb.rpc('unregister_device_token',{ p_token: currentPushToken }); }catch(e){}
+  await sb.auth.signOut();
+  location.reload();
+}
+
+async function afterAuthSuccess(){
+  try{
+    const { data: { user } } = await sb.auth.getUser();
+    if(!user) return;
+    let { data: profile, error: ferr } = await sb.from('profiles').select('*').eq('id', user.id).single();
+    if(ferr && ferr.code !== 'PGRST116'){ throw ferr; } // PGRST116 = aucune ligne trouvée, cas normal
+    if(!profile){
+      // Reprend les infos saisies à l'inscription (conservées par Supabase) au lieu de les redemander
+      const md = user.user_metadata || {};
+      let name = md.full_name;
+      let subject = md.subject || '';
+      const level = md.level || '';
+      if(!name){
+        name = prompt("Complète ton profil — quel est ton nom complet ?");
+        if(!name){ await sb.auth.signOut(); showPage('auth'); return; }
+        subject = prompt("Quelle matière enseignes-tu ?") || '';
+      }
+      const { data: created, error: cerr } = await sb.from('profiles')
+        .upsert({ id:user.id, role:'professeur', full_name:name, avatar_initials:initialsOf(name), subject, level, city:md.city||null, district:md.district||null, accepted_rules_at: md.accepted_rules ? new Date().toISOString() : null })
+        .select().single();
+      if(cerr) throw cerr;
+      profile = created;
+    }
+    if(!profile || !profile.full_name){ throw new Error("Profil incomplet (nom manquant) — réessaie de te connecter."); }
+    if(profile.is_suspended){ await sb.auth.signOut(); throw new Error("Ton compte est suspendu. Contacte l'administration."); }
+    myProfile = profile;
+    applyProfileToUI(myProfile);
+    await refreshSessionsFromDB();
+    loadNotifs(); refreshHomeStats(); restoreDuty();
+    await loadPayout();
+    showPage('home');
+  } catch(e){
+    alert("Problème au chargement du profil : "+(e.message||e)+"\n\nEssaie de te déconnecter puis de te reconnecter.");
+    showPage('profile');
+  }
+}
+
+function applyProfileToUI(p){
+  const name = p.full_name || 'Enseignant';
+  const initials = p.avatar_initials || initialsOf(name);
+  document.getElementById('avatarInit').textContent = initials;
+  document.querySelector('.prof-avatar').textContent = initials;
+  document.querySelector('.prof-hero .nm').textContent = name;
+  document.querySelector('.prof-hero small').textContent = [p.phone, p.subject, p.level].filter(Boolean).join(' · ') || '—';
+  document.getElementById('subjectLabel').textContent = [p.subject, p.level].filter(Boolean).join(' · ') || 'Non renseigné';
+  document.getElementById('phoneLabel').textContent = p.phone || 'Non renseigné';
+  document.getElementById('idDocLabel').textContent = p.id_document_path ? 'Envoyée ✓ — appuie pour la remplacer' : 'Non envoyée — appuie pour l\'ajouter';
+  document.getElementById('greetTxt').innerHTML = 'Bonjour '+name.split(' ')[0]+'<small>'+todaySessionsData.length+' séance(s) prévue(s) aujourd\'hui</small>';
+  applyAvatarPhoto(document.querySelector('.prof-avatar'));
+  applyAvatarPhoto(document.getElementById('avatarInit'));
+}
+function applyAvatarPhoto(el){
+  // Affiche la vraie photo de profil si elle existe, sinon laisse les initiales.
+  if(!el) return;
+  if(myProfile && myProfile.avatar_url){
+    el.style.backgroundImage = 'url("'+myProfile.avatar_url+'")';
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = 'center';
+    el.textContent = '';
+  } else {
+    el.style.backgroundImage = '';
+  }
+}
+async function editPhone(){
+  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
+  const val = prompt('Ton numéro de téléphone :', myProfile.phone || '');
+  if(val===null) return;
+  const { error } = await sb.from('profiles').update({ phone: val.trim() }).eq('id', myProfile.id);
+  if(error){ alert('Erreur : '+error.message); return; }
+  myProfile.phone = val.trim();
+  applyProfileToUI(myProfile);
+}
+function handleIdDocChange(event){
+  if(false){}
+  const file = event.target.files && event.target.files[0];
+  if(file) uploadIdDocument(file);
+  event.target.value = '';
+}
+async function uploadIdDocument(file){
+  if(!myProfile) return;
+  document.getElementById('idDocLabel').textContent = 'Envoi en cours…';
+  const path = myProfile.id + '/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9.]/g,'_');
+  const { error: upErr } = await sb.storage.from('documents').upload(path, file, { upsert:true });
+  if(upErr){ alert("Erreur pendant l'envoi : "+upErr.message); applyProfileToUI(myProfile); return; }
+  const { error: dbErr } = await sb.from('profiles').update({ id_document_path: path }).eq('id', myProfile.id);
+  if(dbErr){ alert('Erreur : '+dbErr.message); return; }
+  myProfile.id_document_path = path;
+  applyProfileToUI(myProfile);
+}
+function handleAvatarChange(event){
+  const file = event.target.files && event.target.files[0];
+  if(file) uploadAvatar(file);
+  event.target.value = '';
+}
+async function uploadAvatar(file){
+  if(!myProfile) return;
+  const path = myProfile.id + '/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9.]/g,'_');
+  const { error: upErr } = await sb.storage.from('avatars').upload(path, file, { upsert:true });
+  if(upErr){ alert("Erreur pendant l'envoi de la photo : "+upErr.message); return; }
+  const { data: pub } = sb.storage.from('avatars').getPublicUrl(path);
+  const { error: dbErr } = await sb.from('profiles').update({ avatar_url: pub.publicUrl }).eq('id', myProfile.id);
+  if(dbErr){ alert('Erreur : '+dbErr.message); return; }
+  myProfile.avatar_url = pub.publicUrl;
+  applyAvatarPhoto(document.querySelector('.prof-avatar'));
+  applyAvatarPhoto(document.getElementById('avatarInit'));
+}
+
+async function editSubject(){
+  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
+  const cur=(myProfile.subject||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const picked = await chooseFromList('Mes matières', SUBJECTS, cur, true);
+  if(picked===null) return;
+  const subject = picked.join(', ');
+  const curLv=(myProfile.level||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const lv = await pickLevels(curLv);
+  if(lv===null) return;
+  const level = lv.join(', ');
+  const { error } = await sb.from('profiles').update({ subject, level }).eq('id', myProfile.id);
+  if(error){ alert("Erreur : "+error.message); return; }
+  myProfile.subject = subject;
+  myProfile.level = level;
+  applyProfileToUI(myProfile);
+}
+
+document.getElementById('profHero').addEventListener('click', async ()=>{
+  if(!myProfile){ alert("Ton profil n'est pas encore chargé — déconnecte-toi puis reconnecte-toi."); return; }
+  const name = prompt('Modifier votre nom', myProfile.full_name || '');
+  if(!name) return;
+  myProfile.full_name = name;
+  myProfile.avatar_initials = initialsOf(name);
+  const { error } = await sb.from('profiles').update({ full_name:name, avatar_initials: myProfile.avatar_initials }).eq('id', myProfile.id);
+  if(error){ alert("Erreur : "+error.message); return; }
+  applyProfileToUI(myProfile);
+});
+
+/* ================= SÉANCES (données réelles Supabase) ================= */
+let todaySessionsData = [];
+
+async function refreshSessionsFromDB(){
+  if(!myProfile) return;
+  const { data: rows } = await sb.from('sessions').select('*').eq('teacher_id', myProfile.id).order('scheduled_at', {ascending:true});
+  const list = rows || [];
+  const ids = [...new Set(list.map(r=>r.student_id))];
+  let names = {};
+  if(ids.length){
+    const { data: studs } = await sb.from('profiles').select('id, full_name').in('id', ids);
+    (studs||[]).forEach(s=>{ names[s.id] = s.full_name; });
+  }
+  todaySessionsData = list.map(r=>({
+    id: r.id,
+    subject: r.subject,
+    student: names[r.student_id] || 'Élève',
+    time: new Date(r.scheduled_at).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'})+' · '+(r.duration_hours||1)+' h',
+    confirmed: r.confirmed!==false,
+    accepted: !!r.teacher_accepted_at,
+    mode: r.mode==='a_domicile' ? 'à domicile' : 'en ligne',
+    meeting_url: r.meeting_url || null,
+    status: r.status
+  }));
+  renderSessions();
+  fillBookers();
+}
+
+async function fillBookers(){
+  const els=[...document.querySelectorAll('.bkline[data-sid]')];
+  await Promise.all(els.map(async el=>{
+    const { data } = await sb.rpc('session_booker',{ p_session: el.dataset.sid });
+    const b=Array.isArray(data)?data[0]:data; if(!b) return;
+    el.innerHTML='👤 Réservé par <b>'+esc(b.full_name)+'</b> ('+(b.role==='parent'?'parent':'élève')+') · '+(b.is_verified?'✓ identité vérifiée':'⚠ identité non vérifiée')+(b.phone?' · <a href="tel:'+esc(b.phone)+'" style="color:inherit;text-decoration:underline">'+esc(b.phone)+'</a>':'');
+  }));
+}
+
+async function setSessionStatus(id, status){
+  await sb.from('sessions').update({ status }).eq('id', id);
+  await refreshSessionsFromDB();
+}
+
+function sessionCard(s){
+  const st = s.status;
+  const pill = st==='route' ? '<span class="status-pill route">En route</span>' : st==='done' ? '<span class="status-pill ok">Terminée</span>' : '';
+  let actions = '';
+  if(s.mode==='à domicile'){
+    if(st==='pending') actions = '<div class="sess-actions"><button class="sbtn primary" onclick="startRoute(\''+s.id+'\')">Je suis en route</button><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
+    else if(st==='route') actions = '<div class="sess-actions"><button class="sbtn done" disabled>Position partagée</button><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
+    else actions = '<div class="sess-actions"><button class="sbtn done" disabled>Séance terminée</button></div>';
+  } else {
+    actions = st==='done' ? '<div class="sess-actions"><button class="sbtn done" disabled>Séance terminée</button></div>' : '<div class="sess-actions"><button class="sbtn ghost" onclick="setSessionStatus(\''+s.id+'\',\'done\')">Marquer terminée</button></div>';
+  }
+  if(s.mode==='en ligne' && st!=='done'){
+    const btns = s.meeting_url
+      ? '<button class="sbtn primary" onclick="openClassLink(\''+s.id+'\')">Rejoindre le cours</button><button class="sbtn ghost" onclick="setMeetingLink(\''+s.id+'\')">Changer le lien</button>'
+      : '<button class="sbtn primary" onclick="setMeetingLink(\''+s.id+'\')">Ajouter le lien du cours</button>';
+    actions = actions.replace('<div class="sess-actions">', '<div class="sess-actions">'+btns);
+  }
+  if(s.mode==='à domicile' && st!=='done'){ actions = actions.replace('</div>', '<button class="sbtn ghost" onclick="openItinerary(\''+s.id+'\')">Itinéraire</button></div>'); }
+  if(s.confirmed===false && st==='pending'){ actions = '<div class="sess-actions"><span style="font-size:.78rem;font-weight:700;opacity:.85">⏳ En attente du paiement de l\'élève</span></div>'; }
+  if(st==='pending' && s.confirmed!==false && !s.accepted){ actions = '<div class="sess-actions"><button class="sbtn primary" onclick="acceptSession(\''+s.id+'\')">Accepter</button></div>'; }
+  if(st==='pending'){ actions = actions.replace(/<\/div>$/, '<button class="sbtn ghost" onclick="cancelByTeacher(\''+s.id+'\')">'+((s.accepted||s.confirmed===false)?'Annuler':'Refuser')+'</button></div>'); }
+  if(s.mode==='à domicile' && st!=='done'){ actions = '<div class="bkline" data-sid="'+s.id+'" style="font-size:.74rem;opacity:.9;margin-bottom:6px"></div>' + actions; }
+  return '<div class="sess"><div class="sess-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="t"><b>'+s.subject+pill+'</b><small>'+s.student+' · '+s.mode+'</small></div><div class="time">'+s.time+'</div></div>'+actions+'</div>';
+}
+function renderSessions(){
+  const html = todaySessionsData.map(sessionCard).join('');
+  document.getElementById('todaySessions').innerHTML = html || '<div class="sess">Aucune séance pour l\'instant — elles seront créées depuis le back office.</div>';
+  document.getElementById('planningToday').innerHTML = html;
+}
+renderSessions();
+
+
+
+/* ================= SOS RÉEL : alerte admin + parents + autre personne de la séance ================= */
+async function sendSOS(){
+  if(!myProfile) return;
+  if(!confirm("Envoyer une alerte SOS ?\nL'administration et tes proches enregistrés seront prévenus immédiatement.")) return;
+  let lat=null, lon=null;
+  try{
+    const pos = await new Promise((ok,ko)=>navigator.geolocation.getCurrentPosition(ok,ko,{enableHighAccuracy:true,timeout:6000}));
+    lat=pos.coords.latitude; lon=pos.coords.longitude;
+  }catch(e){}
+  const col = myProfile.role==='professeur' ? 'teacher_id' : 'student_id';
+  const { data: act } = await sb.from('sessions').select('id').eq(col, myProfile.id).in('status',['pending','route']).order('scheduled_at',{ascending:true}).limit(1);
+  const { error } = await sb.from('sos_alerts').insert({ user_id:myProfile.id, session_id:(act&&act[0])?act[0].id:null, lat, lon });
+  alert(error ? "L'alerte n'a pas pu partir : "+error.message+"\nAppelle directement les secours ou un proche." : "Alerte envoyée. Les personnes concernées ont été prévenues.");
+}
+
+
+
+/* ================= SIGNALER UNE CONVERSATION (arrive dans Assistance côté admin) ================= */
+async function reportChat(){
+  if(!chatWith||!myProfile) return;
+  if(!confirm('Signaler cette conversation à l\'administration ?\nElle pourra la lire et la suspendre si nécessaire.')) return;
+  const { error } = await sb.from('support_tickets').insert({ user_id:myProfile.id, category:'signalement', subject:'Signalement : conversation avec '+chatWith.full_name, body:'Conversation signalée depuis la messagerie. Contact : '+chatWith.full_name+' ('+chatWith.id+').' });
+  alert(error ? 'Signalement impossible : '+error.message : 'Merci. L\'administration va examiner cette conversation.');
+}
+
+/* ================= MESSAGERIE (table messages + temps réel) ================= */
+let chatWith=null, msgChannel=null, contactsCache=[];
+function startMsgRealtime(){
+  if(msgChannel||!myProfile) return;
+  msgChannel = sb.channel('msgs-'+myProfile.id)
+    .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:'receiver_id=eq.'+myProfile.id},payload=>{
+      const m=payload.new;
+      if(chatWith && m.sender_id===chatWith.id){ appendBubble(m); sb.from('messages').update({is_read:true}).eq('id',m.id); }
+      else if(document.getElementById('page-messages').classList.contains('active')) openMessages();
+    }).subscribe();
+}
+async function openMessages(){
+  const box=document.getElementById('msgContacts');
+  const { data: contacts, error } = await sb.rpc('my_contacts');
+  if(error){ box.innerHTML='<div class="empty">Messagerie indisponible : '+esc(error.message)+'</div>'; return; }
+  contactsCache = contacts||[];
+  if(!contactsCache.length){ box.innerHTML='<div class="empty">Aucun contact pour l\'instant. Les conversations apparaissent dès que l\'administration te lie à un enseignant, un élève ou un parent.</div>'; return; }
+  const { data: msgs } = await sb.from('messages').select('sender_id,receiver_id,body,is_read,created_at').or('sender_id.eq.'+myProfile.id+',receiver_id.eq.'+myProfile.id).order('created_at',{ascending:false}).limit(300);
+  const last={}, unread={};
+  (msgs||[]).forEach(m=>{ const o=m.sender_id===myProfile.id?m.receiver_id:m.sender_id; if(!last[o]) last[o]=m; if(m.receiver_id===myProfile.id && !m.is_read) unread[o]=(unread[o]||0)+1; });
+  const roleLbl={eleve:'Élève',parent:'Parent',professeur:'Enseignant'};
+  contactsCache.sort((a,b)=>((last[b.id]&&last[b.id].created_at)||'').localeCompare((last[a.id]&&last[a.id].created_at)||''));
+  box.innerHTML=contactsCache.map(c=>{
+    const ini=(c.full_name||'?').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+    const sub=last[c.id]?esc(last[c.id].body):esc((roleLbl[c.role]||c.role)+(c.subject?' · '+c.subject:''));
+    return '<div class="contact" onclick="openChat(\''+c.id+'\')"><div class="av">'+esc(ini)+'</div><div class="t"><b>'+esc(c.full_name)+'</b><small>'+sub+'</small></div>'+(unread[c.id]?'<div class="un">'+unread[c.id]+'</div>':'')+'</div>';
+  }).join('');
+}
+function appendBubble(m){
+  const log=document.getElementById('chatLog');
+  const d=document.createElement('div'); d.className='bub '+(m.sender_id===myProfile.id?'me':'them');
+  d.innerHTML=esc(m.body)+'<small>'+new Date(m.created_at).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})+'</small>';
+  log.appendChild(d); log.scrollTop=log.scrollHeight;
+}
+async function openChat(id){
+  chatWith = contactsCache.find(c=>c.id===id); if(!chatWith) return;
+  document.getElementById('chatTitle').textContent=chatWith.full_name;
+  document.getElementById('chatLog').innerHTML='';
+  showPage('chat');
+  const { data } = await sb.from('messages').select('*').or('and(sender_id.eq.'+myProfile.id+',receiver_id.eq.'+id+'),and(sender_id.eq.'+id+',receiver_id.eq.'+myProfile.id+')').order('created_at',{ascending:true}).limit(300);
+  (data||[]).forEach(appendBubble);
+  await sb.from('messages').update({is_read:true}).eq('receiver_id',myProfile.id).eq('sender_id',id).eq('is_read',false);
+}
+async function sendChat(){
+  const inp=document.getElementById('chatInput'), body=inp.value.trim();
+  if(!body||!chatWith) return;
+  inp.value='';
+  const { data, error } = await sb.from('messages').insert({ sender_id:myProfile.id, receiver_id:chatWith.id, body }).select().single();
+  if(error){ inp.value=body; alert("Message non envoyé : "+error.message); return; }
+  appendBubble(data);
+}
+
+
+
+
+/* ================= ASSISTANCE & LITIGES ================= */
+async function refreshSupport(){
+  const sel=document.getElementById('tkSession');
+  let q=sb.from('sessions').select('id,subject,scheduled_at').order('scheduled_at',{ascending:false}).limit(20);
+  const ids=await mySupportScope();
+  q = q.in('teacher_id', ids);
+  const { data: ss } = await q;
+  sel.innerHTML='<option value="">Aucune séance concernée</option>'+(ss||[]).map(x=>'<option value="'+x.id+'">'+esc(x.subject)+' — '+new Date(x.scheduled_at).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+'</option>').join('');
+  const box=document.getElementById('tkList');
+  const { data, error } = await sb.from('support_tickets').select('*').eq('user_id',myProfile.id).order('created_at',{ascending:false});
+  if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
+  const cat={question:'Question',litige:'Litige',signalement:'Signalement',autre:'Autre'};
+  box.innerHTML=(data&&data.length)?data.map(t=>'<div class="qrow" style="display:block"><b>'+esc(t.subject)+'</b> <span class="qz-prog">'+cat[t.category]+' · '+(t.status==='traite'?'TRAITÉE':'EN COURS')+'</span><div class="qz-fb">'+esc(t.body)+'</div>'+(t.admin_reply?'<div class="qz-fb" style="border-left:3px solid var(--gold);padding-left:8px"><b>Réponse :</b> '+esc(t.admin_reply)+'</div>':'')+'</div>').join(''):'<div class="empty">Aucune demande pour l\'instant.</div>';
+}
+async function sendTicket(){
+  const m=document.getElementById('tkMsg'); m.style.color='var(--alert)'; m.textContent='';
+  const subject=document.getElementById('tkSubject').value.trim(), body=document.getElementById('tkBody').value.trim();
+  if(!subject||!body){ m.textContent='Renseigne le sujet et le message.'; return; }
+  const { error } = await sb.from('support_tickets').insert({ user_id:myProfile.id, category:document.getElementById('tkCat').value, subject, body, session_id:document.getElementById('tkSession').value||null });
+  if(error){ m.textContent='Envoi impossible : '+error.message+' (le script SQL 14 est-il exécuté ?)'; return; }
+  m.style.color='var(--mint)'; m.textContent='Demande envoyée. Tu recevras une notification à la réponse.';
+  document.getElementById('tkSubject').value=''; document.getElementById('tkBody').value='';
+  refreshSupport();
+}
+async function mySupportScope(){ return [myProfile.id]; }
+
+
+
+/* ================= RÉGLAGES RÉELS (enregistrés sur le compte) ================= */
+function applyPrefsToUI(){
+  if(!myProfile) return;
+  const prefs=myProfile.notif_prefs||{};
+  document.querySelectorAll('.switch[data-pref]').forEach(b=>b.classList.toggle('on', prefs[b.dataset.pref]!==false));
+}
+async function togglePref(btn){
+  const on=!btn.classList.contains('on'); btn.classList.toggle('on',on);
+  const prefs=Object.assign({}, myProfile.notif_prefs||{}); prefs[btn.dataset.pref]=on;
+  const { error } = await sb.from('profiles').update({ notif_prefs:prefs }).eq('id',myProfile.id);
+  if(error){ btn.classList.toggle('on',!on); alert('Enregistrement impossible : '+error.message+' (le script SQL 16 est-il exécuté ?)'); return; }
+  myProfile.notif_prefs=prefs;
+}
+
+
+/* ================= CHANGER MON MOT DE PASSE ================= */
+async function changePassword(){
+  const p1=document.getElementById('cpNew1').value, p2=document.getElementById('cpNew2').value, err=document.getElementById('cpError');
+  err.style.display='none';
+  const fail=m=>{ err.textContent=m; err.style.display='block'; };
+  if(!p1||p1.length<6){ fail('Le mot de passe doit faire au moins 6 caractères.'); return; }
+  if(p1!==p2){ fail('Les deux mots de passe ne correspondent pas.'); return; }
+  const btn=document.getElementById('cpBtn'); btn.disabled=true; btn.textContent='Enregistrement…';
+  const { error } = await sb.auth.updateUser({ password:p1 });
+  btn.disabled=false; btn.textContent='Enregistrer';
+  if(error){ fail(error.message); return; }
+  document.getElementById('cpNew1').value=''; document.getElementById('cpNew2').value='';
+  alert('Mot de passe mis à jour.'); showPage('profile');
+}
+
+
+/* ================= PIÈCE D'IDENTITÉ : caméra ou fichier + selfie ================= */
+/* ---- Caméra ---- */
+const signupPhotos={ id:null, selfie:null };
+function chooseSource(title, allowFile){
+  return new Promise(resolve=>{
+    const ov=document.createElement('div');
+    ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    const box=document.createElement('div');
+    box.style.cssText='width:100%;max-width:480px;background:var(--card,#fff);color:var(--text,#111);border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box';
+    const done=v=>{ ov.remove(); resolve(v); };
+    const t=document.createElement('div'); t.style.cssText='font-weight:800;margin-bottom:12px'; t.textContent=title; box.appendChild(t);
+    const mk=(label,val,ghost)=>{ const b=document.createElement('button'); b.className='auth-btn'; b.style.cssText=ghost?'margin:0 0 10px;background:transparent;border:1px solid var(--line);color:inherit':'margin:0 0 10px'; b.textContent=label; b.onclick=()=>done(val); box.appendChild(b); };
+    mk('📷 Prendre une photo','camera',false);
+    if(allowFile) mk('📁 Choisir un fichier','file',true);
+    mk('Annuler',null,true);
+    ov.onclick=e=>{ if(e.target===ov) done(null); };
+    ov.appendChild(box); document.body.appendChild(ov);
+  });
+}
+async function capturePhoto(facing){
+  const cam = window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.Camera;
+  if(cam){
+    try{
+      const ph = await cam.getPhoto({ quality:85, allowEditing:false, resultType:'base64', source:'CAMERA', direction: facing==='front'?'FRONT':'REAR', correctOrientation:true, width:1600 });
+      const bin=atob(ph.base64String), arr=new Uint8Array(bin.length);
+      for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
+      const fmt=ph.format||'jpeg';
+      return new File([arr],'photo.'+fmt,{type:'image/'+fmt});
+    }catch(e){
+      const msg=String((e&&e.message)||e);
+      if(/cancel|annul|user/i.test(msg)) return null;
+      alert("La caméra n'a pas pu s'ouvrir ("+msg+").\nVérifie que l'autorisation Caméra est accordée à QI Business Enseignants dans les paramètres du téléphone, ou choisis un fichier.");
+      return null;
+    }
+  }
+  return new Promise(res=>{ const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.setAttribute('capture', facing==='front'?'user':'environment'); inp.onchange=()=>res(inp.files[0]||null); inp.click(); });
+}
+function pickFile(accept){
+  return new Promise(res=>{ const inp=document.createElement('input'); inp.type='file'; inp.accept=accept||'image/*,.pdf'; inp.onchange=()=>res(inp.files[0]||null); inp.click(); });
+}
+async function pickAvatar(){
+  const s=await chooseSource('Photo de profil',true); if(!s) return;
+  const f = s==='camera' ? await capturePhoto('front') : await pickFile('image/*');
+  if(f) uploadAvatar(f);
+}
+async function pickIdDoc(){
+  const s=await chooseSource("Pièce d'identité",true); if(!s) return;
+  const f = s==='camera' ? await capturePhoto('rear') : await pickFile();
+  if(f) uploadIdDocument(f);
+}
+async function captureSelfie(){
+  const f=await capturePhoto('front'); if(f) uploadSelfie(f);
+}
+async function captureSignup(kind){
+  let f;
+  if(kind==='id'){
+    const s=await chooseSource("Pièce d'identité",true); if(!s) return;
+    f = s==='camera' ? await capturePhoto('rear') : await pickFile();
+  } else { f=await capturePhoto('front'); }
+  if(!f) return;
+  signupPhotos[kind]=f;
+  document.getElementById(kind==='id'?'authIdLabel':'authSelfieLabel').textContent = kind==='id' ? '✓ Pièce d\'identité ajoutée' : '✓ Selfie pris';
+}
+async function uploadSelfie(file){
+  if(!myProfile) return;
+  const lbl=document.getElementById('selfieLabel'); lbl.textContent='Envoi en cours…';
+  const path = myProfile.id + '/selfie_' + Date.now() + '.jpg';
+  const { error: upErr } = await sb.storage.from('documents').upload(path, file, { upsert:true });
+  if(upErr){ lbl.textContent='Échec : '+upErr.message; return; }
+  const { error } = await sb.from('profiles').update({ selfie_path: path }).eq('id', myProfile.id);
+  if(error){ lbl.textContent='Échec : '+error.message+' (script SQL 18 ?)'; return; }
+  myProfile.selfie_path = path;
+  lbl.textContent='Envoyé ✓ — appuie pour le remplacer';
+}
+/* Itinéraire vers l'adresse indiquée par l'élève (comme la destination dans Yango) */
+async function openItinerary(sessionId){
+  const { data, error } = await sb.from('session_places').select('lat,lon,note').eq('session_id',sessionId).maybeSingle();
+  if(error){ alert('Lecture impossible : '+error.message+' (script SQL 18 ?)'); return; }
+  if(!data){ alert("L'élève n'a pas encore indiqué le lieu de la séance. Écris-lui dans Messages pour le lui demander."); return; }
+  if(data.note) alert('Indication de l\'élève :\n'+data.note);
+  if(data.lat!=null) window.open('https://www.google.com/maps/dir/?api=1&destination='+data.lat+','+data.lon+'&travelmode=driving','_blank');
+}
+
+
+
+/* ================= MOTIF D'ANNULATION (obligatoire) ================= */
+function askCancelReason(title, infoHtml, reasons){
+  return new Promise(resolve=>{
+    const ov=document.createElement('div'); ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    const box=document.createElement('div'); box.style.cssText='width:100%;max-width:480px;max-height:88vh;overflow:auto;background:var(--card,#fff);color:var(--text,#111);border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box';
+    let chosen=null; const done=v=>{ ov.remove(); resolve(v); };
+    box.innerHTML='<div style="font-weight:800;margin-bottom:8px">'+esc(title)+'</div><div style="font-size:.82rem;line-height:1.5;margin-bottom:12px">'+infoHtml+'</div><div style="font-weight:700;font-size:.8rem;margin-bottom:6px">Motif de l\'annulation (obligatoire)</div><div id="crList"></div><textarea id="crNote" rows="3" maxlength="300" class="auth-input" style="display:none" placeholder="Précise ton motif"></textarea><div id="crErr" style="color:var(--alert);font-size:.78rem;margin:6px 0"></div>';
+    const list=box.querySelector('#crList');
+    const off='margin:0 0 8px;text-align:left;background:transparent;border:1px solid var(--line);color:inherit', on='margin:0 0 8px;text-align:left';
+    const btns=reasons.map(r=>{ const b=document.createElement('button'); b.className='auth-btn'; b.style.cssText=off; b.textContent=r;
+      b.onclick=()=>{ chosen=r; btns.forEach(x=>{ x.style.cssText = x===b ? on : off; }); box.querySelector('#crNote').style.display = /^autre/i.test(r)?'block':'none'; };
+      list.appendChild(b); return b; });
+    const ok=document.createElement('button'); ok.className='auth-btn'; ok.style.cssText='margin:6px 0 8px;background:var(--alert)'; ok.textContent="Confirmer l'annulation";
+    ok.onclick=()=>{ const note=box.querySelector('#crNote').value.trim(), err=box.querySelector('#crErr');
+      if(!chosen){ err.textContent='Choisis un motif.'; return; }
+      if(/^autre/i.test(chosen) && note.length<3){ err.textContent='Précise ton motif.'; return; }
+      done({ reason:chosen, note:note||null }); };
+    const back=document.createElement('button'); back.className='auth-btn'; back.style.cssText='margin:0;background:transparent;border:1px solid var(--line);color:inherit'; back.textContent='Retour'; back.onclick=()=>done(null);
+    box.appendChild(ok); box.appendChild(back); ov.appendChild(box); document.body.appendChild(ov);
+  });
+}
+
+/* ================= ANNULER UNE SÉANCE ================= */
+const CANCEL_REASONS_TEACHER=["Je ne suis plus disponible","Problème de santé","Problème de transport ou lieu trop éloigné","L'élève est injoignable","Autre motif"];
+async function cancelByTeacher(id){
+  const ans=await askCancelReason('Annuler la séance',"Si l'élève a déjà payé, il est remboursé intégralement. Annuler souvent peut entraîner une suspension.",CANCEL_REASONS_TEACHER);
+  if(!ans) return;
+  const { error } = await sb.rpc('cancel_session',{ p_session:id, p_reason:ans.reason, p_note:ans.note });
+  if(error){ alert(error.message+(error.message.includes('function')?' (script SQL 25 ?)':'')); return; }
+  alert("Séance annulée. L'élève est prévenu.");
+  await refreshSessionsFromDB();
+}
+
+/* ================= COURS EN LIGNE : lien de la classe virtuelle ================= */
+async function setMeetingLink(id){
+  const s=todaySessionsData.find(x=>x.id===id); let url;
+  if(confirm("Créer le lien du cours automatiquement ?\n\nOK = salle Jitsi créée pour toi\nAnnuler = coller mon propre lien (Google Meet, Zoom, Teams)")){
+    url='https://meet.jit.si/QIBusiness-'+id.replace(/-/g,'');
+  } else {
+    url=prompt('Colle le lien de ta classe (Google Meet, Zoom, Teams ou Jitsi) :', (s&&s.meeting_url)||'');
+    if(!url) return;
+  }
+  const { error } = await sb.rpc('set_meeting_url',{ p_session:id, p_url:url.trim() });
+  if(error){ alert(error.message+(error.message.includes('function')?' (script SQL 20 ?)':'')); return; }
+  alert("Lien enregistré. L'élève et ses parents sont prévenus.");
+  await refreshSessionsFromDB();
+}
+function openClassLink(id){
+  const s=todaySessionsData.find(x=>x.id===id); if(s&&s.meeting_url) window.open(s.meeting_url,'_blank');
+}
+
+/* ================= LISTES : villes et matières (gérées par l'admin) ================= */
+let CITIES=[], SUBJECTS=[];
+async function loadLists(){
+  try{
+    const [c,s]=await Promise.all([
+      sb.from('cities').select('name').eq('active',true).order('position').order('name'),
+      sb.from('subjects').select('name').eq('active',true).order('name')
+    ]);
+    CITIES=(c.data||[]).map(x=>x.name); SUBJECTS=(s.data||[]).map(x=>x.name);
+  }catch(e){}
+  fillListSelects();
+}
+function fillListSelects(){
+  document.querySelectorAll('select[data-list]').forEach(sel=>{
+    const cur=sel.value, isCity=sel.dataset.list==='cities', arr=isCity?CITIES:SUBJECTS;
+    sel.innerHTML='<option value="">'+(isCity?'Ville…':'Matière…')+'</option>'+arr.map(n=>'<option value="'+esc(n)+'">'+esc(n)+'</option>').join('');
+    if(cur) sel.value=cur;
+  });
+}
+function chooseFromList(title, items, selected, multi){
+  return new Promise(resolve=>{
+    const ov=document.createElement('div'); ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:flex-end;justify-content:center';
+    const box=document.createElement('div'); box.style.cssText='width:100%;max-width:480px;max-height:80vh;overflow:auto;background:var(--card,#fff);color:var(--text,#111);border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box';
+    const done=v=>{ ov.remove(); resolve(v); };
+    const sel=new Set(selected||[]);
+    const t=document.createElement('div'); t.style.cssText='font-weight:800;margin-bottom:12px'; t.textContent=title; box.appendChild(t);
+    items.forEach(n=>{
+      const b=document.createElement('button'); b.className='auth-btn';
+      const style=()=>{ b.style.cssText='margin:0 0 8px;text-align:left;'+(sel.has(n)?'':'background:transparent;border:1px solid var(--line);color:inherit'); b.textContent=(multi&&sel.has(n)?'✓ ':'')+n; };
+      style();
+      b.onclick=()=>{ if(!multi){ done(n); return; } if(sel.has(n)) sel.delete(n); else sel.add(n); style(); };
+      box.appendChild(b);
+    });
+    if(!items.length){ const e=document.createElement('div'); e.style.cssText='margin-bottom:10px'; e.textContent="Liste vide : demande à l'administration de la compléter."; box.appendChild(e); }
+    if(multi){ const ok=document.createElement('button'); ok.className='auth-btn'; ok.textContent='Valider'; ok.onclick=()=>done([...sel]); box.appendChild(ok); }
+    const c=document.createElement('button'); c.className='auth-btn'; c.style.cssText='margin:8px 0 0;background:transparent;border:1px solid var(--line);color:inherit'; c.textContent='Annuler'; c.onclick=()=>done(null); box.appendChild(c);
+    ov.onclick=e=>{ if(e.target===ov) done(null); };
+    ov.appendChild(box); document.body.appendChild(ov);
+  });
+}
+function updateCityLabel(){
+  const el=document.getElementById('cityLabel'); if(!el||!myProfile) return;
+  el.textContent=[myProfile.city,myProfile.district].filter(Boolean).join(' · ')||'Non renseignée';
+}
+async function editCity(){
+  if(!myProfile) return;
+  const city=await chooseFromList('Ma ville',CITIES,[myProfile.city],false); if(city===null) return;
+  const d=prompt('Ton quartier (facultatif) :', myProfile.district||''); if(d===null) return;
+  const district=d.trim()||null;
+  const { error } = await sb.from('profiles').update({ city, district }).eq('id',myProfile.id);
+  if(error){ alert('Erreur : '+error.message+' (script SQL 21 ?)'); return; }
+  myProfile.city=city; myProfile.district=district; updateCityLabel();
+}
+loadLists();
+async function openSubjectPicker(inputId){
+  const el=document.getElementById(inputId);
+  const cur=(el.value||'').split(',').map(x=>x.trim()).filter(Boolean);
+  const r=await chooseFromList('Matières que tu enseignes',SUBJECTS,cur,true);
+  if(r) el.value=r.join(', ');
+}
+
+
+/* ================= RÈGLES DE BASE (affichées à tous) ================= */
+const LEVELS=['Primaire','Collège','Lycée'];
+const money0=n=>Number(n).toLocaleString('fr-FR')+' F';
+async function renderRules(){
+  const box=document.getElementById('rulesBody');
+  const { data: r, error } = await sb.rpc('get_rules');
+  if(error||!r){ box.innerHTML='<div class="empty">Règles indisponibles pour le moment.</div>'; return; }
+  const isTeacher = myProfile && myProfile.role==='professeur';
+  const sec=(t,items)=>'<div class="sechd2">'+t+'</div>'+items.map(i=>'<div class="qz-fb" style="margin:6px 0">• '+i+'</div>').join('');
+  if(r.rules_text){ box.innerHTML='<div style="white-space:pre-wrap;font-size:.88rem;line-height:1.5">'+esc(r.rules_text)+'</div>'; return; }
+  let h='';
+  h+=sec('Réservation et paiement',[
+    "Une séance n'est validée qu'après son paiement dans l'application.",
+    "Une séance réservée mais non payée est annulée au bout de 24 heures.",
+    "Après le paiement, l'enseignant accepte ou refuse la réservation. Sans réponse sous "+(r.accept_hours||12)+" h, la séance est annulée et l'élève est remboursé en totalité.",
+    "Chaque enseignant indique ses disponibilités : on ne peut réserver que dans ses plages libres.",
+    "Tout paiement passe par l'application (Orange Money, MTN, Moov, Wave ou carte). Aucun paiement en espèces à l'enseignant."]);
+  h+=sec('Tarifs',[
+    "Chaque enseignant fixe son tarif horaire, entre "+money0(r.rate_min)+" et "+money0(r.rate_max)+" de l'heure.",
+    "Le prix est le tarif de l'enseignant multiplié par le nombre d'heures choisi. Il est affiché avant le paiement."]);
+  h+=sec('Annulation',[
+    (r.free_hours>0?"Annulation gratuite jusqu'à "+r.free_hours+" h avant la séance. Ensuite, s":"S")+"i l'élève annule après avoir payé, "+r.cancellation_percent+" % du montant payé est retenu et le reste lui est remboursé sur son Mobile Money par l'administration.",
+    "Si l'enseignant annule, l'élève est remboursé en totalité.",
+    "Une séance déjà en route ou terminée ne peut plus être annulée.",
+    "Un motif est obligatoire pour toute annulation (liste de motifs ou texte libre). Il est conservé dans l'historique de la réservation."]);
+  h+=sec('Niveaux',[
+    "Un enseignant ne peut pas enseigner à la fois au primaire et au collège.",
+    "Les cours en ligne ne sont proposés que par les enseignants dont le matériel et les documents pédagogiques ont été validés par l'administration.",
+    "Un cours en ligne se déroule grâce au lien de classe (Google Meet, Zoom, Teams ou Jitsi) ajouté par l'enseignant dans l'application."]);
+  h+=sec('Sécurité',[
+    "Les enseignants sont vérifiés par l'administration (pièce d'identité).",
+    "Pour un cours à domicile, le compte qui réserve (parent, tuteur ou élève majeur) doit aussi avoir son identité vérifiée. Le cours en ligne n'exige pas de pièce d'identité.",
+    "Les pièces d'identité ne sont visibles que par leur propriétaire et par l'administration.",
+    "Le bouton SOS prévient immédiatement l'administration.",
+    "Pour protéger les élèves et les enseignants, l'administration peut consulter les messages et bloquer une conversation qui ne respecte pas ces règles.",
+    "Un compte qui ne respecte pas les règles peut être suspendu."]);
+  if(isTeacher){
+    const mine = (myProfile.commission_percent!=null)?myProfile.commission_percent:r.commission_percent;
+    h+=sec('Pour les enseignants',[
+      "QI Business prélève une commission de "+mine+" % sur chaque prestation payée (elle est comprise entre 20 et 35 %). Elle est calculée et enregistrée automatiquement.",
+      "Ton tarif horaire se règle dans ton profil. Un enseignant non vérifié ne peut pas recevoir de réservation."]);
+  }
+  box.innerHTML=h;
+}
+
+async function pickLevels(cur){
+  let sel=cur||[];
+  while(true){
+    const r=await chooseFromList('Niveaux enseignés',LEVELS,sel,true); if(r===null) return null;
+    const low=r.map(x=>x.toLowerCase());
+    if(low.includes('primaire') && low.includes('collège')){ alert("Un enseignant ne peut pas enseigner à la fois au primaire et au collège. Choisis l'un ou l'autre (le lycée peut s'ajouter)."); sel=r; continue; }
+    if(!r.length){ alert('Choisis au moins un niveau.'); sel=r; continue; }
+    return r;
+  }
+}
+async function openLevelPicker(inputId){
+  const el=document.getElementById(inputId);
+  const r=await pickLevels((el.value||'').split(',').map(x=>x.trim()).filter(Boolean));
+  if(r) el.value=r.join(', ');
+}
+function updateRateLabel(){
+  const el=document.getElementById('rateLabel'); if(!el||!myProfile) return;
+  el.textContent = myProfile.hourly_rate ? money0(myProfile.hourly_rate)+' / heure' : 'Non défini (1 000 F par défaut)';
+}
+async function editRate(){
+  if(!myProfile) return;
+  const { data: r } = await sb.rpc('get_rules');
+  const min=(r&&r.rate_min)||1000, max=(r&&r.rate_max)||5000;
+  const v=prompt('Ton tarif pour une heure de cours, en F (entre '+min+' et '+max+') :', myProfile.hourly_rate||'');
+  if(v===null) return;
+  const rate=parseInt(v,10);
+  if(!(rate>=min&&rate<=max)||rate%5){ alert('Tarif invalide : entre '+min+' et '+max+' F, en multiples de 5.'); return; }
+  const { error } = await sb.from('profiles').update({ hourly_rate:rate }).eq('id',myProfile.id);
+  if(error){ alert(error.message); return; }
+  myProfile.hourly_rate=rate; updateRateLabel();
+}
+
+
+/* ================= COURS EN LIGNE : souscription et validation du matériel ================= */
+let onlineDocs=[];
+const ONLINE_LABEL={none:'Non souscrit',submitted:'En cours de validation',approved:'Validé ✓',rejected:'Refusé — corrige et renvoie'};
+function updateOnlineLabel(){ const el=document.getElementById('onlineLabel'); if(el&&myProfile) el.textContent=ONLINE_LABEL[myProfile.online_status||'none']; }
+async function refreshOnline(){
+  const { data } = await sb.from('profiles').select('online_status,online_note').eq('id',myProfile.id).single();
+  if(data){ myProfile.online_status=data.online_status; myProfile.online_note=data.online_note; }
+  updateOnlineLabel();
+  const st=myProfile.online_status||'none', box=document.getElementById('onlineStatusBox'), form=document.getElementById('onlineForm');
+  box.innerHTML='<div class="qz-fb"><b>Statut : '+ONLINE_LABEL[st]+'</b>'+(myProfile.online_note?'<br>'+esc(myProfile.online_note):'')+'</div>'+
+    (st==='approved'?'<div class="qz-fb">Tu peux recevoir des réservations en ligne. Ajoute le lien de la classe sur chaque séance.</div>':st==='submitted'?'<div class="qz-fb">L\'administration contrôle ton matériel et tes documents. Tu seras prévenu de sa décision.</div>':'');
+  form.style.display=(st==='none'||st==='rejected')?'':'none';
+}
+async function addOnlineDoc(kind){
+  const f = kind==='camera' ? await capturePhoto('rear') : await pickFile();
+  if(!f) return;
+  if(onlineDocs.length>=8){ alert('Huit documents au maximum.'); return; }
+  onlineDocs.push(f); renderOnlineDocs();
+}
+function renderOnlineDocs(){
+  document.getElementById('oqDocs').innerHTML=onlineDocs.map((f,i)=>'<div class="qz-fb">📎 '+esc(f.name||'photo')+' <a href="#" style="color:var(--alert)" onclick="event.preventDefault();onlineDocs.splice('+i+',1);renderOnlineDocs()">retirer</a></div>').join('');
+}
+async function submitOnline(){
+  const m=document.getElementById('oqMsg'); m.style.color='var(--alert)'; m.textContent='';
+  const eq={ device:document.getElementById('oqDevice').checked, internet:document.getElementById('oqNet').checked, micro:document.getElementById('oqMic').checked, camera:document.getElementById('oqCam').checked, share:document.getElementById('oqBoard').checked, notes:document.getElementById('oqNotes').value.trim() };
+  if(!eq.device||!eq.internet||!eq.micro){ m.textContent='Il faut au minimum un appareil adapté, une connexion internet et un micro.'; return; }
+  if(!onlineDocs.length){ m.textContent='Ajoute au moins une photo de ton matériel ou un document pédagogique.'; return; }
+  if(!document.getElementById('oqAccept').checked){ m.textContent="Coche la case pour souscrire à l'offre de cours en ligne."; return; }
+  const btn=document.getElementById('oqBtn'); btn.disabled=true; btn.textContent='Envoi…';
+  const paths=[];
+  for(let i=0;i<onlineDocs.length;i++){
+    const f=onlineDocs[i], safe=(f.name||'doc').replace(/[^A-Za-z0-9._-]/g,'_');
+    const path=myProfile.id+'/online_'+Date.now()+'_'+i+'_'+safe;
+    const { error } = await sb.storage.from('documents').upload(path,f,{upsert:true});
+    if(error){ m.textContent='Envoi impossible : '+error.message; btn.disabled=false; btn.textContent='Envoyer ma demande'; return; }
+    paths.push(path);
+  }
+  const { error } = await sb.rpc('submit_online_request',{ p_equipment:eq, p_docs:paths });
+  btn.disabled=false; btn.textContent='Envoyer ma demande';
+  if(error){ m.textContent=error.message+(error.message.includes('function')?' (script SQL 25 ?)':''); return; }
+  onlineDocs=[]; renderOnlineDocs(); m.style.color='var(--mint)'; m.textContent='Demande envoyée. Tu seras prévenu après validation.';
+  refreshOnline();
+}
+
+
+/* ================= DISPONIBILITÉS ET ACCEPTATION ================= */
+const DAYS=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
+async function refreshAvailability(){
+  const { data } = await sb.from('teacher_availability').select('*').eq('teacher_id',myProfile.id);
+  const by={}; (data||[]).forEach(r=>by[r.weekday]=r);
+  document.getElementById('availRows').innerHTML=DAYS.map((d,i)=>{ const w=i+1, r=by[w];
+    return '<div class="qrow" style="gap:8px;flex-wrap:wrap"><label style="width:110px;font-weight:700"><input type="checkbox" id="av'+w+'"'+(r?' checked':'')+'> '+d+'</label><input type="time" id="avs'+w+'" class="auth-input" style="width:40%;margin:0" value="'+(r?String(r.start_time).slice(0,5):'08:00')+'"><input type="time" id="ave'+w+'" class="auth-input" style="width:40%;margin:0" value="'+(r?String(r.end_time).slice(0,5):'18:00')+'"></div>'; }).join('');
+  const el=document.getElementById('availLabel'); if(el) el.textContent=(data&&data.length)?data.length+' jour'+(data.length>1?'s':'')+' par semaine':'Toujours disponible (non défini)';
+}
+async function saveAvailability(){
+  const m=document.getElementById('availMsg'); m.style.color='var(--alert)'; m.textContent='';
+  const slots=[];
+  for(let w=1;w<=7;w++){
+    if(!document.getElementById('av'+w).checked) continue;
+    const s=document.getElementById('avs'+w).value, e=document.getElementById('ave'+w).value;
+    if(!s||!e||e<=s){ m.textContent=DAYS[w-1]+' : l\'heure de fin doit être après l\'heure de début.'; return; }
+    slots.push({ weekday:w, start:s, end:e });
+  }
+  const { error } = await sb.rpc('set_availability',{ p_slots:slots });
+  if(error){ m.textContent=(error.message.includes('1 heure')?'Chaque plage doit durer au moins 1 heure.':error.message)+(error.message.includes('function')?' (script SQL 26 ?)':''); return; }
+  m.style.color='var(--mint)'; m.textContent=slots.length?'Disponibilités enregistrées.':'Aucune plage : tu es disponible à toute heure.';
+  refreshAvailability();
+}
+async function refreshAvailLabel(){
+  const { count } = await sb.from('teacher_availability').select('id',{count:'exact',head:true}).eq('teacher_id',myProfile.id);
+  const el=document.getElementById('availLabel'); if(el) el.textContent=count?count+' jour'+(count>1?'s':'')+' par semaine':'Toujours disponible (non défini)';
+}
+async function acceptSession(id){
+  const { error } = await sb.rpc('accept_session',{ p_session:id });
+  if(error){ alert(error.message+(error.message.includes('function')?' (script SQL 26 ?)':'')); return; }
+  alert("Séance acceptée. L'élève est prévenu.");
+  await refreshSessionsFromDB();
+}
+
+
+/* ================= MAINTENANCE ET ANNONCES (envoyées depuis le back-office) ================= */
+async function checkMaintenance(){
+  try{
+    const { data } = await sb.rpc('get_app_status');
+    const on = !!(data && data.maintenance), msg = (data && data.message) || '';
+    let ov = document.getElementById('maintOverlay');
+    if(on){
+      if(!ov){
+        ov = document.createElement('div'); ov.id='maintOverlay';
+        ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#0B1B33;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px';
+        ov.innerHTML='<img src="icons/icon-192.png" alt="" style="width:96px;height:96px;border-radius:22px;margin-bottom:18px"><div style="font-size:1.35rem;font-weight:800;margin-bottom:10px">Maintenance en cours</div><div id="maintText" style="font-size:.95rem;line-height:1.5;opacity:.9;max-width:420px"></div><button id="maintRetry" style="margin-top:22px;border:0;border-radius:14px;background:#C9A24B;color:#0B1B33;font-weight:800;padding:12px 22px;font-size:.9rem">Réessayer</button>';
+        document.body.appendChild(ov);
+        document.getElementById('maintRetry').onclick = checkMaintenance;
+      }
+      document.getElementById('maintText').textContent = msg || "Nous effectuons une maintenance. L'application sera de nouveau disponible très bientôt.";
+    } else if(ov){ ov.remove(); }
+  }catch(e){}
+}
+checkMaintenance();
+setInterval(checkMaintenance, 60000);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) checkMaintenance(); });
+
+let adsCache=[], adsSeen={};
+function adsDismissed(){ try{ return JSON.parse(localStorage.getItem('qi_ads_dismissed')||'[]'); }catch(e){ return []; } }
+async function loadAds(){
+  if(!myProfile) return;
+  const { data } = await sb.rpc('get_active_ads');
+  adsCache = data || [];
+  renderAds();
+}
+function renderAds(){
+  const home=document.getElementById('page-home'); if(!home) return;
+  let box=document.getElementById('adsBox');
+  if(!box){
+    box=document.createElement('div'); box.id='adsBox'; box.style.cssText='padding:0 16px';
+    const c=home.querySelector('.content');
+    if(c) c.insertBefore(box, c.firstChild); else { const hdr=home.querySelector('.hdr'); if(hdr) hdr.insertAdjacentElement('afterend', box); else home.insertBefore(box, home.firstChild); }
+  }
+  const dis=adsDismissed(), list=adsCache.filter(a=>!dis.includes(a.id)).slice(0,3);
+  box.innerHTML=list.map(a=>'<div style="position:relative;background:var(--card,#fff);border:1px solid var(--gold,#C9A24B);border-radius:14px;padding:12px 14px;margin:12px 0">'+
+    (a.image_url?'<img src="'+esc(a.image_url)+'" alt="" style="width:100%;max-height:150px;object-fit:cover;border-radius:10px;margin-bottom:8px">':'')+
+    '<b style="display:block;padding-right:22px">'+esc(a.title)+'</b>'+
+    (a.body?'<div style="font-size:.84rem;line-height:1.45;margin:4px 0 8px;opacity:.9">'+esc(a.body)+'</div>':'')+
+    (a.link_url?'<button onclick="openAd(\''+a.id+'\')" style="border:0;border-radius:10px;background:var(--gold,#C9A24B);color:var(--ink,#0B1B33);font-weight:800;padding:8px 14px;font-size:.8rem;cursor:pointer">En savoir plus</button>':'')+
+    '<a href="#" aria-label="Fermer" style="position:absolute;top:8px;right:12px;opacity:.6;text-decoration:none;color:inherit" onclick="event.preventDefault();dismissAd(\''+a.id+'\')">✕</a></div>').join('');
+  list.forEach(a=>{ if(!adsSeen[a.id]){ adsSeen[a.id]=1; sb.rpc('ad_event',{ p_ad:a.id, p_kind:'view' }); } });
+}
+function openAd(id){
+  const a=adsCache.find(x=>x.id===id); if(!a||!a.link_url) return;
+  sb.rpc('ad_event',{ p_ad:id, p_kind:'click' }); window.open(a.link_url,'_blank');
+}
+function dismissAd(id){
+  const d=adsDismissed(); d.push(id);
+  try{ localStorage.setItem('qi_ads_dismissed', JSON.stringify(d.slice(-100))); }catch(e){}
+  renderAds();
+}
+setInterval(()=>{ if(myProfile) loadAds(); }, 300000);
+
+
+/* ================= NOTIFICATIONS SUR LE TÉLÉPHONE (push Firebase) ================= */
+let currentPushToken=null, pushReady=false;
+async function initPush(){
+  const PN = window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.PushNotifications;
+  if(!PN || pushReady || !myProfile) return;
+  pushReady=true;
+  try{
+    let perm = await PN.checkPermissions();
+    if(perm.receive==='prompt' || perm.receive==='prompt-with-rationale') perm = await PN.requestPermissions();
+    if(perm.receive!=='granted') return;
+    PN.addListener('registration', async t=>{
+      currentPushToken=t.value;
+      await sb.rpc('register_device_token',{ p_token:t.value, p_app:'enseignants' });
+    });
+    PN.addListener('registrationError', e=>{ console.warn('Push non disponible :', e); });
+    PN.addListener('pushNotificationActionPerformed', ()=>{ try{ showPage('notifs'); }catch(e){} });
+    await PN.register();
+  }catch(e){ console.warn('Push :', e); }
+}
+
+/* ================= BONUS HEBDOMADAIRE ================= */
+async function refreshBonus(){
+  const box=document.getElementById('bonusCard'); if(!box||!myProfile) return;
+  const { data: pr, error } = await sb.rpc('my_week_progress');
+  if(error){ box.innerHTML=''; return; }
+  const p=Array.isArray(pr)?pr[0]:pr; if(!p){ box.innerHTML=''; return; }
+  const { data: bl } = await sb.from('teacher_bonuses').select('amount,paid,week_start').eq('teacher_id',myProfile.id).order('week_start',{ascending:false}).limit(10);
+  const money=n=>Number(n).toLocaleString('fr-FR')+' F';
+  const owed=(bl||[]).filter(b=>!b.paid).reduce((a,b)=>a+b.amount,0);
+  const pct=Math.min(100,Math.round(p.done/p.threshold*100));
+  box.innerHTML='<div class="sechd2">Bonus de la semaine</div>'+
+    '<div class="txrow" style="display:block"><b>'+(p.earned?'Bonus de '+money(p.amount)+' débloqué cette semaine !':p.done+' / '+p.threshold+' séances terminées')+'</b>'+
+    '<div style="height:8px;border-radius:4px;background:rgba(128,128,128,.25);margin:8px 0"><div style="height:8px;border-radius:4px;background:var(--gold);width:'+(p.earned?100:pct)+'%"></div></div>'+
+    '<small>'+(p.earned?'Bravo, continue comme ça.':'Encore '+Math.max(0,p.threshold-p.done)+' séance'+(p.threshold-p.done>1?'s':'')+' pour gagner '+money(p.amount)+'.')+'</small></div>'+
+    ((bl&&bl.length)?'<div class="txrow" style="display:block"><b>Bonus à te verser : '+money(owed)+'</b>'+bl.map(b=>'<br><small>Semaine du '+new Date(b.week_start).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})+' — '+money(b.amount)+' — '+(b.paid?'versé':'à verser')+'</small>').join('')+'</div>':'');
+}
+
+/* ================= BIBLIOTHÈQUE : dépôt de documents ================= */
+let myLibItems=[];
+async function uploadLib(){
+  const msg=document.getElementById('libMsg'), btn=document.getElementById('libBtn'); msg.style.color='var(--alert)'; msg.textContent='';
+  const title=document.getElementById('libTitle').value.trim(), subject=document.getElementById('libSubject').value.trim(), level=document.getElementById('libLevel').value.trim();
+  const file=document.getElementById('libFile').files[0];
+  if(!title||!subject){ msg.textContent='Renseigne le titre et la matière.'; return; }
+  if(!file){ msg.textContent='Choisis un fichier.'; return; }
+  if(file.size>10*1024*1024){ msg.textContent='Fichier trop lourd (10 Mo maximum).'; return; }
+  btn.disabled=true; btn.textContent='Envoi…';
+  const safe=file.name.replace(/[^A-Za-z0-9._-]/g,'_');
+  const path=myProfile.id+'/'+Date.now()+'-'+safe;
+  const { error: upErr } = await sb.storage.from('library').upload(path,file,{contentType:file.type||undefined});
+  if(upErr){ btn.disabled=false; btn.textContent='Déposer'; msg.textContent='Envoi impossible : '+upErr.message+' (le script SQL 13 est-il exécuté ?)'; return; }
+  const { error } = await sb.from('library_items').insert({ title, subject, level:level||null, file_path:path, file_name:file.name, teacher_name:myProfile.full_name, created_by:myProfile.id });
+  btn.disabled=false; btn.textContent='Déposer';
+  if(error){ await sb.storage.from('library').remove([path]); msg.textContent='Erreur : '+error.message; return; }
+  msg.style.color='var(--mint)'; msg.textContent='Document déposé. Tes élèves sont prévenus.';
+  ['libTitle','libSubject','libLevel','libFile'].forEach(id=>document.getElementById(id).value='');
+  refreshMyLib();
+}
+async function refreshMyLib(){
+  const box=document.getElementById('myLibList');
+  const { data, error } = await sb.from('library_items').select('*').eq('created_by',myProfile.id).order('created_at',{ascending:false});
+  if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
+  myLibItems=data||[];
+  box.innerHTML=myLibItems.length?myLibItems.map((it,i)=>'<div class="qrow"><div class="t"><b>'+esc(it.title)+'</b><small>'+esc(it.subject)+(it.level?' · '+esc(it.level):'')+' · '+esc(it.file_name)+'</small></div><button class="qbtn2 ghost" onclick="deleteLib('+i+')">Suppr.</button></div>').join(''):'<div class="empty">Aucun document pour l\'instant.</div>';
+}
+async function deleteLib(i){
+  const it=myLibItems[i]; if(!it||!confirm('Supprimer « '+it.title+' » ? Les élèves ne pourront plus l\'ouvrir.')) return;
+  await sb.storage.from('library').remove([it.file_path]);
+  const { error } = await sb.from('library_items').delete().eq('id',it.id);
+  if(error){ alert('Erreur : '+error.message); return; }
+  refreshMyLib();
+}
+
+/* ================= QUIZ & EXERCICES : création et assignation ================= */
+let assignQuizId=null;
+function addQBlock(){
+  const box=document.getElementById('qBuilder'), n=box.children.length+1;
+  const d=document.createElement('div'); d.className='qb';
+  d.innerHTML='<b style="font-size:.8rem">Question '+n+'</b><textarea class="auth-input q-text" rows="2" placeholder="Énoncé de la question"></textarea>'+
+    ['A','B','C','D'].map(l=>'<input class="auth-input q-ch" placeholder="Choix '+l+(l>'B'?' (facultatif)':'')+'">').join('')+
+    '<select class="auth-input q-ok"><option value="0">Bonne réponse : A</option><option value="1">Bonne réponse : B</option><option value="2">Bonne réponse : C</option><option value="3">Bonne réponse : D</option></select>'+
+    '<input class="auth-input q-ex" placeholder="Explication (facultatif, affichée dans un exercice)">';
+  box.appendChild(d);
+}
+async function publishQuiz(){
+  const msg=document.getElementById('qzMsg'); msg.style.color='var(--alert)'; msg.textContent='';
+  const title=document.getElementById('qzTitle').value.trim(), subject=document.getElementById('qzSubject').value.trim(), level=document.getElementById('qzLevel').value.trim(), kind=document.getElementById('qzKind').value;
+  if(!title||!subject){ msg.textContent='Renseigne le titre et la matière.'; return; }
+  const blocks=[...document.querySelectorAll('#qBuilder .qb')];
+  if(!blocks.length){ msg.textContent='Ajoute au moins une question.'; return; }
+  const questions=[];
+  for(let i=0;i<blocks.length;i++){
+    const b=blocks[i], text=b.querySelector('.q-text').value.trim();
+    const raw=[...b.querySelectorAll('.q-ch')].map(x=>x.value.trim());
+    const okRaw=parseInt(b.querySelector('.q-ok').value,10);
+    const choices=[]; let correct=-1;
+    raw.forEach((c,idx)=>{ if(c){ if(idx===okRaw) correct=choices.length; choices.push(c); } });
+    if(!text){ msg.textContent='Question '+(i+1)+' : énoncé manquant.'; return; }
+    if(choices.length<2){ msg.textContent='Question '+(i+1)+' : au moins 2 choix.'; return; }
+    if(correct<0){ msg.textContent='Question '+(i+1)+' : la bonne réponse désigne un choix vide.'; return; }
+    questions.push({ position:i, question:text, choices, correct_index:correct, explanation:b.querySelector('.q-ex').value.trim()||null });
+  }
+  const { data: quiz, error } = await sb.from('quizzes').insert({ title, subject, level:level||null, kind, created_by:myProfile.id }).select().single();
+  if(error){ msg.textContent='Erreur : '+error.message+' (les scripts SQL 9, 10 et 11 sont-ils exécutés ?)'; return; }
+  const { error: qerr } = await sb.from('quiz_questions').insert(questions.map(q=>Object.assign({quiz_id:quiz.id},q)));
+  if(qerr){ await sb.from('quizzes').delete().eq('id',quiz.id); msg.textContent='Erreur : '+qerr.message; return; }
+  msg.style.color='var(--mint)'; msg.textContent='Publié. Tu peux maintenant l\'assigner à un élève.';
+  ['qzTitle','qzSubject','qzLevel'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('qBuilder').innerHTML=''; addQBlock();
+  refreshQuizzes();
+}
+async function refreshQuizzes(){
+  const box=document.getElementById('myQuizzesList');
+  if(!document.getElementById('qBuilder').children.length) addQBlock();
+  const { data, error } = await sb.from('quizzes').select('id,title,subject,level,kind,created_at').eq('created_by',myProfile.id).order('created_at',{ascending:false});
+  if(error){ box.innerHTML='<div class="empty">Indisponible : '+esc(error.message)+'</div>'; return; }
+  box.innerHTML=(data&&data.length)?data.map(q=>'<div class="qrow"><div class="t"><b>'+esc(q.title)+'</b><small>'+(q.kind==='exercice'?'Exercice':'Quiz')+' · '+esc(q.subject)+(q.level?' · '+esc(q.level):'')+'</small></div><button class="qbtn2" onclick="openAssign(\''+q.id+'\')">Assigner</button><button class="qbtn2 ghost" onclick="deleteQuiz(\''+q.id+'\')">Suppr.</button></div>').join(''):'<div class="empty">Aucun quiz ni exercice pour l\'instant.</div>';
+}
+async function deleteQuiz(id){
+  if(!confirm('Supprimer définitivement ? Les résultats des élèves seront aussi supprimés.')) return;
+  const { error } = await sb.from('quizzes').delete().eq('id',id);
+  if(error){ alert('Erreur : '+error.message); return; }
+  refreshQuizzes();
+}
+async function openAssign(id){ assignQuizId=id; showPage('quizAssign'); await renderAssignList(); }
+async function renderAssignList(){
+  const box=document.getElementById('assignList'); document.getElementById('assignMsg').textContent='';
+  if(!window.myStudentNames) await refreshStudents();
+  const names=window.myStudentNames||{}, ids=Object.keys(names);
+  box.innerHTML=ids.length?ids.map(id=>'<div class="qrow"><div class="t"><b>'+esc(names[id])+'</b></div><button class="qbtn2" onclick="assignTo(\''+id+'\')">Envoyer</button></div>').join(''):'<div class="empty">Aucun élève lié. L\'administration doit d\'abord te lier à tes élèves.</div>';
+}
+async function assignTo(studentId){
+  const m=document.getElementById('assignMsg');
+  const { error } = await sb.from('quiz_assignments').insert({ quiz_id:assignQuizId, student_id:studentId, assigned_by:myProfile.id });
+  m.style.color = error&&error.code!=='23505' ? 'var(--alert)' : 'var(--mint)';
+  m.textContent = error ? (error.code==='23505' ? 'Déjà assigné à cet élève.' : 'Erreur : '+error.message) : 'Envoyé. L\'élève est prévenu par notification.';
+}
+
+/* ================= ACCUEIL RÉEL : note, élèves, prochaine séance ================= */
+function placeBanner(b){
+  const c=document.querySelector('#page-home .content'); if(!c) return;
+  c.insertBefore(b, c.querySelector('.grid')||null);
+}
+async function refreshHomeStats(){
+  if(!myProfile) return;
+  { let b=document.getElementById('verifyBanner');
+    if(!myProfile.is_verified){
+      if(!b){ b=document.createElement('div'); b.id='verifyBanner'; b.style.cssText='background:#fff3d6;color:#6b4e00;padding:12px 16px;border-radius:12px;margin:0 0 12px;font-size:.8rem;font-weight:700;line-height:1.35'; placeBanner(b); }
+      b.textContent = myProfile.id_document_path
+        ? 'Compte en cours de vérification : l\'administration contrôle ta pièce d\'identité. Tant que ce n\'est pas fait, tu ne peux pas être lié à des élèves ni passer En ligne.'
+        : 'Il manque ta pièce d\'identité. Appuie ici pour la prendre en photo : sans elle, ton compte ne peut pas être vérifié.';
+      b.onclick = myProfile.id_document_path ? null : pickIdDoc;
+    } else if(!myProfile.avatar_url){
+      if(!b){ b=document.createElement('div'); b.id='verifyBanner'; b.style.cssText='background:#fff3d6;color:#6b4e00;padding:12px 16px;border-radius:12px;margin:0 0 12px;font-size:.8rem;font-weight:700;line-height:1.35;cursor:pointer'; placeBanner(b); }
+      b.textContent='Ajoute ta photo de profil : les élèves et parents la voient avant la séance, avec ton matricule.';
+      b.onclick = pickAvatar;
+    } else if(b){ b.remove(); }
+  }
+  const ring=document.getElementById('ratingRing'), val=document.getElementById('ratingVal');
+  const { data: r } = await sb.rpc('teacher_rating',{p_teacher:myProfile.id});
+  const row = Array.isArray(r)?r[0]:r;
+  if(row && row.nb>0){ val.textContent=Number(row.avg_stars).toFixed(1); ring.style.setProperty('--pct', Number(row.avg_stars)*20); }
+  else { val.textContent='—'; ring.style.setProperty('--pct',0); }
+  const { data: links } = await sb.from('teacher_students').select('student_id').eq('teacher_id', myProfile.id);
+  const n = new Set((links||[]).map(l=>l.student_id)).size;
+  document.getElementById('activeStudentsTxt').textContent = n ? n+' élève'+(n>1?'s':'')+' suivi'+(n>1?'s':'') : "Aucun élève pour l'instant";
+  const { data: nx } = await sb.from('sessions').select('subject,scheduled_at').eq('teacher_id',myProfile.id).in('status',['pending','route']).gte('scheduled_at', new Date(Date.now()-3600*1000).toISOString()).order('scheduled_at',{ascending:true}).limit(1);
+  const el=document.getElementById('nextSessionTxt');
+  if(nx && nx[0]){ const d=new Date(nx[0].scheduled_at); el.textContent='Prochaine séance : '+d.toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'})+' à '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})+' — '+nx[0].subject; }
+  else el.textContent='Prochaine séance : aucune';
+}
+async function refreshReviews(){
+  const box=document.getElementById('reviewsList');
+  const { data } = await sb.from('session_ratings').select('stars,comment,created_at').eq('teacher_id',myProfile.id).order('created_at',{ascending:false}).limit(50);
+  box.innerHTML = (data&&data.length) ? data.map(r=>'<div class="rev"><b>'+'★'.repeat(r.stars)+'☆'.repeat(5-r.stars)+'</b> '+new Date(r.created_at).toLocaleDateString('fr-FR')+(r.comment?'<br>'+esc(r.comment):'')+'</div>').join('') : '<div class="empty">Aucun avis pour l\'instant. Ils apparaissent après tes séances terminées.</div>';
+}
+
+/* ================= NOTIFICATIONS (table notifications + temps réel) ================= */
+let notifChannel=null;
+function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+async function loadNotifs(){
+  if(!myProfile) return;
+  startMsgRealtime();
+  sb.rpc('expire_unpaid_sessions');
+  loadAds();
+  initPush();
+  const { data, error } = await sb.from('notifications').select('*').eq('user_id', myProfile.id).order('created_at',{ascending:false}).limit(50);
+  if(error) return;
+  const list=data||[], box=document.getElementById('notifList'), badge=document.getElementById('bellBadge');
+  const unread=list.filter(n=>!n.is_read).length;
+  badge.textContent=unread>9?'9+':unread; badge.classList.toggle('hidden',!unread);
+  box.innerHTML = list.length ? list.map(n=>'<div class="notif'+(n.is_read?'':' unread')+'"><b>'+esc(n.title)+'</b>'+(n.body?'<span>'+esc(n.body)+'</span><br>':'')+'<small>'+new Date(n.created_at).toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})+'</small></div>').join('') : '<div class="empty">Aucune notification pour l\'instant.</div>';
+  if(!notifChannel){
+    notifChannel = sb.channel('notifs-'+myProfile.id)
+      .on('postgres_changes',{event:'INSERT',schema:'public',table:'notifications',filter:'user_id=eq.'+myProfile.id},()=>{ loadNotifs(); refreshSessionsFromDB(); refreshHomeStats(); })
+      .subscribe();
+  }
+}
+async function markNotifsRead(){
+  if(!myProfile) return;
+  await sb.from('notifications').update({is_read:true}).eq('user_id',myProfile.id).eq('is_read',false);
+  loadNotifs();
+}
+
+/* ================= EN LIGNE / HORS LIGNE : état sauvegardé sur le compte ================= */
+async function saveOnline(on){
+  if(myProfile){ myProfile.is_online = on; await sb.from('profiles').update({ is_online:on }).eq('id', myProfile.id); }
+}
+function restoreDuty(){
+  if(myProfile && myProfile.is_verified && myProfile.is_online && !document.getElementById('dutyBtn').classList.contains('on')){
+    document.getElementById('dutyBtn').classList.add('on');
+    document.getElementById('dutyDot').classList.add('live');
+    document.getElementById('dutyLabel').textContent='En ligne — position active';
+    startGeo();
+  }
+}
+
+/* ---------- Disponibilité + partage de position RÉEL (GPS -> Supabase) ---------- */
+let geoWatchId = null;
+function toggleDuty(){
+  if(!(myProfile && myProfile.is_verified)){ alert('Ton compte doit d\'abord être vérifié par l\'administration (contrôle de ta pièce d\'identité). Tu seras prévenu dès que ce sera fait.'); return; }
+  const btn = document.getElementById('dutyBtn');
+  const on = !btn.classList.contains('on');
+  btn.classList.toggle('on', on);
+  document.getElementById('dutyDot').classList.toggle('live', on);
+  document.getElementById('dutyLabel').textContent = on ? 'En ligne — position active' : 'Hors ligne';
+  saveOnline(on);
+  if(on) startGeo(); else stopGeo();
+}
+function startRoute(id){
+  setSessionStatus(id, 'route');
+  if(!document.getElementById('dutyBtn').classList.contains('on')) toggleDuty();
+}
+function startGeo(){
+  const box = document.getElementById('geoBox');
+  if(!navigator.geolocation){
+    box.innerHTML = '<b>Géolocalisation indisponible</b>Ton appareil ne permet pas le partage de position.';
+    return;
+  }
+  geoWatchId = navigator.geolocation.watchPosition(
+    async pos=>{
+      const lat = pos.coords.latitude, lon = pos.coords.longitude;
+      box.innerHTML = '<b>Position active</b>Lat '+lat.toFixed(5)+', Lon '+lon.toFixed(5)+' — visible par les parents/élèves pendant une séance "en route".';
+      if(myProfile){
+        await sb.from('teacher_locations').upsert({ teacher_id: myProfile.id, lat, lon, is_sharing:true, updated_at: new Date().toISOString() });
+      }
+    },
+    err=>{ box.innerHTML = '<b>Position non disponible</b>Autorise l\'accès à la localisation pour QI Business Enseignants dans les réglages du téléphone.'; },
+    {enableHighAccuracy:true}
+  );
+}
+async function stopGeo(){
+  if(geoWatchId!==null && navigator.geolocation){ navigator.geolocation.clearWatch(geoWatchId); geoWatchId=null; }
+  document.getElementById('geoBox').innerHTML = '<b>Position non partagée</b>Active "Disponibilité" sur l\'accueil pour partager ta position quand tu es en route vers une séance.';
+  if(myProfile){
+    await sb.from('teacher_locations').update({ is_sharing:false }).eq('teacher_id', myProfile.id);
+  }
+}
+
+/* ================= GAINS (données réelles Supabase) ================= */
+async function refreshEarnings(){
+  if(!myProfile) return;
+  const { data: rows } = await sb.from('payments').select('*').eq('teacher_id', myProfile.id).eq('refunded', false).order('created_at', {ascending:false});
+  const list = rows || [];
+  const payerIds = [...new Set(list.map(r=>r.payer_id))];
+  let names = {};
+  if(payerIds.length){
+    const { data: payers } = await sb.from('profiles').select('id, full_name').in('id', payerIds);
+    (payers||[]).forEach(p=>{ names[p.id] = p.full_name; });
+  }
+  const paid = list.filter(p=>p.status==='paid');
+  const totalRevenue = paid.reduce((s,p)=>s+p.amount,0);
+  const totalMine = paid.reduce((s,p)=>s+p.teacher_share,0);
+  const totalOwed = paid.filter(p=>!p.teacher_paid).reduce((s,p)=>s+p.teacher_share,0);
+  const money = n => n.toLocaleString('fr-FR')+' F';
+  document.getElementById('earningsStats').innerHTML =
+    '<div class="stat"><b>'+money(totalRevenue)+'</b><small>REVENU TOTAL</small></div>'+
+    '<div class="stat"><b>'+money(totalMine)+'</b><small>TA PART</small></div>'+
+    '<div class="stat"><b>'+money(totalOwed)+'</b><small>À TE VERSER</small></div>';
+
+  const box = document.getElementById('earningsList');
+  if(!list.length){ box.innerHTML = '<div class="txrow">Aucun paiement enregistré pour l\'instant — ils apparaîtront ici une fois enregistrés depuis le back office.</div>'; return; }
+  box.innerHTML = list.map(p=>{
+    const d = new Date(p.created_at).toLocaleDateString('fr-FR', {day:'2-digit', month:'long'});
+    const payerName = names[p.payer_id] || 'Élève';
+    const statusTxt = p.status!=='paid' ? '<span class="status-pill route">En attente</span>' : p.teacher_paid ? '<span class="status-pill ok">Versé</span>' : '<span class="status-pill route">À verser</span>';
+    return '<div class="txrow"><div class="txrow-top"><b>Séance — '+payerName+statusTxt+'</b><span>'+money(p.amount)+'</span></div>'+
+      '<small>'+(p.method||'—')+' · '+payerName+' · '+d+'</small>'+
+      '<div class="split"><div class="mine"><b>'+money(p.teacher_share)+'</b>Ta part</div><div class="fee"><b>'+money(p.platform_share)+'</b>Commission QIB</div></div></div>';
+  }).join('');
+}
+
+/* ================= MES ÉLÈVES (données réelles Supabase) ================= */
+async function refreshStudents(){
+  if(!myProfile) return;
+  const box = document.getElementById('studentsListContainer');
+  const { data: links } = await sb.from('teacher_students').select('student_id, subject').eq('teacher_id', myProfile.id);
+  const list = links || [];
+  window.myStudentLinks = list;
+  if(!list.length){ box.innerHTML = '<div class="empty">Aucun élève lié pour l\'instant — ça se fait depuis le back office.</div>'; window.myStudentNames = {}; return; }
+  const ids = [...new Set(list.map(l=>l.student_id))];
+  const { data: profs } = await sb.from('profiles').select('id, full_name').in('id', ids);
+  const names = {}; (profs||[]).forEach(p=>{ names[p.id] = p.full_name; });
+  window.myStudentNames = names;
+  const { data: sess } = await sb.from('sessions').select('student_id').eq('teacher_id', myProfile.id);
+  const counts = {}; (sess||[]).forEach(s=>{ counts[s.student_id] = (counts[s.student_id]||0)+1; });
+  box.innerHTML = list.map(l=>{
+    const name = names[l.student_id] || 'Élève';
+    const initials = name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+    const n = counts[l.student_id] || 0;
+    return '<div class="elrow" onclick="openFeature(\''+name.replace(/'/g,"\\'")+'\')"><div class="av">'+initials+'</div><div class="t"><b>'+name+'</b><small>'+(l.subject||'')+' · '+n+' séance(s) suivie(s)</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>';
+  }).join('');
+}
+
+/* ================= MES COURS (parcours assignés aux élèves) ================= */
+let currentCourseId = null;
+
+async function refreshCourses(){
+  if(!myProfile) return;
+  if(!window.myStudentNames) await refreshStudents();
+  const box = document.getElementById('myCoursesList');
+  const { data: courses, error } = await sb.from('courses').select('*').eq('created_by', myProfile.id).order('created_at', {ascending:false});
+  if(error){ box.innerHTML = '<div class="empty">'+error.message+'</div>'; return; }
+  window.myCourses = courses || [];
+  if(!courses || !courses.length){ box.innerHTML = '<div class="empty">Tu n\'as encore publié aucune leçon.</div>'; return; }
+  const courseIds = courses.map(c=>c.id);
+  const { data: assigns } = await sb.from('course_assignments').select('course_id, status').in('course_id', courseIds);
+  const countByCourse = {}, doneByCourse = {};
+  (assigns||[]).forEach(a=>{
+    countByCourse[a.course_id] = (countByCourse[a.course_id]||0)+1;
+    if(a.status==='termine') doneByCourse[a.course_id] = (doneByCourse[a.course_id]||0)+1;
+  });
+  box.innerHTML = courses.map(c=>{
+    const n = countByCourse[c.id]||0, d = doneByCourse[c.id]||0;
+    return '<div class="elrow" onclick="openCourseDetail(\''+c.id+'\')"><div class="av">'+(c.subject||'?').slice(0,2).toUpperCase()+'</div><div class="t"><b>'+c.title+'</b><small>'+(c.subject||'')+(c.level?' · '+c.level:'')+' · '+d+'/'+n+' élève(s) terminé(s)</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>';
+  }).join('');
+}
+
+async function createCourse(){
+  const msg = document.getElementById('crsMsg');
+  msg.textContent = '';
+  const title = document.getElementById('crsTitle').value.trim();
+  const subject = document.getElementById('crsSubject').value.trim();
+  const level = document.getElementById('crsLevel').value.trim();
+  const content = document.getElementById('crsContent').value.trim();
+  if(!title || !subject || !content){ msg.textContent = 'Titre, matière et contenu sont obligatoires.'; msg.style.color = 'var(--alert)'; return; }
+  const { error } = await sb.from('courses').insert({ title, subject, level: level||null, content, created_by: myProfile.id });
+  if(error){ msg.textContent = error.message; msg.style.color = 'var(--alert)'; return; }
+  msg.textContent = 'Leçon publiée.'; msg.style.color = 'var(--mint)';
+  document.getElementById('crsTitle').value = '';
+  document.getElementById('crsSubject').value = '';
+  document.getElementById('crsLevel').value = '';
+  document.getElementById('crsContent').value = '';
+  await refreshCourses();
+}
+
+async function openCourseDetail(courseId){
+  currentCourseId = courseId;
+  const course = (window.myCourses||[]).find(c=>c.id===courseId);
+  if(!course) return;
+  document.getElementById('crsDetailTitle').textContent = course.title;
+  document.getElementById('crsDetailMeta').textContent = [course.subject, course.level].filter(Boolean).join(' · ');
+  document.getElementById('crsDetailContent').textContent = course.content;
+  showPage('courseDetail');
+  await refreshCourseAssignments();
+}
+
+async function refreshCourseAssignments(){
+  const { data: assigns } = await sb.from('course_assignments').select('*').eq('course_id', currentCourseId);
+  const names = window.myStudentNames || {};
+  const assignedIds = new Set((assigns||[]).map(a=>a.student_id));
+
+  const sel = document.getElementById('crsAssignSelect');
+  const candidates = (window.myStudentLinks||[]).map(l=>l.student_id).filter((id,i,arr)=>arr.indexOf(id)===i && !assignedIds.has(id));
+  sel.innerHTML = '<option value="">Choisir un élève…</option>' + candidates.map(id=>'<option value="'+id+'">'+(names[id]||'Élève')+'</option>').join('');
+
+  const list = document.getElementById('crsAssignmentsList');
+  if(!assigns || !assigns.length){ list.innerHTML = '<div class="empty">Aucun élève pour l\'instant.</div>'; return; }
+  list.innerHTML = assigns.map(a=>{
+    const name = names[a.student_id] || 'Élève';
+    const pill = a.status==='termine' ? '<span class="pill done">Terminé</span>' : '<span class="pill todo">À faire</span>';
+    return '<div class="elrow" style="cursor:default;"><div class="av">'+name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase()+'</div><div class="t"><b>'+name+'</b></div>'+pill+'</div>';
+  }).join('');
+}
+
+async function assignCourseToStudent(){
+  const msg = document.getElementById('crsAssignMsg');
+  msg.textContent = '';
+  const student_id = document.getElementById('crsAssignSelect').value;
+  if(!student_id){ msg.textContent = 'Choisis un élève.'; msg.style.color = 'var(--alert)'; return; }
+  const { error } = await sb.from('course_assignments').insert({ course_id: currentCourseId, student_id, assigned_by: myProfile.id, status:'a_faire' });
+  if(error){ msg.textContent = error.message; msg.style.color = 'var(--alert)'; return; }
+  msg.textContent = 'Parcours assigné.'; msg.style.color = 'var(--mint)';
+  await refreshCourseAssignments();
+  await refreshCourses();
+}
+
+/* ================= DÉMARRAGE ================= */
+(async function initApp(){
+  const { data: { session } } = await sb.auth.getSession();
+  if(session) await afterAuthSuccess();
+  else showPage('auth');
+})();
+
+/* --- Navigation : le bouton Retour du téléphone remonte d'une page au lieu de quitter/bloquer --- */
+(function(){
+  const base = showPage;
+  const ROOTS = ['home','auth'];
+  try{ history.replaceState({p:'auth'}, ''); }catch(e){}
+  window.showPage = function(name, fromPop){
+    base(name);
+    if(fromPop) return;
+    try{
+      if(ROOTS.indexOf(name)>-1) history.replaceState({p:name}, '');
+      else history.pushState({p:name}, '');
+    }catch(e){}
+  };
+  window.addEventListener('popstate', function(e){
+    const p = e.state && e.state.p;
+    if(!p || !document.getElementById('page-'+p)) return;
+    if(p==='auth' && typeof myProfile!=='undefined' && myProfile){ window.showPage('home'); return; }
+    window.showPage(p, true);
+  });
+})();
+</script>
+</body>
+</html>
