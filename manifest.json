@@ -1,7 +1,7 @@
 {
-  "name": "QI Business Enseignants",
-  "short_name": "QI Enseignants",
-  "description": "Espace enseignant QI Business : planning, élèves, gains et disponibilité en temps réel.",
+  "name": "QI Business Répétiteurs",
+  "short_name": "QI Répétiteurs",
+  "description": "Le savoir, au sommet. Cours, exercices, suivi et messagerie pour élèves, parents et enseignants.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

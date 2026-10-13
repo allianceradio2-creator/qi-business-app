@@ -54,5 +54,5 @@ jobs:
           ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: qi-business-pro-apk
+          name: qi-business-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
